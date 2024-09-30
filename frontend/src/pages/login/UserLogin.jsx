@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Avatar, Button, Container, IconButton, Paper, TextField, Typography,Stack } from '@mui/material';
 import {CameraAlt} from "@mui/icons-material"
-import {HiddenInput} from '../components/styles/styledComponent';
+import { HiddenInput } from "../../components/Styles/StyledInputs";
 import { useFileHandler, useInputValidation,useStrongPassword } from '6pp';
-import { UsernameValidator } from '../utils/Validators';
-
+import { UsernameValidator } from "../../components/utils/Validator";
+import { Tabs, Tab } from '@mui/material';
+import AdminLogin from './AdminLogin';
 
 const UserLogin = () => {
-
   const [isLogin, setIsLogin] = useState(true);
   const ifLogin=()=> setIsLogin((prev)=>!prev);
   const name =useInputValidation("");
@@ -15,9 +15,14 @@ const UserLogin = () => {
   const password =useStrongPassword();
   const email =useInputValidation("");
   const avatar=useFileHandler("single")
+  const [tabValue, setTabValue] = useState('User'); // Add this line
 
   const handleLogin=(e)=>{e.preventDefault()}
   const handleSignUp=(e)=>{e.preventDefault()}
+
+  const handleChange = (event, newValue) => { // Add this function
+    setTabValue(newValue);
+  };
 
   return (<Container component={"main"}  maxWidth="xs" sx={{height:"100vh",display:"flex" ,justifyContent:"center",alignItems:"center"}}>
 
@@ -26,6 +31,17 @@ const UserLogin = () => {
       {
         isLogin ? (
           <>
+          <Tabs
+              value={tabValue} // Update this line
+              onChange={handleChange} // Update this line
+              textColor="secondary"
+              indicatorColor="secondary"
+              aria-label="secondary tabs example"
+            >
+              <Tab value="User" label="User" />
+              <Tab value="Retailer" label="Retailer" />
+            </Tabs>
+            
             <Typography variant="h4" >Login</Typography>
             <form onSubmit={handleLogin}>
               <TextField required fullWidth label="Username" margin="normal" variant='outlined' />
@@ -41,25 +57,7 @@ const UserLogin = () => {
             <Typography variant="h4" >Sign Up</Typography>
             <form  onSubmit={handleSignUp}>
             
-            <Stack position={"relative"} sx={{ justifyContent: "center", alignItems: "center" }}>
-              <Avatar sx={{ width: "10rem", height: "10rem", objectFit:"contain"}} 
-                src={avatar.preview}
-              />
-              {
-              avatar.error &&(
-                <Typography m ={".5rem"}color='error' variant="caption">
-                  {avatar.error}
-                </Typography>
-              )
-            }
-              <IconButton sx={{ position: "absolute", bottom: -1, right: "6rem" ,}}  component="label" >
-                <>
-                <CameraAlt />
-                <HiddenInput type="file" accept="image/*" onChange={avatar.changeHandler}/>
-               </>
-
-              </IconButton>
-            </Stack>
+           
             <TextField required fullWidth label="Name" margin="normal" variant='outlined' 
               value={name.value}
               onChange={name.changeHandler}
