@@ -10,7 +10,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use(express.json);
-express.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:false}));
 
 
 export default app;

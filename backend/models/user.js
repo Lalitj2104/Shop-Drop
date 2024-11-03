@@ -41,6 +41,9 @@ const userSchema = new  mongoose.Schema({
         required:true,
         default:Date.now(),
     },
+    address:[{
+        type:String,
+    }],
     gender:{
         type:String,
         required:true,

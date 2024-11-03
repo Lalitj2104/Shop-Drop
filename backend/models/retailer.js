@@ -27,7 +27,7 @@ const retailerSchema = new  mongoose.Schema({
         required:[true,"Please provide an email"],
         unique:true,
     },  
-    firmName:{
+    companyName:{
         type:String,
         required: [true, "Please provide  firm name"],
         unique: true,
