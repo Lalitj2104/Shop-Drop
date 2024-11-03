@@ -23,7 +23,11 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  available_quantity: {
+  available_quantity_delivery: {
+    type: Number,
+    default: 0
+  },
+  available_quantity_inStore: {
     type: Number,
     default: 0
   },
