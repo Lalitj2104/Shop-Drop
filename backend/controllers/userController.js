@@ -512,6 +512,7 @@ export const getAllAddress = async (req, res) => {
         Response(res,500,false,error.message);
     }
 };
+
 export const setDefaultAddress = async (req, res) => {
     try{
         if(!req.user){
@@ -519,12 +520,59 @@ export const setDefaultAddress = async (req, res) => {
         }
         const {addressId}= req.body;
         if(!addressId){
-            return Response(res,)
+            return Response(res,400,false,message.missingFieldMessage);
+        }
+        const user=await User.findById(req.user.id);
+        if(!user){
+            return Response(res,400,false,message.userNotFoundMessage);
+        }
+        const address = user.address.id(addressId);
+        if(!address){
+            return Response(res,404,false,message.addressNotFoundMessage);
         }
 
+        user.address.forEach(addr => addr.isDefault = false);
+        
+        address.isDefault = true;
+        await user.save();
+
+        Response(res,200,true,message.addressSetMessage);
 
     }catch(error){
         Response(res,500,false,error.message);
     }
 };
-export const removeAddress = async (req, res) => {};
+
+export const removeAddress = async (req, res) => {
+    try {
+        if(!req.user){
+            return Response(res,400,false,message.userNotFoundMessage);
+        }
+        const userId=req.user.id;
+        const {addressId}=req.params;
+
+        const user =await User.findById(userId);
+        if(!user){
+            return Response(res,400,false,message.userNotFoundMessage);
+        }
+         // Find the address to be removed by addressId
+    const addressIndex = user.address.findIndex(address => address._id.toString() === addressId);
+
+    if (addressIndex === -1) {
+      return Response(res, 400, false, message.addressNotFoundMessage);
+    }
+
+    // Remove the address from the array
+    user.address.splice(addressIndex, 1);
+
+    // Save the updated user
+    await user.save();
+
+    // Send response
+    Response(res, 200, true, message.addressRemovedMessage);
+
+
+    } catch (error) {
+        Response(res,500,false,error.message);
+    }
+};

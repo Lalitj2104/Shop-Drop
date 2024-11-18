@@ -25,7 +25,7 @@ export const message={
     addressRemovedMessage:"Address removed successfully",
     addressSetMessage:"Default address updated successfully",
     addressNotFoundMessage:"Address not found",
-    getAddressMessage:"Addresses retrieved successfully"
-
+    getAddressMessage:"Addresses retrieved successfully",
+    unAuthorizedMessage:"Please login to access",
 
 }
