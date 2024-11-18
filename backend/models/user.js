@@ -41,9 +41,19 @@ const userSchema = new  mongoose.Schema({
         required:true,
         default:Date.now(),
     },
-    address:[{
-        type:String,
-    }],
+    address: [
+    {
+        _id:{type:ObjectId},
+        label: { type: String }, 
+        street: { type: String, required: true },
+        city: { type: String, required: true },
+        state: { type: String, required: true },
+        postalCode: { type: String, required: true },
+        country: { type: String, required: true },
+        phoneNumber: { type: String, required: true },
+        isDefault: {type:Boolean,default:false},
+    }
+],
     gender:{
         type:String,
         required:true,
@@ -60,8 +70,12 @@ const userSchema = new  mongoose.Schema({
     resetPasswordExpire:{
         type:Date,
     },
-    resertPasswordToken:{
-        type:String,
+    resetPasswordAttempts:{
+        type:Number,
+        default:0
+    },
+    resetPasswordLock:{
+        type:Date
     },
     registerOtp:{
         type:Number
@@ -76,21 +90,14 @@ const userSchema = new  mongoose.Schema({
     registerOtpLockUntil:{
         type:Date,
     },
-    loginOtp:{
-        type:Number,
-    },
-    loginOtpAttempts:{
+    loginAttempts:{
         type:Number,
         default:0,
     },
     lockUntil:{
         type:Date,
     },
-    loginOtpExpire:{
-        type:Date,
-    },
 
-   
 }
 ,
   {

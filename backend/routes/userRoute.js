@@ -10,7 +10,7 @@ userRouter.post("/register",registerUser);
 userRouter.post("/verify/:id",verifyUser);
 userRouter.get("/resend/:id",resendOtp);
 userRouter.post("/login",loginUser);
-userRouter.put("/reset",resetPassword);
+userRouter.put("/reset/:id",resetPassword);
 userRouter.put("/changePassword",isAuthenticated,changePassword);
 userRouter.post("/forgetPassword",forgotPassword);
 userRouter.get("/my/profile",isAuthenticated,getUserProfile);
