@@ -149,6 +149,7 @@ export const verifyUser = async (req, res) => {
 		user.registerOtpExpire = undefined;
 		user.registerOtpAttempts = 0;
 		user.registerOtpLockUntil = undefined;
+    
 		//authenticate user
 		const token = await user.generateToken();
 		const options = {
@@ -223,7 +224,7 @@ export const loginUser = async (req, res) => {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
 		//find user
-		let user = (await User.findOne({ email })) + Select("+password");
+		let user = (await User.findOne({ email })).select("+password");
 		//user exist aur not
 		if (!user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
