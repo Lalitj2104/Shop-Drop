@@ -79,7 +79,7 @@ export const verifyUser = async (req, res) => {
 	try {
 		//fetching id and otp
 		const { id } = req.params;
-		const { otp } = req.body;
+		let { otp } = req.body;
 		//checking id
 		if (!id) {
 			return Response(res, 400, false, message.idNotFoundMessage);

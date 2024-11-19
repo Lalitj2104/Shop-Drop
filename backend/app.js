@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 	res.send("your server is active");
 });
 
-app.use(express.json);
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1/user", userRouter);
