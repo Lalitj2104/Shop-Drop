@@ -59,6 +59,7 @@ export const registerUser = async (req, res) => {
     const otpExpire = new Date(Date.now() + 5 * 60 * 1000);
     user.registerOtp = otp;
     user.registerOtpExpire = otpExpire;
+    await user.save();
     //send email
     const subject = "Verify your account";
     emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);

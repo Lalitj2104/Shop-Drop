@@ -91,7 +91,11 @@ export const verify = async (req, res) => {
          }
          //checking otp Attempts
          if(Retailer.registerOtpAttempts>=3){
-            
+            retailer.registerOtp=undefined;
+            retailer.registerOtpExpire=undefined;
+            retailer.registerOtpAttempts=0;
+            registerRetailer.registerOtpLockUntil=Date.now() + process.env.REGISTER_OTP_LOCK * 60 * 1000;
+            await user.save();
          }
         
     } catch (error) {
