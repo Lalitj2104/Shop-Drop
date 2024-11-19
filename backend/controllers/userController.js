@@ -149,7 +149,8 @@ export const verifyUser = async (req, res) => {
 		user.registerOtpExpire = undefined;
 		user.registerOtpAttempts = 0;
 		user.registerOtpLockUntil = undefined;
-    
+		await user.save();
+
 		//authenticate user
 		const token = await user.generateToken();
 		const options = {
@@ -207,7 +208,7 @@ export const resendOtp = async (req, res) => {
 		emailTemplate = emailTemplate.replace("{{PORT}}", process.env.PORT);
 		emailTemplate = emailTemplate.replace("{{USER_ID}}", user._id.toString());
 
-		await sendEMail({ email, subject, html: emailTemplate });
+		await sendEMail({ email: user.email, subject, html: emailTemplate });
 		//send response
 		Response(res, 200, true, message.otpSendMessage);
 	} catch (error) {
@@ -224,23 +225,23 @@ export const loginUser = async (req, res) => {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
 		//find user
-		let user = (await User.findOne({ email })).select("+password");
+		let user = await User.findOne({ email }).select("+password");
 		//user exist aur not
 		if (!user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
 		//user is verified or not
-		if (!user?.isVerified) {
+		if (!user.isVerified) {
 			return Response(res, 400, false, message.userNotVerifiedMessage);
 		}
 		//login attempt locked or not
-		if (user?.lockUntil < Date.now()) {
+		if (user.lockUntil < Date.now()) {
 			user.loginAttempts = 0;
 			await user.save();
 			return Response(res, 400, false, message.loginLockedMessage);
 		}
 		//login attempt exceeded or not
-		if (user?.loginAttempts >= process.env.MAX_LOGIN_ATTEMPTS) {
+		if (user.loginAttempts >= process.env.MAX_LOGIN_ATTEMPTS) {
 			user.loginAttempts = 0;
 			user.lockUntil = new Date(
 				Date.now() + process.env.MAX_LOGIN_ATTEMPTS_EXPIRE * 60 * 1000
