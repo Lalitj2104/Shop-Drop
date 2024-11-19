@@ -1,16 +1,18 @@
-import express from "express"
-import dotenv from "dotenv"
+import express from "express";
+import dotenv from "dotenv";
+import userRouter from "./routes/userRoute.js";
 
-dotenv.config({path:"./config/config.env"});
+dotenv.config({ path: "./config/config.env" });
 
-const app=express();
+const app = express();
 
-app.get('/',(req,res)=>{
-    res.send("yoour server is active");
-})
+app.get("/", (req, res) => {
+	res.send("your server is active");
+});
 
 app.use(express.json);
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 
+app.use("/api/v1/user", userRouter);
 
 export default app;
