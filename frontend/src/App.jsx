@@ -1,44 +1,25 @@
-import {
-	CustomerReviews,
-	Footer,
-	Hero,
-	PopularProducts,
-	Services,
-	SpecialOffer,
-	Subscribe,
-	SuperQuality,
-} from "./sections";
+import FeaturedCategories from "./components/FeaturedCategories/FeaturedCategories"
+import FeaturedProducts from "./components/FeaturedProducts/FeaturedProducts"
+import FeatureHighlights from "./components/FeatureHighlights/FeatureHighlights"
+import Footer from "./components/Footer/Footer"
+import Header from "./components/Header/Header"
+import HeroSection from "./components/HeroSection/HeroSection"
+import PromotionalBanners from "./components/PromotionalBanners/PromotionalBanners"
 
-import Nav from "./components/Nav";
+function App() {
+  return (
+    <>
+        <div>
+            <Header/>
+            <HeroSection/>
+            <FeatureHighlights/>
+            <PromotionalBanners/>
+            <FeaturedProducts/>
+            <FeaturedCategories/>
+            <Footer/>
+        </div>
+    </>
+  )
+}
 
-const App = () => (
-	<main className="relative">
-		<Nav />
-		<section className="xl:padding-l wide:padding-r padding-b">
-			<Hero />
-		</section>
-		<section className="padding">
-			<PopularProducts />
-		</section>
-		<section className="padding">
-			<SuperQuality />
-		</section>
-		<section className="padding-x py-10">
-			<Services />
-		</section>
-		<section className="padding">
-			<SpecialOffer />
-		</section>
-		<section className="bg-pale-blue padding">
-			<CustomerReviews />
-		</section>
-		<section className="padding-x sm:py-32 py-16 w-full">
-			<Subscribe />
-		</section>
-		<section className="padding bg-black padding-x padding-y pb-8">
-			<Footer />
-		</section>
-	</main>
-);
-
-export default App;
+export default App
