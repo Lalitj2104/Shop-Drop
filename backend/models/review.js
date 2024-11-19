@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
   review_id: {
@@ -82,5 +82,5 @@ reviewSchema.pre('save', function (next) {
 });
 
 const Review = mongoose.model('Review', reviewSchema);
+export default Review;
 
-module.exports = Review;

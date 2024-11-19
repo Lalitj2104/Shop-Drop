@@ -1,128 +1,127 @@
-import mongoose from "mongoose"
-import bcrypt from "bcrypt"
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
-const userSchema = new  mongoose.Schema({
-    firstName:{
-        type:String,
-        required:[true,"Please provide first name"],
-        minlength:[3,"First name must be at least 3 characters"],
-    },
-    middleName:{
-        type:String,
-    },
-    lastName:{
-        type:String,
-        required:true,
-    },
-    email:{
-        type:String,
-        required:[true,"Please provide an email"],
-        unique:true,
-    },  
-    username:{
-        type:String,
-        required: [true, "Please provide  username"],
-        unique: true,
-    },   
-    password:{
-        type:String,
-        requird:true,
-        select:false,
-        minlength:[8,"Password must be of atleast 8 characters"],
-    },
-    mobile:{
-        type:Number,
-        minlength: [10, "Mobile number must be atleast 10 digits"],
-        maxlength: [10, "Mobile number must be at Max 10 digits"],
-        unique: true,
-    },
-    dob:{
-        type:Date,
-        required:true,
-        default:Date.now(),
-    },
-    address: [
-    {
-        _id:{type:ObjectId},
-        label: { type: String }, 
-        street: { type: String, required: true },
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        postalCode: { type: String, required: true },
-        country: { type: String, required: true },
-        phoneNumber: { type: String, required: true },
-        isDefault: {type:Boolean,default:false},
-    }
-],
-    gender:{
-        type:String,
-        required:true,
-        enum:["male","female","other"],
-        default:"male",
-    },
-    isVerified:{
-        type:Boolean,
-        default:false,
-    },
-    resetPassword:{
-        type:String,
-    },
-    resetPasswordExpire:{
-        type:Date,
-    },
-    resetPasswordAttempts:{
-        type:Number,
-        default:0
-    },
-    resetPasswordLock:{
-        type:Date
-    },
-    registerOtp:{
-        type:Number
-    },
-    registerOtpExpire:{
-        type:Date,
-    },
-    registerOtpAttempts:{
-        type:Number,
-        default:0
-    },
-    registerOtpLockUntil:{
-        type:Date,
-    },
-    loginAttempts:{
-        type:Number,
-        default:0,
-    },
-    lockUntil:{
-        type:Date,
-    },
-
-}
-,
-  {
-    timestamps: true,
-  }
+const userSchema = new mongoose.Schema(
+	{
+		firstName: {
+			type: String,
+			required: [true, "Please provide first name"],
+			minlength: [3, "First name must be at least 3 characters"],
+		},
+		middleName: {
+			type: String,
+		},
+		lastName: {
+			type: String,
+			required: true,
+		},
+		email: {
+			type: String,
+			required: [true, "Please provide an email"],
+			unique: true,
+		},
+		username: {
+			type: String,
+			required: [true, "Please provide  username"],
+			unique: true,
+		},
+		password: {
+			type: String,
+			requird: true,
+			select: false,
+			minlength: [8, "Password must be of atleast 8 characters"],
+		},
+		mobile: {
+			type: Number,
+			minlength: [10, "Mobile number must be atleast 10 digits"],
+			maxlength: [10, "Mobile number must be at Max 10 digits"],
+			unique: true,
+		},
+		dob: {
+			type: Date,
+			required: true,
+			default: Date.now(),
+		},
+		address: [
+			{
+				_id: { type: mongoose.Schema.Types.ObjectId },
+				label: { type: String },
+				street: { type: String, required: true },
+				city: { type: String, required: true },
+				state: { type: String, required: true },
+				postalCode: { type: String, required: true },
+				country: { type: String, required: true },
+				phoneNumber: { type: String, required: true },
+				isDefault: { type: Boolean, default: false },
+			},
+		],
+		gender: {
+			type: String,
+			required: true,
+			enum: ["male", "female", "other"],
+			default: "male",
+		},
+		isVerified: {
+			type: Boolean,
+			default: false,
+		},
+		resetPassword: {
+			type: String,
+		},
+		resetPasswordExpire: {
+			type: Date,
+		},
+		resetPasswordAttempts: {
+			type: Number,
+			default: 0,
+		},
+		resetPasswordLock: {
+			type: Date,
+		},
+		registerOtp: {
+			type: Number,
+		},
+		registerOtpExpire: {
+			type: Date,
+		},
+		registerOtpAttempts: {
+			type: Number,
+			default: 0,
+		},
+		registerOtpLockUntil: {
+			type: Date,
+		},
+		loginAttempts: {
+			type: Number,
+			default: 0,
+		},
+		lockUntil: {
+			type: Date,
+		},
+	},
+	{
+		timestamps: true,
+	}
 );
 
-userSchema.pre("save",async function(next){
-    if(!this.isModified("password")){
-        return next();
-    }
-    const salt=await bcrypt.genSalt(10);
-    this.password=await bcrypt.hash(this.password,salt);
-    next;
+userSchema.pre("save", async function (next) {
+	if (!this.isModified("password")) {
+		return next();
+	}
+	const salt = await bcrypt.genSalt(10);
+	this.password = await bcrypt.hash(this.password, salt);
+	next;
 });
 
-userSchema.methods.generateToken=async function(){
-    return JsonWebTokenError.sign({id:this._id},process.env.JWT_SECRET,{
-        expireIn:process.env.JWT_EXPIRE,
-    })
+userSchema.methods.generateToken = async function () {
+	return JsonWebTokenError.sign({ id: this._id }, process.env.JWT_SECRET, {
+		expireIn: process.env.JWT_EXPIRE,
+	});
 };
 
-userSchema.methods.matchPassword=async function(password){
-    return await bcrypt.compare(this.password,password);
-}
+userSchema.methods.matchPassword = async function (password) {
+	return await bcrypt.compare(this.password, password);
+};
 
-const User=mongoose.model("User",userSchema);
+const User = mongoose.model("User", userSchema);
 export default User;
