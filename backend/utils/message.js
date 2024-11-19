@@ -27,5 +27,10 @@ export const message={
     addressNotFoundMessage:"Address not found",
     getAddressMessage:"Addresses retrieved successfully",
     unAuthorizedMessage:"Please login to access",
+    retailerNotFoundMessage:"Retailer not found",
+    retailerAlreadyExistMessage:"Retailer already exist",
+    retailerCreatedMessage:"Retailer created successfully",
+    retailerVerifiedMessage:"Retailer is already verified",
+
 
 }
