@@ -59,15 +59,19 @@ const retailerSchema = new  mongoose.Schema({
         type:Boolean,
         default:false,
     },
-    resetPassword:{
-        type:String,
-    },
-    resetPasswordExpire:{
-        type:Date,
-    },
-    resertPasswordToken:{
-        type:String,
-    },
+   resetPassword: {
+			type: Number,
+		},
+		resetPasswordExpire: {
+			type: Date,
+		},
+		resetPasswordAttempts: {
+			type: Number,
+			default: 0,
+		},
+		resetPasswordLock: {
+			type: Date,
+		},
     registerOtp:{
         type:Number
     },
@@ -87,6 +91,9 @@ const retailerSchema = new  mongoose.Schema({
     loginOtpAttempts:{
         type:Number,
         default:0,
+    },
+    loginOtpAttemptsExpire:{
+        type:Date
     },
     lockUntil:{
         type:Date,

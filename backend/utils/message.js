@@ -31,7 +31,10 @@ export const message={
     retailerAlreadyExistMessage:"Retailer already exist",
     retailerCreatedMessage:"Retailer created successfully",
     retailerVerifiedMessage:"Retailer is already verified",
-    retailerNotVerifiedMessage:"Retailer is not verified"
+    retailerNotVerifiedMessage:"Retailer is not verified",
+    retailerProfileFoundMessage:"Profile found successfully",
+    retailerProfileUpdatedMessage:"Profile updated successfully",
+    
 
 
 }
