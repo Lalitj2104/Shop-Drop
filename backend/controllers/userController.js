@@ -294,7 +294,7 @@ export const forgotPassword = async (req, res) => {
 		emailTemplate = emailTemplate.replace("{{PORT}}", process.env.PORT);
 		emailTemplate = emailTemplate.replace("{{USER_ID}}", user._id.toString());
 
-		await sendEMail({ email, subject, html: emailTemplate });
+		await sendEMail({ email: user.email, subject, html: emailTemplate });
 
 		//saving the values
 		user.resetPassword = otp;
@@ -311,14 +311,15 @@ export const resetPassword = async (req, res) => {
 	try {
 		//parsing the data
 		const { id } = req.params;
-		const { otp } = req.body;
+		let { otp } = req.body;
 		//checking the id
 		if (!id) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
 
+
 		//checking user
-		let user = await User.findById(id).select("+password");
+		let user = await User.findById(id);
 		if (!user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
@@ -330,50 +331,57 @@ export const resetPassword = async (req, res) => {
 			await user.save();
 			return Response(res, 400, false, message.otpAttemptsExceededMessage);
 		}
+
+		
 		if (user.resetPasswordExpire < Date.now()) {
 			user.resetPassword = undefined;
 			user.resetPasswordExpire = undefined;
-			user.resetPasswordAttempts = 0;
+			user.resetPasswordAttempts = 0;	 
 			await user.save();
 			return Response(res, 400, false, message.otpExpireMessage);
 		}
+
 		if (user.resetPasswordAttempts >= process.env.MAX_RESET_ATTEMPTS) {
 			user.resetPassword = undefined;
 			user.resetPasswordExpire = undefined;
 			user.resetPasswordAttempts = 0;
 			user.resetPasswordLock = new Date(
-				Date.now() + MAX_RESET_LOCK * 60 * 1000
+				Date.now() + process.env.MAX_RESET_LOCK * 60 * 1000
 			);
 			await user.save();
 			return Response(res, 400, false, message.otpAttemptsExceededMessage);
 		}
+		5
 		if (!otp) {
 			return Response(res, 400, false, message.otpNotFoundMessage);
 		}
+		
 		otp = Number(otp);
+
 		//matching otp
 		if (user.resetPassword !== otp) {
-			resetPasswordAttempts += 1;
+			user.resetPasswordAttempts += 1;
+			await user.save();
+
 			return Response(res, 400, false, message.invalidOtpMessage);
 		}
 
 		user.resetPassword = undefined;
 		user.resetPasswordAttempts = 0;
 		user.resetPasswordExpire = undefined;
-		user.password = undefined;
-
 		await user.save();
+
 		return Response(res, 200, true, message.otpVerifiedMessage);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
 };
 
-export const changePassword = async (req, res) => {
+export const changePassword = async (req, res) => {	
 	try {
 		//params and cookie
 		const { id } = req.user;
-		const { pass } = req.body;
+		const { password } = req.body;
 		//checking id
 		if (!id) {
 			return Response(res, 400, false, message.idNotFoundMessage);
@@ -386,7 +394,7 @@ export const changePassword = async (req, res) => {
 		if (!user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
-		user.password = pass;
+		user.password = password;
 		await user.save();
 		//doing token null for logout
 		res.cookie("token", null, {
