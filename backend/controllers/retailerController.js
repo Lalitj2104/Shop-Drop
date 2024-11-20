@@ -6,6 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import cloudinary from "cloudinary";
+import Product from "../models/product";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -611,6 +612,60 @@ export const logoutRetailer = async (req, res) => {
 	}
 };
 
-export const deleteRetailer = async (req, res) => {};
+export const deleteRetailer = async (req, res) => {
+    try {
+        //checking req user
+    if (!req.user) {
+        return Response(res, 400, false, message.retailerNotFoundMessage);
+    }
+    //parsing data
+    const id =req.user.id;
+    //find and delete
+    const retailer =await Retailer.findById(id);
+    //retailer is not there
+    if (!retailer) {
+        Response(res, 400, false, message.retailerNotFoundMessage);
+    }
+    //getting all products
+    const products=await Product.find({retailer_id:id});
 
-export const getRetailerProducts = async (req, res) => {};
+    //deleting product img
+
+    //geting ids of each product
+    const productIds=products.map((product)=>product._id);
+
+    //delete the reviews 
+    await Review.deleteMany({product_id:{$in:productIds}});
+    
+    //finally delete retailer
+    await Retailer.findByIdAndDelete(id);
+
+   //sending the response
+    Response(res,200,true,message.retailerDeletedMessage);
+    } catch (error) {
+        Response(Res,500,false,error.message);
+    }
+    
+};
+
+export const getRetailerProducts = async (req, res) => {
+    try {
+        if (!req.user) {
+            return Response(res, 400, false, message.retailerNotFoundMessage);
+        }
+        //parsing data
+        const id =req.user.id;
+        //checking the id
+        let retailer=await Retailer.findById(id);
+        if(!retailer){
+            return Response(res,400,false,message.retailerNotFoundMessage);
+        }
+        const products = await Product.find({ retailer_id: id });
+        if(!products){
+            return Response(res,400,false,message.noProductMessage);
+        }
+        Response(res,200,true,message.productFetchedMessage,products);
+    } catch (error) {
+        Response(res,500,false,error.message);
+    }
+};

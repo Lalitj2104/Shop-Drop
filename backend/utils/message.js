@@ -34,7 +34,8 @@ export const message={
     retailerNotVerifiedMessage:"Retailer is not verified",
     retailerProfileFoundMessage:"Profile found successfully",
     retailerProfileUpdatedMessage:"Profile updated successfully",
+    retailerDeletedMessage:"Retailer Deleted Successfully",
+    noProductMessage:"No products found",
+    productFetchedMessage:"Products fetched successfully",
     
-
-
 }
