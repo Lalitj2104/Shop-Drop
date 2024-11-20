@@ -412,10 +412,10 @@ export const changePassword = async (req, res) => {
 			return Response(res, 400, false, message.idNotFoundMessage);
 		}
 		//checking body data
-		if (!pass) {
+		if (!password) {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
-		let user = await User.findById({ id }).select("+password");
+		let user = await User.findById(id).select("+password");
 		if (!user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
@@ -429,7 +429,7 @@ export const changePassword = async (req, res) => {
 			secure: true,
 		});
 
-		Response(res, 200, true, passwordChangeMessage);
+		Response(res, 200, true, message.passwordChangeMessage);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
