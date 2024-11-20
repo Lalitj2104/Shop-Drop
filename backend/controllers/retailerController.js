@@ -1,6 +1,13 @@
+import { sendEMail } from "../middleware/sendMail";
 import Retailer from "../models/retailer";
 import { message } from "../utils/message";
 import { Response } from "../utils/response";
+import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
+import cloudinary from "cloudinary";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const registerRetailer = async (req, res) => {
   try {
@@ -46,7 +53,12 @@ export const registerRetailer = async (req, res) => {
 
     retailer.registerOtp=otp;
     retailer.registerOtpExpire=otpExpire;
+    await retailer.save()
     //sending email
+    let emailTemplate = fs.readFileSync(
+        path.join(__dirname, "../templates/mail.html"),
+        "utf-8"
+      );
     const subject = "Verify your account";
     emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);
     emailTemplate = emailTemplate.replaceAll("{{MAIL}}", process.env.SMTP_USER);
@@ -176,6 +188,11 @@ export const resendOtp = async (req, res) => {
         retailer.registerOtpAttempts=0;
         await retailer.save();
 
+        let emailTemplate = fs.readFileSync(
+            path.join(__dirname, "../templates/mail.html"),
+            "utf-8"
+          );
+
         const subject = "Verify your account";
 
 		emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);
@@ -189,8 +206,104 @@ export const resendOtp = async (req, res) => {
     }
 };
 
-export const loginRetailer = async (req, res) => {};
-export const verifyLogin = async (req, res) => {};
+export const loginRetailer = async (req, res) => {
+    try {
+        //parsing body data
+        const {email,password}=req.body;
+        //checking the data
+        if(!email ||!password){
+            return Response(res,400,false,message.missingFieldMessage);
+        }
+
+        //find retailer
+        let retailer=await Retailer.findOne({email}).select("+password");
+
+        //check retailer
+        if(!retailer){
+            return Response(res,400,false,message.retailerNotFoundMessage);
+        }
+
+        //if retailer not verified
+        if(!retailer.isVerified){
+            return Response(res,400,false,message.retailerNotVerifiedMessage);
+        }
+        //login attempt is locked
+        if(retailer.lockUntil<Date.now()){
+            retailer.loginOtpAttempts=0;
+            await retailer.save();
+            return Response(res,400,false,message.loginLockedMessage);
+        }
+        //login Attempts exceeded or not
+        if(Retailer.loginOtpAttempts>=process.nextTick.MAX_LOGIN_ATTEMPTS){
+            retailer.loginOtpAttempts=0;
+            retailer.lockUntil=new Date(
+				Date.now() + process.env.MAX_LOGIN_ATTEMPTS_EXPIRE * 60 * 1000
+			);
+            await retailer.save();
+            return Response(res,400,false,message.loginLockedMessage);
+        }
+
+        //check password
+        const isMatch=await retailer.matchPassword(password);
+        if(!isMatch){
+            retailer.loginOtpAttempts+=1;
+            await retailer.save();
+            return Response(res,400,false,message.badAuthMessage);
+        }
+         //generate otp
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    const otpExpire = new Date(
+      Date.now() + process.env.OTP_EXPIRE * 15 * 60 * 1000
+    );
+
+    //send otp
+
+    let emailTemplate = fs.readFileSync(
+      path.join(__dirname, "../templates/mail.html"),
+      "utf-8"
+    );
+    const subject = "Two step verification";
+    // const body = `Your OTP is ${otp}`;
+
+    emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);
+    emailTemplate = emailTemplate.replaceAll("{{MAIL}}", process.env.SMTP_USER);
+    emailTemplate = emailTemplate.replace("{{PORT}}", process.env.PORT);
+    emailTemplate = emailTemplate.replace("{{USER_ID}}", retailer._id.toString());
+
+    await sendEMail({ email, subject, html: emailTemplate });
+
+        retailer.loginOtp=otp;
+        retailer.loginOtpExpire=otpExpire;
+        retailer.loginOtpAttempts=0;
+        retailer.lockUntil=undefined;
+        await retailer.save();
+        Response(res,200,true,message.otpSendMessage,retailer._id);
+    } catch (error) {
+        Response(res,500,false,error.message);
+    }
+};
+export const verifyLogin = async (req, res) => {
+    try {
+        //parsing
+        const {id}=req.params;
+        const {otp} =req.body;
+
+        //checking id
+        if(!id){
+            return Response(res,400,false,message.idNotFoundMessage);
+        }
+        //finding retailer
+        let retailer=await Retailer.findById(id);
+
+        //checking retailer
+        if(!retailer){
+            return Response(res,400,false,message.retailerNotFoundMessage)
+        }
+
+    } catch (error) {
+        Response(res,500,false,error.message);
+    }
+};
 export const resendLoginOtp = async (req, res) => {};
 
 export const changePassword = async (req, res) => {};

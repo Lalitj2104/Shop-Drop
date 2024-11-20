@@ -10,10 +10,6 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let emailTemplate = fs.readFileSync(
-	path.join(__dirname, "../templates/mail.html"),
-	"utf-8"
-);
 
 export const registerUser = async (req, res) => {
 	try {
@@ -61,6 +57,11 @@ export const registerUser = async (req, res) => {
     user.registerOtpExpire = otpExpire;
     await user.save();
     //send email
+
+let emailTemplate = fs.readFileSync(
+	path.join(__dirname, "../templates/mail.html"),
+	"utf-8"
+);
     const subject = "Verify your account";
     emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);
     emailTemplate = emailTemplate.replaceAll("{{MAIL}}", process.env.SMTP_USER);
@@ -201,6 +202,11 @@ export const resendOtp = async (req, res) => {
 		user.registerOtpAttempts = 0;
 		await user.save();
 		//send otp
+
+let emailTemplate = fs.readFileSync(
+	path.join(__dirname, "../templates/mail.html"),
+	"utf-8"
+);
 		const subject = "Verify your account";
 
 		emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);
@@ -260,9 +266,23 @@ export const loginUser = async (req, res) => {
 		user.loginAttempts = 0;
 		user.lockUntil = undefined;
 		await user.save();
-
-		//response
-		Response(res, 200, true, message.loginSuccessfulMessage);
+		//authenticate user
+		const token = await user.generateToken();
+		const options = {
+			expires: new Date(
+				Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+			),
+			httpOnly: true,
+			sameSite: "none",
+			secure: true,
+		};
+		//sending response
+		res.status(200).cookie("token", token, options).json({
+			success: true,
+			message: message.loginSuccessfulMessage,
+			data: user,
+		});
+		
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
@@ -286,6 +306,11 @@ export const forgotPassword = async (req, res) => {
 		const otpExpire = new Date(
 			Date.now() + process.env.OTP_EXPIRE * 15 * 60 * 1000
 		);
+
+let emailTemplate = fs.readFileSync(
+	path.join(__dirname, "../templates/mail.html"),
+	"utf-8"
+);
 		const subject = "Reset your password";
 		// const body = `Your OTP is ${otp}`;
 

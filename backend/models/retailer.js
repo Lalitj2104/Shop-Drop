@@ -119,7 +119,7 @@ retailerSchema.methods.generateToken=async function(){
 };
 
 retailerSchema.methods.matchPassword=async function(password){
-    return await bcrypt.compare(this.password,password);
+    return await bcrypt.compare(password,this.password);
 }
 
 const Retailer=mongoose.model("Retailer",retailerSchema);
