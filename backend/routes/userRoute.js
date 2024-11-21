@@ -38,12 +38,12 @@ userRouter.put("/changePassword", isAuthenticated, changePassword);
 userRouter.get("/my/profile", isAuthenticated, getUserProfile);
 userRouter.put("/my/profile/update", isAuthenticated, updateUserProfile);
 userRouter.post("/logout", logoutUser);
-userRouter.delete("/delete/me", deleteUser);
+userRouter.delete("/delete/me", isAuthenticated, deleteUser);
 
 userRouter.post("/add/address", isAuthenticated, addAddress);
 userRouter.get("/my/address", isAuthenticated, getAllAddress);
 userRouter.put("/default/address", isAuthenticated, setDefaultAddress);
-userRouter.delete("/my/address", isAuthenticated, removeAddress);
+userRouter.delete("/my/address/:id", isAuthenticated, removeAddress);
 
 userRouter.post("/add/review", isAuthenticated, addReview);
 userRouter.get("/get/review/:id", isAuthenticated, getReview);

@@ -7,6 +7,10 @@ import fs from "fs";
 import Review from "../models/review.js";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -533,7 +537,11 @@ export const addAddress = async (req, res) => {
 		}
 		const newAddress = {
 			...address,
+<<<<<<< HEAD
 			_id: new mongoose.Types.ObjectId(), 
+=======
+			_id: new mongoose.Types.ObjectId(), // Generate a unique ObjectId for the address
+>>>>>>> origin/main
 		};
 		user.address.push(newAddress);
 		await user.save();
@@ -596,7 +604,8 @@ export const removeAddress = async (req, res) => {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
 		const userId = req.user.id;
-		const { addressId } = req.params;
+		const { id } = req.params;
+
 
 		const user = await User.findById(userId);
 		if (!user) {
@@ -604,7 +613,7 @@ export const removeAddress = async (req, res) => {
 		}
 		// Find the address to be removed by addressId
 		const addressIndex = user.address.findIndex(
-			(address) => address._id.toString() === addressId
+			(address) => address._id.toString() === id
 		);
 
 		if (addressIndex === -1) {
