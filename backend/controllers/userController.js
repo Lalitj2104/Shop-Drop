@@ -7,10 +7,6 @@ import fs from "fs";
 import Review from "../models/review.js";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
