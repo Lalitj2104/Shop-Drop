@@ -1,14 +1,10 @@
-<<<<<<< HEAD
 import mongoose from "mongoose";
 import Product from "../models/product";
 import Retailer from "../models/retailer";
-=======
->>>>>>> origin/main
 import { message } from "../utils/message"
 import { Response } from "../utils/response";
 
 export const addProduct=async(req,res)=>{
-<<<<<<< HEAD
    try {
      //checking user
      if(!req.user){
@@ -55,15 +51,6 @@ export const addProduct=async(req,res)=>{
    } catch (error) {
     Response(res,500,false,error.message);
    }
-=======
-    //checking user
-    if(!req.user){
-        return Response(res,400,false,message.retailerNotFoundMessage);
-    }
-
-    //getting the data from body
-    const {  }=req.body;
->>>>>>> origin/main
 
 }
 

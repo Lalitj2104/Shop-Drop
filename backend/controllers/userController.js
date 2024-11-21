@@ -537,11 +537,7 @@ export const addAddress = async (req, res) => {
 		}
 		const newAddress = {
 			...address,
-<<<<<<< HEAD
-			_id: new mongoose.Types.ObjectId(), 
-=======
 			_id: new mongoose.Types.ObjectId(), // Generate a unique ObjectId for the address
->>>>>>> origin/main
 		};
 		user.address.push(newAddress);
 		await user.save();
