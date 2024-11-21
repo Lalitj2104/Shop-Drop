@@ -11,6 +11,16 @@ const productSchema = new mongoose.Schema({
     ref: "Retailer",
     required: true,
   },
+  image: {
+      public_id: {
+        type: String,
+        default: "",
+      },
+      url: {
+        type: String,
+        default: "",
+      },
+    },
   name: {
     type: String,
     required: true,
@@ -64,6 +74,8 @@ const productSchema = new mongoose.Schema({
   brand: {
     type: String,
   },
+},{
+  timestamps:true
 });
 
 const Product = mongoose.model("Product", productSchema);
