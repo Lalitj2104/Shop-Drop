@@ -6,8 +6,6 @@ import path from "path";
 import fs from "fs";
 import Review from "../models/review.js";
 import { fileURLToPath } from "url";
-import mongoose from "mongoose";
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -597,8 +595,7 @@ export const removeAddress = async (req, res) => {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
 		const userId = req.user.id;
-		const { id } = req.params;
-
+		const { addressId } = req.params;
 
 		const user = await User.findById(userId);
 		if (!user) {
@@ -606,7 +603,7 @@ export const removeAddress = async (req, res) => {
 		}
 		// Find the address to be removed by addressId
 		const addressIndex = user.address.findIndex(
-			(address) => address._id.toString() === id
+			(address) => address._id.toString() === addressId
 		);
 
 		if (addressIndex === -1) {
