@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
   product_id: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     unique: true,
   },
@@ -11,6 +11,16 @@ const productSchema = new mongoose.Schema({
     ref: "Retailer",
     required: true,
   },
+  image: {
+      public_id: {
+        type: String,
+        default: "",
+      },
+      url: {
+        type: String,
+        default: "",
+      },
+    },
   name: {
     type: String,
     required: true,
@@ -36,13 +46,13 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  images: {
-    type: [String],
-  },
-  attributes: {
-    type: Map,
-    of: String,
-  },
+  // images: {
+  //   type: [String],
+  // },
+  // attributes: {
+  //   type: Map,
+  //   of: String,
+  // },
   rating: {
     type: Number,
     min: 0,
@@ -64,6 +74,8 @@ const productSchema = new mongoose.Schema({
   brand: {
     type: String,
   },
+},{
+  timestamps:true
 });
 
 const Product = mongoose.model("Product", productSchema);

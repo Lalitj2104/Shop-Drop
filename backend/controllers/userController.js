@@ -6,6 +6,7 @@ import path from "path";
 import fs from "fs";
 import Review from "../models/review.js";
 import { fileURLToPath } from "url";
+import mongoose from "mongoose";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -490,12 +491,14 @@ export const deleteUser = async (req, res) => {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
 		const id = req.user.id;
-		const user = await User.findByIdAndDelete(id);
+		let user=await User.findById(id);
 
 		if (!user) {
 			Response(res, 400, false, message.userNotFoundMessage);
 		}
 		await Review.deleteMany({ user_id: id });
+
+		 await User.findByIdAndDelete(id);
 
 		Response(res, 200, true, message.userDeletedMessage);
 	} catch (error) {
@@ -528,7 +531,11 @@ export const addAddress = async (req, res) => {
 		if (!user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
-		user.address.push(address);
+		const newAddress = {
+			...address,
+			_id: new mongoose.Types.ObjectId(), 
+		};
+		user.address.push(newAddress);
 		await user.save();
 		Response(res, 200, true, message.addressAddMessage);
 	} catch (error) {
