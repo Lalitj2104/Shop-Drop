@@ -212,6 +212,10 @@ export const resendOtp = async (req, res) => {
       "{{USER_ID}}",
       retailer._id.toString()
     );
+    await sendEMail({ email, subject, html: emailTemplate });
+
+    //creating retailer
+    Response(res, 200, true, message?.otpSendMessage);
   } catch (error) {
     Response(res, 500, false, error.message);
   }
