@@ -6,10 +6,10 @@ import path from "path";
 import fs from "fs";
 import Review from "../models/review.js";
 import { fileURLToPath } from "url";
+import mongoose from "mongoose";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 export const registerUser = async (req, res) => {
 	try {
@@ -48,26 +48,26 @@ export const registerUser = async (req, res) => {
 			return Response(res, 400, false, message.userAlreadyExist);
 		}
 
-    //spreading data
-    user = await User.create({ ...req.body });
-    //generating otp
-    const otp = Math.floor(100000 + Math.random() * 90000);
-    const otpExpire = new Date(Date.now() + 5 * 60 * 1000);
-    user.registerOtp = otp;
-    user.registerOtpExpire = otpExpire;
-    await user.save();
-    //send email
+		//spreading data
+		user = await User.create({ ...req.body });
+		//generating otp
+		const otp = Math.floor(100000 + Math.random() * 90000);
+		const otpExpire = new Date(Date.now() + 5 * 60 * 1000);
+		user.registerOtp = otp;
+		user.registerOtpExpire = otpExpire;
+		await user.save();
+		//send email
 
-let emailTemplate = fs.readFileSync(
-	path.join(__dirname, "../templates/mail.html"),
-	"utf-8"
-);
-    const subject = "Verify your account";
-    emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);
-    emailTemplate = emailTemplate.replaceAll("{{MAIL}}", process.env.SMTP_USER);
-    emailTemplate = emailTemplate.replace("{{PORT}}", process.env.PORT);
-    emailTemplate = emailTemplate.replace("{{USER_ID}}", user._id.toString());
-    await sendEMail({ email, subject, html: emailTemplate });
+		let emailTemplate = fs.readFileSync(
+			path.join(__dirname, "../templates/mail.html"),
+			"utf-8"
+		);
+		const subject = "Verify your account";
+		emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);
+		emailTemplate = emailTemplate.replaceAll("{{MAIL}}", process.env.SMTP_USER);
+		emailTemplate = emailTemplate.replace("{{PORT}}", process.env.PORT);
+		emailTemplate = emailTemplate.replace("{{USER_ID}}", user._id.toString());
+		await sendEMail({ email, subject, html: emailTemplate });
 
 		//creating user
 		Response(res, 200, true, message?.userCreatedMessage, user);
@@ -203,10 +203,10 @@ export const resendOtp = async (req, res) => {
 		await user.save();
 		//send otp
 
-let emailTemplate = fs.readFileSync(
-	path.join(__dirname, "../templates/mail.html"),
-	"utf-8"
-);
+		let emailTemplate = fs.readFileSync(
+			path.join(__dirname, "../templates/mail.html"),
+			"utf-8"
+		);
 		const subject = "Verify your account";
 
 		emailTemplate = emailTemplate.replace("{{OTP_CODE}}", otp);
@@ -282,7 +282,6 @@ export const loginUser = async (req, res) => {
 			message: message.loginSuccessfulMessage,
 			data: user,
 		});
-		
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
@@ -307,10 +306,10 @@ export const forgotPassword = async (req, res) => {
 			Date.now() + process.env.OTP_EXPIRE * 15 * 60 * 1000
 		);
 
-let emailTemplate = fs.readFileSync(
-	path.join(__dirname, "../templates/mail.html"),
-	"utf-8"
-);
+		let emailTemplate = fs.readFileSync(
+			path.join(__dirname, "../templates/mail.html"),
+			"utf-8"
+		);
 		const subject = "Reset your password";
 		// const body = `Your OTP is ${otp}`;
 
@@ -342,7 +341,6 @@ export const resetPassword = async (req, res) => {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
 
-
 		//checking user
 		let user = await User.findById(id);
 		if (!user) {
@@ -357,11 +355,10 @@ export const resetPassword = async (req, res) => {
 			return Response(res, 400, false, message.otpAttemptsExceededMessage);
 		}
 
-		
 		if (user.resetPasswordExpire < Date.now()) {
 			user.resetPassword = undefined;
 			user.resetPasswordExpire = undefined;
-			user.resetPasswordAttempts = 0;	 
+			user.resetPasswordAttempts = 0;
 			await user.save();
 			return Response(res, 400, false, message.otpExpireMessage);
 		}
@@ -376,11 +373,11 @@ export const resetPassword = async (req, res) => {
 			await user.save();
 			return Response(res, 400, false, message.otpAttemptsExceededMessage);
 		}
-		5
+		5;
 		if (!otp) {
 			return Response(res, 400, false, message.otpNotFoundMessage);
 		}
-		
+
 		otp = Number(otp);
 
 		//matching otp
@@ -402,7 +399,7 @@ export const resetPassword = async (req, res) => {
 	}
 };
 
-export const changePassword = async (req, res) => {	
+export const changePassword = async (req, res) => {
 	try {
 		//params and cookie
 		const { id } = req.user;
@@ -490,14 +487,14 @@ export const deleteUser = async (req, res) => {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
 		const id = req.user.id;
-		let user=await User.findById(id);
+		let user = await User.findById(id);
 
 		if (!user) {
 			Response(res, 400, false, message.userNotFoundMessage);
 		}
 		await Review.deleteMany({ user_id: id });
 
-		 await User.findByIdAndDelete(id);
+		await User.findByIdAndDelete(id);
 
 		Response(res, 200, true, message.userDeletedMessage);
 	} catch (error) {

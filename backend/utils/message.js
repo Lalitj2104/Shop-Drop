@@ -37,5 +37,6 @@ export const message={
     retailerDeletedMessage:"Retailer Deleted Successfully",
     noProductMessage:"No products found",
     productFetchedMessage:"Products fetched successfully",
+    productAddedMessage:"Product added successfully",
     
 }
