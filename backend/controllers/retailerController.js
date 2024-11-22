@@ -212,7 +212,7 @@ export const resendOtp = async (req, res) => {
       "{{USER_ID}}",
       retailer._id.toString()
     );
-    await sendEMail({ email, subject, html: emailTemplate });
+    await sendEMail({ email: retailer.email, subject, html: emailTemplate });
 
     //creating retailer
     Response(res, 200, true, message?.otpSendMessage);
@@ -382,7 +382,7 @@ export const resendLoginOtp = async (req, res) => {
 
     //checking it
     if (!id) {
-      return Response(res, 400, false, message.userNotFoundMessage);
+      return Response(res, 400, false, message.idNotFoundMessage);
     }
     //checking user
     let retailer = await Retailer.findById(id);

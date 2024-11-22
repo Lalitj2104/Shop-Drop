@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken";
 
 const retailerSchema = new  mongoose.Schema({
     firstName:{
@@ -120,7 +121,7 @@ retailerSchema.pre("save",async function(next){
 });
 
 retailerSchema.methods.generateToken=async function(){
-    return JsonWebTokenError.sign({id:this._id},process.env.JWT_SECRET,{
+    return jwt.sign({id:this._id},process.env.JWT_SECRET,{
         expireIn:process.env.JWT_EXPIRE,
     })
 };
