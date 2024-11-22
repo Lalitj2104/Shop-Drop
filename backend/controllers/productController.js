@@ -59,6 +59,13 @@ export const removeProduct=async(req,res)=>{
 }
 
 export const updateProduct=async(req,res)=>{
+  //update product 
+  const {id}= req.params;
+  //
+  let product=await Product.findById(id)
+  if(!id){
+
+  }
 
 }
 

@@ -195,7 +195,7 @@ export const resendOtp = async (req, res) => {
     //save otp
     retailer.registerOtp = otp;
     retailer.registerOtpExpire = otpExpire;
-    retailer.registerOtpAttempts = 0;
+    retailer.registerOtpAttempts = 0;~
     await retailer.save();
 
     let emailTemplate = fs.readFileSync(
