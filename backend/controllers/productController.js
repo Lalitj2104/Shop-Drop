@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import Product from "../models/product";
-import Retailer from "../models/retailer";
-import { message } from "../utils/message"
-import { Response } from "../utils/response";
+import Product from "../models/product.js";
+import Retailer from "../models/retailer.js";
+import { message } from "../utils/message.js"
+import { Response } from "../utils/response.js";
 
 export const addProduct=async(req,res)=>{
    try {

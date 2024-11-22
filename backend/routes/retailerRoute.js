@@ -1,54 +1,59 @@
 import express from "express";
 import {
-  deleteRetailer,
-  getRetailerProducts,
-  getRetailerProfile,
-  loginRetailer,
-  logoutRetailer,
-  registerRetailer,
-  resendLoginOtp,
-  updateRetailerProfile,
-  verify,
-  verifyLogin,
-} from "../controllers/retailerController";
-import {
+	deleteRetailer,
+	getRetailerProducts,
+	getRetailerProfile,
+	loginRetailer,
+	logoutRetailer,
+	registerRetailer,
+	resendOtp,
+	resendLoginOtp,
+	updateRetailerProfile,
+	verify,
+	verifyLogin,
   changePassword,
   forgotPassword,
-  resendOtp,
   resetPassword,
-} from "../controllers/userController";
-import isAuthenticated from "../middleware/isAuth";
+} from "../controllers/retailerController.js";
+
+import { isAuthenticated } from "../middleware/isAuth.js";
 import {
-  addProduct,
-  getProduct,
-  removeProduct,
-  updateProduct,
-} from "../controllers/productController";
+	addProduct,
+	getProduct,
+	removeProduct,
+	updateProduct,
+} from "../controllers/productController.js";
 
-retailerRouter = express.Router();
+const retailerRouter = express.Router();
 
-retailerRouter.post("retailerRegister", registerRetailer);
-retailerRouter.post("/retailer/verify/:id", verify);
-retailerRouter.get("/retailer/resend/:id", resendOtp);
+retailerRouter.post("/retailerRegister", registerRetailer);
+retailerRouter.post("/verify/:id", verify);
+retailerRouter.get("/resend/:id", resendOtp);
 retailerRouter.post("/retailerLogin", loginRetailer);
-retailerRouter.post("/retailer/login/verify/:id", verifyLogin);
-retailerRouter.get("/retailer/login/resend/:id", resendLoginOtp);
-retailerRouter.put("/retailer/changePassword", isAuthenticated, changePassword);
-retailerRouter.post("/retailer/forgot", forgotPassword);
-retailerRouter.put("/retailer/reset", isAuthenticated, resetPassword);
-retailerRouter.delete("/retailer/delete", isAuthenticated, deleteRetailer);
+retailerRouter.post("/login/verify/:id", verifyLogin);
+retailerRouter.get("/login/resend/:id", resendLoginOtp);
+retailerRouter.put("/changePassword", isAuthenticated, changePassword);
+retailerRouter.post("/forgot", forgotPassword);
+retailerRouter.put("/reset", isAuthenticated, resetPassword);
+retailerRouter.delete("/delete", isAuthenticated, deleteRetailer);
 
-retailerRouter.get("/retailer/profile", isAuthenticated, getRetailerProfile);
+retailerRouter.get("/profile", isAuthenticated, getRetailerProfile);
 retailerRouter.put(
-  "/retailer/profile/update",
-  isAuthenticated,
-  updateRetailerProfile
+	"/retailer/profile/update",
+	isAuthenticated,
+	updateRetailerProfile
 );
 
-retailerRouter.get("/retailer/products/:id", isAuthenticated, getRetailerProducts);
+retailerRouter.get(
+	"/retailer/products/:id",
+	isAuthenticated,
+	getRetailerProducts
+);
 retailerRouter.post("/logout", isAuthenticated, logoutRetailer);
 
 retailerRouter.post("/product/add", isAuthenticated, addProduct);
 retailerRouter.put("/product/update/:id", isAuthenticated, updateProduct);
 retailerRouter.get("/my/product", isAuthenticated, getProduct);
 retailerRouter.delete("/product/delete", isAuthenticated, removeProduct);
+
+export default retailerRouter;

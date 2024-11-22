@@ -18,8 +18,8 @@ const retailerSchema = new  mongoose.Schema({
         type:String,
         unique:true,
         required:true,
-        minlength: [10, "GST number must be atleast 15 digits"],
-        maxlength: [10, "GST number must be at Max 15 digits"],
+        minlength: [10, "GST number must be atleast 10 digits"],
+        maxlength: [10, "GST number must be at Max 10 digits"],
 
     },
     email:{

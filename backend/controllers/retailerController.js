@@ -1,12 +1,12 @@
-import { sendEMail } from "../middleware/sendMail";
-import Retailer from "../models/retailer";
-import { message } from "../utils/message";
-import { Response } from "../utils/response";
+import { sendEMail } from "../middleware/sendMail.js";
+import Retailer from "../models/retailer.js";
+import { message } from "../utils/message.js";
+import { Response } from "../utils/response.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import cloudinary from "cloudinary";
-import Product from "../models/product";
+import Product from "../models/product.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
