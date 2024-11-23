@@ -122,7 +122,7 @@ retailerSchema.pre("save",async function(next){
 
 retailerSchema.methods.generateToken=async function(){
     return jwt.sign({id:this._id},process.env.JWT_SECRET,{
-        expireIn:process.env.JWT_EXPIRE,
+        expiresIn:process.env.JWT_EXPIRE,
     })
 };
 
