@@ -32,7 +32,7 @@ userRouter.post("/register", registerUser);
 userRouter.post("/verify/:id", verifyUser);
 userRouter.get("/resend/:id", resendOtp);
 userRouter.post("/login", loginUser);
-userRouter.post("/forgetPassword", forgotPassword);
+userRouter.post("/forgotPassword", forgotPassword);
 userRouter.put("/reset/:id", resetPassword);
 userRouter.put("/changePassword", isAuthenticated, changePassword);
 userRouter.get("/my/profile", isAuthenticated, getUserProfile);
