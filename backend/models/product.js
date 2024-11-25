@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
-  product_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    unique: true,
-  },
   retailer_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Retailer",
@@ -58,14 +53,6 @@ const productSchema = new mongoose.Schema({
     min: 0,
     max: 5,
     default: 0,
-  },
-  created_at: {
-    type: Date,
-    default: Date.now,
-  },
-  updated_at: {
-    type: Date,
-    default: Date.now,
   },
   tags: {
     type: [String],

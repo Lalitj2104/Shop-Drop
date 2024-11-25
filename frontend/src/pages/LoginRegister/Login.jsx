@@ -84,18 +84,7 @@ const Login = ({
 					/>
 				</div>
 			)}
-			{signInRole === "retailer" && (
-				<div className="input-field">
-					<img src={ImgLock} className="fas" alt="GST Number" />
-					<input
-						type="text"
-						name="gstNumber"
-						value={gstNumber}
-						placeholder="GST Number"
-						onChange={onChange}
-					/>
-				</div>
-			)}
+			
 			<input type="submit" value="Login" className="btn solid" />
 			<p className="forgot-password" onClick={onForgotPassword}>
 				Forgot Password?

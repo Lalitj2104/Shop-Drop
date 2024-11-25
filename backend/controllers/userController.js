@@ -619,3 +619,33 @@ export const removeAddress = async (req, res) => {
 		Response(res, 500, false, error.message);
 	}
 };
+
+export const addWish=async(req,res)=>{
+	try {
+		
+	} catch (error) {
+		Response(res,500,false,error.message);
+	}
+}
+
+export const updateWish=async(req,res)=>{
+	try {
+		
+	} catch (error) {
+		Response(res,500,false,error.message);
+	}}
+
+export const getWish=async(req,res)=>{
+	try {
+		
+	} catch (error) {
+		Response(res,500,false,error.message);
+	}}
+
+export const deleteWish=async(req,res)=>{
+	try {
+		
+	} catch (error) {
+		Response(res,500,false,error.message);
+	}}
+

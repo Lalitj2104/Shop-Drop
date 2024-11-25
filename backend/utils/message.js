@@ -38,5 +38,10 @@ export const message={
     noProductMessage:"No products found",
     productFetchedMessage:"Products fetched successfully",
     productAddedMessage:"Product added successfully",
+    productsFoundMessage:"Products Found Successfully",
+    productNotFoundMessage:"Product not found",
+    invalidRetailerMessage:"Please access with correct Retailer",
+    productFoundMessage:"Product Found Successful",
+    productRemovedMessage:"Product Removed Successfully",
     
 }

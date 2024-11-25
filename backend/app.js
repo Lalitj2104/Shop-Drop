@@ -4,6 +4,7 @@ import userRouter from "./routes/userRoute.js";
 import cookieParser from "cookie-parser";
 import retailerRouter from "./routes/retailerRoute.js";
 import productRouter from "./routes/productRoute.js";
+import wishListRouter from "./routes/wishList.js";
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -20,5 +21,6 @@ app.use(cookieParser());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/retailer", retailerRouter);
 app.use("/api/v1/product", productRouter);
+app.use("/api/v1/wishList",wishListRouter);
 
 export default app;
