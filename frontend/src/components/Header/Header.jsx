@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import "./Header.css"; // Import the CSS styles
 
 const Header = () => {
@@ -29,7 +29,9 @@ const Header = () => {
 					<button className="icon">🔍</button>
 					<button className="icon">❤️</button>
 					<button className="icon">🛒</button>
-					<button className="icon">👤</button>
+					<Link to="/login">
+						<button className="icon">👤</button>
+					</Link>
 				</div>
 			</div>
 		</header>
