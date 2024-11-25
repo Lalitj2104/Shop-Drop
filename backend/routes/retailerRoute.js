@@ -34,8 +34,8 @@ retailerRouter.post("/login/verify/:id", verifyLogin);
 retailerRouter.get("/login/resend/:id", resendLoginOtp);
 retailerRouter.put("/changePassword", isAuthenticate, changePassword);
 retailerRouter.post("/forgot", forgotPassword);
-retailerRouter.put("/reset/:id", isAuthenticated, resetPassword);
-retailerRouter.delete("/delete", isAuthenticated, deleteRetailer);
+retailerRouter.put("/reset/:id", isAuthenticate, resetPassword);
+retailerRouter.delete("/delete", isAuthenticate, deleteRetailer);
 
 retailerRouter.get("/profile", isAuthenticate, getRetailerProfile);
 retailerRouter.put(
