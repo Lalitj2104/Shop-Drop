@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import ForgotPassword from "../pages/Password/ForgotPassword/ForgotPassword";
 import VerifyOtp from "../pages/Otp/VerifyOtp/VerifyOtp";
 import ResetPassword from "../pages/Password/ResetPassword/ResetPassword";
+import LoginRegister from "../pages/LoginRegister/LoginRegister";
 
 const Path = () => {
 	return (
@@ -10,6 +11,8 @@ const Path = () => {
 			<Router>
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<LoginRegister formType="login" />} />
+					<Route path="/register" element={<LoginRegister formType="register" />} />
 					<Route path="/forgotPassword" element={<ForgotPassword />} />
 					<Route path="/verify/:id" element={<VerifyOtp />} />
 					<Route path="/reset/:id" element={<ResetPassword />} />
