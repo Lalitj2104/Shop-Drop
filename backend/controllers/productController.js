@@ -45,8 +45,8 @@ export const addProduct=async(req,res)=>{
         brand:brand,
         tags:tags,
     })
-    await Product.Save();
-    Response(res,200,true,message.productAddedMessage,product);
+    
+    Response(res,200,true,message.productAddedMessage,newProduct);
     
    } catch (error) {
     Response(res,500,false,error.message);
@@ -63,9 +63,12 @@ export const updateProduct=async(req,res)=>{
   const {id}= req.params;
   //
   let product=await Product.findById(id)
-  if(!id){
-
+  if(!product){
+    return Response(res,400,false,message.noProductMessage);
   }
+  const { name,description,category,price,available_quantity_delivery, available_quantity_inStore,tags,brand}=req.body;
+
+
 
 }
 

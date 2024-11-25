@@ -16,7 +16,7 @@ import {
   resetPassword,
 } from "../controllers/retailerController.js";
 
-import { isAuthenticated } from "../middleware/isAuth.js";
+import { isAuthenticate } from "../middleware/retailAuth.js"; 
 import {
 	addProduct,
 	getProduct,
@@ -32,28 +32,23 @@ retailerRouter.get("/resend/:id", resendOtp);
 retailerRouter.post("/retailerLogin", loginRetailer);
 retailerRouter.post("/login/verify/:id", verifyLogin);
 retailerRouter.get("/login/resend/:id", resendLoginOtp);
-retailerRouter.put("/changePassword", isAuthenticated, changePassword);
+retailerRouter.put("/changePassword", isAuthenticate, changePassword);
 retailerRouter.post("/forgot", forgotPassword);
-retailerRouter.put("/reset", isAuthenticated, resetPassword);
-retailerRouter.delete("/delete", isAuthenticated, deleteRetailer);
+retailerRouter.put("/reset", isAuthenticate, resetPassword);
+retailerRouter.delete("/delete", isAuthenticate, deleteRetailer);
 
-retailerRouter.get("/profile", isAuthenticated, getRetailerProfile);
+retailerRouter.get("/profile", isAuthenticate, getRetailerProfile);
 retailerRouter.put(
 	"/retailer/profile/update",
-	isAuthenticated,
+	isAuthenticate,
 	updateRetailerProfile
 );
 
 retailerRouter.get(
 	"/retailer/products/:id",
-	isAuthenticated,
+	isAuthenticate,
 	getRetailerProducts
 );
-retailerRouter.post("/logout", isAuthenticated, logoutRetailer);
-
-retailerRouter.post("/product/add", isAuthenticated, addProduct);
-retailerRouter.put("/product/update/:id", isAuthenticated, updateProduct);
-retailerRouter.get("/my/product", isAuthenticated, getProduct);
-retailerRouter.delete("/product/delete", isAuthenticated, removeProduct);
+retailerRouter.post("/logout", isAuthenticate, logoutRetailer);
 
 export default retailerRouter;
