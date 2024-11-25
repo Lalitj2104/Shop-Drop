@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faFacebook,
@@ -22,8 +22,8 @@ const Login = ({
 	onChange,
 	onForgotPassword,
 }) => {
-	const [isPasswordShown, setIsPasswordShown] = React.useState(false);
-	const [isEyeImage, setIsEyeImage] = React.useState(true);
+	const [isPasswordShown, setIsPasswordShown] = useState(false);
+	const [isEyeImage, setIsEyeImage] =useState(true);
 
 	const togglePasswordVisibility = () => {
 		setIsPasswordShown(!isPasswordShown);
