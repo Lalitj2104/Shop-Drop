@@ -22,6 +22,21 @@ const ResendRegisterOtpSuccess=createAction('RESEND_REGISTER_OTP_SUCCESS') ;
 const ResendRegisterOtpFailure=createAction('RESEND_REGISTER_OTP_FAILURE');
 
 
+const forgotUserPasswordRequest=createAction("FORGOT_USER_PASSWORD_REQUEST");
+const forgotUserPasswordSuccess=createAction("FORGOT_USER_PASSWORD_SUCCESS");
+const forgotUserPasswordFailure=createAction("FORGOT_USER_PASSWORD_FAILURE");
+
+
+
+const resetUserPasswordRequest=createAction("RESET_USER_PASSWORD_REQUEST");
+const resetUserPasswordSuccess=createAction("RESET_USER_PASSWORD_SUCCESS");
+const resetUserPasswordFailure=createAction("RESET_USER_PASSWORD_FAILURE");
+
+
+const changeUserPasswordRequest=createAction("CHANGE_USER_PASSWORD_REQUEST");
+const changeUserPasswordSuccess=createAction("CHANGE_USER_PASSWORD_SUCCESS");
+const changeUserPasswordFailure=createAction("CHANGE_USER_PASSWORD_FAILURE");
+
 
 
 const loadUserRequest=createAction('LOAD_USER_REQUEST');

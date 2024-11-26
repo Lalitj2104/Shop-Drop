@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import retailerRouter from "./routes/retailerRoute.js";
 import productRouter from "./routes/productRoute.js";
 import wishListRouter from "./routes/wishList.js";
+import cors from "cors"
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -13,6 +14,12 @@ const app = express();
 app.get("/", (req, res) => {
 	res.send("your server is active");
 });
+
+app.use(cors({
+    origin:[process.env.LOCAL_URL,process.env.WEB_URL],
+    methods:["GET","PUT","POST","PATCH","DELETE"],
+    credentials:true,
+}))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
