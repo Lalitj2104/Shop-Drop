@@ -1,5 +1,4 @@
 import { createAction, createReducer } from '@reduxjs/toolkit'
-import React from 'react'
 const initialState={
 
 }
@@ -56,12 +55,12 @@ export const userReducer = createReducer( initialState,(builder)=> {
     .addCase(userLoginRequest,(state)=>{
         state.loading =true;
     })
-    .addCase(userLoginSuccess,(state)=>{
+    .addCase(userLoginSuccess,(state, action)=>{
         state.loading=false;
         state.message=action.payload.message;
         state.id=action.payload.id;
     })
-    .addCase(userLoginFailure,(state)=>{
+    .addCase(userLoginFailure,(state, action)=>{
         state.loading=false;
         state.error=action.payload;
     })
@@ -71,12 +70,12 @@ export const userReducer = createReducer( initialState,(builder)=> {
         state.loading=true;
 
     })
-    .addCase(userRegisterSuccess,(state)=>{
+    .addCase(userRegisterSuccess,(state, action)=>{
         state.loading=false;
         state.message=action.payload.message;
         state.id=action.payload.id;
     })
-    .addCase(userRegisterFailure,(state)=>{
+    .addCase(userRegisterFailure,(state, action)=>{
         state.loading=false;
         state.error=action.payload;
     })
@@ -85,14 +84,14 @@ export const userReducer = createReducer( initialState,(builder)=> {
     .addCase(RegisterOtpRequest,(state)=>{
         state.loading=true;
     })
-    .addCase(RegisterOtpSuccess,(state)=>{
+    .addCase(RegisterOtpSuccess,(state, action)=>{
         state.loading=false;
         state.message=action.payload;
         state.isAuthenticated=true;
     })
-    .addCase(RegisterOtpFailure,(state)=>{
+    .addCase(RegisterOtpFailure,(state, action)=>{
         state.loading=false;
-        state.errro=action.payload;
+        state.error=action.payload;
         state.isAuthenticated=false;
     })
 
@@ -101,11 +100,11 @@ export const userReducer = createReducer( initialState,(builder)=> {
         state.loading=true;
 
     })
-    .addCase(ResendRegisterOtpSuccess,(state)=>{
+    .addCase(ResendRegisterOtpSuccess,(state, action)=>{
         state.loading=false;
         state.message=action.payload;
     })
-    .addCase(ResendRegisterOtpFailure,(state)=>{
+    .addCase(ResendRegisterOtpFailure,(state, action)=>{
         state.loading=false;
         state.error=action.payload;
     })
