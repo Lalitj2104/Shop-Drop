@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faFacebook,
@@ -23,7 +23,7 @@ const Login = ({
 	onForgotPassword,
 }) => {
 	const [isPasswordShown, setIsPasswordShown] = useState(false);
-	const [isEyeImage, setIsEyeImage] =useState(true);
+	const [isEyeImage, setIsEyeImage] = useState(true);
 
 	const togglePasswordVisibility = () => {
 		setIsPasswordShown(!isPasswordShown);
@@ -84,7 +84,7 @@ const Login = ({
 					/>
 				</div>
 			)}
-			
+
 			<input type="submit" value="Login" className="btn solid" />
 			<p className="forgot-password" onClick={onForgotPassword}>
 				Forgot Password?
