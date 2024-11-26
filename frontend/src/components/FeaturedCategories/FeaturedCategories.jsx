@@ -1,19 +1,21 @@
 
 import "./FeaturedCategories.css";
+import menfashion from "../../../public/mens fashion.jpg";
+import womenfashion from "../../../public/womens fashion.jpg";
 
 const categories = [
 	{
 		id: 1,
 		title: "Men's Fashion",
 		discount: "Flat 70% Off",
-		image: "",
+		image: menfashion,
 		buttonText: "Shop Now",
 	},
 	{
 		id: 2,
 		title: "Women's Wear",
 		discount: "Min. 35-70% Off",
-		image: "",
+		image: womenfashion,
 		buttonText: "Shop Now",
 	},
 ];

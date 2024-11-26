@@ -1,5 +1,11 @@
 import { useState } from "react";
 import "./FeaturedProducts.css";
+import backpack from "../../../public/Tan Solid Laptop Backpack.jpg";
+import jacket from "../../../public/Brown Solid Biker Jacket.jpg";
+import top from "../../../public/Petite Olive Green Solid Top.jpg";
+import boots from "../../../public/Men Brown Solid Mid-Top Boots.jpg";
+import handbag from "../../../public/Brown Self Design Shoulder Handbag.jpg";
+import watch from "../../../public/Black Analogue and Digital Watch.jpg";
 
 const tabs = ["New Arrival", "Best Selling", "Top Rated"];
 
@@ -9,14 +15,14 @@ const products = {
 			id: 1,
 			name: "Tan Solid Laptop Backpack",
 			price: "$149.00 - $185.00",
-			image: "",
+			image: backpack, 
 			rating: 4.5,
 		},
 		{
 			id: 2,
 			name: "Brown Solid Biker Jacket",
 			price: "$110.00 - $120.00",
-			image: "",
+			image: jacket, 
 			rating: 4.7,
 		},
 	],
@@ -25,14 +31,14 @@ const products = {
 			id: 3,
 			name: "Petite Olive Green Solid Top",
 			price: "$49.00",
-			image: "",
+			image: top, 
 			rating: 4.3,
 		},
 		{
 			id: 4,
 			name: "Men Brown Solid Mid-Top Boots",
 			price: "$115.00",
-			image: "",
+			image: boots, 
 			rating: 4.8,
 		},
 	],
@@ -41,14 +47,14 @@ const products = {
 			id: 5,
 			name: "Brown Self Design Shoulder Handbag",
 			price: "$78.00",
-			image: "",
+			image: handbag, 
 			rating: 4.9,
 		},
 		{
 			id: 6,
 			name: "Black Analogue and Digital Watch",
 			price: "$1,599.00",
-			image: "",
+			image: watch, 
 			rating: 4.7,
 		},
 	],

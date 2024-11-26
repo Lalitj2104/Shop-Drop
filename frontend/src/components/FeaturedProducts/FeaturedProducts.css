@@ -1,70 +1,78 @@
 .featured-products {
-    padding: 50px;
-    background-color: #fff;
-  }
-  
-  .section-title {
-    text-align: center;
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-  
-  .tab-button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    border: none;
-    background-color: #f4f4f4;
-    color: #333;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .tab-button.active {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .product-card {
-    background-color: #f9f9f9;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid #e2e2e2;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-  }
-  
-  .product-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .product-name {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    margin: 10px 0;
-  }
-  
-  .product-price {
-    font-size: 14px;
-    color: #007bff;
-  }
-  
-  .product-rating {
-    font-size: 14px;
-    color: #ff9900;
-  }
-  
+  padding: 50px;
+  background-color: #fff;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  background-color: #f4f4f4;
+  color: #333;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+/* Image Styling */
+.product-card img {
+  width: 350px; /* Set a specific width */
+  height: 150px; /* Set a specific height */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio and fits within the defined size */
+  border-radius: 8px; /* Optional: Rounded corners for the images */
+  margin-bottom: 10px; /* Space below the image */
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+.product-price {
+  font-size: 14px;
+  color: #007bff;
+}
+
+.product-rating {
+  font-size: 14px;
+  color: #ff9900;
+}
