@@ -53,7 +53,7 @@ export const registerUser = async (req, res) => {
 
 		//spreading data
 		user = await User.create({ ...req.body });
-		
+
 		//generating otp
 		const otp = Math.floor(100000 + Math.random() * 90000);
 		const otpExpire = new Date(Date.now() + 5 * 60 * 1000);
@@ -624,32 +624,30 @@ export const removeAddress = async (req, res) => {
 	}
 };
 
-export const addWish=async(req,res)=>{
+export const addWish = async (req, res) => {
 	try {
-		
 	} catch (error) {
-		Response(res,500,false,error.message);
+		Response(res, 500, false, error.message);
 	}
-}
+};
 
-export const updateWish=async(req,res)=>{
+export const updateWish = async (req, res) => {
 	try {
-		
 	} catch (error) {
-		Response(res,500,false,error.message);
-	}}
+		Response(res, 500, false, error.message);
+	}
+};
 
-export const getWish=async(req,res)=>{
+export const getWish = async (req, res) => {
 	try {
-		
 	} catch (error) {
-		Response(res,500,false,error.message);
-	}}
+		Response(res, 500, false, error.message);
+	}
+};
 
-export const deleteWish=async(req,res)=>{
+export const deleteWish = async (req, res) => {
 	try {
-		
 	} catch (error) {
-		Response(res,500,false,error.message);
-	}}
-
+		Response(res, 500, false, error.message);
+	}
+};

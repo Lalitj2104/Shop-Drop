@@ -1,7 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-const initialState = {
-	
-};
+const initialState = {};
 
 const userLoginRequest = createAction("USER_LOGIN_REQUEST");
 const userLoginSuccess = createAction("USER_LOGIN_SUCCESS");
@@ -48,12 +46,12 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.loading = false;
 			state.message = action.payload.message;
 			state.id = action.payload.id;
-			state.isAuthenticated=true;
+			state.isAuthenticated = true;
 		})
 		.addCase(userLoginFailure, (state, action) => {
 			state.loading = false;
 			state.error = action.payload;
-			state.isAuthenticated=false;
+			state.isAuthenticated = false;
 		})
 
 		.addCase(userRegisterRequest, (state) => {
@@ -107,6 +105,40 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.userLoading = false;
 			state.authError = action.payload;
 			state.isAuthenticated = false;
+		})
+		.addCase(forgotUserPasswordRequest, (state) => {
+			state.loading = true;
+		})
+		.addCase(forgotUserPasswordSuccess, (state, action) => {
+			state.loading = false;
+			state.message = action.payload;
+			state.id = action.payload.id;
+		})
+		.addCase(forgotUserPasswordFailure, (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		})
+		.addCase(resetUserPasswordRequest, (state) => {
+			state.loading = true;
+		})
+		.addCase(resetUserPasswordSuccess, (state, action) => {
+			state.loading = false;
+			state.message = action.payload;
+		})
+		.addCase(resetUserPasswordFailure, (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		})
+		.addCase(changeUserPasswordRequest, (state) => {
+			state.loading = true;
+		})
+		.addCase(changeUserPasswordSuccess, (state, action) => {
+			state.loading = false;
+			state.message = action.payload;
+		})
+		.addCase(changeUserPasswordFailure, (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
 		})
 
 		.addCase(clearError, (state) => {

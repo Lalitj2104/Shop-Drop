@@ -1,0 +1,75 @@
+/* Container for the spinner and text */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: white; /* Set background to white */
+  font-family: Arial, sans-serif;
+}
+
+/* Spinner container */
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+/* Each dot in the spinner */
+.spinner .dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  animation: fade 1.2s infinite ease-in-out;
+}
+
+/* Positioning each dot in a circle */
+.spinner .dot-1 { transform: rotate(30deg) translate(0, -28px); }
+.spinner .dot-2 { transform: rotate(60deg) translate(0, -28px); }
+.spinner .dot-3 { transform: rotate(90deg) translate(0, -28px); }
+.spinner .dot-4 { transform: rotate(120deg) translate(0, -28px); }
+.spinner .dot-5 { transform: rotate(150deg) translate(0, -28px); }
+.spinner .dot-6 { transform: rotate(180deg) translate(0, -28px); }
+.spinner .dot-7 { transform: rotate(210deg) translate(0, -28px); }
+.spinner .dot-8 { transform: rotate(240deg) translate(0, -28px); }
+.spinner .dot-9 { transform: rotate(270deg) translate(0, -28px); }
+.spinner .dot-10 { transform: rotate(300deg) translate(0, -28px); }
+.spinner .dot-11 { transform: rotate(330deg) translate(0, -28px); }
+.spinner .dot-12 { transform: rotate(0deg) translate(0, -28px); }
+
+/* Fade animation for each dot */
+@keyframes fade {
+  0%, 39%, 100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+/* Delay each dot animation */
+.spinner .dot-1 { animation-delay: -1.1s; }
+.spinner .dot-2 { animation-delay: -1s; }
+.spinner .dot-3 { animation-delay: -0.9s; }
+.spinner .dot-4 { animation-delay: -0.8s; }
+.spinner .dot-5 { animation-delay: -0.7s; }
+.spinner .dot-6 { animation-delay: -0.6s; }
+.spinner .dot-7 { animation-delay: -0.5s; }
+.spinner .dot-8 { animation-delay: -0.4s; }
+.spinner .dot-9 { animation-delay: -0.3s; }
+.spinner .dot-10 { animation-delay: -0.2s; }
+.spinner .dot-11 { animation-delay: -0.1s; }
+.spinner .dot-12 { animation-delay: 0s; }
+
+/* Loading text style */
+.loading-container p {
+  margin-top: 20px;
+  color: black;
+  font-size: 16px;
+}

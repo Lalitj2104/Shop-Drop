@@ -115,15 +115,22 @@ export const forgotUserpassword = (email) => async (dispatch) => {
 		dispatch({
 			type: "FORGOT_USER_PASSWORD_REQUEST",
 		});
-		const { data } = await axios.post(`${URL}/forgot-Password`, email, {
-			headers: {
-				"Content-Type": "application/json",
-			},
-			withCredentials: true,
-		});
+		const { data } = await axios.post(
+			`${URL}/forgot-Password`,
+			{ email },
+			{
+				headers: {
+					"Content-Type": "application/json",
+				},
+				withCredentials: true,
+			}
+		);
 		dispatch({
 			type: "FORGOT_USER_PASSWORD_SUCCESS",
-			payload: data.message,
+			payload: {
+				message: data.message,
+				id: data.data,
+			},
 		});
 	} catch (error) {
 		dispatch({
@@ -138,7 +145,7 @@ export const resetUserPassword = (id, otp) => async (dispatch) => {
 		dispatch({
 			type: "RESET_USER_PASSWORD_REQUEST",
 		});
-		const { data } = await axios.put(
+		const { data } = await axios.post(
 			`${URL}/reset/${id}`,
 			{ otp },
 			{
@@ -160,17 +167,21 @@ export const resetUserPassword = (id, otp) => async (dispatch) => {
 	}
 };
 
-export const changeUserPassword = (id, otp) => async (dispatch) => {
+export const changeUserPassword = (id, password) => async (dispatch) => {
 	try {
 		dispatch({
 			type: "CHANGE_USER_PASSWORD_REQUEST",
 		});
-		const { data } = await axios.post(`${URL}/change-Password/${id}`, otp, {
-			headers: {
-				"Content-Type": "application/json",
-			},
-			withCredentials: true,
-		});
+		const { data } = await axios.put(
+			`${URL}/change-Password/${id}`,
+			{ password },
+			{
+				headers: {
+					"Content-Type": "application/json",
+				},
+				withCredentials: true,
+			}
+		);
 		dispatch({
 			type: "CHANGE_USER_PASSWORD_SUCCESS",
 			payload: data.message,
