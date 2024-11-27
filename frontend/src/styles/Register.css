@@ -1,206 +1,206 @@
 /* Main container for register */
 .signup-cont {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-  flex-wrap: wrap;
-  overflow: hidden;
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2px;
+	flex-wrap: wrap;
+	overflow: hidden;
 }
 
 /* Styling for the register form container */
 .signin {
-  position: relative;
-  width: 500px;
-  background: #fff;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  border-radius: 4px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+	position: relative;
+	width: 500px;
+	background: #fff;
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px;
+	border-radius: 4px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
 }
 
 /* Content inside the register box */
 .signin .content {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 30px;
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 30px;
 }
 
 /* Register heading */
 .signin .content h2 {
-  font-size: 2em;
-  color: #00BFFF;
-  text-transform: uppercase;
+	font-size: 2em;
+	color: #00bfff;
+	text-transform: uppercase;
 }
 
 /* Form styling */
 .signin .content .form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }
 
 /* Input container */
 .signin .content .form .inputGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+	width: 100%;
 }
 
 .signin .content .form .inputBx {
-  position: relative;
-  width: 100%;
+	position: relative;
+	width: 100%;
 }
 
 /* Input fields */
 .signin .content .form .inputBx input,
 .signin .content .form .inputBx select {
-  position: relative;
-  width: 100%;
-  background: #f3f3f3;
-  border: none;
-  outline: none;
-  padding: 15px 0px;
-  border-radius: 4px;
-  color: #333;
-  font-weight: 500;
-  font-size: 1em;
+	position: relative;
+	width: 80%;
+	background: #f3f3f3;
+	border: none;
+	outline: none;
+  padding: 15px 10px;
+	border-radius: 4px;
+	color: #333;
+	font-weight: 500;
+	font-size: 1em;
 }
 
 /* Input fields focus effect */
 .signin .content .form .inputBx input:focus,
 .signin .content .form .inputBx select:focus {
-  border: 1px solid #00BFFF;
+	border: 1px solid #00bfff;
 }
 
 /* Placeholder labels */
 .signin .content .form .inputBx i {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
-  font-size: 0.9em;
-  pointer-events: none;
-  transition: all 0.3s ease;
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #aaa;
+	font-size: 0.9em;
+	pointer-events: none;
+	transition: all 0.3s ease;
 }
 
 .signin .content .form .inputBx input:focus ~ i,
 .signin .content .form .inputBx select:focus ~ i {
-  transform: translateY(-120%);
-  font-size: 0.8em;
-  color: #00BFFF;
+	transform: translateY(-120%);
+	font-size: 0.8em;
+	color: #00bfff;
 }
 
 /* Gender dropdown */
 .signin .content .form .inputBx select {
-  appearance: none;
+	appearance: none;
 }
 
 /* Profile picture preview */
 .profile-picture-container {
-  margin: 15px auto;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #00BFFF;
+	margin: 15px auto;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 2px solid #00bfff;
 }
 
 .profile-picture {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 /* Links at the bottom of the form */
 .signin .content .form .links {
-  width: 100%;
-  text-align: center;
+	width: 100%;
+	text-align: center;
 }
 
 .signin .content .form .links a {
-  color: #00BFFF;
-  text-decoration: none;
-  font-weight: 600;
+	color: #00bfff;
+	text-decoration: none;
+	font-weight: 600;
 }
 
 .signin .content .form .links a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 /* Submit button */
 .inputBx button {
-  padding: 15px;
-  background: #00BFFF;
-  color: #fff;
-  width: 100%;
-  font-weight: 600;
-  font-size: 1.1em;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  transition: background 0.3s ease;
+	padding: 15px;
+	background: #00bfff;
+	color: #fff;
+	width: 100%;
+	font-weight: 600;
+	font-size: 1.1em;
+	letter-spacing: 0.05em;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	transition: background 0.3s ease;
 }
 
 .inputBx button:hover {
-  background: #008CBA;
+	background: #008cba;
 }
 
 /* Disabled button state */
 .inputBx button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+	opacity: 0.7;
+	cursor: not-allowed;
 }
 
 /* Spinner for loading state */
 .spinner {
-  border: 3px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 3px solid #fff;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
+	border: 3px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 3px solid #fff;
+	width: 20px;
+	height: 20px;
+	animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 /* Responsive Design */
 @media (max-width: 900px) {
-  .signin {
-    width: 80%;
-    padding: 30px;
-  }
+	.signin {
+		width: 80%;
+		padding: 30px;
+	}
 
-  .signin .content .form .inputGrid {
-    grid-template-columns: 1fr;
-  }
+	.signin .content .form .inputGrid {
+		grid-template-columns: 1fr;
+	}
 }
 
 @media (max-width: 600px) {
-  .signin {
-    width: 90%;
-    padding: 20px;
-  }
+	.signin {
+		width: 90%;
+		padding: 20px;
+	}
 }
