@@ -9,7 +9,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   // Redux state for user authentication
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth || {}); // Fallback to empty object
 
   // Functions to handle hover events
   const showDropdown = () => setDropdownVisible(true);
@@ -17,6 +17,7 @@ const Header = () => {
 
   return (
     <header className="header">
+      {/* Top Header */}
       <div className="header-top">
         <div className="contact-info">
           <p>📞 (+01) 4587 880 | ✉️ support@pressmart.com</p>
@@ -28,8 +29,13 @@ const Header = () => {
           </p>
         </div>
       </div>
+
+      {/* Main Header */}
       <div className="header-main">
+        {/* Logo */}
         <div className="logo">Shop & Drop</div>
+
+        {/* Navigation Menu */}
         <nav className="nav-menu">
           <a href="#">Home</a>
           <a href="#">Shop</a>
@@ -38,6 +44,8 @@ const Header = () => {
           <a href="#">Elements</a>
           <a href="#">Buy</a>
         </nav>
+
+        {/* Navigation Icons */}
         <div className="nav-icons">
           {/* Delivery Info: Only visible when logged in */}
           {isAuthenticated && (
@@ -49,6 +57,7 @@ const Header = () => {
               </p>
             </div>
           )}
+          {/* Search, Wishlist, Cart */}
           <button className="icon">🔍</button>
           <button className="icon">❤️</button>
           <button className="icon">🛒</button>
@@ -62,7 +71,7 @@ const Header = () => {
             <button className="icon">👤</button>
             {isDropdownVisible && (
               <div className="dropdown">
-                {isLoggedIn ? (
+                {isAuthenticated ? (
                   <>
                     <Link to="/account">Your Account</Link>
                     <Link to="/orders">Your Orders</Link>
