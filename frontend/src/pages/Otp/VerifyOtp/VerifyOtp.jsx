@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../../styles/VerifyOtp.css";
 import { useDispatch, useSelector } from "react-redux";
 import { resendRegisterOtp, verifyRegisterOtp } from "../../../redux/Actions/userActions";
+import toastOptions from "../../../constants/toast";
+import { toast } from "react-toastify";
 
 const VerifyOtp = () => {
     const spans = Array.from({ length: 128 });

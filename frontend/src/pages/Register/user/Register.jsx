@@ -40,6 +40,9 @@ const Register = () => {
 	};
 
 	useEffect(() => {
+		if (isAuthenticated) {
+			return navigate("/");
+		}
 		console.log(details);
 		if (message) {
 			// console.log(message);

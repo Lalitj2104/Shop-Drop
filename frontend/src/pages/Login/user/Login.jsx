@@ -31,6 +31,7 @@ const Login = () => {
 			dispatch({
 				type: "CLEAR_MESSAGE",
 			});
+			return navigate("/");
 		}
 		if (error) {
 			console.log(error);
