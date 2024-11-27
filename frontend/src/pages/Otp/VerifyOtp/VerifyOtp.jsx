@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../../styles/VerifyOtp.css";
 import { useDispatch, useSelector } from "react-redux";
-import { verifyRegisterOtp } from "../../../redux/Actions/userActions";
-import { resendLoginOtp } from "../../../../../backend/controllers/retailerController";
+import { resendRegisterOtp, verifyRegisterOtp } from "../../../redux/Actions/userActions";
 
 const VerifyOtp = () => {
     const spans = Array.from({ length: 128 });
@@ -26,7 +25,7 @@ const VerifyOtp = () => {
         dispatch(verifyRegisterOtp(id,otp));
     }
     const handleResendOtp=()=>{
-        dispatch(resendLoginOtp(id));
+        dispatch(resendRegisterOtp(id));
     }
 
     useEffect(()=>{
