@@ -1,10 +1,4 @@
-/* Base styles */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-}
+/* Removed global selectors */
 
 /* Parent container */
 .app {
@@ -27,8 +21,8 @@ body, html {
   text-align: center;
 }
 
-.profile p{
-    color: white;
+.profile p {
+  color: white;
 }
 
 .profile-img {
@@ -59,7 +53,7 @@ body, html {
 }
 
 /* Content styles */
-.content {
+.dashboard-content {
   flex: 1;
   padding: 20px;
   background-color: #fff;

@@ -35,7 +35,7 @@ function RetailerDashboard() {
 			</div>
 
 			{/* Main Content */}
-			<div className="content">
+			<div className="dashboard-content">
 				<h2>New in Stock</h2>
 				<div className="product-grid">
 					<div className="product">

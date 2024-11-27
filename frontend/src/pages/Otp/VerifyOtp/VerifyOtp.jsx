@@ -11,7 +11,7 @@ const VerifyOtp = () => {
 		e.preventDefault();
 		if (otp.length === 6) {
 			setMessage("OTP verified successfully!");
-			setTimeout(() => navigate("/reset-password"), 2000);
+			setTimeout(() => navigate("/"), 2000);
 		} else {
 			setMessage("Please enter a valid 6-digit OTP.");
 		}

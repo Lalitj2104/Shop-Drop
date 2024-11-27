@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux"; // For Redux state
-import "./Header.css"; // Import the CSS styles
+import { useSelector, useDispatch } from "react-redux";
+import "./Header.css";
 
 const Header = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state) => state.auth || {});
 
-  // Redux state for user authentication
-  const { isAuthenticated, user } = useSelector((state) => state.auth || {}); // Fallback to empty object
-
-  // Functions to handle hover events
   const showDropdown = () => setDropdownVisible(true);
   const hideDropdown = () => setDropdownVisible(false);
 
@@ -25,29 +22,25 @@ const Header = () => {
         <div className="top-right">
           <p>Welcome to Our Store!</p>
           <p>
-            <span>🌍 English</span> | <span>$ Dollar (USD)</span>
+            🌍 <span>English</span> | $ <span>Dollar (USD)</span>
           </p>
         </div>
       </div>
 
       {/* Main Header */}
       <div className="header-main">
-        {/* Logo */}
         <div className="logo">Shop & Drop</div>
 
-        {/* Navigation Menu */}
         <nav className="nav-menu">
-          <a href="#">Home</a>
-          <a href="#">Shop</a>
-          <a href="#">Pages</a>
-          <a href="#">Blog</a>
-          <a href="#">Elements</a>
-          <a href="#">Buy</a>
+          <Link to="/">Home</Link>
+          <Link to="/shop">Shop</Link>
+          <Link to="/pages">Pages</Link>
+          <Link to="/blog">Blog</Link>
+          <Link to="/elements">Elements</Link>
+          <Link to="/buy">Buy</Link>
         </nav>
 
-        {/* Navigation Icons */}
         <div className="nav-icons">
-          {/* Delivery Info: Only visible when logged in */}
           {isAuthenticated && (
             <div className="delivery-info">
               <p>
@@ -57,12 +50,10 @@ const Header = () => {
               </p>
             </div>
           )}
-          {/* Search, Wishlist, Cart */}
           <button className="icon">🔍</button>
           <button className="icon">❤️</button>
           <button className="icon">🛒</button>
 
-          {/* User Icon with Dropdown */}
           <div
             className="user-icon-wrapper"
             onMouseEnter={showDropdown}

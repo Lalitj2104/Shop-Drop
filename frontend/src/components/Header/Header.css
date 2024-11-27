@@ -87,14 +87,13 @@
 	color: #007bff;
 }
 
-/* Dropdown container */
 .user-icon-wrapper {
 	position: relative;
 }
 
 .dropdown {
 	position: absolute;
-	top: 100%; /* Position below the button */
+	top: 100%; 
 	right: 0;
 	background-color: #fff;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -106,7 +105,7 @@
 	z-index: 1000;
 }
 
-/* Dropdown links */
+
 .dropdown a {
 	text-decoration: none;
 	color: #333;
@@ -120,7 +119,7 @@
 	color: #fff;
 }
 
-/* Adjust hover on the user icon */
 .user-icon-wrapper .icon:hover {
 	color: #007bff;
 }
+

@@ -38,11 +38,13 @@ export const registerUser = async (req, res) => {
 		) {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
+
 		//checking user
 		let user = await User.findOne({ email });
 		if (user) {
 			return Response(res, 400, false, message.userAlreadyExist);
 		}
+
 		user = await User.findOne({ username });
 		if (user) {
 			return Response(res, 400, false, message.userAlreadyExist);
@@ -50,6 +52,7 @@ export const registerUser = async (req, res) => {
 
 		//spreading data
 		user = await User.create({ ...req.body });
+		
 		//generating otp
 		const otp = Math.floor(100000 + Math.random() * 90000);
 		const otpExpire = new Date(Date.now() + 5 * 60 * 1000);

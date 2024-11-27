@@ -1,54 +1,28 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: white;
-}
-
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #fff; /* White background for the entire page */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Ensure the body spans full height for centering */
-}
-
-/* Section */
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #fff; /* White background */
-  margin: 0;
-}
-
 /* Main container for login */
 .login-cont {
-  position: relative;
+  position: absolute;  /* Ensures it stretches to full viewport */
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2px;
-  flex-wrap: wrap;
   overflow: hidden;
+  background-color: #f4f4f4; /* Optional background color */
 }
 
 /* Styling for the login form container */
 .signin {
   position: relative;
-  width: 500px; /* Increased width */
-  background: #fff; /* White background */
+  width: 500px; /* Fixed width */
+  background: #fff;
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px; /* Increased padding for a spacious feel */
-  border-radius: 6px; /* Slightly larger radius for rounded corners */
+  padding: 50px;
+  border-radius: 6px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Enhanced shadow for more depth */
 }
 
@@ -65,7 +39,7 @@ section {
 
 /* Login heading */
 .signin .content h2 {
-  font-size: 2.5em; /* Larger font size */
+  font-size: 2.5em;
   color: #00BFFF;
   text-transform: uppercase;
 }
@@ -75,7 +49,7 @@ section {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px; /* Increased spacing between fields */
+  gap: 30px;
 }
 
 /* Input container */
@@ -91,17 +65,17 @@ section {
   background: #f3f3f3;
   border: none;
   outline: none;
-  padding: 20px 15px; /* Adjusted padding */
+  padding: 20px 15px;
   border-radius: 6px;
   color: #333;
   font-weight: 500;
-  font-size: 1.1em; /* Slightly larger font size */
+  font-size: 1.1em;
 }
 
 /* Icon inside input fields */
 .signin .content .form .inputBx i {
   position: absolute;
-  left: 10px; /* Adjusted for larger input fields */
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
   color: #aaa;
@@ -137,12 +111,12 @@ section {
 
 /* Submit button */
 .inputBx button {
-  padding: 18px; /* Increased button padding */
-  background: #00BFFF; /* Blue background */
+  padding: 18px;
+  background: #00BFFF;
   color: #fff;
   width: 100%;
   font-weight: 600;
-  font-size: 1.3em; /* Larger font size for the button */
+  font-size: 1.3em;
   letter-spacing: 0.05em;
   cursor: pointer;
   border: none;
