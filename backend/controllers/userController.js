@@ -73,7 +73,7 @@ export const registerUser = async (req, res) => {
 		await sendEMail({ email, subject, html: emailTemplate });
 
 		//creating user
-		Response(res, 200, true, message?.userCreatedMessage, user);
+		Response(res, 200, true, message?.userCreatedMessage, user._id);
 		//send response
 	} catch (error) {
 		Response(res, 500, error?.message);
