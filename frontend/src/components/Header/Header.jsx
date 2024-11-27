@@ -9,7 +9,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   // Redux state for user authentication
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   // Functions to handle hover events
   const showDropdown = () => setDropdownVisible(true);
@@ -40,7 +40,7 @@ const Header = () => {
         </nav>
         <div className="nav-icons">
           {/* Delivery Info: Only visible when logged in */}
-          {isLoggedIn && (
+          {isAuthenticated && (
             <div className="delivery-info">
               <p>
                 Deliver to <strong>{user?.name || "Guest"}</strong>

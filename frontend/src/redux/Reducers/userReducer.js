@@ -1,5 +1,7 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-const initialState = {};
+const initialState = {
+	
+};
 
 const userLoginRequest = createAction("USER_LOGIN_REQUEST");
 const userLoginSuccess = createAction("USER_LOGIN_SUCCESS");
