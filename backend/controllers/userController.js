@@ -26,6 +26,7 @@ export const registerUser = async (req, res) => {
 			gender,
 		} = req.body;
 		//checking body data
+		console.log("working");
 		if (
 			!firstName ||
 			!lastName ||

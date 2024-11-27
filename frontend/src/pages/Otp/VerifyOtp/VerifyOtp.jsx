@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../../styles/VerifyOtp.css";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyRegisterOtp } from "../../../redux/Actions/userActions";
+import { resendLoginOtp } from "../../../../../backend/controllers/retailerController";
 
 const VerifyOtp = () => {
     const spans = Array.from({ length: 128 });
@@ -34,7 +35,7 @@ const VerifyOtp = () => {
             toast.success(message,toastOptions);
             dispatch({type:"CLEAR_MESSAGE"});
             // console.log()
-            // navigate(`/`);
+            navigate(`/`);
         }
         if(error){
             toast.error(error,toastOptions);

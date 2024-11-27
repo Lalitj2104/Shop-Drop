@@ -48,6 +48,7 @@ export const registerUser = (details) => async (dispatch) => {
 			},
 			withCredentials: true,
 		});
+		// console.log(data);
 		dispatch({
 			type: "USER_REGISTER_SUCCESS",
 			payload: {
