@@ -72,7 +72,7 @@ export const registerRetailer = async (req, res) => {
 		await sendEMail({ email, subject, html: emailTemplate });
 
 		//creating retailer
-		Response(res, 200, true, message?.retailerCreatedMessage, retailer);
+		Response(res, 200, true, message?.retailerCreatedMessage, retailer._id);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}

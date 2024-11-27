@@ -1,50 +1,87 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../../styles/VerifyOtp.css";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyRegisterOtp } from "../../../redux/Actions/userActions";
 
 const VerifyOtp = () => {
-	const [otp, setOtp] = useState("");
-	const [message, setMessage] = useState("");
-	const navigate = useNavigate();
+    const spans = Array.from({ length: 128 });
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (otp.length === 6) {
-			setMessage("OTP verified successfully!");
-			setTimeout(() => navigate("/"), 2000);
-		} else {
-			setMessage("Please enter a valid 6-digit OTP.");
-		}
-	};
+    const [otp,setOtp]=useState();
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
 
-	return (
-		<div className="enter-otp-container">
-			<div className="form-box">
-				<h2>Enter OTP</h2>
-				<p>Enter the OTP sent to your email address.</p>
-				<form onSubmit={handleSubmit}>
-					<div className="floating-label">
-						<input
-							type="text"
-							placeholder="Enter OTP"
-							value={otp}
-							onChange={(e) => setOtp(e.target.value)}
-							required
-						/>
-						<label>OTP</label>
-					</div>
-					<button type="submit" className="btn primary-btn">
-						Verify OTP
-					</button>
-				</form>
-				{message && (
-					<p className={`message ${otp.length === 6 ? "success" : "error"}`}>
-						{message}
-					</p>
-				)}
-			</div>
-		</div>
-	);
+    const {id}=useParams();
+
+    const {loading,message,error,isAuthenticated} =useSelector(state=>state.userAuth);
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        console.log(otp);
+        if(otp/100000<1){
+            toast.error("OTP must contain 6 digits",toastOptions)
+            return
+        }
+        dispatch(verifyRegisterOtp(id,otp));
+    }
+    const handleResendOtp=()=>{
+        dispatch(resendLoginOtp(id));
+    }
+
+    useEffect(()=>{
+        
+        if(message){
+            toast.success(message,toastOptions);
+            dispatch({type:"CLEAR_MESSAGE"});
+            // console.log()
+            // navigate(`/`);
+        }
+        if(error){
+            toast.error(error,toastOptions);
+            dispatch({type:"CLEAR_ERROR"});
+        }
+        if(isAuthenticated){
+            navigate("/")
+        }
+    },[dispatch,error,message,navigate,isAuthenticated])
+
+    return (
+        <section>
+            <div className="signup-cont">
+                {spans.map((_, index) => (
+                    <span key={index} className="span"></span>
+                ))}
+                <div className="signin" style={{ width: "400px"}}>
+                    <div className="content">
+                        <h2>Enter OTP</h2>
+                        <form className="form"  onSubmit={handleSubmit}>
+                            <div className="inputBx">
+                                <input
+                                    type="number"
+                                    value={otp}
+                                    onChange={(e)=>setOtp(e.target.value)}
+                                    required
+                                />
+                                <i>OTP</i>
+                            </div>
+                            <div className="links">
+                                <Link to={`/verify/${id}`} onClick={handleResendOtp}>
+                                    Resend OTP
+                                </Link>
+                            </div>
+                            <div className="inputBx">
+                                <button type="submit" >
+                                    {loading===true ? <span className="spinner"></span> : 
+                                    "Submit"
+                                    }
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default VerifyOtp;
