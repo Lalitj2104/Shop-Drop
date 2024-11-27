@@ -1,0 +1,190 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fff; /* White background for the entire page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the body spans full height for centering */
+}
+
+/* Section */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff; /* White background */
+  margin: 0;
+}
+
+/* Main container for login */
+.login-cont {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+/* Styling for the login form container */
+.signin {
+  position: relative;
+  width: 500px; /* Increased width */
+  background: #fff; /* White background */
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px; /* Increased padding for a spacious feel */
+  border-radius: 6px; /* Slightly larger radius for rounded corners */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Enhanced shadow for more depth */
+}
+
+/* Content inside the login box */
+.signin .content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Login heading */
+.signin .content h2 {
+  font-size: 2.5em; /* Larger font size */
+  color: #00BFFF;
+  text-transform: uppercase;
+}
+
+/* Form styling */
+.signin .content .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Increased spacing between fields */
+}
+
+/* Input container */
+.signin .content .form .inputBx {
+  position: relative;
+  width: 100%;
+}
+
+/* Input fields */
+.signin .content .form .inputBx input {
+  position: relative;
+  width: 100%;
+  background: #f3f3f3;
+  border: none;
+  outline: none;
+  padding: 20px 15px; /* Adjusted padding */
+  border-radius: 6px;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.1em; /* Slightly larger font size */
+}
+
+/* Icon inside input fields */
+.signin .content .form .inputBx i {
+  position: absolute;
+  left: 10px; /* Adjusted for larger input fields */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+}
+
+/* Input focus effect */
+.signin .content .form .inputBx input:focus ~ i,
+.signin .content .form .inputBx input:valid ~ i {
+  transform: translateY(-120%);
+  font-size: 0.8em;
+  color: #00BFFF;
+}
+
+/* Links at the bottom of the form */
+.signin .content .form .links {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signin .content .form .links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signin .content .form .links a:nth-child(2) {
+  color: #00BFFF;
+  font-weight: 600;
+}
+
+/* Submit button */
+.inputBx button {
+  padding: 18px; /* Increased button padding */
+  background: #00BFFF; /* Blue background */
+  color: #fff;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.3em; /* Larger font size for the button */
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+/* Button hover effect */
+.inputBx button:hover {
+  background: #008CBA;
+}
+
+/* Disabled button state */
+.inputBx button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Spinner style for loading state */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid #fff;
+  width: 20px;
+  height: 20px;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 900px) {
+  .signin {
+    width: 80%;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .signin {
+    width: 90%;
+    padding: 30px;
+  }
+}
