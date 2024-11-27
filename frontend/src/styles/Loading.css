@@ -1,0 +1,96 @@
+/* Loading Page Container */
+.loading-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #fff;
+}
+
+
+
+/* .loading-cont::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#fff, #00BFFF, #fff);
+    animation: animate 5s linear infinite;
+} */
+
+
+
+/* Loading Box Styling */
+.loading-cont .loading-box {
+    position: absolute;
+    width: 300px;
+    background: #fff;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading Text */
+.loading-cont .loading-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.loading-cont .loading-content h2 {
+    font-size: 2em;
+    color: #00BFFF;
+    text-transform: uppercase;
+}
+
+/* Rotating Loading Spinner */
+.loading-cont .loading-spinner {
+    margin-top: 20px;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #00BFFF;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Grid Span Sizes */
+@media (max-width: 900px) {
+    .loading-cont .span {
+        width: calc(10vw - 2px);
+        height: calc(10vw - 2px);
+    }
+}
+
+@media (max-width: 600px) {
+    .loading-cont .span {
+        width: calc(20vw - 2px);
+        height: calc(20vw - 2px);
+    }
+}
+
+/* Gradient Animation */
+@keyframes animate {
+    0% {
+        transform: translateY(-100%) translateX(-100%);
+    }
+    100% {
+        transform: translateY(100%) translateX(100%);
+    }
+}

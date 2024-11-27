@@ -8,25 +8,91 @@ import Login from "../pages/Login/user/Login";
 import RegisterLogin from "../pages/Login/retailer/RetailerLogin";
 import Register from "../pages/Register/user/Register";
 import RetailerRegister from "../pages/Register/Retailer/RetailerRegister";
+import AuthRoute from "./AuthRoute";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import LoadingPage from "../components/Loading/LoadingPage";
+import { loadUser } from "../redux/Actions/userActions";
+
 
 const Path = () => {
-	return (
-		<div>
-			<Router>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/retailerLogin" element={<RegisterLogin />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="retailerRegister" element={<RetailerRegister />} />
-					<Route path="/forgot-Password" element={<ForgotPassword />} />
-					<Route path="/verify/:id" element={<VerifyOtp />} />
-					<Route path="/reset/:id" element={<ResetPassword />} />
-					<Route path="/retailerDashboard" element={<RetailerDashboard />} />
-				</Routes>
-			</Router>
-		</div>
-	);
+	const dispatch = useDispatch();
+  const { userLoading } = useSelector(state => state.userAuth)
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [])
+  return (
+    <div>
+      <Router>
+	  {
+          userLoading ? (
+            <LoadingPage />
+          ) : (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/login"
+            element={
+              <AuthRoute>
+                <Login />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/retailerLogin"
+            element={
+              <AuthRoute>
+                <RegisterLogin />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <AuthRoute>
+                <Register />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="retailerRegister"
+            element={
+              <AuthRoute>
+                <RetailerRegister />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/forgot-Password"
+            element={
+              <AuthRoute>
+                <ForgotPassword />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/verify/:id"
+            element={
+              <AuthRoute>
+                <VerifyOtp />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/reset/:id"
+            element={
+              <AuthRoute>
+                <ResetPassword />
+              </AuthRoute>
+            }
+          />
+          <Route path="/retailerDashboard" element={<RetailerDashboard />} />
+        </Routes>
+	)}
+      </Router>
+    </div>
+  );
 };
 
 export default Path;

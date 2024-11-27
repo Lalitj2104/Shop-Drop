@@ -54,7 +54,8 @@ export const registerUser = (details) => async (dispatch) => {
 			type: "USER_REGISTER_SUCCESS",
 			payload: {
 				message: data.message,
-				id: data.data,
+				id:data.data
+
 			},
 		});
 	} catch (error) {
@@ -183,15 +184,57 @@ export const changeUserPassword = (id, otp) => async (dispatch) => {
 	}
 };
 
+export const loadUser = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: "LOAD_USER_REQUEST"
+        })
+
+        const { data } = await axios.get(`${URL}/me`)
+
+        dispatch({
+            type: "LOAD_USER_SUCCESS",
+            payload: data.data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: "LOAD_USER_FAILURE",
+            payload: error.response?.data?.message
+        })
+    }
+}
+
+export const logoutUser = () => async (dispatch) => {
+  try {
+	dispatch({
+		type: "LOGOUT_USER_REQUEST",
+	});
+	
+	const { data } = await axios.post(`${URL}/logout`,{}, {
+		headers: {
+			"Content-Type": "application/json",
+		},
+		withCredentials: true,
+	});
+	dispatch({
+		type: "LOGOUT_USER_SUCCESS",
+		payload: data.message,
+	});
+  } catch (error) {
+	dispatch({
+		type:"LOGOUT_USER_FAILURE",
+		payload:error.response?.data?.message
+	})
+  }
+};
+
 // export const getUserProfile = () => async (dispatch) => {
 //   try {
 //   } catch (error) {}
 // };
 
-// export const logoutUser = () => async (dispatch) => {
-//   try {
-//   } catch (error) {}
-// };
+
 
 // export const deleteUser = () => async (dispatch) => {
 //   try {

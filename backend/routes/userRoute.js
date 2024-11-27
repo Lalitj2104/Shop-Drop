@@ -8,6 +8,7 @@ import {
 	getUserProfile,
 	loginUser,
 	logoutUser,
+	myProfile,
 	registerUser,
 	removeAddress,
 	resendOtp,
@@ -35,6 +36,7 @@ userRouter.post("/login", loginUser);
 userRouter.post("/forgot-Password", forgotPassword);
 userRouter.post("/reset/:id", resetPassword);
 userRouter.put("/change-Password/:id", isAuthenticated, changePassword);
+userRouter.get("/me",isAuthenticated,myProfile);
 userRouter.get("/my/profile", isAuthenticated, getUserProfile);
 userRouter.put("/my/profile/update", isAuthenticated, updateUserProfile);
 userRouter.post("/logout", logoutUser);

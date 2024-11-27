@@ -48,7 +48,7 @@ const Register = () => {
 			// console.log(message);
 			toast.success(message, toastOptions);
 			dispatch({ type: "CLEAR_MESSAGE" });
-			navigate(`/verify/${id}`);
+			navigate(`/verify/${id._id}`);
 		}
 		if (error) {
 			// console.log(error);

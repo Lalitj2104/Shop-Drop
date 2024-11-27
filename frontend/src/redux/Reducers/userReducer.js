@@ -31,9 +31,15 @@ const changeUserPasswordRequest = createAction("CHANGE_USER_PASSWORD_REQUEST");
 const changeUserPasswordSuccess = createAction("CHANGE_USER_PASSWORD_SUCCESS");
 const changeUserPasswordFailure = createAction("CHANGE_USER_PASSWORD_FAILURE");
 
-const loadUserRequest = createAction("LOAD_USER_REQUEST");
-const loadUserSuccess = createAction("LOAD_USER_SUCCESS");
-const loadUserFailure = createAction("LOAD_USER_FAILURE");
+
+
+const logoutUserRequest=createAction("LOGOUT_USER_REQUEST");
+const logoutUserSuccess = createAction("LOGOUT_USER_SUCCESS");
+const logoutUserFailure = createAction("LOGOUT_USER_FAILURE");
+
+const loadUserRequest = createAction('LOAD_USER_REQUEST');
+const loadUserSuccess = createAction('LOAD_USER_SUCCESS');
+const loadUserFailure = createAction('LOAD_USER_FAILURE');
 
 const clearError = createAction("CLEAR_ERROR");
 const clearAuthError = createAction("CLEAR_AUTH_ERROR");
@@ -95,19 +101,7 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.error = action.payload;
 		})
 
-		.addCase(loadUserRequest, (state) => {
-			state.userLoading = true;
-		})
-		.addCase(loadUserSuccess, (state, action) => {
-			state.userLoading = false;
-			state.user = action.payload;
-			state.isAuthenticated = true;
-		})
-		.addCase(loadUserFailure, (state, action) => {
-			state.userLoading = false;
-			state.authError = action.payload;
-			state.isAuthenticated = false;
-		})
+		
 
 		.addCase(clearError, (state) => {
 			state.error = null;
@@ -117,5 +111,32 @@ export const userReducer = createReducer(initialState, (builder) => {
 		})
 		.addCase(clearAuthError, (state) => {
 			state.authError = null;
-		});
+		})
+
+
+		.addCase(logoutUserRequest,(state)=>{
+			state.loading=true;
+		})
+		.addCase(logoutUserSuccess,(state,action)=>{
+			state.loading=false;
+			state.message=action.payload
+		})
+		.addCase(logoutUserFailure,(state,action)=>{
+			state.loading=false;
+			state.error=action.payload
+		})
+
+		.addCase(loadUserRequest, (state) => {
+            state.userLoading = true;
+        })
+        .addCase(loadUserSuccess, (state, action) => {
+            state.userLoading = false;
+            state.user = action.payload;
+            state.isAuthenticated = true;
+        })
+        .addCase(loadUserFailure, (state, action) => {
+            state.userLoading = false;
+            state.authError = action.payload;
+            state.isAuthenticated = false;
+        })
 });

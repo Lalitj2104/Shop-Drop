@@ -11,6 +11,19 @@ import mongoose from "mongoose";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+export const myProfile = async (req, res) => {
+    try {
+
+        if(!req.user) {
+            return Response(res, 404, false, message.userNotFoundMessage);
+        }
+
+        Response(res, 200, true, message.userProfileFoundMessage, req.user);
+        
+    } catch (error) {
+        Response(res, 500, false, error.message);
+    }
+}
 export const registerUser = async (req, res) => {
 	try {
 		//parsing body data
@@ -74,7 +87,7 @@ export const registerUser = async (req, res) => {
 		await sendEMail({ email, subject, html: emailTemplate });
 
 		//creating user
-		Response(res, 200, true, message?.userCreatedMessage, user._id);
+		Response(res, 200, true, message?.userCreatedMessage, user);
 		//send response
 	} catch (error) {
 		Response(res, 500, error?.message);
@@ -240,6 +253,7 @@ export const loginUser = async (req, res) => {
 		if (!user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
+		
 		//user is verified or not
 		if (!user.isVerified) {
 			return Response(res, 400, false, message.userNotVerifiedMessage);
