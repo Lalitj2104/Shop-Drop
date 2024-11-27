@@ -17,7 +17,7 @@ import {
 	updateUserProfile,
 	verifyUser,
 } from "../controllers/userController.js";
-import {isAuthenticated} from "../middleware/isAuth.js";
+import { isAuthenticated } from "../middleware/isAuth.js";
 import {
 	addReview,
 	deleteReview,
@@ -53,7 +53,5 @@ userRouter.put("/update/review", isAuthenticated, updateReview);
 userRouter.delete("/delete/review", isAuthenticated, deleteReview);
 userRouter.get("/all/reviews/:id", isAuthenticated, getAllReviewsForProduct);
 userRouter.get("/all/userReview/:id", isAuthenticated, getAllReviewsByUser);
-
-
 
 export default userRouter;
