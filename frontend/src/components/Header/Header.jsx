@@ -7,7 +7,7 @@ const Header = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.auth || {});
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const showDropdown = () => setDropdownVisible(true);
   const hideDropdown = () => setDropdownVisible(false);
@@ -30,6 +30,8 @@ const Header = () => {
       {/* Main Header */}
       <div className="header-main">
         <div className="logo">Shop & Drop</div>
+
+        
 
         <nav className="nav-menu">
           <Link to="/">Home</Link>
