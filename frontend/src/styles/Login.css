@@ -85,7 +85,7 @@
 /* Input focus effect */
 .signin .content .form .inputBx input:focus ~ i,
 .signin .content .form .inputBx input:valid ~ i {
-  transform: translateY(-120%);
+  transform: translateY(-150%);
   font-size: 0.8em;
   color: #00BFFF;
 }

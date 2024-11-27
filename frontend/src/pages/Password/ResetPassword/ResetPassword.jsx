@@ -4,15 +4,14 @@ import "../../../styles/ResetPassword.css";
 const ResetPassword = () => {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [message, setMessage] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (password && password === confirmPassword) {
-			setMessage("Password reset successfully!");
+			// setMessage("Password reset successfully!");
 			// Redirect to login or homepage
 		} else {
-			setMessage("Passwords do not match. Please try again.");
+			// setMessage("Passwords do not match. Please try again.");
 		}
 	};
 
@@ -45,7 +44,6 @@ const ResetPassword = () => {
 						Reset Password
 					</button>
 				</form>
-				{message && <p className="message">{message}</p>}
 			</div>
 		</div>
 	);

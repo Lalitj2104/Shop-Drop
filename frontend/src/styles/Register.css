@@ -72,7 +72,7 @@
 	background: #f3f3f3;
 	border: none;
 	outline: none;
-  padding: 15px 10px;
+	padding: 15px 10px;
 	border-radius: 4px;
 	color: #333;
 	font-weight: 500;
@@ -99,8 +99,8 @@
 
 .signin .content .form .inputBx input:focus ~ i,
 .signin .content .form .inputBx select:focus ~ i {
-	transform: translateY(-120%);
-	font-size: 0.8em;
+	transform: translateY(-150%);
+	font-size: 0.9em;
 	color: #00bfff;
 }
 

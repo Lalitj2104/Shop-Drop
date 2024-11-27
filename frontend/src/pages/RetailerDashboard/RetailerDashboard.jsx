@@ -36,19 +36,19 @@ function RetailerDashboard() {
 
 			{/* Main Content */}
 			<div className="dashboard-content">
-				<h2>New in Stock</h2>
+				<h2>Products</h2>
 				<div className="product-grid">
 					<div className="product">
 						<img src={flaredSweater} alt="Flared Sleeves Sweater" />
 						<h3>Flared Sleeves Sweater</h3>
 						<p>£19.99</p>
-						<button>Add to Cart</button>
+						<button>Update Product</button>
 					</div>
 					<div className="product">
 						<img src={Sweater} alt="V-Neck Sweater" />
 						<h3>V-Neck Sweater</h3>
 						<p>£35.99</p>
-						<button>Add to Cart</button>
+						<button>Update Product</button>
 					</div>
 				</div>
 			</div>
