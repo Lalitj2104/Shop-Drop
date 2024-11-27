@@ -60,12 +60,12 @@
 // 		.addCase(RegisterOtpSuccess, (state) => {
 // 			state.loading = false;
 // 			state.message = action.payload;
-// 			state.isAuthenticated = true;
+// 			state.isRetailerAuthenticated = true;
 // 		})
 // 		.addCase(RegisterOtpFailure, (state) => {
 // 			state.loading = false;
-// 			state.errro = action.payload;
-// 			state.isAuthenticated = false;
+// 			state.error = action.payload;
+// 			state.isRetailerAuthenticated = false;
 // 		})
 
 // 		.addCase(ResendRegisterOtpRequest, (state) => {
@@ -86,12 +86,12 @@
 // 		.addCase(loadRetailerSuccess, (state, action) => {
 // 			state.RetailerLoading = false;
 // 			state.Retailer = action.payload;
-// 			state.isAuthenticated = true;
+// 			state.isRetailerAuthenticated = true;
 // 		})
 // 		.addCase(loadRetailerFailure, (state, action) => {
 // 			state.RetailerLoading = false;
 // 			state.authError = action.payload;
-// 			state.isAuthenticated = false;
+// 			state.isRetailerAuthenticated = false;
 // 		})
 
 // 		.addCase(clearError, (state) => {

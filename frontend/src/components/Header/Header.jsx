@@ -7,12 +7,12 @@ const Header = () => {
 	const [isDropdownVisible, setDropdownVisible] = useState(false);
 
 	const dispatch = useDispatch();
-	const { isAuthenticated, user} = useSelector((state) => state.userAuth);
+	const { isAuthenticated, id} = useSelector((state) => state.userAuth);
 
 	const showDropdown = () => setDropdownVisible(true);
   const hideDropdown = () => setDropdownVisible(false);
   
-  console.log(user);
+//   console.log(user);
 
 	return (
 		<header className="header">
@@ -35,9 +35,9 @@ const Header = () => {
 				{isAuthenticated && (
 					<div className="delivery-info">
 						<p>
-							Deliver to <strong>{firstName}</strong>
+							Welcome  <strong>{id.firstName}</strong>
 							<br />
-							<span>{user?.address || "Set your delivery location"}</span>
+							<span>{id?.address.isdefault==true || "Set your delivery location"}</span>
 						</p>
 					</div>
 				)}

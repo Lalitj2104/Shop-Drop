@@ -48,10 +48,12 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.loading = false;
 			state.message = action.payload.message;
 			state.id = action.payload.id;
+			state.isAuthenticated=true;
 		})
 		.addCase(userLoginFailure, (state, action) => {
 			state.loading = false;
 			state.error = action.payload;
+			state.isAuthenticated=false;
 		})
 
 		.addCase(userRegisterRequest, (state) => {
