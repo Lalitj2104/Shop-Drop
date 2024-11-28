@@ -30,6 +30,11 @@ const changeUserPasswordSuccess = createAction("CHANGE_USER_PASSWORD_SUCCESS");
 const changeUserPasswordFailure = createAction("CHANGE_USER_PASSWORD_FAILURE");
 
 
+const addUserAddressRequest = createAction("ADD_USER_ADDRESS_REQUEST");
+const addUserAddressSuccess = createAction("ADD_USER_ADDRESS_SUCCESS");
+const addUserAddressFailure = createAction("ADD_USER_ADDRESS_FAILURE");
+
+
 
 const logoutUserRequest=createAction("LOGOUT_USER_REQUEST");
 const logoutUserSuccess = createAction("LOGOUT_USER_SUCCESS");
@@ -101,6 +106,17 @@ export const userReducer = createReducer(initialState, (builder) => {
 
 		
 
+		.addCase(addUserAddressRequest,(state)=>{
+			state.loading=true;
+		})
+		.addCase(addUserAddressSuccess,(state,action)=>{
+			state.loading=false;
+			state.message=action.payload
+		})
+		.addCase(addUserAddressFailure,(state,action)=>{
+			state.loading=false;
+			state.error=action.payload
+		})
 		
 
 
@@ -116,6 +132,8 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.error=action.payload
 		})
 
+
+
 		.addCase(loadUserRequest, (state) => {
 			state.userLoading = true;
 		})
@@ -129,6 +147,9 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.authError = action.payload;
 			state.isAuthenticated = false;
 		})
+
+
+
 		.addCase(forgotUserPasswordRequest, (state) => {
 			state.loading = true;
 		})
@@ -141,6 +162,9 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.loading = false;
 			state.error = action.payload;
 		})
+
+
+
 		.addCase(resetUserPasswordRequest, (state) => {
 			state.loading = true;
 		})
@@ -152,6 +176,10 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.loading = false;
 			state.error = action.payload;
 		})
+
+
+
+
 		.addCase(changeUserPasswordRequest, (state) => {
 			state.loading = true;
 		})
@@ -163,6 +191,8 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.loading = false;
 			state.error = action.payload;
 		})
+
+
 
 		.addCase(clearError, (state) => {
 			state.error = null;

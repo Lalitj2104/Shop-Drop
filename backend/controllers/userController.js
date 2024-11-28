@@ -549,7 +549,11 @@ export const addAddress = async (req, res) => {
 			...address,
 			_id: new mongoose.Types.ObjectId(), // Generate a unique ObjectId for the address
 		};
+		if(user.address==0){
+			newAddress.isDefault=true
+		}
 		user.address.push(newAddress);
+
 		await user.save();
 		Response(res, 200, true, message.addressAddMessage);
 	} catch (error) {

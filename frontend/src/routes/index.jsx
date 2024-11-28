@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import LoadingPage from "../components/Loading/LoadingPage";
 import { loadUser } from "../redux/Actions/userActions";
 import ChangePassword from "../pages/Password/ChangePassword/ChangePassword";
+import AddAddress from "../pages/Address/AddAddress.jsx";
 
 
 const Path = () => {
@@ -97,6 +98,7 @@ const Path = () => {
 		  }
 		  />
           <Route path="/retailerDashboard" element={<RetailerDashboard />} />
+		  <Route path="/AddAddress" element={<AddAddress />} />
         </Routes>
 	)}
       </Router>

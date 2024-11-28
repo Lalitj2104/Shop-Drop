@@ -240,6 +240,28 @@ export const logoutUser = () => async (dispatch) => {
   }
 };
 
+
+export const addUserAddress = (details) => async (dispatch) => {
+	  try {
+		dispatch({
+			type:"ADD_USER_ADDRESS_REQUEST"
+		})
+		const{data}=await axios.post(`${URL}/add/address`,{details},{
+			headers: {
+			"Content-Type": "application/json",
+		},
+		withCredentials: true,
+		});
+		dispatch({
+			type:"ADD_USER_ADDRESS_SUCCESS"
+		})
+	  } catch (error) {
+		dispatch({
+			type:"ADD_USER_ADDRESS_FAILURE",
+			payload:error?.response?.data?.message
+		})
+	  }
+	};
 // export const getUserProfile = () => async (dispatch) => {
 //   try {
 //   } catch (error) {}
@@ -252,10 +274,7 @@ export const logoutUser = () => async (dispatch) => {
 //   } catch (error) {}
 // };
 
-// export const addUserAddress = () => async (dispatch) => {
-//   try {
-//   } catch (error) {}
-// };
+
 
 // export const getUserAddress = () => async (dispatch) => {
 //   try {
