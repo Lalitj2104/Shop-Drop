@@ -650,7 +650,7 @@ export const deleteRetailer = async (req, res) => {
 		//sending the response
 		Response(res, 200, true, message.retailerDeletedMessage);
 	} catch (error) {
-		Response(Res, 500, false, error.message);
+		Response(res, 500, false, error.message);
 	}
 };
 
