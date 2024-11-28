@@ -530,7 +530,6 @@ export const addAddress = async (req, res) => {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
 		if (
-			!address ||
 			!address.street ||
 			!address.city ||
 			!address.state ||

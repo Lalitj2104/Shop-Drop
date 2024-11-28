@@ -15,95 +15,97 @@ import LoadingPage from "../components/Loading/LoadingPage";
 import { loadUser } from "../redux/Actions/userActions";
 import ChangePassword from "../pages/Password/ChangePassword/ChangePassword";
 import AddAddress from "../pages/Address/AddAddress.jsx";
-
+import Account from "../pages/YourAccount/Account.jsx";
+import Order from "../pages/Orders/Orders.jsx";
 
 const Path = () => {
 	const dispatch = useDispatch();
-  const { userLoading } = useSelector(state => state.userAuth)
+	const { userLoading } = useSelector((state) => state.userAuth);
 
-  useEffect(() => {
-    dispatch(loadUser());
-  }, [])
-  return (
-    <div>
-      <Router>
-	  {
-          userLoading ? (
-            <LoadingPage />
-          ) : (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/login"
-            element={
-              <AuthRoute>
-                <Login />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/retailerLogin"
-            element={
-              <AuthRoute>
-                <RegisterLogin />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <AuthRoute>
-                <Register />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="retailerRegister"
-            element={
-              <AuthRoute>
-                <RetailerRegister />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/forgot-Password"
-            element={
-              <AuthRoute>
-                <ForgotPassword />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/verify/:id"
-            element={
-              <AuthRoute>
-                <VerifyOtp />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/reset/:id"
-            element={
-              <AuthRoute>
-                <ResetPassword />
-              </AuthRoute>
-            }
-          />
-		  <Route
-		  path="/changePassword/:id"
-		  element={
-			<AuthRoute>
-				<ChangePassword/>
-			</AuthRoute>
-		  }
-		  />
-          <Route path="/retailerDashboard" element={<RetailerDashboard />} />
-		  <Route path="/AddAddress" element={<AddAddress />} />
-        </Routes>
-	)}
-      </Router>
-    </div>
-  );
+	useEffect(() => {
+		dispatch(loadUser());
+	}, []);
+	return (
+		<div>
+			<Router>
+				{userLoading ? (
+					<LoadingPage />
+				) : (
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route
+							path="/login"
+							element={
+								<AuthRoute>
+									<Login />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path="/retailerLogin"
+							element={
+								<AuthRoute>
+									<RegisterLogin />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path="/register"
+							element={
+								<AuthRoute>
+									<Register />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path="retailerRegister"
+							element={
+								<AuthRoute>
+									<RetailerRegister />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path="/forgot-Password"
+							element={
+								<AuthRoute>
+									<ForgotPassword />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path="/verify/:id"
+							element={
+								<AuthRoute>
+									<VerifyOtp />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path="/reset/:id"
+							element={
+								<AuthRoute>
+									<ResetPassword />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path="/changePassword/:id"
+							element={
+								<AuthRoute>
+									<ChangePassword />
+								</AuthRoute>
+							}
+						/>
+						<Route path="/retailerDashboard" element={<RetailerDashboard />} />
+						<Route path="/AddAddress" element={<AddAddress />} />
+						<Route path="/account" element={<Account />} />
+						<Route path="/orders" element={<Order />} />
+					</Routes>
+				)}
+			</Router>
+		</div>
+	);
 };
 
 export default Path;

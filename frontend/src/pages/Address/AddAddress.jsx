@@ -9,7 +9,7 @@ import toastOptions from "../../constants/toast";
 const AddAddress = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const [details, setDetails] = useState({
+	const [address, setAddress] = useState({
 		label: "",
 		street: "",
 		city: "",
@@ -25,32 +25,32 @@ const AddAddress = () => {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 
-		setDetails({
-			...details,
+		setAddress({
+			...address,
 			[name]: value,
 		});
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(details);
-		dispatch(addUserAddress(details));
+		console.log(address);
+		dispatch(addUserAddress(address));
 	};
 
 	useEffect(() => {
-		
-		console.log(details);
+		console.log(address);
 		if (message) {
 			// console.log(message);
 			toast.success(message, toastOptions);
 			dispatch({ type: "CLEAR_MESSAGE" });
+			navigate("/");
 		}
 		if (error) {
 			// console.log(error);
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
-	}, [dispatch, message, error, isAuthenticated, navigate, details, id]);
+	}, [dispatch, message, error, isAuthenticated, navigate, address, id]);
 
 	return (
 		<section>
@@ -62,112 +62,97 @@ const AddAddress = () => {
 							<div className="inputGrid">
 								<i>Label</i>
 								<div className="inputBx">
-                                
 									<input
 										type="text"
 										name="label"
-										value={details.label}
+										value={address.label}
 										onChange={handleChange}
 										required
 									/>
-									
 								</div>
 								<i>House/Apartment</i>
 								<div className="inputBx">
-                                
 									<input
 										type="text"
 										name="house"
-										value={details.house}
+										value={address.house}
 										onChange={handleChange}
 										required
 									/>
-									
 								</div>
-                                <i>Street</i>
+								<i>Street</i>
 								<div className="inputBx">
 									<input
 										type="text"
 										name="street"
-										value={details.street}
+										value={address.street}
 										onChange={handleChange}
 									/>
-									
 								</div>
 								<i>Area/Colony</i>
 								<div className="inputBx">
 									<input
 										type="text"
 										name="area"
-										value={details.area}
+										value={address.area}
 										onChange={handleChange}
 									/>
-									
 								</div>
-                                <i>City</i>
+								<i>City</i>
 								<div className="inputBx">
 									<input
 										type="text"
 										name="city"
-										value={details.city}
+										value={address.city}
 										onChange={handleChange}
 										required
 									/>
-									
 								</div>
-                                <i>State</i>
+								<i>State</i>
 								<div className="inputBx">
 									<input
 										type="String"
 										name="state"
-										value={details.state}
+										value={address.state}
 										onChange={handleChange}
 										required
 									/>
 								</div>
-                                <i>Postal Code</i>
+								<i>Postal Code</i>
 								<div className="inputBx">
 									<input
 										type="Number"
 										name="postalCode"
-										value={details.postalCode}
+										value={address.postalCode}
 										onChange={handleChange}
 										required
 									/>
-									
 								</div>
-                                <i>Country</i>
+								<i>Country</i>
 								<div className="inputBx">
 									<input
 										type="String"
 										name="country"
-										value={details.country}
+										value={address.country}
 										onChange={handleChange}
 										required
 									/>
-									
 								</div>
-                                <i>Phone Number</i>
+								<i>Phone Number</i>
 								<div className="inputBx">
 									<input
 										type="String"
 										name="phoneNumber"
-										value={details.phoneNumber}
+										value={address.phoneNumber}
 										minLength={8}
 										onChange={handleChange}
 										required
 									/>
-									
 								</div>
-								
 							</div>
 							<div className="inputBx">
 								<button type="submit" disabled={loading}>
-									{loading === true ? (
-										<span className="spinner"></span>
-									) : (
-										"Add"
-									)}
+									{loading === true ? <span className="spinner"></span> : "Add"}
 								</button>
 							</div>
 						</form>
