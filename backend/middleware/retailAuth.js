@@ -17,14 +17,14 @@ export const isAuthenticate = async (req, res, next) => {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
 		// Find user from token
-		const user = await Retailer.findById(decoded.id);
+		const retailer = await Retailer.findById(decoded.id);
 
 		// Check user
-		if (!user) {
+		if (!retailer) {
 			return Response(res, 400, false, message.unAuthorizedMessage);
 		}
 
-		req.user = user;
+		req.user = retailer;
 		next();
 	} catch (error) {
 		Response(res, 500, false, error.message);

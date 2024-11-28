@@ -10,6 +10,7 @@ import cors from "cors";
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
+
 app.use(
 	cors({
 		origin: [process.env.LOCAL_URL, process.env.WEB_URL],
