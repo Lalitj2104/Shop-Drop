@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import LoadingPage from "../components/Loading/LoadingPage";
 import { loadUser } from "../redux/Actions/userActions";
+import ChangePassword from "../pages/Password/ChangePassword/ChangePassword";
 
 
 const Path = () => {
@@ -87,6 +88,14 @@ const Path = () => {
               </AuthRoute>
             }
           />
+		  <Route
+		  path="/changePassword/:id"
+		  element={
+			<AuthRoute>
+				<ChangePassword/>
+			</AuthRoute>
+		  }
+		  />
           <Route path="/retailerDashboard" element={<RetailerDashboard />} />
         </Routes>
 	)}

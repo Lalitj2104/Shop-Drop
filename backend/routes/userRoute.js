@@ -35,7 +35,7 @@ userRouter.get("/resend/:id", resendOtp);
 userRouter.post("/login", loginUser);
 userRouter.post("/forgot-Password", forgotPassword);
 userRouter.post("/reset/:id", resetPassword);
-userRouter.put("/change-Password/:id", isAuthenticated, changePassword);
+userRouter.put("/change-Password/:id", changePassword);
 userRouter.get("/me",isAuthenticated,myProfile);
 userRouter.get("/my/profile", isAuthenticated, getUserProfile);
 userRouter.put("/my/profile/update", isAuthenticated, updateUserProfile);

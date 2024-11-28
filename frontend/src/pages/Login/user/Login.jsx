@@ -70,7 +70,7 @@ const Login = () => {
 								/>
 							</div>
 							<div className="links">
-								<Link to="/forgotPassword">Forgot Pasword?</Link>
+								<Link to="/forgot-Password">Forgot Pasword?</Link>
 								<Link to="/register">Sign Up</Link>
 							</div>
 							<div className="inputBx">

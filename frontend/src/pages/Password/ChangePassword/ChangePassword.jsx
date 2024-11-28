@@ -23,6 +23,9 @@ const ChangePassword = () => {
 			// setMessage("Password reset successfully!");
             // Redirect to login or homepage
             dispatch(changeUserPassword(id, password));
+		}else{
+			toast.error("Password does not match",toastOptions)
+			dispatch({ type: "CLEAR_MESSAGE" });
 		}
     };
     

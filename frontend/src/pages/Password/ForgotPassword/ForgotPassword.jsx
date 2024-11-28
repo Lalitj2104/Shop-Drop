@@ -23,7 +23,7 @@ const ForgotPassword = () => {
 
 	useEffect(() => {
 		if (message) {
-			toast.success(message, toastOptions);
+			toast.success(message.message, toastOptions);
 			dispatch({ type: "CLEAR_MESSAGE" });
 			navigate(`/reset/${id}`);
 		}

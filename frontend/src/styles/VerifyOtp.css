@@ -1,4 +1,5 @@
-.enter-otp-container {
+/* Main container for OTP page */
+.otp-cont {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,132 +8,165 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.form-box {
+/* Styling for the OTP form container */
+.otp-box {
   background: #ffffff;
   color: #333;
   padding: 4rem;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   max-width: 500px;
-  width: 90%;
+  width: 50%;
   text-align: center;
 }
 
-h2 {
+/* Content inside the OTP box */
+.otp-box .content {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* OTP heading */
+.otp-box .content h2 {
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
   font-weight: bold;
   color: #333;
 }
 
-p {
-  font-size: 1.3rem;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  color: #555;
+/* Form styling */
+.otp-box .content .form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.floating-label {
+/* Input container */
+.otp-box .content .form .inputBx {
   position: relative;
-  margin-bottom: 2rem;
-}
-
-.floating-label input {
   width: 100%;
-  padding: 1.2rem 1rem;
+}
+
+/* OTP input fields */
+.otp-box .content .form .inputBx input {
+  width: 100%;
+  background: #f3f3f3;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 1.3rem;
-  background: #fafafa;
   outline: none;
-  transition: border 0.3s ease, background 0.3s ease;
+  padding: 15px;
+  border-radius: 6px;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.1em;
 }
 
-.floating-label input:focus {
-  border-color: #0056b3;
-  background: #fff;
-}
-
-.floating-label input::placeholder {
-  color: transparent;
-}
-
-.floating-label label {
+/* Label styling */
+.otp-box .content .form .inputBx label {
   position: absolute;
   top: 50%;
-  left: 1rem;
+  left: 15px;
   transform: translateY(-50%);
-  background: #fff;
-  padding: 0 0.5rem;
-  font-size: 1.3rem;
+  font-size: 1em;
   color: #999;
   pointer-events: none;
-  transition: all 0.3s ease;
+  transition: 0.3s ease-in-out;
+  background: #fff; /* Background to avoid overlap with border */
+  padding: 0 5px;
 }
 
-.floating-label input:focus + label,
-.floating-label input:not(:placeholder-shown) + label {
-  top: -0.8rem;
-  left: 1rem;
-  font-size: 1rem;
-  color: #0056b3;
+/* Label movement on focus or input */
+.otp-box .content .form .inputBx input:focus + label,
+.otp-box .content .form .inputBx input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.85em;
+  color: #00BFFF;
 }
 
-.btn {
-  display: inline-block;
-  background: #0056b3;
+/* Links at the bottom of the form (optional) */
+.otp-box .content .form .links {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.otp-box .content .form .links a {
+  color: #00BFFF;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.otp-box .content .form .links a:nth-child(2) {
+  color: #00BFFF;
+  font-weight: 600;
+}
+
+/* Submit button */
+.inputBx button {
+  padding: 15px;
+  background: #00BFFF;
   color: #fff;
-  padding: 1.2rem 2rem;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.3rem;
-  font-weight: bold;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 }
 
-.btn:hover {
-  background: #00409d;
+/* Button hover effect */
+.inputBx button:hover {
+  background: #008CBA;
 }
 
-.btn:active {
-  transform: scale(0.98);
+/* Disabled button state */
+.inputBx button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-.message {
-  margin-top: 1rem;
-  font-size: 1.1rem;
-  color: #0056b3;
+/* Spinner style for loading state (if needed) */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid #00BFFF;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
 }
 
-.message.error {
-  color: #e53935;
-}
-
-.message.success {
-  color: #4caf50;
-}
-
-@media (max-width: 768px) {
-  .form-box {
-    padding: 3rem;
+/* Spinner Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-
-  h2 {
-    font-size: 1.8rem;
+  100% {
+    transform: rotate(360deg);
   }
+}
 
-  p {
-    font-size: 1.2rem;
+/* Media Queries for responsiveness */
+@media (max-width: 900px) {
+  .otp-box {
+    width: 80%;
+    padding: 30px;
   }
+}
 
-  .floating-label input {
-    padding: 1rem 0.8rem;
-    font-size: 1.2rem;
-  }
-
-  .btn {
-    padding: 1rem 1.5rem;
-    font-size: 1.2rem;
+@media (max-width: 600px) {
+  .otp-box {
+    width: 90%;
+    padding: 20px;
   }
 }

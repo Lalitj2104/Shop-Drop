@@ -420,7 +420,7 @@ export const resetPassword = async (req, res) => {
 export const changePassword = async (req, res) => {
 	try {
 		//params and cookie
-		const { id } = req.user;
+		const { id } = req.params;
 		const { password } = req.body;
 		//checking id
 		if (!id) {

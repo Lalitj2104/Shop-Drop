@@ -101,15 +101,7 @@ export const userReducer = createReducer(initialState, (builder) => {
 
 		
 
-		.addCase(clearError, (state) => {
-			state.error = null;
-		})
-		.addCase(clearMessage, (state) => {
-			state.message = null;
-		})
-		.addCase(clearAuthError, (state) => {
-			state.authError = null;
-		})
+		
 
 
 		.addCase(logoutUserRequest,(state)=>{
