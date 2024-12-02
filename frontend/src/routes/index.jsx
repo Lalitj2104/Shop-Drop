@@ -17,6 +17,7 @@ import ChangePassword from "../pages/Password/ChangePassword/ChangePassword";
 import AddAddress from "../pages/Address/AddAddress.jsx";
 import Account from "../pages/YourAccount/Account.jsx";
 import Order from "../pages/Orders/Orders.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx";
 
 const Path = () => {
 	const dispatch = useDispatch();
@@ -99,8 +100,8 @@ const Path = () => {
 						/>
 						<Route path="/retailerDashboard" element={<RetailerDashboard />} />
 						<Route path="/AddAddress" element={<AddAddress />} />
-						<Route path="/account" element={<Account />} />
-						<Route path="/orders" element={<Order />} />
+						<Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+						<Route path="/orders" element={<ProtectedRoute><Order /></ProtectedRoute>} />
 					</Routes>
 				)}
 			</Router>

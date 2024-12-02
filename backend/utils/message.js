@@ -43,5 +43,17 @@ export const message={
     invalidRetailerMessage:"Please access with correct Retailer",
     productFoundMessage:"Product Found Successful",
     productRemovedMessage:"Product Removed Successfully",
-    
+    productUpdatedMessage:"Product updated successfully",
+    reviewNotFoundMessage:"Review not found",
+    reviewCreatedMessage:"Review uploaded successfuly",
+    reviewFoundMessage:"Review found successfully",
+    accessInvalidMessage:"Invalid action",
+    reviewDeletedMessage:"Review deleted successfully",
+    reviewsFoundMessage:"Reviews found Successful",
+    reviewUpdatedMessage:"Review Updated Successful",
+    productAlreadyMessage:"Product is Alreay present",
+    productAddedToWishListMessage:"Product Added Successful",
+    wishListNotFoundMessage:"WishListNotFound",
+
+
 }
