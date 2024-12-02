@@ -5,51 +5,51 @@ import Sweater from "../../../public/V-Neck Sweater.jpg";
 
 function RetailerDashboard() {
 	return (
-		<div className="app">
+		<div className="retailer-dashboard">
 			{/* Sidebar */}
-			<div className="sidebar">
-				<div className="profile">
-					<img src={profile} alt="Profile" className="profile-img" />
-					<h3>Diana Majkowska</h3>
-					<p>Warsaw, Poland</p>
+			<div className="retailer-sidebar">
+				<div className="retailer-profile">
+					<div className="retailer-profile-img"></div>
+					<h3>{retailerInfo.name}</h3>
+					<p>{retailerInfo.location}</p>
 				</div>
-				<ul className="menu">
+				<ul className="retailer-menu">
 					<li>
-						My Wishes <span className="badge">12</span>
+						My Wishes <span className="badge">{retailerInfo.wishes || 0}</span>
 					</li>
 					<li>
-						My Messages <span className="badge">+3</span>
+						My Messages{" "}
+						<span className="badge">+{retailerInfo.messages || 0}</span>
 					</li>
 					<li>
-						Completed Orders <span className="badge">55</span>
+						Completed Orders{" "}
+						<span className="badge">{retailerInfo.completedOrders || 0}</span>
 					</li>
 				</ul>
-				<ul className="categories">
-					<li>T-Shirts & Tops</li>
-					<li>Activewear</li>
-					<li>Sweaters</li>
-					<li>Skirts & Shorts</li>
-					<li>Outwear & Blazers</li>
-					<li>Accessories & Shoes</li>
+				<ul className="retailer-categories">
+					{retailerInfo.categories?.map((category, index) => (
+						<li key={index}>{category}</li>
+					))}
 				</ul>
 			</div>
 
 			{/* Main Content */}
-			<div className="dashboard-content">
-				<h2>Products</h2>
-				<div className="product-grid">
-					<div className="product">
-						<img src={flaredSweater} alt="Flared Sleeves Sweater" />
-						<h3>Flared Sleeves Sweater</h3>
-						<p>£19.99</p>
-						<button>Update Product</button>
-					</div>
-					<div className="product">
-						<img src={Sweater} alt="V-Neck Sweater" />
-						<h3>V-Neck Sweater</h3>
-						<p>£35.99</p>
-						<button>Update Product</button>
-					</div>
+			<div className="retailer-dashboard-content">
+				<div className="products-header">
+					<h2>Products</h2>
+					<button className="add-product-btn" onClick={handleAddProduct}>
+						Add Product
+					</button>
+				</div>
+				<div className="retailer-product-grid">
+					{products.map((product) => (
+						<div className="retailer-product" key={product.id}>
+							<img src={product.image} alt={product.name} />
+							<h3>{product.name}</h3>
+							<p>£{product.price.toFixed(2)}</p>
+							<button>Update Product</button>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>

@@ -59,7 +59,7 @@ const Register = () => {
 
 	return (
 		<section>
-			<div className="signup-cont">
+			<div className="register-cont">
 				<div className="signin">
 					<div className="content">
 						<h2>Register</h2>
@@ -149,6 +149,7 @@ const Register = () => {
 										name="mobile"
 										value={details.mobile}
 										onChange={handleChange}
+										minLength={10}
 										required
 									/>
 									<i>Mobile</i>

@@ -1,6 +1,6 @@
-/* Main container for login */
+
 .login-cont {
-  position: absolute;  /* Ensures it stretches to full viewport */
+  position: absolute;  
   top: 0;
   left: 0;
   width: 100vw;
@@ -9,13 +9,13 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: #f4f4f4; /* Optional background color */
+  background-color: #f4f4f4; 
 }
 
 /* Styling for the login form container */
-.signin {
+.login-cont .signin {
   position: relative;
-  width: 500px; /* Fixed width */
+  width: 500px; 
   background: #fff;
   z-index: 1000;
   display: flex;
@@ -23,11 +23,10 @@
   align-items: center;
   padding: 50px;
   border-radius: 6px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Enhanced shadow for more depth */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); 
 }
 
-/* Content inside the login box */
-.signin .content {
+.login-cont .signin .content {
   position: relative;
   width: 100%;
   display: flex;
@@ -38,14 +37,14 @@
 }
 
 /* Login heading */
-.signin .content h2 {
+.login-cont .signin .content h2 {
   font-size: 2.5em;
   color: #00BFFF;
   text-transform: uppercase;
 }
 
 /* Form styling */
-.signin .content .form {
+.login-cont .signin .content .form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -53,13 +52,13 @@
 }
 
 /* Input container */
-.signin .content .form .inputBx {
+.login-cont .signin .content .form .inputBx {
   position: relative;
-  width: 100%;
-}
+  }
 
 /* Input fields */
-.signin .content .form .inputBx input {
+.login-cont .signin .content .form .inputBx input {
+  box-sizing: border-box;
   position: relative;
   width: 100%;
   background: #f3f3f3;
@@ -73,7 +72,7 @@
 }
 
 /* Icon inside input fields */
-.signin .content .form .inputBx i {
+.login-cont .signin .content .form .inputBx i {
   position: absolute;
   left: 10px;
   top: 50%;
@@ -83,34 +82,34 @@
 }
 
 /* Input focus effect */
-.signin .content .form .inputBx input:focus ~ i,
-.signin .content .form .inputBx input:valid ~ i {
+.login-cont .signin .content .form .inputBx input:focus ~ i,
+.login-cont .signin .content .form .inputBx input:valid ~ i {
   transform: translateY(-150%);
   font-size: 0.8em;
   color: #00BFFF;
 }
 
 /* Links at the bottom of the form */
-.signin .content .form .links {
+.login-cont .signin .content .form .links {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.signin .content .form .links a {
-  color: white;
+.login-cont .signin .content .form .links a {
+  color: #00BFFF;
   text-decoration: none;
   font-weight: 500;
 }
 
-.signin .content .form .links a:nth-child(2) {
+.login-cont .signin .content .form .links a:nth-child(2) {
   color: #00BFFF;
   font-weight: 600;
 }
 
 /* Submit button */
-.inputBx button {
+.login-cont .inputBx button {
   padding: 18px;
   background: #00BFFF;
   color: #fff;
@@ -129,18 +128,18 @@
 }
 
 /* Button hover effect */
-.inputBx button:hover {
+.login-cont .inputBx button:hover {
   background: #008CBA;
 }
 
 /* Disabled button state */
-.inputBx button:disabled {
+.login-cont .inputBx button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
 /* Spinner style for loading state */
-.spinner {
+.login-cont .signin .content .form .inputBx .spinner {
   border: 3px solid #f3f3f3;
   border-radius: 50%;
   border-top: 3px solid #fff;
@@ -150,14 +149,14 @@
 
 /* Media Queries for responsiveness */
 @media (max-width: 900px) {
-  .signin {
+  .login-cont .signin {
     width: 80%;
     padding: 40px;
   }
 }
 
 @media (max-width: 600px) {
-  .signin {
+  .login-cont .signin {
     width: 90%;
     padding: 30px;
   }
