@@ -12,7 +12,7 @@ const Header = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { userLoading, isAuthenticated, user, message, error, id } =
+	const { isAuthenticated, user, message, error, id } =
 		useSelector((state) => state.userAuth);
 
 	const showDropdown = () => setDropdownVisible(true);
