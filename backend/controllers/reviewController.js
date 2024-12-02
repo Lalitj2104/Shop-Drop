@@ -1,7 +1,7 @@
-import Product from "../models/product";
-import Review from "../models/review";
-import { message } from "../utils/message";
-import { Response } from "../utils/response";
+import Product from "../models/product.js";
+import Review from "../models/review.js";
+import { message } from "../utils/message.js";
+import { Response } from "../utils/response.js";
 
 export const addReview=async(req,res)=>{
     try {
