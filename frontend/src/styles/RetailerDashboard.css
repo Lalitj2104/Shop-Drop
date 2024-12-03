@@ -73,6 +73,24 @@
   color: #333;
 }
 
+/* Add Product Button */
+.add-product-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-product-btn:hover {
+  background-color: #2d3e50;
+}
+
 /* Product Grid (Updated for 3-4 Items per Row) */
 .retailer-dashboard-product-grid {
   display: grid;

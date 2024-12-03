@@ -100,6 +100,10 @@ function RetailerDashboard() {
 			{/* Main Content */}
 			<div className="retailer-dashboard-content">
 				<h2>Products</h2>
+
+				{/* Add Product Button */}
+				<button className="add-product-btn">Add Product</button>
+
 				<div className="retailer-dashboard-product-grid">
 					{products.map((product) => (
 						<div className="retailer-dashboard-product" key={product.id}>
