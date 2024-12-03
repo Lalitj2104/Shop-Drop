@@ -8,7 +8,7 @@ productRouter.post("/add",isAuthenticate, addProduct);
 productRouter.put("/update/:id", isAuthenticate, updateProduct);
 productRouter.get("/my/products", isAuthenticate, getAllProducts);
 productRouter.get("/my/product/:id",isAuthenticate,getProduct);
-productRouter.delete("/delete", isAuthenticate, removeProduct);
+productRouter.delete("/delete/:id", isAuthenticate, removeProduct);
 
 productRouter.get("/all",getProducts);
 

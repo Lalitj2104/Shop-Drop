@@ -8,7 +8,7 @@ import Review from "../models/review.js";
 export const addProduct = async (req, res) => {
 	try {
 		//checking user
-		if (!req.user) {
+		if (!req.retailer) {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
 		}
 		let retailer = await Retailer.findById(req.user.id);
@@ -64,7 +64,7 @@ export const addProduct = async (req, res) => {
 
 export const getAllProducts = async (req, res) => {
   try{
-  const{id} =req.user;
+  const{id} =req.retailer;
   if(!id){
     return Response(res,400,false,message.idNotFoundMessage);
   }
@@ -104,14 +104,7 @@ export const getProduct = async (req, res) => {
 
 export const getProducts=async(req,res)=>{
   try {
-    const{id} =req.user;
-    if(!id){
-      return Response(res,400,false,message.idNotFoundMessage);
-    }
-    let retailer =await Retailer.findById(id);
-    if(!retailer){
-      return Response(res,400,false,message.retailerNotFoundMessage);
-    }
+    
     const products =await Product.find().populate("retailer_id", "firstName companyName gstNumber");
 
     Response(res,201,true,message.productsFoundMessage,products);

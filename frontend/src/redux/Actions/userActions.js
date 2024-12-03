@@ -47,7 +47,7 @@ export const registerUser = (details) => async (dispatch) => {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			withCredentials: true,
+			// withCredentials: true,
 		});
 		// console.log(data);
 		dispatch({
@@ -268,6 +268,8 @@ export const addUserAddress = (address) => async (dispatch) => {
 		});
 	}
 };
+
+
 // export const getUserProfile = () => async (dispatch) => {
 //   try {
 //   } catch (error) {}
