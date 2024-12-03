@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
-  retailer_id: {
+  retailerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Retailer",
     required: true,
@@ -25,6 +25,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     maxlength: 1000,
   },
+  
   category: {
     type: String,
     required: true,
@@ -41,13 +42,6 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  // images: {
-  //   type: [String],
-  // },
-  // attributes: {
-  //   type: Map,
-  //   of: String,
-  // },
   rating: {
     type: Number,
     min: 0,

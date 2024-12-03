@@ -141,16 +141,18 @@ export const removeProduct = async (req, res) => {
   }
 };
 
-//yet to complete
 export const updateProduct = async (req, res) => {
-	//update product
-	const { id } = req.params;
-	//
-	let product = await Product.findById(id);
-	if (!product) {
+	try {
+	  const { id } = req.params;
+  
+	  // Find the product by ID
+	  let product = await Product.findById(id);
+	  if (!product) {
 		return Response(res, 400, false, message.noProductMessage);
-	}
-	const {
+	  }
+  
+	  // Destructure the fields from the request body
+	  const {
 		name,
 		description,
 		category,
@@ -159,5 +161,23 @@ export const updateProduct = async (req, res) => {
 		available_quantity_inStore,
 		tags,
 		brand,
-	} = req.body;
-};
+	  } = req.body;
+  
+	  // Update the product fields
+	  product.name = name || product.name;
+	  product.description = description || product.description;
+	  product.category = category || product.category;
+	  product.price = price || product.price;
+	  product.available_quantity_delivery = available_quantity_delivery || product.available_quantity_delivery;
+	  product.available_quantity_inStore = available_quantity_inStore || product.available_quantity_inStore;
+	  product.tags = tags || product.tags;
+	  product.brand = brand || product.brand;
+  
+	  // Save the updated product
+	  await product.save();
+  
+	  Response(res, 200, true, message.productUpdatedMessage, product);
+	} catch (error) {
+	  Response(res, 500, false, error.message);
+	}
+  };

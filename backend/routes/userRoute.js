@@ -49,8 +49,8 @@ userRouter.delete("/my/address", isAuthenticated, removeAddress);
 
 userRouter.post("/add/review", isAuthenticated, addReview);
 userRouter.get("/get/review/:id", isAuthenticated, getReview);
-userRouter.put("/update/review", isAuthenticated, updateReview);
-userRouter.delete("/delete/review", isAuthenticated, deleteReview);
+userRouter.put("/update/review/:id", isAuthenticated, updateReview);
+userRouter.delete("/delete/review/:id", isAuthenticated, deleteReview);
 userRouter.get("/all/reviews/:id", isAuthenticated, getAllReviewsForProduct);
 userRouter.get("/all/userReview/:id", isAuthenticated, getAllReviewsByUser);
 

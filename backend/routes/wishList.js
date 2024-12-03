@@ -6,7 +6,7 @@ import { addWish, deleteWish, getWish, updateWish } from "../controllers/userCon
 const wishListRouter=express.Router();
 
 wishListRouter.post("/add",isAuthenticated,addWish);
-wishListRouter.put("/update",isAuthenticated,updateWish);
+wishListRouter.put("/update/:id",isAuthenticated,updateWish);
 wishListRouter.get("/my/wishlist",isAuthenticated,getWish);
 wishListRouter.delete("/delete",isAuthenticated,deleteWish);
 
