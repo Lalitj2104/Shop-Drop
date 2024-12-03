@@ -67,5 +67,6 @@ export const message={
     orderCancelledMessage:"Order cancelled successfully",
     ordersFetchedMessage:"orders fetched successfully",
     orderFetchedMessage:"order fetched successfully",
-    invalidStatusMessage:"Invalid Status"
+    invalidStatusMessage:"Invalid Status",
+    retailerFoundMessage:"Retailer Found"
 }

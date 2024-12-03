@@ -26,10 +26,13 @@ const Header = () => {
 	console.log(id);
 	let name = undefined;
 	let address = undefined;
-	if (user || id) {
-		name = user.firstName || id.firstName;
-		address = user?.address.isdefault == true || id?.address.isdefault == true;
-	}
+	// useEffect(()=>{
+		if (user || id) {
+			name = user?.firstName || id?.firstName;
+			address = user?.address.isdefault == true || id?.address.isdefault == true;
+		}
+	// },[user,id])
+	
 	useEffect(() => {
 		if (message) {
 			console.log(message);

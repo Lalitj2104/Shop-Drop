@@ -14,6 +14,7 @@ import {
   changePassword,
   forgotPassword,
   resetPassword,
+  myProfile,
 } from "../controllers/retailerController.js";
 
 import { isAuthenticate } from "../middleware/retailAuth.js"; 
@@ -26,13 +27,15 @@ import {
 
 const retailerRouter = express.Router();
 
+
+retailerRouter.get("/me",myProfile);
 retailerRouter.post("/retailerRegister", registerRetailer);
 retailerRouter.post("/verify/:id", verify);
 retailerRouter.get("/resend/:id", resendOtp);
 retailerRouter.post("/retailerLogin", loginRetailer);
 retailerRouter.post("/login/verify/:id", verifyLogin);
 retailerRouter.get("/login/resend/:id", resendLoginOtp);
-retailerRouter.put("/changePassword", isAuthenticate, changePassword);
+retailerRouter.put("/change-Password/:id", isAuthenticate, changePassword);
 retailerRouter.post("/forgot", forgotPassword);
 retailerRouter.put("/reset/:id", isAuthenticate, resetPassword);
 retailerRouter.delete("/delete", isAuthenticate, deleteRetailer);

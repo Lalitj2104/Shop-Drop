@@ -1,6 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Path from "./routes";
+import Path from "./routes/user/index.jsx";
+import RetailerPath from "./routes/retailer/index.jsx";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 				theme="dark"
 			/>
 			<Path />
+			<RetailerPath/>
 		</>
 	);
 }

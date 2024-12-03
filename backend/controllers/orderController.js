@@ -1,8 +1,8 @@
-import Cart from "../models/cart";
-import Order from "../models/orders";
-import Product from "../models/product";
-import { message } from "../utils/message";
-import { Response } from "../utils/response";
+import Cart from "../models/cart.js";
+import Order from "../models/orders.js";
+import Product from "../models/product.js";
+import { message } from "../utils/message.js";
+import { Response } from "../utils/response.js";
 
 export const addOrder = async (req,res) => {
   try {

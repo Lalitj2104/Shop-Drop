@@ -24,7 +24,7 @@ export const isAuthenticate = async (req, res, next) => {
 			return Response(res, 400, false, message.unAuthorizedMessage);
 		}
 
-		req.user = retailer;
+		req.retailer = retailer;
 		next();
 	} catch (error) {
 		Response(res, 500, false, error.message);

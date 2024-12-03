@@ -11,6 +11,17 @@ import Product from "../models/product.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
+export const myProfile=async(req,res)=>{
+	try {
+		const retailer=await Retailer.findById(req.retailer._id);
+		
+		Response(res,201,true,message.retailerFoundMessage,retailer);
+		
+	} catch (error) {
+		Response(res,500,false,error.message);
+	}
+}
 export const registerRetailer = async (req, res) => {
 	try {
 		//parsing the data
@@ -385,7 +396,7 @@ export const resendLoginOtp = async (req, res) => {
 		if (!id) {
 			return Response(res, 400, false, message.idNotFoundMessage);
 		}
-		//checking user
+		//checking retailer
 		let retailer = await Retailer.findById(id);
 		if (!retailer) {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
@@ -434,7 +445,7 @@ export const forgotPassword = async (req, res) => {
 		if (!email) {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
-		//checking user
+		//checking retailer
 		let retailer = await Retailer.findOne({ email });
 		if (!retailer) {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
@@ -483,8 +494,8 @@ export const resetPassword = async (req, res) => {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
 		}
 
-		//checking user
-		let retailer = await User.findById(id);
+		//checking retailer
+		let retailer = await Retailer.findById(id);
 		if (!retailer) {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
 		}
@@ -543,7 +554,7 @@ export const resetPassword = async (req, res) => {
 export const changePassword = async (req, res) => {
 	try {
 		//params and cookie
-		const { id } = req.user;
+		const { id } = req.retailer;
 		const { password } = req.body;
 		//checking id
 		if (!id) {
@@ -574,28 +585,28 @@ export const changePassword = async (req, res) => {
 };
 export const getRetailerProfile = async (req, res) => {
 	try {
-		if (!req.user) {
+		if (!req.retailer) {
 			return Response(res, 404, false, message.retailerNotFoundMessage);
 		}
 
-		Response(res, 200, true, message.retailerProfileFoundMessage, req.user);
+		Response(res, 200, true, message.retailerProfileFoundMessage, req.retailer);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
 };
 export const updateRetailerProfile = async (req, res) => {
 	try {
-		if (!req.user) {
+		if (!req.retailer) {
 			return Response(res, 404, false, message.retailerNotFoundMessage);
 		}
 
-		const retailer = await User.findByIdAndUpdate(req.user._id, req.body, {
+		const retailer = await Retailer.findByIdAndUpdate(req.retailer._id, req.body, {
 			new: true,
 			runValidators: true,
 			timestamps: true,
 			upsert: true,
 		});
-		if (!user) {
+		if (!retailer) {
 			return Response(res, 404, false, message.retailerNotFoundMessage);
 		}
 
@@ -621,12 +632,12 @@ export const logoutRetailer = async (req, res) => {
 
 export const deleteRetailer = async (req, res) => {
 	try {
-		//checking req user
-		if (!req.user) {
+		//checking req retailer
+		if (!req.retailer) {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
 		}
 		//parsing data
-		const id = req.user.id;
+		const id = req.retailer.id;
 		//find and delete
 		const retailer = await Retailer.findById(id);
 		//retailer is not there
@@ -656,11 +667,11 @@ export const deleteRetailer = async (req, res) => {
 
 export const getRetailerProducts = async (req, res) => {
 	try {
-		if (!req.user) {
+		if (!req.retailer) {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
 		}
 		//parsing data
-		const id = req.user.id;
+		const id = req.retailer.id;
 		//checking the id
 		let retailer = await Retailer.findById(id);
 		if (!retailer) {

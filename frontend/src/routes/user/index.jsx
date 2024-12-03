@@ -1,26 +1,26 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "../pages/Home/Home";
-import ForgotPassword from "../pages/Password/ForgotPassword/ForgotPassword";
-import VerifyOtp from "../pages/Otp/VerifyOtp/VerifyOtp";
-import ResetPassword from "../pages/Password/ResetPassword/ResetPassword";
-import RetailerDashboard from "../pages/RetailerDashboard/RetailerDashboard";
-import Login from "../pages/Login/user/Login";
-import RegisterLogin from "../pages/Login/retailer/RetailerLogin";
-import Register from "../pages/Register/user/Register";
-import RetailerRegister from "../pages/Register/Retailer/RetailerRegister";
+import Home from "../../pages/Home/Home.jsx";
+import ForgotPassword from "../../pages/Password/ForgotPassword/ForgotPassword.jsx";
+import VerifyOtp from "../../pages/Otp/VerifyOtp/VerifyOtp.jsx";
+import ResetPassword from "../../pages/Password/ResetPassword/ResetPassword.jsx";
+import RetailerDashboard from "../../pages/RetailerDashboard/RetailerDashboard.jsx";
+import Login from "../../pages/Login/user/Login.jsx";
+import RegisterLogin from "../../pages/Login/retailer/RetailerLogin.jsx";
+import Register from "../../pages/Register/user/Register.jsx";
+import RetailerRegister from "../../pages/Register/Retailer/RetailerRegister.jsx";
 import AuthRoute from "./AuthRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import LoadingPage from "../components/Loading/LoadingPage";
-import { loadUser } from "../redux/Actions/userActions";
-import ChangePassword from "../pages/Password/ChangePassword/ChangePassword";
-import AddAddress from "../pages/Address/AddAddress.jsx";
-import Account from "../pages/YourAccount/Account.jsx";
-import Order from "../pages/Orders/Orders.jsx";
+import LoadingPage from "../../components/Loading/LoadingPage.jsx";
+import { loadUser } from "../../redux/Actions/userActions.js";
+import ChangePassword from "../../pages/Password/ChangePassword/ChangePassword.jsx";
+import AddAddress from "../../pages/Address/AddAddress.jsx";
+import Account from "../../pages/YourAccount/Account.jsx";
+import Order from "../../pages/Orders/Orders.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
-import ContactUs from "../pages/ContactUs/ContactUs.jsx";
-import LoginSecurity from "../pages/LoginSecurity/LoginSecurity.jsx";
-import Paymentoptions from "../pages/PaymentOptions/PaymentOptions.jsx";
+import ContactUs from "../../pages/ContactUs/ContactUs.jsx";
+import LoginSecurity from "../../pages/LoginSecurity/LoginSecurity.jsx";
+import Paymentoptions from "../../pages/PaymentOptions/PaymentOptions.jsx";
 
 const Path = () => {
 	const dispatch = useDispatch();
@@ -101,7 +101,7 @@ const Path = () => {
 								</AuthRoute>
 							}
 						/>
-						<Route path="/retailerDashboard" element={<RetailerDashboard />} />
+						
 						<Route path="/AddAddress" element={<AddAddress />} />
 						<Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
 						<Route path="/orders" element={<ProtectedRoute><Order /></ProtectedRoute>} />

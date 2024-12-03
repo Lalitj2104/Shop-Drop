@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import toastOptions from "../../../constants/toast";
 import { toast } from "react-toastify";
-import { loginUser } from "../../../redux/Actions/userActions";
+import { retailerLogin } from "../../../redux/Actions/retailerActions";
 
 const RetailerLogin = () => {
 	const spans = Array.from({ length: 128 });
@@ -12,18 +12,18 @@ const RetailerLogin = () => {
 	const [password, setPassword] = useState("");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { loading, message, error, id, isAuthenticated } = useSelector(
-		(state) => state.userAuth
+	const { rloading, message, error, id, isRetailerAuthenticated } = useSelector(
+		(state) => state.retailerAuth
 	);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(email, password);
-		dispatch(loginUser(email, password));
+		dispatch(retailerLogin(email, password));
 	};
 
 	useEffect(() => {
-		if (isAuthenticated) {
-			return navigate("/");
+		if (isRetailerAuthenticated) {
+			return navigate("/retailerDashboard");
 		}
 		if (message) {
 			console.log(message);
@@ -31,13 +31,14 @@ const RetailerLogin = () => {
 			dispatch({
 				type: "CLEAR_MESSAGE",
 			});
+			navigate(`/login/verify/${id}`);
 		}
 		if (error) {
 			console.log(error);
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
-	}, [dispatch, message, error, isAuthenticated, id, navigate]);
+	}, [dispatch, message, error, isRetailerAuthenticated, id, navigate]);
 
 	return (
 		<section>
@@ -74,8 +75,8 @@ const RetailerLogin = () => {
 								<Link to="/retailerRegister">Sign Up</Link>
 							</div>
 							<div className="inputBx">
-								<button type="submit" disabled={loading}>
-									{loading === true ? (
+								<button type="submit" disabled={rloading}>
+									{rloading === true ? (
 										<span className="spinner"></span>
 									) : (
 										"Login"

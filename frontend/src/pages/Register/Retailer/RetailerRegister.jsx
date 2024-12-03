@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "../../../styles/Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../../redux/Actions/userActions";
 import { toast } from "react-toastify";
 import toastOptions from "../../../constants/toast";
+import { registerRetailer } from "../../../redux/Actions/retailerActions";
 
 const RetailerRegister = () => {
 	const spans = Array.from({ length: 128 });
@@ -24,8 +24,8 @@ const RetailerRegister = () => {
 		companyName: "",
 	});
 
-	const { loading, message, error, id, isAuthenticated } = useSelector(
-		(state) => state.userAuth
+	const { rloading, message, error, id, isRetailerAuthenticated } = useSelector(
+		(state) => state.retailerAuth
 	);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -39,7 +39,7 @@ const RetailerRegister = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(details);
-		dispatch(registerUser(details));
+		dispatch(registerRetailer(details));
 	};
 
 	useEffect(() => {
@@ -55,10 +55,10 @@ const RetailerRegister = () => {
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
-		if (isAuthenticated) {
-			navigate("/");
+		if (isRetailerAuthenticated) {
+			navigate("/retailerDashboard");
 		}
-	}, [dispatch, message, error, isAuthenticated, navigate]);
+	}, [dispatch, message, error, isRetailerAuthenticated, navigate]);
 
 	return (
 		<section>
@@ -201,8 +201,8 @@ const RetailerRegister = () => {
 								<Link to="/login">Already have an account ?</Link>
 							</div>
 							<div className="inputBx">
-								<button type="submit" disabled={loading}>
-									{loading === true ? (
+								<button type="submit" disabled={rloading}>
+									{rloading === true ? (
 										<span className="spinner"></span>
 									) : (
 										"Register"
