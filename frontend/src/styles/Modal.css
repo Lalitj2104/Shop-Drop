@@ -1,0 +1,204 @@
+/* General Modal Styles */
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #000;
+  z-index: 1200;
+}
+
+.modal-cont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.modal-cont::before {
+  display: flex;
+  justify-content: flex-end;
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  opacity: 0.7;
+  background-color: #000;
+}
+
+.modal-cont .modal {
+  position: relative;
+  width: 70%;
+  height: 75%;
+  background: #222;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Close Button */
+.modal-cont .modal .close {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 2em;
+  cursor: pointer;
+}
+
+/* Image Upload Section */
+.modal-cont .modal .inptBx {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-cont .modal .inptBx .upload-container {
+  text-align: center;
+  margin: 30px auto;
+  max-width: 400px;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  background-color: #333;
+}
+
+.modal-cont .modal .inptBx h2 {
+  color: #000;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modal-cont .modal .inptBx .instructions {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.modal-cont .modal .inptBx .customFileInput {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00BFFF;
+  width: 50%;
+  color: black;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.modal-cont .modal .inptBx .customFileInput:hover {
+  background-color: #009ACD;
+}
+
+.modal-cont .modal .inptBx .customFileInput:active {
+  background-color: #007BA7;
+}
+
+/* Content Section */
+.modal-cont .modal .content {
+  position: relative;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+  padding-left: 12px;
+}
+
+.modal-cont .modal .content .create {
+  background: none;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.modal-cont .modal .content .create .field {
+  width: 100%;
+}
+
+.modal-cont .modal .content .create input,
+.modal-cont .modal .content .create textarea {
+  width: 94%;
+  background: #333;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.modal-cont .modal .content .create input[type="number"] {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+/* Button Section */
+.modal-cont .modal .content .post-btn {
+  width: 98%;
+  height: 8%;
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.modal-cont .modal .content .post-btn button {
+  width: 100%;
+  height: 100%;
+  background: #00BFFF;
+  font-size: 20px;
+  color: black;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.modal-cont .modal .content .post-btn button:hover {
+  background: #00c1c1;
+}
+
+/* Image Display Section */
+.modal-cont .modal .imgBx {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-cont .modal .imgBx img {
+  max-height: 200px;
+  max-width: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}

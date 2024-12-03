@@ -1,0 +1,145 @@
+/* Background blur */
+body.modal-active {
+  filter: blur(5px);
+  overflow: hidden;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensures modal is above other content */
+}
+
+/* Modal content */
+.add-address-cont {
+  position: relative;
+  width: 500px;
+  background: #fff;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.add-address-cont .add-address .content h2 {
+  font-size: 2em;
+  color: #00bfff;
+  text-transform: uppercase;
+}
+
+.add-address-cont .add-address .content .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-address-cont .add-address .content .form .inputGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+}
+
+.add-address-cont .add-address .content .form .inputBx {
+  position: relative;
+  width: 100%;
+}
+
+.add-address-cont .add-address .content .form .inputBx input,
+.add-address-cont .add-address .content .form .inputBx select {
+  position: relative;
+  width: 80%;
+  background: #f3f3f3;
+  border: none;
+  outline: none;
+  padding: 15px 10px;
+  border-radius: 4px;
+  color: #333;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.add-address-cont .add-address .content .form .inputBx input:focus,
+.add-address-cont .add-address .content .form .inputBx select:focus {
+  border: 1px solid #00bfff;
+}
+
+.add-address-cont .add-address .content .form .inputBx i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-200%);
+  background: #fff;
+  font-size: 0.9em;
+  color: #00bfff;
+}
+
+.add-address-cont .add-address .content .form .inputBx button {
+  padding: 15px;
+  background: #00bfff;
+  color: #fff;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.add-address-cont .add-address .content .form .inputBx button:hover {
+  background: #008cba;
+}
+
+.add-address-cont .add-address .content .form .inputBx button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.add-address-cont .add-address .content .form .spinner {
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid #fff;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .add-address {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-overlay {
+    display: block;
+  }
+  .add-address-cont {
+    width: 90%;
+  }
+}

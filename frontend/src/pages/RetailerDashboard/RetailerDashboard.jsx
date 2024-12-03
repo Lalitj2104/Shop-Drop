@@ -1,9 +1,8 @@
-import "./RetailerDashboard.css";
-import profile from "../../../public/profile.jpg";
-import flaredSweater from "../../../public/Flared Sleeves Sweater.jpg";
-import Sweater from "../../../public/V-Neck Sweater.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import "../../styles/RetailerDashboard.css";
 
 function RetailerDashboard() {
+
 	return (
 		<div className="retailer-dashboard">
 			{/* Sidebar */}

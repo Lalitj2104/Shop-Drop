@@ -527,7 +527,7 @@ export const addAddress = async (req, res) => {
 		}
 		const { address } = req.body;
 		if (!address) {
-			return Response(res, 400, false, message.missingFieldMessage);
+			return Response(res, 401, false, message.missingFieldMessage);
 		}
 		if (
 			!address.street ||
