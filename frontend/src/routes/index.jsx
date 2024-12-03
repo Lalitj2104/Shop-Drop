@@ -18,6 +18,9 @@ import AddAddress from "../pages/Address/AddAddress.jsx";
 import Account from "../pages/YourAccount/Account.jsx";
 import Order from "../pages/Orders/Orders.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
+import ContactUs from "../pages/ContactUs/ContactUs.jsx";
+import LoginSecurity from "../pages/LoginSecurity/LoginSecurity.jsx";
+import Paymentoptions from "../pages/PaymentOptions/PaymentOptions.jsx";
 
 const Path = () => {
 	const dispatch = useDispatch();
@@ -102,6 +105,9 @@ const Path = () => {
 						<Route path="/AddAddress" element={<AddAddress />} />
 						<Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
 						<Route path="/orders" element={<ProtectedRoute><Order /></ProtectedRoute>} />
+						<Route path="/ContactUs" element={<ContactUs/>}/>
+						<Route path="/LoginSecurity" element={<LoginSecurity/>}/>
+						<Route path="/PaymentOptions" element={<Paymentoptions/>}/>
 					</Routes>
 				)}
 			</Router>

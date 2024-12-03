@@ -1,0 +1,108 @@
+.payment-options-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 8px;
+
+
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .info-box {
+        border: 1px solid #00a8e1;
+        background-color: #f0f9ff;
+        padding: 15px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+
+        p {
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+
+            .info-icon {
+                font-size: 16px;
+                font-weight: bold;
+                color: #00a8e1;
+                margin-right: 10px;
+            }
+
+            .learn-more {
+                color: #0073bb;
+                text-decoration: none;
+                margin-left: 5px;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .payment-button {
+            background-color: #0073bb;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: left;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #005999; 
+            }
+
+            &:focus {
+                outline: none; 
+                box-shadow: 0 0 0 2px #005999; 
+            }
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .payment-options-container {
+        padding: 15px;
+
+        .info-box {
+            flex-direction: column; 
+            text-align: center;
+
+            p {
+                margin-top: 10px; 
+            }
+        }
+
+        .button-container {
+            gap: 5px; 
+            
+            .payment-button {
+                font-size: 12px; 
+                padding: 8px; 
+            }
+        }
+    }
+}

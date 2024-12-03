@@ -6,6 +6,8 @@ import creditcard from "../../assets/creditcard.png";
 import locationfinal from "../../assets/locationfinal.png";
 import orderimg from "../../assets/orderimg.jpg";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import YourAccountBanner from "../../components/YourAccountBanner/YourAccountBanner";
 
 const Account = () => {
 	const navigate = useNavigate();
@@ -21,7 +23,7 @@ const Account = () => {
 						<h3>Your Orders</h3>
 						<p>Track, return, or buy things again</p>
 					</div>
-					<div className="grid-item" onClick={() => navigate("/Loginsecurity")}>
+					<div className="grid-item" onClick={() => navigate("/LoginSecurity")}>
 						<img src={lock} alt="Login & Security" />
 						<h3>Login & security</h3>
 						<p>Edit login, name, and mobile number</p>
@@ -33,19 +35,21 @@ const Account = () => {
 					</div>
 					<div
 						className="grid-item"
-						onClick={() => navigate("/Paymentoptions")}
+						onClick={() => navigate("/PaymentOptions")}
 					>
 						<img src={creditcard} alt="Payment Options" />
 						<h3>Payment options</h3>
 						<p>Edit or add payment methods</p>
 					</div>
-					<div className="grid-item" onClick={() => navigate("/Contact")}>
+					<div className="grid-item" onClick={() => navigate("/ContactUs")}>
 						<img src={contact} alt="Contact Us" />
 						<h3>Contact Us</h3>
 						<p>Contact our customer service via phone or chat</p>
 					</div>
 				</div>
+				<YourAccountBanner/>
 			</div>
+			<Footer/>
 		</>
 	);
 };

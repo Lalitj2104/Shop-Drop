@@ -1,0 +1,84 @@
+.settings-container {
+  padding: 100px;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.settings-table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.settings-table th, 
+.settings-table td {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 20px 10px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.settings-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.settings-table td {
+  vertical-align: top; /* Align content at the top */
+  height: auto; /* Allow height to adapt dynamically */
+}
+
+.settings-table td:first-child, 
+.settings-table td:nth-child(2), 
+.settings-table td:nth-child(3) {
+  height: 80px; /* Set consistent height for all columns */
+}
+
+.settings-table td button {
+  white-space: nowrap;
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.settings-table td button:hover {
+  background-color: grey;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .settings-container {
+    padding: 10px;
+  }
+
+  .settings-table th, 
+  .settings-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .settings-table td button {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+
+.settings-table tr {
+  height: auto; /* Allow rows to adapt to content */
+}
+
+.center-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  line-height: 1.4;
+  text-align: center;
+}
