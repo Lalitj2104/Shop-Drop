@@ -1,49 +1,57 @@
-/* Root container */
-.retailer-dashboard {
+/* Main Container */
+.retailer-dashboard-app {
   display: flex;
   height: 100vh;
   font-family: Arial, sans-serif;
 }
 
-/* Sidebar */
-.retailer-dashboard .retailer-sidebar {
+/* Sidebar Styles */
+.retailer-dashboard-sidebar {
   width: 250px;
   background-color: #3b5998;
   color: white;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10%;
+  gap: 20px;
 }
 
-.retailer-dashboard .retailer-sidebar .retailer-profile {
+.retailer-dashboard-profile {
   text-align: center;
 }
 
-.retailer-dashboard .retailer-sidebar .retailer-profile .retailer-profile-img {
-  width: 150px;
-  height: 150px;
+.retailer-dashboard-profile img {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background-color: white;
-  margin: 0 auto 10px;
+  margin-bottom: 10px;
 }
 
-.retailer-dashboard .retailer-sidebar .retailer-menu,
-.retailer-dashboard .retailer-sidebar .retailer-categories {
+.retailer-dashboard-profile h3 {
+  margin: 10px 0 5px 0;
+  font-size: 18px;
+}
+
+.retailer-dashboard-profile p {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.retailer-dashboard-menu,
+.retailer-dashboard-categories {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  border-top: 1px solid black;
-  margin-top: 10px;
 }
 
-.retailer-dashboard .retailer-sidebar .retailer-menu li,
-.retailer-dashboard .retailer-sidebar .retailer-categories li {
+.retailer-dashboard-menu li,
+.retailer-dashboard-categories li {
   margin: 10px 0;
   cursor: pointer;
+  font-size: 14px;
 }
 
-.retailer-dashboard .retailer-sidebar .badge {
+.retailer-dashboard-menu li .badge {
   background-color: #f39c12;
   border-radius: 50%;
   padding: 3px 7px;
@@ -51,23 +59,78 @@
   margin-left: 10px;
 }
 
-/* Main Content */
-.retailer-dashboard .retailer-dashboard-content {
+/* Main Content Styles */
+.retailer-dashboard-content {
   flex: 1;
   padding: 20px;
   background-color: #f9f9f9;
   overflow-y: auto;
 }
 
-/* Products Section Header */
-.retailer-dashboard .retailer-dashboard-content .products-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.retailer-dashboard-content h2 {
+  font-size: 24px;
   margin-bottom: 20px;
+  color: #333;
 }
 
-.retailer-dashboard .retailer-dashboard-content .products-header .add-product-btn {
+/* Add Product Button */
+.add-product-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-product-btn:hover {
+  background-color: #2d3e50;
+}
+
+/* Product Grid (Updated for 3-4 Items per Row) */
+.retailer-dashboard-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Dynamic number of items per row */
+  gap: 20px;
+}
+
+/* Product Card */
+.retailer-dashboard-product {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Square Image Styling */
+.retailer-dashboard-product img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Product Text */
+.retailer-dashboard-product h3 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.retailer-dashboard-product p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* Button Styles */
+.retailer-dashboard-product button {
   background-color: #2d3e50;
   color: white;
   padding: 10px 20px;
@@ -77,53 +140,42 @@
   cursor: pointer;
 }
 
-.retailer-dashboard .retailer-dashboard-content .products-header .add-product-btn:hover {
+.retailer-dashboard-product button:hover {
   background-color: #f39c12;
 }
 
-/* Product grid and card styles */
-.retailer-dashboard .retailer-dashboard-content .retailer-product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+/* Responsive Design (Adjust for smaller screens) */
+@media (max-width: 1024px) {
+  .retailer-dashboard-product-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row on tablets */
+  }
 }
 
-.retailer-dashboard .retailer-dashboard-content .retailer-product-grid .retailer-product {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
+@media (max-width: 768px) {
+  .retailer-dashboard-sidebar {
+    width: 200px;
+  }
+
+  .retailer-dashboard-profile img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .retailer-dashboard-product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row on small screens */
+  }
+
+  .retailer-dashboard-product h3 {
+    font-size: 14px;
+  }
+
+  .retailer-dashboard-product p {
+    font-size: 12px;
+  }
 }
 
-.retailer-dashboard .retailer-dashboard-content .retailer-product-grid .retailer-product img {
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  object-fit: cover;
-}
-
-.retailer-dashboard .retailer-dashboard-content .retailer-product-grid .retailer-product h3 {
-  font-size: 16px;
-  margin: 10px 0;
-}
-
-.retailer-dashboard .retailer-dashboard-content .retailer-product-grid .retailer-product p {
-  color: #333;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.retailer-dashboard .retailer-dashboard-content .retailer-product-grid .retailer-product button {
-  background-color: #2d3e50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.retailer-dashboard .retailer-dashboard-content .retailer-product-grid .retailer-product button:hover {
-  background-color: #f39c12;
+@media (max-width: 480px) {
+  .retailer-dashboard-product-grid {
+    grid-template-columns: 1fr; /* 1 item per row on very small screens */
+  }
 }
