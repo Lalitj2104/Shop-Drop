@@ -676,6 +676,30 @@ export const addWish = async (req, res) => {
 		Response(res, 500, false, error.message);
 	}
 };
+export const getWish = async (req, res) => {
+	try {
+		const wishList=await WishList.findOne({userId:req.user._id});
+
+		Response(res,200,message.wishListFoundMessage,wishList);
+	} catch (error) {
+		Response(res, 500, false, error.message);
+	}
+};
+
+
+export const deleteWish = async (req, res) => {
+	try {
+		const wishList=await WishList.findOne({userId:req.user._id});
+		if(wishList.products.length>=1){
+			wishList.products=[];
+		}
+		await wishList.save();
+		Response(res,200,message.wishListRemovedmessage);
+	} catch (error) {
+		Response(res, 500, false, error.message);
+	}
+};
+
 
 //incomplete
 
@@ -687,7 +711,7 @@ export const updateWish = async (req, res) => {
 			return Response(res,400,message.noProductMessage);
 		}
 
-		let wishList = await WishList.findOne(req.user._id);
+		let wishList = await WishList.findOne({userId:req.user._id});
 
     if (!wishList) {
       return Response(res, 400, false, message.wishListNotFoundMessage);
@@ -698,16 +722,4 @@ export const updateWish = async (req, res) => {
 	}
 };
 
-export const getWish = async (req, res) => {
-	try {
-	} catch (error) {
-		Response(res, 500, false, error.message);
-	}
-};
 
-export const deleteWish = async (req, res) => {
-	try {
-	} catch (error) {
-		Response(res, 500, false, error.message);
-	}
-};
