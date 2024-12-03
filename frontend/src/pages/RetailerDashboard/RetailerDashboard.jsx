@@ -1,32 +1,97 @@
-import { useDispatch, useSelector } from "react-redux";
 import "../../styles/RetailerDashboard.css";
+import profileImg from "../../../public/profile.jpg";
 
 function RetailerDashboard() {
+	// Mocked user data
+	const userInfo = {
+		name: "Khushi Agarwal",
+		location: "Warsaw, Poland",
+		wishes: 12,
+		messages: 3,
+		completedOrders: 55,
+		categories: [
+			"T-Shirts & Tops",
+			"Activewear",
+			"Sweaters",
+			"Skirts & Shorts",
+			"Outwear & Blazers",
+			"Accessories & Shoes",
+		],
+	};
+
+	// Mocked product data
+	const products = [
+		{
+			id: 1,
+			name: "Flared Sleeves Sweater",
+			price: 19.99,
+			image: "../../../public/Flared Sleeves Sweater.jpg",
+		},
+		{
+			id: 2,
+			name: "V-Neck Sweater",
+			price: 35.99,
+			image: "../../../public/V-Neck Sweater.jpg",
+		},
+		{
+			id: 3,
+			name: "V-Neck Sweater",
+			price: 35.99,
+			image: "../../../public/V-Neck Sweater.jpg",
+		},
+		{
+			id: 4,
+			name: "V-Neck Sweater",
+			price: 35.99,
+			image: "../../../public/V-Neck Sweater.jpg",
+		},
+		{
+			id: 5,
+			name: "V-Neck Sweater",
+			price: 35.99,
+			image: "../../../public/V-Neck Sweater.jpg",
+		},
+		{
+			id: 6,
+			name: "V-Neck Sweater",
+			price: 35.99,
+			image: "../../../public/V-Neck Sweater.jpg",
+		},
+	];
 
 	return (
-		<div className="retailer-dashboard">
+		<div className="retailer-dashboard-app">
 			{/* Sidebar */}
-			<div className="retailer-sidebar">
-				<div className="retailer-profile">
-					<div className="retailer-profile-img"></div>
-					<h3>{retailerInfo.name}</h3>
-					<p>{retailerInfo.location}</p>
+			<div className="retailer-dashboard-sidebar">
+				<div className="retailer-dashboard-profile">
+					<img
+						src={profileImg}
+						alt="Profile"
+						className="retailer-dashboard-profile-img"
+					/>
+					<h3>{userInfo.name}</h3>
+					<p>{userInfo.location}</p>
 				</div>
-				<ul className="retailer-menu">
+				<ul className="retailer-dashboard-menu">
 					<li>
-						My Wishes <span className="badge">{retailerInfo.wishes || 0}</span>
+						My Wishes{" "}
+						<span className="retailer-dashboard-badge">{userInfo.wishes}</span>
 					</li>
 					<li>
 						My Messages{" "}
-						<span className="badge">+{retailerInfo.messages || 0}</span>
+						<span className="retailer-dashboard-badge">
+							+{userInfo.messages}
+						</span>
 					</li>
 					<li>
 						Completed Orders{" "}
-						<span className="badge">{retailerInfo.completedOrders || 0}</span>
+						<span className="retailer-dashboard-badge">
+							{userInfo.completedOrders}
+						</span>
 					</li>
 				</ul>
-				<ul className="retailer-categories">
-					{retailerInfo.categories?.map((category, index) => (
+				<ul className="retailer-dashboard-categories">
+					{userInfo.categories.map((category, index) => (
 						<li key={index}>{category}</li>
 					))}
 				</ul>
@@ -34,15 +99,10 @@ function RetailerDashboard() {
 
 			{/* Main Content */}
 			<div className="retailer-dashboard-content">
-				<div className="products-header">
-					<h2>Products</h2>
-					<button className="add-product-btn" onClick={handleAddProduct}>
-						Add Product
-					</button>
-				</div>
-				<div className="retailer-product-grid">
+				<h2>Products</h2>
+				<div className="retailer-dashboard-product-grid">
 					{products.map((product) => (
-						<div className="retailer-product" key={product.id}>
+						<div className="retailer-dashboard-product" key={product.id}>
 							<img src={product.image} alt={product.name} />
 							<h3>{product.name}</h3>
 							<p>£{product.price.toFixed(2)}</p>

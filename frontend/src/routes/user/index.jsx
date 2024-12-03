@@ -2,8 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home/Home.jsx";
 import ForgotPassword from "../../pages/Password/ForgotPassword/ForgotPassword.jsx";
 import VerifyOtp from "../../pages/Otp/VerifyOtp/VerifyOtp.jsx";
-import ResetPassword from "../../pages/Password/ResetPassword/ResetPassword.jsx";
-import RetailerDashboard from "../../pages/RetailerDashboard/RetailerDashboard.jsx";
+import ResetPassword from "../../pages/Password/ResetPassword/ResetPassword.jsx"
 import Login from "../../pages/Login/user/Login.jsx";
 import RegisterLogin from "../../pages/Login/retailer/RetailerLogin.jsx";
 import Register from "../../pages/Register/user/Register.jsx";
