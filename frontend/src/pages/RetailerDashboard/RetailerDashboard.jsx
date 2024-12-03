@@ -1,5 +1,6 @@
 import "../../styles/RetailerDashboard.css";
 import profileImg from "../../../public/profile.jpg";
+import { Link } from "react-router-dom";
 
 function RetailerDashboard() {
 	// Mocked user data
@@ -102,7 +103,9 @@ function RetailerDashboard() {
 				<h2>Products</h2>
 
 				{/* Add Product Button */}
-				<button className="add-product-btn">Add Product</button>
+				<Link to="/addProduct">
+					<button className="add-product-btn">Add Product</button>
+				</Link>
 
 				<div className="retailer-dashboard-product-grid">
 					{products.map((product) => (
