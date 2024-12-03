@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import "../../styles/Register.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import "../../styles/AddAddress.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addUserAddress, registerUser } from "../../redux/Actions/userActions";
 import { toast } from "react-toastify";
-import toastOptions from "../../constants/toast";
+import toastOptions from ".././../constants/toast";
+import { useNavigate } from "react-router-dom";
+import { addUserAddress } from "../../redux/Actions/userActions";
 
 const AddAddress = () => {
 	const dispatch = useDispatch();
@@ -19,12 +19,10 @@ const AddAddress = () => {
 		phoneNumber: "",
 	});
 
-	const { loading, message, error, id, isAuthenticated } = useSelector(
-		(state) => state.userAuth
-	);
+	const { loading, message, error } = useSelector((state) => state.userAuth);
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-
 		setAddress({
 			...address,
 			[name]: value,
@@ -38,128 +36,133 @@ const AddAddress = () => {
 	};
 
 	useEffect(() => {
-		console.log(address);
 		if (message) {
-			// console.log(message);
 			toast.success(message, toastOptions);
 			dispatch({ type: "CLEAR_MESSAGE" });
-			navigate("/");
+			navigate("/yourAddress");
 		}
 		if (error) {
-			// console.log(error);
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
-	}, [dispatch, message, error, isAuthenticated, navigate, address, id]);
+	}, [dispatch, message, error, navigate]);
 
 	return (
-		<section>
-			<div className="signup-cont">
-				<div className="signin">
-					<div className="content">
-						<h2>Add Address</h2>
-						<form className="form" onSubmit={handleSubmit}>
-							<div className="inputGrid">
-								<i>Label</i>
-								<div className="inputBx">
-									<input
-										type="text"
-										name="label"
-										value={address.label}
-										onChange={handleChange}
-										required
-									/>
+		<div className="modal-overlay">
+			<section>
+				<div className="add-address-cont">
+					<div className="add-address">
+						<div className="content">
+							<h2>Add Address</h2>
+							<form className="form" onSubmit={handleSubmit}>
+								<div className="inputGrid">
+									<div className="inputBx">
+										<input
+											type="text"
+											name="label"
+											value={address.label}
+											onChange={handleChange}
+											required
+										/>
+										<i>Label</i>
+									</div>
+									<div className="inputBx">
+										<input
+											type="text"
+											name="house"
+											value={address.house}
+											onChange={handleChange}
+											required
+										/>
+										<i>House/Apartment</i>
+									</div>
+									<div className="inputBx">
+										<input
+											type="text"
+											name="street"
+											value={address.street}
+											onChange={handleChange}
+											required
+										/>
+										<i>Street</i>
+									</div>
+									<div className="inputBx">
+										<input
+											type="text"
+											name="area"
+											value={address.area}
+											onChange={handleChange}
+											required
+										/>
+										<i>Area/Colony</i>
+									</div>
+									<div className="inputBx">
+										<input
+											type="text"
+											name="city"
+											value={address.city}
+											onChange={handleChange}
+											required
+										/>
+										<i>City</i>
+									</div>
+									<div className="inputBx">
+										<input
+											type="text"
+											name="state"
+											value={address.state}
+											onChange={handleChange}
+											required
+										/>
+										<i>State</i>
+									</div>
+									<div className="inputBx">
+										<input
+											type="text"
+											name="postalCode"
+											value={address.postalCode}
+											onChange={handleChange}
+											required
+										/>
+										<i>Postal Code</i>
+									</div>
+									<div className="inputBx">
+										<input
+											type="text"
+											name="country"
+											value={address.country}
+											onChange={handleChange}
+											required
+										/>
+										<i>Country</i>
+									</div>
+									<div className="inputBx">
+										<input
+											type="tel"
+											name="phoneNumber"
+											value={address.phone}
+											onChange={handleChange}
+											required
+										/>
+										<i>Phone Number</i>
+									</div>
 								</div>
-								<i>House/Apartment</i>
+
 								<div className="inputBx">
-									<input
-										type="text"
-										name="house"
-										value={address.house}
-										onChange={handleChange}
-										required
-									/>
+									<button type="submit" disabled={loading}>
+										{loading ? (
+											<span className="spinner"></span>
+										) : (
+											"Add Address"
+										)}
+									</button>
 								</div>
-								<i>Street</i>
-								<div className="inputBx">
-									<input
-										type="text"
-										name="street"
-										value={address.street}
-										onChange={handleChange}
-									/>
-								</div>
-								<i>Area/Colony</i>
-								<div className="inputBx">
-									<input
-										type="text"
-										name="area"
-										value={address.area}
-										onChange={handleChange}
-									/>
-								</div>
-								<i>City</i>
-								<div className="inputBx">
-									<input
-										type="text"
-										name="city"
-										value={address.city}
-										onChange={handleChange}
-										required
-									/>
-								</div>
-								<i>State</i>
-								<div className="inputBx">
-									<input
-										type="String"
-										name="state"
-										value={address.state}
-										onChange={handleChange}
-										required
-									/>
-								</div>
-								<i>Postal Code</i>
-								<div className="inputBx">
-									<input
-										type="Number"
-										name="postalCode"
-										value={address.postalCode}
-										onChange={handleChange}
-										required
-									/>
-								</div>
-								<i>Country</i>
-								<div className="inputBx">
-									<input
-										type="String"
-										name="country"
-										value={address.country}
-										onChange={handleChange}
-										required
-									/>
-								</div>
-								<i>Phone Number</i>
-								<div className="inputBx">
-									<input
-										type="String"
-										name="phoneNumber"
-										value={address.phoneNumber}
-										minLength={8}
-										onChange={handleChange}
-										required
-									/>
-								</div>
-							</div>
-							<div className="inputBx">
-								<button type="submit" disabled={loading}>
-									{loading === true ? <span className="spinner"></span> : "Add"}
-								</button>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		</div>
 	);
 };
 

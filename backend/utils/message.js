@@ -54,6 +54,18 @@ export const message={
     productAlreadyMessage:"Product is Alreay present",
     productAddedToWishListMessage:"Product Added Successful",
     wishListNotFoundMessage:"WishListNotFound",
-
-
+    cartFetchedMessage:"Cart fetched Successfully",
+    cartEmptyMessage:"Cart is Empty",
+    cartClearMessage:"cart cleared",
+    invalidQuantityMessage:"Invalid quantity",
+    wishListFoundMessage:"wishList Found Successful",
+    wishListRemovedmessage:"WishList removed successfully",
+    insufficientQuantityMessage:"Insufficient Quantity",
+    orderCreatedMessage:"Order placed successfully",
+    orderNotFoundMessage:"Order not found",
+    orderCannotBeCancelledMessage:"order cannot be cancelled",
+    orderCancelledMessage:"Order cancelled successfully",
+    ordersFetchedMessage:"orders fetched successfully",
+    orderFetchedMessage:"order fetched successfully",
+    invalidStatusMessage:"Invalid Status"
 }

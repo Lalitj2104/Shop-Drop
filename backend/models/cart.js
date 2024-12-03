@@ -7,11 +7,7 @@ const cartSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    retailerId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Retailer",
-      required: true,
-    },
+
     products: [
       {
         productId: {
@@ -26,6 +22,11 @@ const cartSchema = new mongoose.Schema(
         },
         price: {
           type: Number,
+          required: true,
+        },
+        retailerId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Retailer",
           required: true,
         },
       },
