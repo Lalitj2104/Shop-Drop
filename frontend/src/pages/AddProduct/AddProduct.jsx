@@ -33,7 +33,6 @@ function AddProduct() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("Product data submitted: ", productData);
-		// Here you would send the data to the backend, e.g., via an API call
 	};
 
 	return (
@@ -48,6 +47,7 @@ function AddProduct() {
 						name="image"
 						accept="image/*"
 						onChange={handleImageChange}
+						required
 					/>
 					{productData.image && (
 						<img

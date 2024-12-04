@@ -2,6 +2,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Path from "./routes/user/index.jsx";
 import RetailerPath from "./routes/retailer/index.jsx";
+import "./App.css"
 
 function App() {
 	return (

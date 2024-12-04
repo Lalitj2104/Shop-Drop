@@ -35,30 +35,44 @@ function RetailerDashboard() {
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 3,
+			id: 2,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 4,
+			id: 2,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 5,
+			id: 2,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 6,
+			id: 2,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
+		{
+			id: 2,
+			name: "V-Neck Sweater",
+			price: 35.99,
+			image: "../../../public/V-Neck Sweater.jpg",
+		}
+		// Add more products here
 	];
+
+	// Handle logout
+	const handleLogout = () => {
+		// Logic to logout the user, for example:
+		console.log("User logged out");
+		// Redirect to login page or clear user session, etc.
+	};
 
 	return (
 		<div className="retailer-dashboard-app">
@@ -96,24 +110,37 @@ function RetailerDashboard() {
 						<li key={index}>{category}</li>
 					))}
 				</ul>
+				{/* Logout Button */}
+				<button onClick={handleLogout} className="logout-btn">
+					Logout
+				</button>
 			</div>
 
 			{/* Main Content */}
 			<div className="retailer-dashboard-content">
-				<h2>Products</h2>
+				<div className="top-bar">
+					<h2>Products</h2>
 
-				{/* Add Product Button */}
-				<Link to="/addProduct">
-					<button className="add-product-btn">Add Product</button>
-				</Link>
+					{/* Add Product Button */}
+					<Link to="/addProduct">
+						<button className="add-product-btn">Add Product</button>
+					</Link>
+				</div>
 
 				<div className="retailer-dashboard-product-grid">
 					{products.map((product) => (
 						<div className="retailer-dashboard-product" key={product.id}>
 							<img src={product.image} alt={product.name} />
 							<h3>{product.name}</h3>
-							<p>£{product.price.toFixed(2)}</p>
-							<button>Update Product</button>
+							<p>₹{product.price.toFixed(2)}</p>
+							<div className="retailer-dashboard-product-buttons">
+								<div>
+									<button className="update-product-btn">Update Product</button>
+								</div>
+								<div>
+									<button className="delete-product-btn">Delete Product</button>
+								</div>
+							</div>
 						</div>
 					))}
 				</div>

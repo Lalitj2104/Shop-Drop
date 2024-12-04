@@ -1,181 +1,279 @@
 /* Main Container */
 .retailer-dashboard-app {
-  display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+	display: flex;
+	height: 100vh;
+	font-family: Arial, sans-serif;
 }
 
-/* Sidebar Styles */
-.retailer-dashboard-sidebar {
-  width: 250px;
-  background-color: #3b5998;
-  color: white;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+/* Sidebar */
+.retailer-dashboard-app .retailer-dashboard-sidebar {
+	width: 250px;
+	background-color: #3b5998;
+	color: white;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
-.retailer-dashboard-profile {
-  text-align: center;
+.retailer-dashboard-app
+	.retailer-dashboard-sidebar
+	.retailer-dashboard-profile {
+	text-align: center;
 }
 
-.retailer-dashboard-profile img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
+.retailer-dashboard-app
+	.retailer-dashboard-sidebar
+	.retailer-dashboard-profile
+	img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin-bottom: 10px;
 }
 
-.retailer-dashboard-profile h3 {
-  margin: 10px 0 5px 0;
-  font-size: 18px;
+.retailer-dashboard-app
+	.retailer-dashboard-sidebar
+	.retailer-dashboard-profile
+	h3 {
+	margin: 10px 0 5px 0;
+	font-size: 18px;
 }
 
-.retailer-dashboard-profile p {
-  font-size: 14px;
-  color: #ccc;
+.retailer-dashboard-app
+	.retailer-dashboard-sidebar
+	.retailer-dashboard-profile
+	p {
+	font-size: 14px;
+	color: #ccc;
 }
 
-.retailer-dashboard-menu,
-.retailer-dashboard-categories {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu,
+.retailer-dashboard-app
+	.retailer-dashboard-sidebar
+	.retailer-dashboard-categories {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
-.retailer-dashboard-menu li,
-.retailer-dashboard-categories li {
-  margin: 10px 0;
-  cursor: pointer;
-  font-size: 14px;
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu li,
+.retailer-dashboard-app
+	.retailer-dashboard-sidebar
+	.retailer-dashboard-categories
+	li {
+	margin: 10px 0;
+	cursor: pointer;
+	font-size: 14px;
 }
 
-.retailer-dashboard-menu li .badge {
-  background-color: #00BFFF;
-  border-radius: 50%;
-  padding: 3px 7px;
-  font-size: 12px;
-  margin-left: 10px;
+.retailer-dashboard-app
+	.retailer-dashboard-sidebar
+	.retailer-dashboard-menu
+	li
+	.retailer-dashboard-badge {
+	background-color: #00bfff;
+	border-radius: 50%;
+	padding: 3px 7px;
+	font-size: 12px;
+	margin-left: 10px;
 }
 
-/* Main Content Styles */
-.retailer-dashboard-content {
-  flex: 1;
-  padding: 20px;
-  background-color: #f9f9f9;
-  overflow-y: auto;
+/* Logout Button */
+.logout-btn {
+	background-color: #3b5998;
+	color: white;
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 250px;
+	width: 100%;
 }
 
-.retailer-dashboard-content h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
+.logout-btn:hover {
+	background-color: #334b88;
+}
+
+/* Main Content */
+.retailer-dashboard-app .retailer-dashboard-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 20px;
+	background-color: #f9f9f9;
+	gap: 20px;
+	overflow-y: auto;
+}
+
+.retailer-dashboard-app .top-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.retailer-dashboard-app .retailer-dashboard-content .top-bar h2 {
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: #333;
 }
 
 /* Add Product Button */
-.add-product-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: #00BFFF;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.retailer-dashboard-app .retailer-dashboard-content .top-bar .add-product-btn {
+	background-color: #00bfff;
+	color: white;
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 20px;
 }
 
 .add-product-btn:hover {
-   background-color: #008CBA; 
+	background-color: #008cba;
 }
 
-/* Product Grid (Updated for 3-4 Items per Row) */
+/* Product Grid */
 .retailer-dashboard-product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Dynamic number of items per row */
-  gap: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 20px;
 }
 
-/* Product Card */
-.retailer-dashboard-product {
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.retailer-dashboard-product-grid .retailer-dashboard-product {
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	text-align: center;
 }
 
-/* Square Image Styling */
-.retailer-dashboard-product img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
+.retailer-dashboard-product-grid .retailer-dashboard-product img {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 8px;
+	margin-bottom: 10px;
 }
 
-/* Product Text */
-.retailer-dashboard-product h3 {
-  font-size: 16px;
-  margin: 10px 0 5px;
-  color: #333;
+.retailer-dashboard-product-grid .retailer-dashboard-product h3 {
+	font-size: 16px;
+	margin: 10px 0 5px;
+	color: #333;
 }
 
-.retailer-dashboard-product p {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 10px;
+.retailer-dashboard-product-grid .retailer-dashboard-product p {
+	font-size: 14px;
+	color: #777;
+	margin-bottom: 10px;
 }
 
-/* Button Styles */
-.retailer-dashboard-product button {
-  background-color: #2d3e50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
+.retailer-dashboard-product-grid
+	.retailer-dashboard-product
+	.retailer-dashboard-product-buttons {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+	margin-top: 10px;
 }
 
-.retailer-dashboard-product button:hover {
-  background-color: #00BFFF;
+.retailer-dashboard-product-grid
+	.retailer-dashboard-product
+	.retailer-dashboard-product-buttons
+	div {
+	flex: 1;
 }
 
-/* Responsive Design (Adjust for smaller screens) */
+.retailer-dashboard-product-grid
+	.retailer-dashboard-product
+	.retailer-dashboard-product-buttons
+	button {
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.retailer-dashboard-product-grid
+	.retailer-dashboard-product
+	.retailer-dashboard-product-buttons
+	.update-product-btn {
+	background-color: #28a745;
+	color: white;
+}
+
+.retailer-dashboard-product-grid
+	.retailer-dashboard-product
+	.retailer-dashboard-product-buttons
+	.update-product-btn:hover {
+	background-color: #218838;
+}
+
+.retailer-dashboard-product-grid
+	.retailer-dashboard-product
+	.retailer-dashboard-product-buttons
+	.delete-product-btn {
+	background-color: #dc3545;
+	color: white;
+}
+
+.retailer-dashboard-product-grid
+	.retailer-dashboard-product
+	.retailer-dashboard-product-buttons
+	.delete-product-btn:hover {
+	background-color: #c82333;
+}
+
+/* Responsive Design */
 @media (max-width: 1024px) {
-  .retailer-dashboard-product-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 items per row on tablets */
-  }
+	.retailer-dashboard-product-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 @media (max-width: 768px) {
-  .retailer-dashboard-sidebar {
-    width: 200px;
-  }
+	.retailer-dashboard-sidebar {
+		width: 200px;
+	}
 
-  .retailer-dashboard-profile img {
-    width: 80px;
-    height: 80px;
-  }
+	.retailer-dashboard-sidebar .retailer-dashboard-profile img {
+		width: 80px;
+		height: 80px;
+	}
 
-  .retailer-dashboard-product-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 items per row on small screens */
-  }
+	.retailer-dashboard-product-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
-  .retailer-dashboard-product h3 {
-    font-size: 14px;
-  }
+	.retailer-dashboard-product-grid .retailer-dashboard-product h3 {
+		font-size: 14px;
+	}
 
-  .retailer-dashboard-product p {
-    font-size: 12px;
-  }
+	.retailer-dashboard-product-grid .retailer-dashboard-product p {
+		font-size: 12px;
+	}
 }
 
 @media (max-width: 480px) {
-  .retailer-dashboard-product-grid {
-    grid-template-columns: 1fr; /* 1 item per row on very small screens */
-  }
+	.retailer-dashboard-product-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.retailer-dashboard-product-grid .retailer-dashboard-product-buttons {
+		flex-direction: column;
+	}
+
+	.retailer-dashboard-product-grid .retailer-dashboard-product-buttons div {
+		flex: unset;
+	}
+
+	.retailer-dashboard-product-grid .retailer-dashboard-product-buttons button {
+		margin: 5px 0;
+	}
 }

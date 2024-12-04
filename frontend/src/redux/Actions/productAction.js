@@ -83,7 +83,7 @@ export const getAllProducts=()=>async(dispatch)=>{
 }
 
 
-export const getProduct=(id)=async(dispatch)=>{
+export const getProduct=(id)=>async(dispatch)=>{
     try {
         dispatch({
             type:"GET_PRODUCT_REQUEST"
@@ -105,7 +105,7 @@ export const getProduct=(id)=async(dispatch)=>{
     }
 }
 
-export const removeProduct=(id)=async(dispatch)=>{
+export const removeProduct=(id)=>async(dispatch)=>{
     try {
         dispatch({
             type:"DELETE_PRODUCT_REQUEST"

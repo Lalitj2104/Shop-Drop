@@ -60,12 +60,12 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 		.addCase(RetailerLoginRequest, (state) => {
 			state.rloading = true;
 		})
-		.addCase(RetailerLoginSuccess, (state) => {
+		.addCase(RetailerLoginSuccess, (state, action) => {
 			state.rloading = false;
 			state.message = action.payload.message;
 			state.id = action.payload.id;
 		})
-		.addCase(RetailerLoginFailure, (state) => {
+		.addCase(RetailerLoginFailure, (state, action) => {
 			state.rloading = false;
 			state.error = action.payload;
 		})
@@ -75,12 +75,12 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 		.addCase(RetailerRegisterRequest, (state) => {
 			state.rloading = true;
 		})
-		.addCase(RetailerRegisterSuccess, (state) => {
+		.addCase(RetailerRegisterSuccess, (state, action) => {
 			state.rloading = false;
 			state.message = action.payload.message;
 			state.id = action.payload.id;
 		})
-		.addCase(RetailerRegisterFailure, (state) => {
+		.addCase(RetailerRegisterFailure, (state, action) => {
 			state.rloading = false;
 			state.error = action.payload;
 		})
@@ -92,12 +92,12 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 		.addCase(RetailerRegisterOtpRequest, (state) => {
 			state.rloading = true;
 		})
-		.addCase(RetailerRegisterOtpSuccess, (state) => {
+		.addCase(RetailerRegisterOtpSuccess, (state, action) => {
 			state.rloading = false;
 			state.message = action.payload;
 			state.isRetailerAuthenticated = true;
 		})
-		.addCase(RetailerRegisterOtpFailure, (state) => {
+		.addCase(RetailerRegisterOtpFailure, (state, action) => {
 			state.rloading = false;
 			state.error = action.payload;
 			state.isRetailerAuthenticated = false;
@@ -109,11 +109,11 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 		.addCase(ResendRegisterOtpRequest, (state) => {
 			state.rloading = true;
 		})
-		.addCase(ResendRegisterOtpSuccess, (state) => {
+		.addCase(ResendRegisterOtpSuccess, (state, action) => {
 			state.rloading = false;
 			state.message = action.payload;
 		})
-		.addCase(ResendRegisterOtpFailure, (state) => {
+		.addCase(ResendRegisterOtpFailure, (state, action) => {
 			state.rloading = false;
 			state.error = action.payload;
 		})
@@ -125,12 +125,12 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 		.addCase(RetailerLoginOtpRequest, (state) => {
 			state.rloading = true;
 		})
-		.addCase(RetailerLoginOtpSuccess, (state) => {
+		.addCase(RetailerLoginOtpSuccess, (state, action) => {
 			state.rloading = false;
 			state.message = action.payload;
 			state.isRetailerAuthenticated = true;
 		})
-		.addCase(RetailerLoginOtpFailure, (state) => {
+		.addCase(RetailerLoginOtpFailure, (state, action) => {
 			state.rloading = false;
 			state.error = action.payload;
 			state.isRetailerAuthenticated = false;
@@ -142,11 +142,11 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 		.addCase(ResendLoginOtpRequest, (state) => {
 			state.rloading = true;
 		})
-		.addCase(ResendLoginOtpSuccess, (state) => {
+		.addCase(ResendLoginOtpSuccess, (state, action) => {
 			state.rloading = false;
 			state.message = action.payload;
 		})
-		.addCase(ResendLoginOtpFailure, (state) => {
+		.addCase(ResendLoginOtpFailure, (state, action) => {
 			state.rloading = false;
 			state.error = action.payload;
 		})
