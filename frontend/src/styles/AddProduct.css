@@ -1,68 +1,117 @@
 /* Add Product Page Styling */
 .add-product-page {
-  width: 70%;
-  margin: 20px auto;
-  padding: 30px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
+	width: 60%;
+	margin: 20px auto;
+	padding: 40px;
+	background: linear-gradient(
+		135deg,
+		#f0f8ff,
+		#f4f9fc
+	); /* Light blue gradient */
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
+	font-family: "Arial", sans-serif;
 }
 
 .add-product-page h2 {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 30px;
+	text-align: center;
+	font-size: 28px;
+	font-weight: 600;
+	margin-bottom: 30px;
+	color: #00bfff; /* Deep Sky Blue */
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
 
 /* Form Section */
 .add-product-page .form-group {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
+	position: relative;
 }
 
 .add-product-page label {
-  font-size: 16px;
-  color: #333;
+	font-size: 14px;
+	color: #555;
+	font-weight: bold;
+	display: inline-block;
+	margin-bottom: 8px;
 }
 
 /* Input Fields */
 .add-product-page input,
 .add-product-page textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+	width: 100%;
+	padding: 12px 15px;
+	font-size: 14px;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	background-color: #f3f3f3;
+	transition: all 0.3s;
+}
+
+.add-product-page input:focus,
+.add-product-page textarea:focus {
+	border-color: #00bfff;
+	background-color: #fff;
+	box-shadow: 0 0 6px rgba(0, 191, 255, 0.4); /* Blue glow effect */
+	outline: none;
 }
 
 /* Textarea (specific for description) */
 .add-product-page textarea {
-  height: 120px;
+	height: 100px;
+	resize: none;
 }
 
 /* Product Image Preview */
 .add-product-page .product-image-preview {
-  max-width: 200px;
-  margin-top: 10px;
-  display: block;
-  margin-bottom: 10px;
-  object-fit: cover;
+	max-width: 180px;
+	height: 180px;
+	margin: 10px auto;
+	display: block;
+	border: 2px dashed #00bfff; /* Blue dashed border */
+	border-radius: 8px;
+	object-fit: contain;
+	padding: 5px;
+	background-color: #f8faff;
 }
 
 /* Submit Button */
 .add-product-page .submit-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 15px 30px;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  margin-top: 20px;
+	background-color: #00bfff;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: background-color 0.3s, transform 0.2s;
+	width: 100%;
+	margin-top: 20px;
+	letter-spacing: 1px;
 }
 
-/* Button Hover Effect */
 .add-product-page .submit-button:hover {
-  background-color: #45a049;
+	background-color: #008cba; /* Darker blue on hover */
+	transform: translateY(-2px);
+}
+
+/* Hover Effect for Labels */
+.add-product-page label:hover {
+	color: #00bfff;
+	cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.add-product-page {
+		width: 90%;
+		padding: 20px;
+	}
+
+	.add-product-page h2 {
+		font-size: 24px;
+	}
 }
