@@ -1,9 +1,14 @@
 import "../../styles/RetailerDashboard.css";
 import profileImg from "../../../public/profile.jpg";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logoutRetailer } from "../../redux/Actions/retailerActions";
 
 function RetailerDashboard() {
 	// Mocked user data
+
+	const dispatch = useDispatch();
+
 	const userInfo = {
 		name: "Khushi Agarwal",
 		location: "Warsaw, Poland",
@@ -63,14 +68,16 @@ function RetailerDashboard() {
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
-		}
+		},
 		// Add more products here
 	];
 
 	// Handle logout
 	const handleLogout = () => {
 		// Logic to logout the user, for example:
+		dispatch(logoutRetailer());
 		console.log("User logged out");
+
 		// Redirect to login page or clear user session, etc.
 	};
 
@@ -89,7 +96,7 @@ function RetailerDashboard() {
 				</div>
 				<ul className="retailer-dashboard-menu">
 					<li>
-						My Wishes{" "}
+						My Orders{" "}
 						<span className="retailer-dashboard-badge">{userInfo.wishes}</span>
 					</li>
 					<li>
@@ -135,7 +142,11 @@ function RetailerDashboard() {
 							<p>₹{product.price.toFixed(2)}</p>
 							<div className="retailer-dashboard-product-buttons">
 								<div>
-									<button className="update-product-btn">Update Product</button>
+									<Link to={"/updateProduct"}>
+										<button className="update-product-btn">
+											Update Product
+										</button>
+									</Link>
 								</div>
 								<div>
 									<button className="delete-product-btn">Delete Product</button>

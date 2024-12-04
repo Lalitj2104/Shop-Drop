@@ -1,7 +1,12 @@
 import { useState } from "react";
 import "../../styles/AddProduct.css";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/Actions/productAction";
 
 function AddProduct() {
+
+	const dispatch = useDispatch();
+	
 	const [productData, setProductData] = useState({
 		image: null,
 		name: "",
@@ -33,6 +38,8 @@ function AddProduct() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("Product data submitted: ", productData);
+		dispatch(addProduct(productData));
+
 	};
 
 	return (

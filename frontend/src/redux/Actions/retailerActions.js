@@ -4,7 +4,6 @@ import { BACKEND_URL } from "../../constants/url";
 axios.defaults.withCredentials=true;
 
 const URL=BACKEND_URL+"api/v1/retailer"
-const URL1=BACKEND_URL+"api/v1/product"
 
 export const loadRetailer = () => async (dispatch) => {
 	try {

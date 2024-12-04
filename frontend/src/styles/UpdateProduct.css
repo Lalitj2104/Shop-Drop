@@ -1,5 +1,5 @@
 /* Add Product Page Styling */
-.add-product-page {
+.update-product-page {
 	width: 60%;
 	margin: 20px auto;
 	padding: 40px;
@@ -13,7 +13,7 @@
 	font-family: "Arial", sans-serif;
 }
 
-.add-product-page h2 {
+.update-product-page h2 {
 	text-align: center;
 	font-size: 28px;
 	font-weight: 600;
@@ -24,12 +24,12 @@
 }
 
 /* Form Section */
-.add-product-page .form-group {
+.update-product-page .form-group {
 	margin-bottom: 20px;
 	position: relative;
 }
 
-.add-product-page label {
+.update-product-page label {
 	font-size: 14px;
 	color: #555;
 	font-weight: bold;
@@ -38,8 +38,8 @@
 }
 
 /* Input Fields */
-.add-product-page input,
-.add-product-page textarea {
+.update-product-page input,
+.update-product-page textarea {
 	width: 100%;
 	padding: 12px 15px;
 	font-size: 14px;
@@ -47,11 +47,11 @@
 	border-radius: 8px;
 	background-color: #f3f3f3;
 	transition: all 0.3s;
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.add-product-page input:focus,
-.add-product-page textarea:focus {
+.update-product-page input:focus,
+.update-product-page textarea:focus {
 	border-color: #00bfff;
 	background-color: #fff;
 	box-shadow: 0 0 6px rgba(0, 191, 255, 0.4); /* Blue glow effect */
@@ -59,13 +59,13 @@
 }
 
 /* Textarea (specific for description) */
-.add-product-page textarea {
+.update-product-page textarea {
 	height: 100px;
 	resize: none;
 }
 
 /* Product Image Preview */
-.add-product-page .product-image-preview {
+.update-product-page .product-image-preview {
 	max-width: 180px;
 	height: 180px;
 	margin: 10px auto;
@@ -78,7 +78,7 @@
 }
 
 /* Submit Button */
-.add-product-page .submit-button {
+.update-product-page .submit-button {
 	background-color: #00bfff;
 	color: white;
 	padding: 12px 20px;
@@ -94,25 +94,25 @@
 	letter-spacing: 1px;
 }
 
-.add-product-page .submit-button:hover {
+.update-product-page .submit-button:hover {
 	background-color: #008cba; /* Darker blue on hover */
 	transform: translateY(-2px);
 }
 
 /* Hover Effect for Labels */
-.add-product-page label:hover {
+.update-product-page label:hover {
 	color: #00bfff;
 	cursor: pointer;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-	.add-product-page {
+	.update-product-page {
 		width: 90%;
 		padding: 20px;
 	}
 
-	.add-product-page h2 {
+	.update-product-page h2 {
 		font-size: 24px;
 	}
 }
