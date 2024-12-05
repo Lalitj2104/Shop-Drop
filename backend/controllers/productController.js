@@ -8,7 +8,6 @@ import cloudinary from "cloudinary";
 
 export const addProduct = async (req, res) => {
 	try {
-		
 		//getting the data from body
 		const {
 			image,
@@ -22,21 +21,20 @@ export const addProduct = async (req, res) => {
 			brand,
 		} = req.body;
 
-		
 		//checking the fields
 		if (!name || !description || !category || !price || !tags || !brand) {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
 		let result;
 		if (image) {
-			 result = await cloudinary.v2.uploader.upload(image, {
+			result = await cloudinary.v2.uploader.upload(image, {
 				folder: "pictures",
 				//width:150
 				//crp:"scale",
 				//height:150,
 			});
 		}
-		console.log("working")
+		console.log("working");
 
 		const newProduct = await Product.create({
 			image: {
@@ -53,7 +51,7 @@ export const addProduct = async (req, res) => {
 			brand: brand,
 			tags: tags,
 		});
-		console.log("working")
+		console.log("working");
 
 		Response(res, 200, true, message.productAddedMessage, newProduct);
 	} catch (error) {
