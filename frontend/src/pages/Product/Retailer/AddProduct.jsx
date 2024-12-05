@@ -191,8 +191,14 @@ function AddProduct() {
 					/>
 				</div>
 
-				<button type="submit" className="submit-button">
-					Add Product
+				<button type="submit" className="submit-button" disabled={loading}>
+					{loading ? (
+						<>
+							<span className="spinner"></span>
+						</>
+					) : (
+						"Add Product"
+					)}
 				</button>
 			</form>
 		</div>

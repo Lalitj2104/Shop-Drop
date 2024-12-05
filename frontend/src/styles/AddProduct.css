@@ -105,6 +105,25 @@
 	cursor: pointer;
 }
 
+.add-product-page .submit-button .spinner {
+  display: inline-block; /* Ensure it's visible as an inline element */
+  border: 3px solid rgba(255, 255, 255, 0.6); /* Light gray border */
+  border-top: 3px solid #fff; /* White spinner top */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px; /* Add some space between spinner and text */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
 	.add-product-page {
