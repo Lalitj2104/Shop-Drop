@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../../redux/Actions/productAction";
 import { toast } from "react-toastify";
 import toastOptions from "../../../constants/toast";
+import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
 	const dispatch = useDispatch();
+	const navigate=useNavigate();
 
 	const { loading, message, error } = useSelector(state => state.productAuth);
 
@@ -57,10 +59,13 @@ function AddProduct() {
 	useEffect(() => {
 		if (message) {
 			toast.success(message, toastOptions);
+			navigate("/retailerDashboard")
 			dispatch({ type: "CLEAR_MESSAGE" });
+			
 		}
 		if (error) {
 			toast.error(error, toastOptions);
+			dispatch({ type: "CLEAR_ERROR" });
 		}
 	}, [dispatch, message, error]);
 

@@ -8,14 +8,7 @@ import cloudinary from "cloudinary";
 
 export const addProduct = async (req, res) => {
 	try {
-		//checking user
-		if (!req.retailer) {
-			return Response(res, 400, false, message.retailerNotFoundMessage);
-		}
-		let retailer = await Retailer.findById(req.retailer.id);
-		if (!retailer) {
-			return Response(res, 400, false, message.retailerNotFoundMessage);
-		}
+		
 		//getting the data from body
 		const {
 			image,
@@ -29,25 +22,27 @@ export const addProduct = async (req, res) => {
 			brand,
 		} = req.body;
 
-		console.log(name);
+		
 		//checking the fields
 		if (!name || !description || !category || !price || !tags || !brand) {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
+		let result;
 		if (image) {
-			const result = await cloudinary.v2.uploader.upload(image, {
-				folder: "posts",
+			 result = await cloudinary.v2.uploader.upload(image, {
+				folder: "pictures",
 				//width:150
 				//crp:"scale",
 				//height:150,
 			});
-			req.body.image = {
-				public_id: result.public_id,
-				url: result.secure_url,
-			};
 		}
+		console.log("working")
+
 		const newProduct = await Product.create({
-			image: image,
+			image: {
+				public_id: result?.public_id,
+				url: result?.secure_url,
+			},
 			retailerId: req.retailer._id,
 			name: name,
 			description: description,
@@ -58,6 +53,7 @@ export const addProduct = async (req, res) => {
 			brand: brand,
 			tags: tags,
 		});
+		console.log("working")
 
 		Response(res, 200, true, message.productAddedMessage, newProduct);
 	} catch (error) {
