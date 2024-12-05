@@ -27,6 +27,8 @@ const getAllProductsRequest=createAction("GET_ALL_PRODUCTS_REQUEST");
 const getAllProductsSuccess=createAction("GET_ALL_PRODUCTS_SUCCESS");
 const getAllProductsFailure=createAction("GET_ALL_PRODUCTS_FAILURE");
 
+const clearError = createAction("CLEAR_ERROR");
+const clearMessage = createAction("CLEAR_MESSAGE");
 
 export const productReducer=createReducer(initialState,(builder)=>{
     builder
@@ -117,6 +119,13 @@ export const productReducer=createReducer(initialState,(builder)=>{
     .addCase(getAllProductsFailure,(state,action)=>{
         state.loading=false;
         state.error=action.payload;
+    })
+
+    .addCase(clearError, (state) => {
+        state.error = null;
+    })
+    .addCase(clearMessage, (state) => {
+        state.message = null;
     })
 
 })
