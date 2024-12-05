@@ -51,6 +51,11 @@ const logoutRetailerRequest=createAction("LOGOUT_RETAILER_REQUEST");
 const logoutRetailerSuccess = createAction("LOGOUT_RETAILER_SUCCESS");
 const logoutRetailerFailure = createAction("LOGOUT_RETAILER_FAILURE");
 
+
+const getRetailerProductsRequest=createAction("GET_RETAILER_PRODUCTS_REQUEST");
+const getRetailerProductsSuccess = createAction("GET_RETAILER_PRODUCTS_SUCCESS");
+const getRetailerProductsFailure = createAction("GET_RETAILER_PRODUCTS_FAILURE");
+
 const clearError = createAction("CLEAR_ERROR");
 const clearAuthError = createAction("CLEAR_AUTH_ERROR");
 const clearMessage = createAction("CLEAR_MESSAGE");
@@ -222,7 +227,18 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 
 		})
 
-
+		.addCase(getRetailerProductsRequest, (state) => {
+			state.rloading = true;
+		})
+		.addCase(getRetailerProductsSuccess, (state, action) => {
+			state.rloading = false;
+			state.message = action.payload.message;
+			state.products = action.payload.products;
+		})
+		.addCase(getRetailerProductsFailure, (state, action) => {
+			state.rloading = false;
+			state.error = action.payload;
+		})
 
 
 		.addCase(clearError, (state) => {
