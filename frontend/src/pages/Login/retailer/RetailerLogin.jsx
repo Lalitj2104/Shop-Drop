@@ -52,27 +52,27 @@ const RetailerLogin = () => {
 						<h2>Login</h2>
 						<form className="form" onSubmit={handleSubmit}>
 							<div className="inputBx">
-								<i>Email</i>
 								<input
 									type="email"
 									value={email}
-									placeholder="Email"
+									placeholder=""
 									onChange={(e) => setEmail(e.target.value)}
 									required
-								/>
+									/>
+									<i>Email</i>
 							</div>
 							<div className="inputBx">
-								<i>Password</i>
 								<input
 									type="password"
 									value={password}
-									placeholder="Password"
+									placeholder=""
 									onChange={(e) => setPassword(e.target.value)}
 									required
-								/>
+									/>
+									<i>Password</i>
 							</div>
 							<div className="links">
-								<Link to="/retailer/forgotPassword">Forgot Pasword?</Link>
+								<Link to="/retailer/forgotPassword">Forgot Password?</Link>
 								<Link to="/retailerRegister">Sign Up</Link>
 							</div>
 							<div className="inputBx">

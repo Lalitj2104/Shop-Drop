@@ -61,7 +61,7 @@
 .register-cont .signin .content .form .inputBx input,
 .register-cont .signin .content .form .inputBx select {
 	position: relative;
-	width: 80%;
+	width: 100%;
 	background: #f3f3f3;
 	border: none;
 	outline: none;
@@ -70,6 +70,7 @@
 	color: #333;
 	font-weight: 500;
 	font-size: 1em;
+	box-sizing: border-box;
 }
 
 /* Ensure the focus effect */

@@ -16,7 +16,6 @@ const __dirname = path.dirname(__filename);
 export const myProfile=async(req,res)=>{
 	try {
 		
-		
 		Response(res,201,true,message.retailerFoundMessage,req.retailer);
 		
 	} catch (error) {

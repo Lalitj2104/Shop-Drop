@@ -72,7 +72,7 @@ export const getAllProducts = async (req, res) => {
 		if (!retailer) {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
 		}
-		const products = await Product.find({ retailer_id: req.user._id });
+		const products = await Product.find({ retailer_id: req.retailer._id });
 
 		Response(res, 201, true, message.productsFoundMessage, products);
 	} catch (error) {

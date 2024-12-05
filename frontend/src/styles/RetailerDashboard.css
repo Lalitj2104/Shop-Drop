@@ -25,16 +25,6 @@
 .retailer-dashboard-app
 	.retailer-dashboard-sidebar
 	.retailer-dashboard-profile
-	img {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	margin-bottom: 10px;
-}
-
-.retailer-dashboard-app
-	.retailer-dashboard-sidebar
-	.retailer-dashboard-profile
 	h3 {
 	margin: 10px 0 5px 0;
 	font-size: 18px;
@@ -88,7 +78,7 @@
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	margin-top: 250px;
+	margin-top: 370px;
 	width: 100%;
 }
 
