@@ -68,5 +68,7 @@ export const message={
     ordersFetchedMessage:"orders fetched successfully",
     orderFetchedMessage:"order fetched successfully",
     invalidStatusMessage:"Invalid Status",
-    retailerFoundMessage:"Retailer Found"
+    retailerFoundMessage:"Retailer Found",
+    mailAlreadyRegisteredmessage:"Already registered as user",
+    emailAlreadyRegisteredmessage:"Already registered as retailer"
 }

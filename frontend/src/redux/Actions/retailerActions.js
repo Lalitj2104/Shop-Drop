@@ -267,7 +267,7 @@ export const logoutRetailer=()=>async(dispatch)=>{
 		});
 
 		const { data } = await axios.post(
-			`${URL}/logout`,
+			`${URL}/retailerLogout`,
 			{},
 			{
 				headers: {

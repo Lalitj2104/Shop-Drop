@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 import cloudinary from "cloudinary";
 import Product from "../models/product.js";
+import User from "../models/user.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -54,10 +55,15 @@ export const registerRetailer = async (req, res) => {
 
 		//checking retailer
 		let retailer = await Retailer.findOne({ email });
+		
 		if (retailer) {
 			return Response(res, 400, false, message.retailerAlreadyExistMessage);
 		}
 
+		retailer=await User.findOne({email});
+		if(retailer){
+			return Response(res, 400, false, message.mailAlreadyRegisteredmessage);
+		}
 		//spreading data
 		retailer = await Retailer.create({ ...req.body });
 		//generating otp
@@ -156,6 +162,7 @@ export const verify = async (req, res) => {
 		retailer.isVerified = true;
 		retailer.registerOtp = undefined;
 		retailer.registerOtpAttempts = 0;
+		retailer.registerOtpExpire=undefined;
 		retailer.registerOtpLockUntil = undefined;
 		await retailer.save();
 

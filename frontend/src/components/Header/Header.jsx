@@ -22,8 +22,8 @@ const Header = () => {
 		// e.preventDefault();
 		dispatch(logoutUser());
 	};
-	console.log(user);
-	console.log(id);
+	// console.log(user);
+	// console.log(id);
 	let name = undefined;
 	let address = undefined;
 	// useEffect(()=>{
@@ -35,7 +35,7 @@ const Header = () => {
 	
 	useEffect(() => {
 		if (message) {
-			console.log(message);
+			// console.log(message);
 			toast.success(message, toastOptions);
 			dispatch({
 				type: "CLEAR_MESSAGE",
@@ -45,7 +45,7 @@ const Header = () => {
 			}
 		}
 		if (error) {
-			console.log(error);
+			// console.log(error);
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
