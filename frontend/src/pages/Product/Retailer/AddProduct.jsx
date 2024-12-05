@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../../styles/AddProduct.css";
+import "../../../styles/AddProduct.css";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/Actions/productAction";
+import { addProduct } from "../../../redux/Actions/productAction";
 
 function AddProduct() {
 	const dispatch = useDispatch();

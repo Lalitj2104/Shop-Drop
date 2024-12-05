@@ -48,7 +48,7 @@ export const addProduct = async (req, res) => {
 		}
 		const newProduct = await Product.create({
 			image: image,
-			retailer_id: req.retailer._id,
+			retailerId: req.retailer._id,
 			name: name,
 			description: description,
 			category: category,

@@ -1,0 +1,247 @@
+/* General Container */
+.product-page-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Back Button */
+.product-page-back-button {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-page-back-button:hover {
+  background-color: #2980b9;
+}
+
+/* Product Content Layout */
+.product-page-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow-x: hidden;
+}
+
+.product-page-image {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Details */
+.product-page-details h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.product-page-details p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #34495e;
+}
+
+/* Quantity Dropdown */
+.quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  position: relative;
+}
+
+#quantity-select {
+  width: 100px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+#quantity-select:focus {
+  border: 1px solid #3498db;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 10;
+}
+
+/* Action Buttons */
+.product-action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.wishlist-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.wishlist-button.active {
+  color: red;
+}
+
+.share-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #3498db;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.share-button:hover {
+  color: #2980b9;
+}
+
+.add-to-cart {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Review Section */
+.review-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.review-section h3 {
+  font-size: 22px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.review-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.review-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.review-item h4 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #34495e;
+  font-weight: bold;
+}
+
+.review-item p {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+.review-item div {
+  display: flex;
+  gap: 10px;
+}
+
+.review-item button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.review-item button:hover {
+  opacity: 0.9;
+}
+
+.review-item button:nth-child(1) {
+  background-color: #27ae60;
+}
+
+.review-item button:nth-child(2) {
+  background-color: #e74c3c;
+}
+
+/* Review Form */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.review-form input,
+.review-form textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border 0.3s ease;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+  border: 1px solid #3498db;
+  outline: none;
+}
+
+.review-form .submit-review {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.review-form .submit-review:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}

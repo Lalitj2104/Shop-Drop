@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import { useDispatch } from "react-redux";
-import "../../styles/UpdateProduct.css"
+import "../../../styles/UpdateProduct.css";
 
 const UpdateProduct = () => {
 	// const dispatch = useDispatch();
