@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../../styles/AddProduct.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../../redux/Actions/productAction";
+import { toast } from "react-toastify";
+import toastOptions from "../../../constants/toast";
 
 function AddProduct() {
 	const dispatch = useDispatch();
+
+	const { loading, message, error } = useSelector(state => state.productAuth);
 
 	const [details, setDetails] = useState({
 		image: null,
@@ -49,6 +53,16 @@ function AddProduct() {
 		console.log("Product data submitted: ", details);
 		dispatch(addProduct(details));
 	};
+
+	useEffect(() => {
+		if (message) {
+			toast.success(message, toastOptions);
+			dispatch({ type: "CLEAR_MESSAGE" });
+		}
+		if (error) {
+			toast.error(error, toastOptions);
+		}
+	}, [dispatch, message, error]);
 
 	return (
 		<div className="add-product-page">
