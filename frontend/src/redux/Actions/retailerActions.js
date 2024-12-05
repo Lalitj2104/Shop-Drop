@@ -288,6 +288,29 @@ export const logoutRetailer=()=>async(dispatch)=>{
 	}
 }
 
+
+export const getRetailerProducts=()=>async(dispatch)=>{
+	try {
+		dispatch({
+			type: "GET_RETAILER_PRODUCTS_REQUEST",
+		});
+		const { data } = await axios.get(`${URL}/products`);
+		dispatch({
+			type: "GET_RETAILER_PRODUCTS_SUCCESS",
+			payload: {
+				message:data.message,
+				products:data.data
+			}
+		});
+	} catch (error) {
+		dispatch({
+			type: "GET_RETAILER_PRODUCTS_FAILURE",
+			payload: error?.response?.data?.message,
+		});
+	}
+}
+
+
 // export const deleteRetailer=()=>async(dispatch)=>{
 //     try {
         
@@ -311,13 +334,7 @@ export const logoutRetailer=()=>async(dispatch)=>{
 //     }
 // }
 
-// export const getRetailerProductsById=()=>async(dispatch)=>{
-//     try {
-        
-//     } catch (error) {
-        
-//     }
-// }
+
 
 
 

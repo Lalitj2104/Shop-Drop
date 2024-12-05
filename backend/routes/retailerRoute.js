@@ -48,7 +48,7 @@ retailerRouter.put(
 );
 
 retailerRouter.get(
-	"/retailer/products/:id",
+	"/products",
 	isAuthenticate,
 	getRetailerProducts
 );
