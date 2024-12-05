@@ -61,6 +61,7 @@ function AddProduct() {
 		}
 		if (error) {
 			toast.error(error, toastOptions);
+			dispatch({ type: "CLEAR_ERROR" });
 		}
 	}, [dispatch, message, error]);
 
@@ -186,8 +187,14 @@ function AddProduct() {
 					/>
 				</div>
 
-				<button type="submit" className="submit-button">
-					Add Product
+				<button type="submit" className="submit-button" disabled={loading}>
+					{loading ? (
+						<>
+							<span className="spinner"></span>
+						</>
+					) : (
+						"Add Product"
+					)}
 				</button>
 			</form>
 		</div>
