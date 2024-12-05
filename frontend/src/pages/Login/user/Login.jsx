@@ -15,25 +15,23 @@ const Login = () => {
 	const { loading, message, error, id, isAuthenticated } = useSelector(
 		(state) => state.userAuth
 	);
+
+	// Handle form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(email, password);
 		dispatch(loginUser(email, password));
 	};
 
+	// Effect for authentication and toast notifications
 	useEffect(() => {
 		if (isAuthenticated) {
-			return navigate("/");
+			navigate("/");
 		}
 		if (message) {
-			console.log(message);
 			toast.success(message, toastOptions);
-			dispatch({
-				type: "CLEAR_MESSAGE",
-			});
+			dispatch({ type: "CLEAR_MESSAGE" });
 		}
 		if (error) {
-			console.log(error);
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
@@ -49,37 +47,40 @@ const Login = () => {
 					<div className="content">
 						<h2>Login</h2>
 						<form className="form" onSubmit={handleSubmit}>
+							{/* Email Input */}
 							<div className="inputBx">
-								<i>Email</i>
 								<input
 									type="email"
 									value={email}
-									placeholder="Email"
+									placeholder=" "
 									onChange={(e) => setEmail(e.target.value)}
 									required
 								/>
+								<i>Email</i>
 							</div>
+
+							{/* Password Input */}
 							<div className="inputBx">
-								<i>Password</i>
 								<input
 									type="password"
 									value={password}
-									placeholder="Password"
+									placeholder=" "
 									onChange={(e) => setPassword(e.target.value)}
 									required
 								/>
+								<i>Password</i>
 							</div>
+
+							{/* Links */}
 							<div className="links">
-								<Link to="/forgot-Password">Forgot Pasword?</Link>
+								<Link to="/forgot-Password">Forgot Password?</Link>
 								<Link to="/register">Sign Up</Link>
 							</div>
+
+							{/* Submit Button */}
 							<div className="inputBx">
 								<button type="submit" disabled={loading}>
-									{loading === true ? (
-										<span className="spinner"></span>
-									) : (
-										"Login"
-									)}
+									{loading ? <span className="spinner"></span> : "Login"}
 								</button>
 							</div>
 						</form>

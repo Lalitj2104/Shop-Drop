@@ -4,10 +4,9 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/Actions/productAction";
 
 function AddProduct() {
-
 	const dispatch = useDispatch();
-	
-	const [productData, setProductData] = useState({
+
+	const [details, setDetails] = useState({
 		image: null,
 		name: "",
 		description: "",
@@ -21,7 +20,7 @@ function AddProduct() {
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
-		setProductData((prevData) => ({
+		setDetails((prevData) => ({
 			...prevData,
 			[name]: value,
 		}));
@@ -29,17 +28,26 @@ function AddProduct() {
 
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
-		setProductData((prevData) => ({
-			...prevData,
-			image: file,
-		}));
+
+		const reader = new FileReader();
+		reader.onload = () => {
+			if (reader.readyState === 2) {
+				setDetails({
+					...details,
+					image: reader.result, // Set the base64 image result
+				});
+			}
+		};
+
+		if (file) {
+			reader.readAsDataURL(file);
+		}
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("Product data submitted: ", productData);
-		dispatch(addProduct(productData));
-
+		console.log("Product data submitted: ", details);
+		dispatch(addProduct(details));
 	};
 
 	return (
@@ -56,9 +64,9 @@ function AddProduct() {
 						onChange={handleImageChange}
 						required
 					/>
-					{productData.image && (
+					{details.image && (
 						<img
-							src={URL.createObjectURL(productData.image)}
+							src={details.image}
 							alt="Product Preview"
 							className="product-image-preview"
 						/>
@@ -71,7 +79,7 @@ function AddProduct() {
 						type="text"
 						id="productName"
 						name="name"
-						value={productData.name}
+						value={details.name}
 						onChange={handleInputChange}
 						required
 					/>
@@ -82,7 +90,7 @@ function AddProduct() {
 					<textarea
 						id="productDescription"
 						name="description"
-						value={productData.description}
+						value={details.description}
 						onChange={handleInputChange}
 						required
 					></textarea>
@@ -94,7 +102,7 @@ function AddProduct() {
 						type="text"
 						id="productCategory"
 						name="category"
-						value={productData.category}
+						value={details.category}
 						onChange={handleInputChange}
 						required
 					/>
@@ -106,7 +114,7 @@ function AddProduct() {
 						type="number"
 						id="productPrice"
 						name="price"
-						value={productData.price}
+						value={details.price}
 						onChange={handleInputChange}
 						required
 					/>
@@ -120,7 +128,7 @@ function AddProduct() {
 						type="number"
 						id="availableQuantityDelivery"
 						name="available_quantity_delivery"
-						value={productData.available_quantity_delivery}
+						value={details.available_quantity_delivery}
 						onChange={handleInputChange}
 						required
 					/>
@@ -134,7 +142,7 @@ function AddProduct() {
 						type="number"
 						id="availableQuantityInStore"
 						name="available_quantity_inStore"
-						value={productData.available_quantity_inStore}
+						value={details.available_quantity_inStore}
 						onChange={handleInputChange}
 						required
 					/>
@@ -146,7 +154,7 @@ function AddProduct() {
 						type="text"
 						id="productTags"
 						name="tags"
-						value={productData.tags}
+						value={details.tags}
 						onChange={handleInputChange}
 						required
 					/>
@@ -158,7 +166,7 @@ function AddProduct() {
 						type="text"
 						id="productBrand"
 						name="brand"
-						value={productData.brand}
+						value={details.brand}
 						onChange={handleInputChange}
 						required
 					/>

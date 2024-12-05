@@ -1,163 +1,166 @@
-
+/* General container styling */
 .login-cont {
-  position: absolute;  
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-color: #f4f4f4; 
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	background-color: #f4f4f4;
 }
 
-/* Styling for the login form container */
 .login-cont .signin {
-  position: relative;
-  width: 500px; 
-  background: #fff;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-  border-radius: 6px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); 
+	position: relative;
+	width: 500px;
+	background: #fff;
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 50px;
+	border-radius: 6px;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .login-cont .signin .content {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 40px;
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 40px;
 }
 
 /* Login heading */
 .login-cont .signin .content h2 {
-  font-size: 2.5em;
-  color: #00BFFF;
-  text-transform: uppercase;
+	font-size: 2.5em;
+	color: #00BFFF;
+	text-transform: uppercase;
 }
 
 /* Form styling */
 .login-cont .signin .content .form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
 }
 
 /* Input container */
 .login-cont .signin .content .form .inputBx {
-  position: relative;
-  }
+	position: relative;
+	width: 100%;
+}
 
 /* Input fields */
 .login-cont .signin .content .form .inputBx input {
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;
-  background: #f3f3f3;
-  border: none;
-  outline: none;
-  padding: 20px 15px;
-  border-radius: 6px;
-  color: #333;
-  font-weight: 500;
-  font-size: 1.1em;
+	box-sizing: border-box;
+	width: 100%;
+	background: #f3f3f3;
+	border: none;
+	outline: none;
+	padding: 20px 15px;
+	border-radius: 6px;
+	color: #333;
+	font-weight: 500;
+	font-size: 1.1em;
 }
 
-/* Icon inside input fields */
+/* Label styling */
 .login-cont .signin .content .form .inputBx i {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
-  pointer-events: none;
+	position: absolute;
+	left: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #aaa;
+	font-size: 1em;
+	pointer-events: none;
+	transition: all 0.3s ease;
 }
 
-/* Input focus effect */
+/* Label behavior for focus or filled input */
 .login-cont .signin .content .form .inputBx input:focus ~ i,
-.login-cont .signin .content .form .inputBx input:valid ~ i {
+.login-cont .signin .content .form .inputBx input:not(:placeholder-shown) ~ i {
+	top: 5px;
+	font-size: 0.8em;
+	color: #00BFFF;
   transform: translateY(-150%);
-  font-size: 0.8em;
-  color: #00BFFF;
 }
 
 /* Links at the bottom of the form */
 .login-cont .signin .content .form .links {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .login-cont .signin .content .form .links a {
-  color: #00BFFF;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.login-cont .signin .content .form .links a:nth-child(2) {
-  color: #00BFFF;
-  font-weight: 600;
+	color: #00BFFF;
+	text-decoration: none;
+	font-weight: 500;
 }
 
 /* Submit button */
 .login-cont .inputBx button {
-  padding: 18px;
-  background: #00BFFF;
-  color: #fff;
-  width: 100%;
-  font-weight: 600;
-  font-size: 1.3em;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  transition: background 0.3s ease;
+	padding: 18px;
+	background: #00BFFF;
+	color: #fff;
+	width: 100%;
+	font-weight: 600;
+	font-size: 1.3em;
+	letter-spacing: 0.05em;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 6px;
+	transition: background 0.3s ease;
 }
 
 /* Button hover effect */
 .login-cont .inputBx button:hover {
-  background: #008CBA;
+	background: #008CBA;
 }
 
 /* Disabled button state */
 .login-cont .inputBx button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+	opacity: 0.7;
+	cursor: not-allowed;
 }
 
 /* Spinner style for loading state */
 .login-cont .signin .content .form .inputBx .spinner {
-  border: 3px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 3px solid #fff;
-  width: 20px;
-  height: 20px;
+	border: 3px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 3px solid #fff;
+	width: 20px;
+	height: 20px;
+	animation: spin 1s linear infinite;
 }
 
-/* Media Queries for responsiveness */
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Media Queries */
 @media (max-width: 900px) {
-  .login-cont .signin {
-    width: 80%;
-    padding: 40px;
-  }
+	.login-cont .signin {
+		width: 80%;
+		padding: 40px;
+	}
 }
 
 @media (max-width: 600px) {
-  .login-cont .signin {
-    width: 90%;
-    padding: 30px;
-  }
+	.login-cont .signin {
+		width: 90%;
+		padding: 30px;
+	}
 }

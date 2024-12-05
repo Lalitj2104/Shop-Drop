@@ -1,4 +1,3 @@
-
 .register-cont {
 	position: relative;
 	width: 100vw;
@@ -21,10 +20,10 @@
 	align-items: center;
 	padding: 40px;
 	border-radius: 4px;
-	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); 
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-.register-cont .signin .content { 
+.register-cont .signin .content {
 	position: relative;
 	width: 100%;
 	display: flex;
@@ -73,11 +72,13 @@
 	font-size: 1em;
 }
 
+/* Ensure the focus effect */
 .register-cont .signin .content .form .inputBx input:focus,
 .register-cont .signin .content .form .inputBx select:focus {
 	border: 1px solid #00bfff;
 }
 
+/* Label styling */
 .register-cont .signin .content .form .inputBx i {
 	position: absolute;
 	left: 10px;
@@ -89,32 +90,40 @@
 	transition: all 0.3s ease;
 }
 
+/* Label behavior when input is focused */
 .register-cont .signin .content .form .inputBx input:focus ~ i,
+.register-cont
+	.signin
+	.content
+	.form
+	.inputBx
+	input:not(:placeholder-shown)
+	~ i,
 .register-cont .signin .content .form .inputBx select:focus ~ i {
-	transform: translateY(-150%);
+	transform: translateY(-200%);
 	font-size: 0.9em;
 	color: #00bfff;
 }
 
+/* Ensure the label doesn't move back down when the input has a value */
+.register-cont
+	.signin
+	.content
+	.form
+	.inputBx
+	input:not(:placeholder-shown)
+	~ i {
+	transform: translateY(-200%);
+	font-size: 0.9em;
+	color: #00bfff;
+}
+
+/* Customize dropdowns */
 .register-cont .signin .content .form .inputBx select {
 	appearance: none;
 }
 
-.register-cont .profile-picture-container {
-	margin: 15px auto;
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	overflow: hidden;
-	border: 2px solid #00bfff;
-}
-
-.register-cont .profile-picture {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
+/* Links styling */
 .register-cont .signin .content .form .links {
 	width: 100%;
 	text-align: center;
@@ -130,6 +139,7 @@
 	text-decoration: underline;
 }
 
+/* Button styling */
 .register-cont .inputBx button {
 	padding: 15px;
 	background: #00bfff;
@@ -157,6 +167,7 @@
 	cursor: not-allowed;
 }
 
+/* Loading spinner */
 .register-cont .spinner {
 	border: 3px solid #f3f3f3;
 	border-radius: 50%;

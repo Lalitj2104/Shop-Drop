@@ -5,43 +5,45 @@ import { useDispatch, useSelector } from "react-redux";
 
 import toastOptions from "../../../constants/toast";
 import { toast } from "react-toastify";
-import { resendVerifyRetailerRegister, verifyRetailerRegister } from "../../../redux/Actions/retailerActions";
+import {
+	resendVerifyRetailerRegister,
+	verifyRetailerRegister,
+} from "../../../redux/Actions/retailerActions";
 
 const VerifyRegister = () => {
-	const spans = Array.from({ length: 128 });
-
-	const [otp, setOtp] = useState();
+	const [otp, setOtp] = useState("");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const { id } = useParams();
-
 	const { loading, message, error, isRetailerAuthenticated } = useSelector(
 		(state) => state.retailerAuth
 	);
 
+	// Handle form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(otp);
 		if (otp / 100000 < 1) {
 			toast.error("OTP must contain 6 digits", toastOptions);
 			return;
 		}
-		dispatch(verifyRetailerRegister(id,otp));
+		dispatch(verifyRetailerRegister(id, otp));
 	};
+
+	// Handle resend OTP
 	const handleResendOtp = () => {
 		dispatch(resendVerifyRetailerRegister(id));
 	};
 
+	// Effect to handle navigation and notifications
 	useEffect(() => {
 		if (isRetailerAuthenticated) {
-			return navigate("/retailerDashboard");
+			navigate("/retailerDashboard");
 		}
 
 		if (message) {
 			toast.success(message, toastOptions);
 			dispatch({ type: "CLEAR_MESSAGE" });
-			// console.log()
 		}
 		if (error) {
 			toast.error(error, toastOptions);
@@ -50,40 +52,32 @@ const VerifyRegister = () => {
 	}, [dispatch, error, message, navigate, isRetailerAuthenticated]);
 
 	return (
-		<section>
-			<div className="signup-cont">
-				{spans.map((_, index) => (
-					<span key={index} className="span"></span>
-				))}
-				<div className="signin" style={{ width: "400px" }}>
-					<div className="content">
-						<h2>Enter OTP</h2>
-						<form className="form" onSubmit={handleSubmit}>
-							<div className="inputBx">
-								<input
-									type="number"
-									value={otp}
-									onChange={(e) => setOtp(e.target.value)}
-									required
-								/>
-								<i>OTP</i>
-							</div>
-							<div className="links">
-								<Link to={`/retailer/verify/${id}`} onClick={handleResendOtp}>
-									Resend OTP
-								</Link>
-							</div>
-							<div className="inputBx">
-								<button type="submit">
-									{loading === true ? (
-										<span className="spinner"></span>
-									) : (
-										"Submit"
-									)}
-								</button>
-							</div>
-						</form>
-					</div>
+		<section className="otp-cont">
+			<div className="otp-box">
+				<div className="content">
+					<h2>Enter OTP</h2>
+					<form className="form" onSubmit={handleSubmit}>
+						<div className="inputBx">
+							<input
+								type="number"
+								value={otp}
+								onChange={(e) => setOtp(e.target.value)}
+								placeholder=" " // Added placeholder for better styling
+								required
+							/>
+							<label>OTP</label>
+						</div>
+						<div className="links">
+							<Link to={`/retailer/verify/${id}`} onClick={handleResendOtp}>
+								Resend OTP
+							</Link>
+						</div>
+						<div className="inputBx">
+							<button type="submit" disabled={loading}>
+								{loading ? <span className="spinner"></span> : "Submit"}
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</section>

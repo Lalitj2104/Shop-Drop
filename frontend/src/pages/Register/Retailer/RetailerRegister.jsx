@@ -7,7 +7,6 @@ import toastOptions from "../../../constants/toast";
 import { registerRetailer } from "../../../redux/Actions/retailerActions";
 
 const RetailerRegister = () => {
-	const spans = Array.from({ length: 128 });
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [details, setDetails] = useState({
@@ -27,6 +26,7 @@ const RetailerRegister = () => {
 	const { rloading, message, error, id, isRetailerAuthenticated } = useSelector(
 		(state) => state.retailerAuth
 	);
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 
@@ -38,20 +38,16 @@ const RetailerRegister = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(details);
 		dispatch(registerRetailer(details));
 	};
 
 	useEffect(() => {
-		console.log(details);
 		if (message) {
-			// console.log(message);
 			toast.success(message, toastOptions);
 			dispatch({ type: "CLEAR_MESSAGE" });
 			navigate(`/retailer/verify/${id}`);
 		}
 		if (error) {
-			// console.log(error);
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
@@ -62,22 +58,10 @@ const RetailerRegister = () => {
 
 	return (
 		<section>
-			<div className="signup-cont">
-				{spans.map((_, index) => (
-					<span key={index} className="span"></span>
-				))}
+			<div className="register-cont">
 				<div className="signin">
 					<div className="content">
-						<h2>Register</h2>
-						{details.avatar && (
-							<div className="profile-picture-container">
-								<img
-									src={details.avatar}
-									alt="Profile Picture"
-									className="profile-picture"
-								/>
-							</div>
-						)}
+						<h2>Retailer Register</h2>
 						<form className="form" onSubmit={handleSubmit}>
 							<div className="inputGrid">
 								<div className="inputBx">
@@ -87,6 +71,7 @@ const RetailerRegister = () => {
 										value={details.firstName}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>First Name</i>
 								</div>
@@ -96,6 +81,7 @@ const RetailerRegister = () => {
 										name="middleName"
 										value={details.middleName}
 										onChange={handleChange}
+										placeholder=""
 									/>
 									<i>Middle Name</i>
 								</div>
@@ -106,6 +92,7 @@ const RetailerRegister = () => {
 										value={details.lastName}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>Last Name</i>
 								</div>
@@ -116,6 +103,7 @@ const RetailerRegister = () => {
 										value={details.gstNumber}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>GST Number</i>
 								</div>
@@ -126,6 +114,7 @@ const RetailerRegister = () => {
 										value={details.companyName}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>Company Name</i>
 								</div>
@@ -136,6 +125,7 @@ const RetailerRegister = () => {
 										value={details.dob}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>Date of Birth</i>
 								</div>
@@ -146,6 +136,7 @@ const RetailerRegister = () => {
 										value={details.username}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>Username</i>
 								</div>
@@ -156,6 +147,7 @@ const RetailerRegister = () => {
 										value={details.email}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>Email</i>
 								</div>
@@ -166,6 +158,7 @@ const RetailerRegister = () => {
 										value={details.password}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>Password</i>
 								</div>
@@ -176,6 +169,7 @@ const RetailerRegister = () => {
 										value={details.mobile}
 										onChange={handleChange}
 										required
+										placeholder=""
 									/>
 									<i>Mobile</i>
 								</div>
@@ -186,8 +180,9 @@ const RetailerRegister = () => {
 										value={details.gender}
 										onChange={handleChange}
 										required
+										placeholder=""
 									>
-										<option value="" disabled selected>
+										<option value="" disabled>
 											Gender
 										</option>
 										<option value="male">Male</option>
@@ -198,7 +193,7 @@ const RetailerRegister = () => {
 							</div>
 
 							<div className="links">
-								<Link to="/retailerLogin">Already have an account ?</Link>
+								<Link to="/retailerLogin">Already have an account?</Link>
 							</div>
 							<div className="inputBx">
 								<button type="submit" disabled={rloading}>
