@@ -28,7 +28,7 @@ import {
 const retailerRouter = express.Router();
 
 
-retailerRouter.get("/me",myProfile);
+retailerRouter.get("/me",isAuthenticate,myProfile);
 retailerRouter.post("/retailerRegister", registerRetailer);
 retailerRouter.post("/verify/:id", verify);
 retailerRouter.get("/resend/:id", resendOtp);

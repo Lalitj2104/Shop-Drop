@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home/Home.jsx";
 import ForgotPassword from "../../pages/Password/ForgotPassword/ForgotPassword.jsx";
 import VerifyOtp from "../../pages/Otp/VerifyOtp/VerifyOtp.jsx";
-import ResetPassword from "../../pages/Password/ResetPassword/ResetPassword.jsx"
+import ResetPassword from "../../pages/Password/ResetPassword/ResetPassword.jsx";
 import Login from "../../pages/Login/user/Login.jsx";
 import RegisterLogin from "../../pages/Login/retailer/RetailerLogin.jsx";
 import Register from "../../pages/Register/user/Register.jsx";
@@ -22,96 +22,122 @@ import LoginSecurity from "../../pages/LoginSecurity/LoginSecurity.jsx";
 import Paymentoptions from "../../pages/PaymentOptions/PaymentOptions.jsx";
 
 const Path = () => {
-	const dispatch = useDispatch();
-	const { userLoading } = useSelector((state) => state.userAuth);
+  const dispatch = useDispatch();
+  const { userLoading } = useSelector((state) => state.userAuth);
 
-	useEffect(() => {
-		dispatch(loadUser());
-	}, []);
-	return (
-		<div>
-			<Router>
-				{userLoading ? (
-					<LoadingPage />
-				) : (
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route
-							path="/login"
-							element={
-								<AuthRoute>
-									<Login />
-								</AuthRoute>
-							}
-						/>
-						<Route
-							path="/retailerLogin"
-							element={
-								<AuthRoute>
-									<RegisterLogin />
-								</AuthRoute>
-							}
-						/>
-						<Route
-							path="/register"
-							element={
-								<AuthRoute>
-									<Register />
-								</AuthRoute>
-							}
-						/>
-						<Route
-							path="retailerRegister"
-							element={
-								<AuthRoute>
-									<RetailerRegister />
-								</AuthRoute>
-							}
-						/>
-						<Route
-							path="/forgot-Password"
-							element={
-								<AuthRoute>
-									<ForgotPassword />
-								</AuthRoute>
-							}
-						/>
-						<Route
-							path="/verify/:id"
-							element={
-								<AuthRoute>
-									<VerifyOtp />
-								</AuthRoute>
-							}
-						/>
-						<Route
-							path="/reset/:id"
-							element={
-								<AuthRoute>
-									<ResetPassword />
-								</AuthRoute>
-							}
-						/>
-						<Route
-							path="/changePassword/:id"
-							element={
-								<AuthRoute>
-									<ChangePassword />
-								</AuthRoute>
-							}
-						/>
-						
-						<Route path="/AddAddress" element={<AddAddress />} />
-						<Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-						<Route path="/orders" element={<ProtectedRoute><Order /></ProtectedRoute>} />
-						<Route path="/ContactUs" element={<ContactUs/>}/>
-						<Route path="/LoginSecurity" element={<LoginSecurity/>}/>
-						<Route path="/PaymentOptions" element={<Paymentoptions/>}/>
-					</Routes>
-				)}
-			</Router>
-		</div>
-	);
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
+  return (
+    <div>
+      <Router>
+        {userLoading ? (
+          <LoadingPage />
+        ) : (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/login"
+              element={
+                <AuthRoute>
+                  <Login />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <AuthRoute>
+                  <Register />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path="/forgot-Password"
+              element={
+                <AuthRoute>
+                  <ForgotPassword />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path="/verify/:id"
+              element={
+                <AuthRoute>
+                  <VerifyOtp />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path="/reset/:id"
+              element={
+                <AuthRoute>
+                  <ResetPassword />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path="/changePassword/:id"
+              element={
+                <AuthRoute>
+                  <ChangePassword />
+                </AuthRoute>
+              }
+            />
+
+            <Route
+              path="/AddAddress"
+              element={
+                <ProtectedRoute>
+                  <AddAddress />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/account"
+              element={
+                <ProtectedRoute>
+                  <Account />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/orders"
+              element={
+                <ProtectedRoute>
+                  <Order />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/ContactUs"
+              element={
+                <ProtectedRoute>
+                  <ContactUs />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/LoginSecurity"
+              element={
+                <ProtectedRoute>
+                  <LoginSecurity />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/PaymentOptions"
+              element={
+                <ProtectedRoute>
+                  <Paymentoptions />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        )}
+      </Router>
+    </div>
+  );
 };
 
 export default Path;

@@ -194,15 +194,15 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 
 
 		.addCase(loadRetailerRequest, (state) => {
-			state.rloading = true;
+			state.retailerLoading = true;
 		})
 		.addCase(loadRetailerSuccess, (state, action) => {
-			state.rloading = false;
+			state.retailerLoading = false;
 			state.Retailer = action.payload;
 			state.isRetailerAuthenticated = true;
 		})
 		.addCase(loadRetailerFailure, (state, action) => {
-			state.rloading = false;
+			state.retailerLoading = false;
 			state.authError = action.payload;
 			state.isRetailerAuthenticated = false;
 		})
@@ -215,10 +215,12 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 		.addCase(logoutRetailerSuccess,(state,action)=>{
 			state.rloading=false;
 			state.message=action.payload
+			isRetailerAuthenticated=false
 		})
 		.addCase(logoutRetailerFailure,(state,action)=>{
 			state.rloading=false;
 			state.error=action.payload
+
 		})
 
 

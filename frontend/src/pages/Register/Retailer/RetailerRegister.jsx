@@ -48,7 +48,7 @@ const RetailerRegister = () => {
 			// console.log(message);
 			toast.success(message, toastOptions);
 			dispatch({ type: "CLEAR_MESSAGE" });
-			navigate(`/verify/${id}`);
+			navigate(`/retailer/verify/${id}`);
 		}
 		if (error) {
 			// console.log(error);
@@ -122,7 +122,7 @@ const RetailerRegister = () => {
 								<div className="inputBx">
 									<input
 										type="text"
-										name="copanyName"
+										name="companyName"
 										value={details.companyName}
 										onChange={handleChange}
 										required
@@ -198,7 +198,7 @@ const RetailerRegister = () => {
 							</div>
 
 							<div className="links">
-								<Link to="/login">Already have an account ?</Link>
+								<Link to="/retailerLogin">Already have an account ?</Link>
 							</div>
 							<div className="inputBx">
 								<button type="submit" disabled={rloading}>

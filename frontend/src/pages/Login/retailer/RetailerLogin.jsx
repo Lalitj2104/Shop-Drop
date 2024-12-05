@@ -28,10 +28,11 @@ const RetailerLogin = () => {
 		if (message) {
 			console.log(message);
 			toast.success(message, toastOptions);
+			
 			dispatch({
 				type: "CLEAR_MESSAGE",
 			});
-			navigate(`/login/verify/${id}`);
+			navigate(`/retailer/login/verify/${id}`);
 		}
 		if (error) {
 			console.log(error);
@@ -71,7 +72,7 @@ const RetailerLogin = () => {
 								/>
 							</div>
 							<div className="links">
-								<Link to="/forgot-password">Forgot Pasword?</Link>
+								<Link to="/retailer/forgotPassword">Forgot Pasword?</Link>
 								<Link to="/retailerRegister">Sign Up</Link>
 							</div>
 							<div className="inputBx">

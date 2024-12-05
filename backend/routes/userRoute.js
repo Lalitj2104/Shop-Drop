@@ -18,14 +18,7 @@ import {
 	verifyUser,
 } from "../controllers/userController.js";
 import { isAuthenticated } from "../middleware/isAuth.js";
-import {
-	addReview,
-	deleteReview,
-	getAllReviewsByUser,
-	getAllReviewsForProduct,
-	getReview,
-	updateReview,
-} from "../controllers/reviewController.js";
+
 
 const userRouter = express.Router();
 
@@ -42,16 +35,11 @@ userRouter.put("/my/profile/update", isAuthenticated, updateUserProfile);
 userRouter.post("/logout", logoutUser);
 userRouter.delete("/delete/me", deleteUser);
 
-userRouter.post("/add/address", isAuthenticated, addAddress);
-userRouter.get("/my/address", isAuthenticated, getAllAddress);
-userRouter.put("/default/address", isAuthenticated, setDefaultAddress);
-userRouter.delete("/my/address", isAuthenticated, removeAddress);
+userRouter.post("/address/add", isAuthenticated, addAddress);
+userRouter.get("/address/my", isAuthenticated, getAllAddress);
+userRouter.put("/address/default", isAuthenticated, setDefaultAddress);
+userRouter.delete("/address/remove", isAuthenticated, removeAddress);
 
-userRouter.post("/add/review", isAuthenticated, addReview);
-userRouter.get("/get/review/:id", isAuthenticated, getReview);
-userRouter.put("/update/review/:id", isAuthenticated, updateReview);
-userRouter.delete("/delete/review/:id", isAuthenticated, deleteReview);
-userRouter.get("/all/reviews/:id", isAuthenticated, getAllReviewsForProduct);
-userRouter.get("/all/userReview/:id", isAuthenticated, getAllReviewsByUser);
+
 
 export default userRouter;

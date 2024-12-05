@@ -14,9 +14,9 @@ const __dirname = path.dirname(__filename);
 
 export const myProfile=async(req,res)=>{
 	try {
-		const retailer=await Retailer.findById(req.retailer._id);
 		
-		Response(res,201,true,message.retailerFoundMessage,retailer);
+		
+		Response(res,201,true,message.retailerFoundMessage,req.retailer);
 		
 	} catch (error) {
 		Response(res,500,false,error.message);

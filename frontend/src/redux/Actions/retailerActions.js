@@ -288,80 +288,38 @@ export const logoutRetailer=()=>async(dispatch)=>{
 	}
 }
 
-export const deleteRetailer=()=>async(dispatch)=>{
-    try {
+// export const deleteRetailer=()=>async(dispatch)=>{
+//     try {
         
-    } catch (error) {
+//     } catch (error) {
         
-    }
-}
+//     }
+// }
 
-export const getRetailerProfiles=()=>async(dispatch)=>{
-    try {
+// export const getRetailerProfiles=()=>async(dispatch)=>{
+//     try {
         
-    } catch (error) {
+//     } catch (error) {
         
-    }
-}
-export const updateRetailerProfiles=()=>async(dispatch)=>{
-    try {
+//     }
+// }
+// export const updateRetailerProfiles=()=>async(dispatch)=>{
+//     try {
         
-    } catch (error) {
+//     } catch (error) {
         
-    }
-}
+//     }
+// }
 
-export const getRetailerProductsById=()=>async(dispatch)=>{
-    try {
+// export const getRetailerProductsById=()=>async(dispatch)=>{
+//     try {
         
-    } catch (error) {
+//     } catch (error) {
         
-    }
-}
-
-
+//     }
+// }
 
 
 
 
 
-export const addRetailerProduct=()=>async(dispatch)=>{
-    try {
-        
-    } catch (error) {
-        
-    }
-}
-
-export const updateRetailerProduct=()=>async(dispatch)=>{
-    try {
-        
-    } catch (error) {
-        
-    }
-}
-
-
-export const getAllretaileerProducts=()=>async(dispatch)=>{
-    try {
-        
-    } catch (error) {
-        
-    }
-}
-
-export const getRetailerProductById=()=>async(dispatch)=>{
-    try {
-        
-    } catch (error) {
-        
-    }
-}
-
-export const deleteRetailerProduct=()=>async(dispatch)=>{
-    try {
-        
-    } catch (error) {
-        
-    }
-}

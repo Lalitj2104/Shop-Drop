@@ -34,6 +34,19 @@ const addUserAddressRequest = createAction("ADD_USER_ADDRESS_REQUEST");
 const addUserAddressSuccess = createAction("ADD_USER_ADDRESS_SUCCESS");
 const addUserAddressFailure = createAction("ADD_USER_ADDRESS_FAILURE");
 
+const getAllAddressRequest = createAction("GET_ALL_ADDRESS_REQUEST");
+const getAllAddressSuccess = createAction("GET_ALL_ADDRESS_SUCCESS");
+const getAllAddressFailure = createAction("GET_ALL_ADDRESS_FAILURE");
+
+
+const removeAddressRequest = createAction("REMOVE_ADDRESS_REQUEST");
+const removeAddressSuccess = createAction("REMOVE_ADDRESS_SUCCESS");
+const removeAddressFailure = createAction("REMOVE_ADDRESS_FAILURE");
+
+
+const setDefaultAddressRequest = createAction("SET_DEFAULT_ADDRESS_REQUEST");
+const setDefaultAddressSuccess = createAction("SET_DEFAULT_ADDRESS_SUCCESS");
+const setDefaultAddressFailure = createAction("SET_DEFAULT_ADDRESS_FAILURE");
 
 
 const logoutUserRequest=createAction("LOGOUT_USER_REQUEST");
@@ -111,9 +124,52 @@ export const userReducer = createReducer(initialState, (builder) => {
 		})
 		.addCase(addUserAddressSuccess,(state,action)=>{
 			state.loading=false;
-			state.message=action.payload
+			state.address=action.payload.address
+			state.message=action.payload.message
 		})
 		.addCase(addUserAddressFailure,(state,action)=>{
+			state.loading=false;
+			state.error=action.payload
+		})
+
+
+		.addCase(getAllAddressRequest,(state)=>{
+			state.loading=true;
+		})
+		.addCase(getAllAddressSuccess,(state,action)=>{
+			state.loading=false;
+			state.address=action.payload.address
+			state.message=action.payload.message
+		})
+		.addCase(getAllAddressFailure,(state,action)=>{
+			state.loading=false;
+			state.error=action.payload
+		})
+
+
+		.addCase(removeAddressRequest,(state)=>{
+			state.loading=true;
+		})
+		.addCase(removeAddressSuccess,(state,action)=>{
+			state.loading=false;
+			state.address=null
+			state.message=action.payload.message
+		})
+		.addCase(removeAddressFailure,(state,action)=>{
+			state.loading=false;
+			state.error=action.payload
+		})
+
+
+
+		.addCase(setDefaultAddressRequest,(state)=>{
+			state.loading=true;
+		})
+		.addCase(setDefaultAddressSuccess,(state,action)=>{
+			state.loading=false;
+			state.message=action.payload
+		})
+		.addCase(setDefaultAddressFailure,(state,action)=>{
 			state.loading=false;
 			state.error=action.payload
 		})

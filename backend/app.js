@@ -8,6 +8,7 @@ import wishListRouter from "./routes/wishList.js";
 import cors from "cors";
 import orderRouter from "./routes/orderRoute.js";
 import cartRouter from "./routes/cartRoute.js";
+import { reviewRouter } from "./routes/reviewRoute.js";
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -35,5 +36,6 @@ app.use("/api/v1/product", productRouter);
 app.use("/api/v1/wishList", wishListRouter);
 app.use("/api/v1/order",orderRouter);
 app.use("api/v1/cart",cartRouter);
+app.use("api/v1/review",reviewRouter)
 
 export default app;

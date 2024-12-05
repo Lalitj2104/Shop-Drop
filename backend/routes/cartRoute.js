@@ -4,7 +4,7 @@ import { addToCart, clearCart, getCart, updateCart } from "../controllers/cartCo
 
 const cartRouter=express.Router();
 
-cartRouter.post("/add",isAuthenticated,addToCart);
+cartRouter.post("/add/:id",isAuthenticated,addToCart);
 cartRouter.put("/update",isAuthenticated,updateCart);
 cartRouter.get("/myCart",isAuthenticated,getCart);
 cartRouter.delete("/delete",isAuthenticated,clearCart);

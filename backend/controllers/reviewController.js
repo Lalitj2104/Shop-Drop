@@ -44,7 +44,7 @@ export const getReview=async(req,res)=>{
     if(!review){
         return Response(res,400,message.reviewNotFoundMessage);
     }
-    Response(res,200,message.reviewFoundMessage);
+    Response(res,200,message.reviewFoundMessage,review);
 
     } catch (error) {
         Response(res,500,error.message);
@@ -90,7 +90,7 @@ export const updateReview=async(req,res)=>{
         
         await review.save();
 
-        Response(res,200,message.reviewUpdatedMessage);
+        Response(res,200,message.reviewUpdatedMessage,review);
 
 
         
