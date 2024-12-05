@@ -215,8 +215,7 @@ export const retailerReducer = createReducer(initialState, (builder) => {
 		.addCase(logoutRetailerSuccess,(state,action)=>{
 			state.rloading=false;
 			state.message=action.payload
-			isRetailerAuthenticated=false
-		})
+				})
 		.addCase(logoutRetailerFailure,(state,action)=>{
 			state.rloading=false;
 			state.error=action.payload

@@ -1,13 +1,17 @@
 import "../../styles/RetailerDashboard.css";
 import profileImg from "../../../public/profile.jpg";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logoutRetailer } from "../../redux/Actions/retailerActions";
+import { useDispatch, useSelector } from "react-redux";
+import { loadRetailer, logoutRetailer } from "../../redux/Actions/retailerActions";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import toastOptions from "../../constants/toast";
 
 function RetailerDashboard() {
 	// Mocked user data
 
 	const dispatch = useDispatch();
+	const {message,error}=useSelector(state=>state.retailerAuth)
 
 	const userInfo = {
 		name: "Khushi Agarwal",
@@ -40,31 +44,31 @@ function RetailerDashboard() {
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 2,
+			id: 3,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 2,
+			id: 4,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 2,
+			id: 5,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 2,
+			id: 6,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
 		},
 		{
-			id: 2,
+			id: 7,
 			name: "V-Neck Sweater",
 			price: 35.99,
 			image: "../../../public/V-Neck Sweater.jpg",
@@ -74,12 +78,28 @@ function RetailerDashboard() {
 
 	// Handle logout
 	const handleLogout = () => {
-		// Logic to logout the user, for example:
 		dispatch(logoutRetailer());
-		console.log("User logged out");
 
-		// Redirect to login page or clear user session, etc.
 	};
+	useEffect(()=>{
+		if (message) {
+			console.log(message);
+			toast.success(message, toastOptions);
+			dispatch({
+				type: "CLEAR_MESSAGE",
+			});
+			if (message == "Logout successful") {
+				dispatch(loadRetailer());
+			}
+		}
+		if (error) {
+			console.log(error);
+			toast.error(error, toastOptions);
+			dispatch({ type: "CLEAR_ERROR" });
+		}
+	}, [dispatch, message, error,]);
+
+
 
 	return (
 		<div className="retailer-dashboard-app">

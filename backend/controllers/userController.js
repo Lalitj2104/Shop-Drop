@@ -9,6 +9,7 @@ import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import WishList from "../models/wishList.js";
 import Product from "../models/product.js";
+import Retailer from "../models/retailer.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -59,6 +60,11 @@ export const registerUser = async (req, res) => {
 		let user = await User.findOne({ email });
 		if (user) {
 			return Response(res, 400, false, message.userAlreadyExist);
+		}
+
+		user=await Retailer.findOne({email});
+		if (user) {
+			return Response(res, 400, false, message.emailAlreadyRegisteredmessage);
 		}
 
 		user = await User.findOne({ username });

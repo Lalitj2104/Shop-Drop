@@ -52,6 +52,6 @@ retailerRouter.get(
 	isAuthenticate,
 	getRetailerProducts
 );
-retailerRouter.post("/logout", isAuthenticate, logoutRetailer);
+retailerRouter.post("/retailerLogout", isAuthenticate, logoutRetailer);
 
 export default retailerRouter;
