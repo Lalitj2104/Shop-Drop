@@ -3,7 +3,7 @@ import { BACKEND_URL } from "../../constants/url";
 
 axios.defaults.withCredentials=true;
 
-const URL=BACKEND_URL+"/api/v1/review";
+const URL=BACKEND_URL+"api/v1/review";
 
 export const addUserReview = (id,review, rating,title,description) => async (dispatch) => {
   try {

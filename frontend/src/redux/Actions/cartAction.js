@@ -3,7 +3,7 @@ import { BACKEND_URL } from "../../constants/url";
 
 axios.defaults.withCredentials=true;
 
-const URL=BACKEND_URL+"/api/v1/cart";
+const URL=BACKEND_URL+"api/v1/cart";
 
 
 export const addToCart=(id,quantity)=>async(dispatch)=>{
@@ -11,7 +11,7 @@ export const addToCart=(id,quantity)=>async(dispatch)=>{
         dispatch({
             type:"ADD_TO_CART_REQUEST"
         })
-        const {data}=await  axios.post(`${URL}/add/${id}`,{quantity},{
+        const {data}=await  axios.post(`${URL}/add/${id}`, { quantity },{
             headers:{
                 "Content-Type":"application/json"
             }

@@ -4,36 +4,21 @@ import ProductCard from "./ProductCard";
 import staticProducts from "../../../data/staticProducts";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts, getProducts } from "../../../redux/Actions/productAction";
+import Loading from "../../../components/Loading/LoadingPage"
 
-const useStaticData = true; // Set to `false` to fetch data from backend
+
+
+// const useStaticData = true; // Set to `false` to fetch data from backend
 
 const ProductList = () => {
-	const [products, setProducts] = useState([]);
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-		const fetchProducts = async () => {
-			if (useStaticData) {
-				// Use static data
-				setProducts(staticProducts);
-				setLoading(false);
-			} else {
-				// Fetch from backend
-				try {
-					setLoading(true);
-					const response = await fetch("https://example.com/api/products"); // Replace with actual backend URL
-					const data = await response.json();
-					setProducts(data);
-				} catch (error) {
-					console.error("Failed to fetch products:", error);
-				} finally {
-					setLoading(false);
-				}
-			}
-		};
-
-		fetchProducts();
-	}, []);
+	
+	const dispatch=useDispatch();
+	const {loading,products}=useSelector(state=>state.productAuth);
+	useEffect(()=>{
+		dispatch(getProducts())
+	},[dispatch])
 
 	return (
     <>
@@ -47,10 +32,10 @@ const ProductList = () => {
 				}}
 			>
 				{loading ? (
-					<p>Loading products...</p>
+					<Loading/>
 				) : (
-					products.map((product) => (
-						<ProductCard key={product.id} product={product} />
+					products&&products.map((product) => (
+						<ProductCard  product={product} />
 					))
 				)}
       </div>

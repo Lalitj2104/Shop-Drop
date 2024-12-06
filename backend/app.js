@@ -35,7 +35,7 @@ app.use("/api/v1/retailer", retailerRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/wishList", wishListRouter);
 app.use("/api/v1/order",orderRouter);
-app.use("api/v1/cart",cartRouter);
-app.use("api/v1/review",reviewRouter)
+app.use("/api/v1/cart",cartRouter);
+app.use("/api/v1/review",reviewRouter)
 
 export default app;

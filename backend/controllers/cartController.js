@@ -5,13 +5,14 @@ import { Response } from "../utils/response.js";
 
 export const addToCart =async(req,res)=>{
     try {
+        // console.log("working")
         const {productId}=req.params;
         const {quantity}=req.body;
         if(quantity<=0){
             return Response(res,400,false,message.invalidQuantityMessage);
         }
         
-
+        
         const product=await Product.findById(productId);
         if(!product){
             return Response(res,400,false,message.noProductMessage);
@@ -20,7 +21,8 @@ export const addToCart =async(req,res)=>{
         if(product.available_quantity_delivery<quantity){
             return Response(res, 400,false, message.insufficientQuantityMessage);
         }
-        let cart =await Cart.findById(req.user._id);
+        let cart =await Cart.findOne({userId:req.user._id});
+        console.log(cart);
         if(!cart){
             cart=await Cart.create({
                 userId:req.user._id,
@@ -28,7 +30,7 @@ export const addToCart =async(req,res)=>{
                    productId: product._id,
                     quantity,
                     price:product.price,
-                    productId
+                    retailerId:product.retailerId
             }]
             })
         }else{
@@ -41,12 +43,12 @@ export const addToCart =async(req,res)=>{
                     productId:product._id,
                     quantity,
                     price:product.price,
-                    productId
+                    retailerId:product.retailerId
                 })
             }
         }
         await cart.save();
-        Response(res,200,true,message.productAddedMessage,cart);
+        Response(res,200,true,message.productAddedMessage);
 
     } catch (error) {
         Response(res,500,false,error.message);

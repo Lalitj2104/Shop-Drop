@@ -2,16 +2,23 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import staticProducts from "../../../data/staticProducts";
 import "../../../styles/ProductPage.css";
+import { getProduct } from "../../../redux/Actions/productAction";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../../redux/Actions/cartAction";
+import toastOptions from "../../../constants/toast";
+import { toast } from "react-toastify";
 
 const useStaticData = true; // Set to `false` to fetch data from backend
 
 const ProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+
   const [quantity, setQuantity] = useState(1);
   const [wishlistActive, setWishlistActive] = useState(false);
+  const dispatch = useDispatch();
+  const { product } = useSelector((state) => state.productAuth);
+  const { message, error,loading } = useSelector((state) => state.cartAuth);
 
   // Static reviews with title, description, likes, dislikes
   const staticReviews = [
@@ -40,30 +47,30 @@ const ProductPage = () => {
     description: "",
   });
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      if (useStaticData) {
-        const product = staticProducts.find((p) => p.id === parseInt(id, 10));
-        setProduct(product || null);
-        setLoading(false);
-      } else {
-        try {
-          setLoading(true);
-          const response = await fetch(`https://example.com/api/products/${id}`);
-          if (!response.ok) throw new Error("Failed to fetch product.");
-          const data = await response.json();
-          setProduct(data);
-        } catch (error) {
-          console.error(error);
-          setProduct(null);
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     if (useStaticData) {
+  //       const product = staticProducts.find((p) => p.id === parseInt(id, 10));
+  //       setProduct(product || null);
+  //       setLoading(false);
+  //     } else {
+  //       try {
+  //         setLoading(true);
+  //         const response = await fetch(`https://example.com/api/products/${id}`);
+  //         if (!response.ok) throw new Error("Failed to fetch product.");
+  //         const data = await response.json();
+  //         setProduct(data);
+  //       } catch (error) {
+  //         console.error(error);
+  //         setProduct(null);
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     }
+  //   };
 
-    fetchProduct();
-  }, [id]);
+  //   fetchProduct();
+  // }, [id]);
 
   const handleQuantityChange = (event) => {
     const value = parseInt(event.target.value, 10);
@@ -75,46 +82,51 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = () => {
-    console.log(`Added ${quantity} of ${product.name} to cart!`);
+    dispatch(addToCart(product?._id,quantity));
+    
   };
+  useEffect(()=>{
+    if (message) {
+      toast.success(message, toastOptions);
+      dispatch({ type: "CLEAR_MESSAGE" });
+    }
+    if (error) {
+      toast.error(error, toastOptions);
+      dispatch({ type: "CLEAR_ERROR" });
+    }
+  },[message,error])
 
   const handleReviewSubmit = () => {
     if (newReview.title.trim() && newReview.description.trim()) {
-      setReviews((prev) => [
-        ...prev,
-        { ...newReview, likes: 0, dislikes: 0 },
-      ]);
+      setReviews((prev) => [...prev, { ...newReview, likes: 0, dislikes: 0 }]);
       setNewReview({ title: "", description: "" });
     }
   };
 
-  if (loading) {
-    return <p>Loading product details...</p>;
-  }
-
-  if (!product) {
-    return (
-      <p>
-        Product not found. <button onClick={() => navigate("/")}>Go Back</button>
-      </p>
-    );
-  }
+  useEffect(() => {
+    dispatch(getProduct(id));
+  }, []);
 
   return (
     <div className="product-page-container">
-      <button onClick={() => navigate("/")} className="product-page-back-button">
+      <button
+        onClick={() => navigate("/shop")}
+        className="product-page-back-button"
+      >
         Back to Products
       </button>
       <div className="product-page-content">
         <img
-          src={product.image}
-          alt={product.name}
+          src={product?.image?.url}
+          alt={product?.name}
           className="product-page-image"
         />
         <div className="product-page-details">
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <p><strong>Price:</strong> ${product.price.toFixed(2)}</p>
+          <h2>{product?.name}</h2>
+          <p>{product?.description}</p>
+          <p>
+            <strong>Price:</strong> ${product?.price?.toFixed(2)}
+          </p>
 
           <div className="quantity-container">
             <label htmlFor="quantity-select">Quantity:</label>

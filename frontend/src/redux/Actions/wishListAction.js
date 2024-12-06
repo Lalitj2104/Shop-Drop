@@ -3,7 +3,7 @@ import { BACKEND_URL } from "../../constants/url";
 
 axios.defaults.withCredentials=true;
 
-const URL=BACKEND_URL+"/api/v1/wishList";
+const URL=BACKEND_URL+"api/v1/wishList";
 
 
 

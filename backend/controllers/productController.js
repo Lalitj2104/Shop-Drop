@@ -70,8 +70,10 @@ export const getAllProducts = async (req, res) => {
 		if (!retailer) {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
 		}
-		const products = await Product.find({ retailer_id: req.retailer._id });
-
+		const products = await Product.find({ retailerId: req.retailer._id });
+		if (product.retailerId.toString() !== req.user._id.toString()) {
+			return Response(res, 403, false, message.invalidRetailerMessage);
+		}
 		Response(res, 201, true, message.productsFoundMessage, products);
 	} catch (error) {
 		Response(res, 500, false, error.message);
@@ -80,18 +82,18 @@ export const getAllProducts = async (req, res) => {
 
 export const getProduct = async (req, res) => {
 	try {
-		const { productId } = req.params;
-		if (!productId) {
-			return Response(res, 400, false, message.idNotFoundMessage);
+		const { id } = req.params;
+		// console.log(id)
+		if (!id) {
+			return Response(res, 401, false, message.idNotFoundMessage);
 		}
-		const product = await Product.findById(productId);
-		if (!product) {
+		
+		const products = await Product.findById(id);
+		if (!products) {
 			return Response(res, 400, false, message.productNotFoundMessage);
 		}
-		if (product.retailer_id.toString() !== req.user._id.toString()) {
-			return Response(res, 403, false, message.invalidRetailerMessage);
-		}
-		Response(res, 200, true, message.productFoundMessage);
+		
+		Response(res, 200, true, message.productFoundMessage,products);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
@@ -100,7 +102,7 @@ export const getProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
 	try {
 		const products = await Product.find().populate(
-			"retailer_id",
+			"retailerId",
 			"firstName companyName gstNumber"
 		);
 

@@ -1,22 +1,24 @@
 // components/ProductCard.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../../styles/ProductCard.css";
+
 
 const ProductCard = ({ product }) => {
 	return (
 		<div className="product-card">
 			<div className="product-image">
 				<img
-					src={product.image}
-					alt={product.name}
+					src={product?.image?.url}
+					alt={product?.name}
 					className="product-image-content"
 				/>
 			</div>
 			<div className="product-details">
-				<h3 className="product-name">{product.name}</h3>
-				<p className="product-price">${product.price.toFixed(2)}</p>
-				<Link to={`/product/${product.id}`}>
+				<h3 className="product-name">{product?.name}</h3>
+				<p className="product-name">{product?.description}</p>
+				<p className="product-price">${product?.price.toFixed(2)}</p>
+				<Link to={`/product/${product?._id}`}>
 					<button className="more-details-button">More Details</button>
 				</Link>
 			</div>

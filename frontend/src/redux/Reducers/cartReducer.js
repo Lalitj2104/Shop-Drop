@@ -24,6 +24,9 @@ const clearCartRequest =createAction("CLEAR_CART_REQUEST")
 const clearCartSuccess =createAction("CLEAR_CART_SUCCESS")
 const clearCartFailure =createAction("CLEAR_CART_FAILURE")
 
+const clearError=createAction("CLEAR_ERROR")
+const clearMessage=createAction("CLEAR_MESSAGE")
+
 export const cartReducer=createReducer(initialState,(builder)=>{
     builder
     .addCase(addToCartRequest,(state)=>{

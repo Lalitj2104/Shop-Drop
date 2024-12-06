@@ -38,7 +38,7 @@ const clearError = createAction("CLEAR_ERROR");
 const clearMessage = createAction("CLEAR_MESSAGE");
 
 
-export const reviewReducer=(initialState,(builder)=>{
+export const reviewReducer=createReducer(initialState,(builder)=>{
     builder
         .addCase(addReviewRequest,(state)=>{
             state.loading=true;
