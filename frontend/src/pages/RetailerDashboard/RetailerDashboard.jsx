@@ -2,6 +2,7 @@ import "../../styles/RetailerDashboard.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
+	getRetailerProducts,
 	loadRetailer,
 	logoutRetailer,
 } from "../../redux/Actions/retailerActions";
@@ -14,10 +15,10 @@ function RetailerDashboard() {
 	// Mocked user data
 
 	const dispatch = useDispatch();
-	const { Retailer, message, error } = useSelector(
+	const { Retailer, message, error,products } = useSelector(
 		(state) => state.retailerAuth
 	);
-	const { products } = useSelector((state) => state.productAuth);
+	// const {  } = useSelector((state) => state.productAuth);
 
 	const userInfo = {
 		name: "Khushi Agarwal",
@@ -38,8 +39,8 @@ function RetailerDashboard() {
 	// Mocked product data
 
 	useEffect(()=>{
-		dispatch(getAllProducts());
-	},[products])
+		dispatch(getRetailerProducts());
+	},[])
 
 	// Handle logout
 	const handleLogout = () => {
@@ -47,12 +48,17 @@ function RetailerDashboard() {
 	};
 
 	useEffect(() => {
+		
 		if (message) {
 			console.log(message);
+			if(message=="Products fetched successfully"){
+				 return;
+			}
 			toast.success(message, toastOptions);
 			dispatch({
 				type: "CLEAR_MESSAGE",
 			});
+			
 			
 			console.log(products);
 			if (message == "Logout successful") {
@@ -64,7 +70,7 @@ function RetailerDashboard() {
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
-	}, [ message, error,products]);
+	}, [ message,error,products]);
 
 	return (
 		<div className="retailer-dashboard-app">
@@ -121,7 +127,7 @@ function RetailerDashboard() {
 						products &&products?.map((product) => (
 							<div className="retailer-dashboard-product" key={product.id}>
 								<img
-									src={product.image || "/placeholder.jpg"}
+									src={product?.image ?.url|| "/placeholder.jpg"}
 									alt={product.name}
 								/>
 								<h3>{product.name}</h3>
