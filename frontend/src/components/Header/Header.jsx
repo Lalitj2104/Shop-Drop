@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Header.css";
 import { loadUser, logoutUser } from "../../redux/Actions/userActions";
@@ -96,7 +96,7 @@ const Header = () => {
 				<div className="nav-icons">
 					<button className="icon">🔍</button>
 					<button className="icon">❤️</button>
-					<button className="icon">🛒</button>
+					<button className="icon" onClick={() => navigate("/cart")}>🛒</button>
 
 					<div
 						className="user-icon-wrapper"

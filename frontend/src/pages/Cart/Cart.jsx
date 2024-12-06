@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { updateCart, removeFromCart } from "../redux/actions/cartActions";
 import "../../styles/Cart.css";
+import { getCart, updateCart } from "../../redux/Actions/cartAction";
 
 const CartPage = () => {
 	const dispatch = useDispatch();
-	const cart = useSelector((state) => state.cart);
-	const { cartItems } = cart;
+	const {loading,message,error,cart} = useSelector((state) => state.cartAuth);
 
 	const handleQuantityChange = (id, qty) => {
 		if (qty > 0) {
@@ -16,20 +15,29 @@ const CartPage = () => {
 	};
 
 	const handleRemove = (id) => {
-		dispatch(removeFromCart(id));
+		// dispatch(removeFromCart(id));
 	};
-
+	useEffect(()=>{
+		dispatch(getCart());
+	},[])
 	useEffect(() => {
-		// Fetch cart data if needed
-	}, [dispatch]);
+		
+		if(message){
+			
+			dispatch({type:"CLEAR_MESSAGE"})
+		}
+		if(error){
+			dispatch({type:"CLEAR_ERROR"})
+		}
+	}, [message,error]);
 
 	const calculateTotal = () =>
-		cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+		cart?.products?.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
 	return (
 		<div className="cart-page">
 			<h1>Shopping Cart</h1>
-			{cartItems.length === 0 ? (
+			{cart?.products?.length === 0 ? (
 				<div className="cart-page-empty">
 					<p>Your cart is empty.</p>
 					<Link to="/">Go Shopping</Link>
@@ -37,37 +45,38 @@ const CartPage = () => {
 			) : (
 				<div className="cart-container">
 					<div className="cart-items">
-						{cartItems.map((item) => (
-							<div className="cart-item" key={item.id}>
-								<img src={item.image} alt={item.name} />
+						{cart && cart.products .map((item) => (
+
+							<div className="cart-item" key={item?.productId?._id}>
+								<img src={item?.productId?.image?.url} alt={item?.name} />
 								<div>
-									<h2>{item.name}</h2>
-									<p>${item.price}</p>
+									<h2>{item?.productId?.description}</h2>
+									<p>${item?.price}</p>
 									<div>
 										<button
 											onClick={() =>
-												handleQuantityChange(item.id, item.quantity - 1)
+												handleQuantityChange(item?.productId?._id, item?.quantity - 1)
 											}
 										>
 											-
 										</button>
-										<span>{item.quantity}</span>
+										<span>{item?.quantity}</span>
 										<button
 											onClick={() =>
-												handleQuantityChange(item.id, item.quantity + 1)
+												handleQuantityChange(item?.productId?._id, item?.quantity + 1)
 											}
 										>
 											+
 										</button>
 									</div>
-									<button onClick={() => handleRemove(item.id)}>Remove</button>
+									<button onClick={() => handleRemove(item?.productId?._id)}>Remove</button>
 								</div>
 							</div>
 						))}
 					</div>
 					<div className="cart-summary">
 						<h2>Cart Summary</h2>
-						<p>Subtotal: ${calculateTotal().toFixed(2)}</p>
+						<p>Subtotal: ${calculateTotal()}</p>
 						<button>
 							<Link to="/checkout">Proceed to Checkout</Link>
 						</button>

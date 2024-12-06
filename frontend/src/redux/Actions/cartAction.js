@@ -32,12 +32,12 @@ export const addToCart=(id,quantity)=>async(dispatch)=>{
 }
 
 
-export const updateCart=(details)=>async(dispatch)=>{
+export const updateCart=(id,quantity)=>async(dispatch)=>{
     try {
         dispatch({
             type:"UPDATE_CART_REQUEST"
         })
-        const {data}=await  axios.put(`{URL}/update`,{details},{
+        const {data}=await  axios.put(`${URL}/update`,{id,quantity},{
             headers:{
                 "Content-Type":"application/json"
             }
@@ -62,7 +62,7 @@ export const getCart=()=>async(dispatch)=>{
         dispatch({
             type:"GET_CART_REQUEST"
         })
-        const {data}=await  axios.get(`{URL}/myCart`)
+        const {data}=await  axios.get(`${URL}/myCart`)
         dispatch({
             type:"GET_CART_SUCCESS",
             payload:{

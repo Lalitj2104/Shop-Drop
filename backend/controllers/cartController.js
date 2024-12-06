@@ -48,7 +48,7 @@ export const addToCart =async(req,res)=>{
             }
         }
         await cart.save();
-        Response(res,200,true,message.productAddedMessage);
+        Response(res,200,true,message.productAddedMessage,cart);
 
     } catch (error) {
         Response(res,500,false,error.message);
@@ -57,8 +57,13 @@ export const addToCart =async(req,res)=>{
 
 export const getCart=async(req,res)=>{
     try {
-        const cart=await Cart.findById(req.user._id).populate('products.productId');
-
+        // console.log("working")
+        const cart=await Cart.findOne({userId:req.user._id})
+        .populate({
+            path: 'products.productId',
+            select: 'name description image price', 
+        });
+            // console.log(cart);
         Response(res,200,true,message.cartFetchedMessage,cart);
     } catch (error) {
         Response(res,500,false,error.message);
@@ -105,9 +110,46 @@ export const clearCart=async(req,res)=>{
     }
 }
 
-//yet to complete
+
 export const updateCart=async(req,res)=>{
     try {
+        const {id,quantity}=req.body;
+        if(!id ||!quantity){
+            return Response(res,400,false,message.idNotFoundMessage);
+        }
+
+        let cart=await Cart.findOne({userId:req.user._id})
+        
+        
+        if (!cart) {
+            return Response(res, 404, false, "Cart not found.");
+        }
+
+        // Find the product in the cart
+        const productIndex = cart.products.findIndex(
+            (item) => item.productId.toString() === id.toString()
+        );
+
+        if (productIndex === -1) {
+            return Response(res, 404, false, "Product not found in the cart.");
+        }
+        if (quantity < 1) {
+            return Response(res,400,false,"Min quantity")
+        } else {
+            
+            cart.products[productIndex].quantity = quantity;
+        }
+
+        // Save the updated cart
+        await cart.save();
+        cart=await Cart.findOne({userId:req.user._id})
+        .populate({
+            path: 'products.productId',
+            select: 'name description image price', 
+        });
+
+        Response(res, 200, true, "Cart updated successfully.", cart);
+
         
     } catch (error) {
         Response(res,500,false,error.message);

@@ -24,6 +24,7 @@ import ProductPage from "../../pages/Product/User/ProductPage.jsx";
 import OrderList from "../../pages/Orders/OrderList.jsx";
 import OrderDetails from "../../pages/Orders/OrderDetails.jsx";
 import AddressPage from "../../pages/Address/AddressPage.jsx";
+import CartPage from "../../pages/Cart/Cart.jsx";
 
 const Path = () => {
 	const dispatch = useDispatch();
@@ -146,9 +147,10 @@ const Path = () => {
 							}
 						/>
 
-						<Route path="/shop" element={<ProductList />} />
-						<Route path="/product/:id" element={<ProductPage />} />
-						<Route path="/yourAddress" element={<AddressPage />} />
+						<Route path="/shop" element={<ProtectedRoute><ProductList /></ProtectedRoute>} />
+						<Route path="/product/:id" element={<ProtectedRoute><ProductPage /></ProtectedRoute>} />
+						<Route path="/yourAddress" element={<ProtectedRoute><AddressPage /></ProtectedRoute>} />
+						<Route path="/cart" element={<ProtectedRoute><CartPage/></ProtectedRoute>}/>
 					</Routes>
 				)}
 			</Router>
