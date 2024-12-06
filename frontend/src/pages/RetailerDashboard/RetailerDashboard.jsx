@@ -37,14 +37,15 @@ function RetailerDashboard() {
 
 	// Mocked product data
 
-	useEffect(() => {
+	useEffect(()=>{
 		dispatch(getAllProducts());
-	}, []);
+	},[products])
 
 	// Handle logout
 	const handleLogout = () => {
 		dispatch(logoutRetailer());
 	};
+
 	useEffect(() => {
 		if (message) {
 			console.log(message);
@@ -52,6 +53,8 @@ function RetailerDashboard() {
 			dispatch({
 				type: "CLEAR_MESSAGE",
 			});
+			
+			console.log(products);
 			if (message == "Logout successful") {
 				dispatch(loadRetailer());
 			}
@@ -61,7 +64,7 @@ function RetailerDashboard() {
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
-	}, [dispatch, message, error]);
+	}, [ message, error,products]);
 
 	return (
 		<div className="retailer-dashboard-app">
@@ -115,7 +118,7 @@ function RetailerDashboard() {
 					{products?.length === 0 ? (
 						<p>No products available.</p>
 					) : (
-						products?.map((product) => (
+						products &&products?.map((product) => (
 							<div className="retailer-dashboard-product" key={product.id}>
 								<img
 									src={product.image || "/placeholder.jpg"}

@@ -59,8 +59,8 @@ function AddProduct() {
 	useEffect(() => {
 		if (message) {
 			toast.success(message, toastOptions);
-			navigate("/retailerDashboard")
 			dispatch({ type: "CLEAR_MESSAGE" });
+			navigate("/retailerDashboard")
 			
 		}
 		if (error) {
@@ -191,14 +191,8 @@ function AddProduct() {
 					/>
 				</div>
 
-				<button type="submit" className="submit-button" disabled={loading}>
-					{loading ? (
-						<>
-							<span className="spinner"></span>
-						</>
-					) : (
-						"Add Product"
-					)}
+				<button type="submit" className="submit-button">
+					Add Product
 				</button>
 			</form>
 		</div>
