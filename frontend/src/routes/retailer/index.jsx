@@ -46,7 +46,7 @@ const RetailerPath = () => {
 							}
 						/>
 						<Route
-							path="/updateProduct"
+							path="/updateProduct/:id"
 							element={
 								<ProtectedRoute>
 									<UpdateProduct />

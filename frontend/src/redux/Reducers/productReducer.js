@@ -96,6 +96,7 @@ export const productReducer=createReducer(initialState,(builder)=>{
     })
     .addCase(deleteProductSuccess,(state,action)=>{
         state.loading=false;
+        state.message=action.payload.message
         state.product=null;
     })
     .addCase(deleteProductFailure,(state,action)=>{

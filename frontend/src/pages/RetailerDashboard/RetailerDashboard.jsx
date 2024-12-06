@@ -1,5 +1,5 @@
 import "../../styles/RetailerDashboard.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	getRetailerProducts,
@@ -9,16 +9,17 @@ import {
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import toastOptions from "../../constants/toast";
-import { getAllProducts } from "../../redux/Actions/productAction";
+import {  removeProduct } from "../../redux/Actions/productAction";
 
 function RetailerDashboard() {
 	// Mocked user data
 
 	const dispatch = useDispatch();
+	const navigate=useNavigate();
 	const { Retailer, message, error,products } = useSelector(
 		(state) => state.retailerAuth
 	);
-	// const {  } = useSelector((state) => state.productAuth);
+	const { message:productmsg } = useSelector((state) => state.productAuth);
 
 	const userInfo = {
 		name: "Khushi Agarwal",
@@ -47,23 +48,37 @@ function RetailerDashboard() {
 		dispatch(logoutRetailer());
 	};
 
+	useEffect(()=>{
+		if(productmsg){
+			toast.success(productmsg,toastOptions);
+		}
+		dispatch({
+			type: "CLEAR_MESSAGE",
+		});
+		dispatch(getRetailerProducts());
+	},[productmsg])
+
+	
+
 	useEffect(() => {
-		
 		if (message) {
-			console.log(message);
+			// console.log(message);
+			
 			if(message=="Products fetched successfully"){
 				 return;
+			}
+			if (message == "Logout successful") {
+				dispatch(loadRetailer());
+				
 			}
 			toast.success(message, toastOptions);
 			dispatch({
 				type: "CLEAR_MESSAGE",
 			});
+
 			
+			// console.log(products);
 			
-			console.log(products);
-			if (message == "Logout successful") {
-				dispatch(loadRetailer());
-			}
 		}
 		if (error) {
 			console.log(error);
@@ -134,14 +149,17 @@ function RetailerDashboard() {
 								<p>₹{product.price.toFixed(2)}</p>
 								<div className="retailer-dashboard-product-buttons">
 									<div>
-										<Link to={"/updateProduct"}>
-											<button className="update-product-btn">
+										<Link to={`/updateProduct/${product?._id}`}>
+											<button className="update-product-btn" >
 												Update Product
 											</button>
 										</Link>
 									</div>
 									<div>
-										<button className="delete-product-btn">
+										<button className="delete-product-btn" onClick={()=>{
+											dispatch(removeProduct(product?._id))
+											
+										} }>
 											Delete Product
 										</button>
 									</div>

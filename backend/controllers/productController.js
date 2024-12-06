@@ -71,9 +71,9 @@ export const getAllProducts = async (req, res) => {
 			return Response(res, 400, false, message.retailerNotFoundMessage);
 		}
 		const products = await Product.find({ retailerId: req.retailer._id });
-		if (product.retailerId.toString() !== req.user._id.toString()) {
-			return Response(res, 403, false, message.invalidRetailerMessage);
-		}
+		// if (products.retailerId.toString() !== req.user._id.toString()) {
+		// 	return Response(res, 403, false, message.invalidRetailerMessage);
+		// }
 		Response(res, 201, true, message.productsFoundMessage, products);
 	} catch (error) {
 		Response(res, 500, false, error.message);
@@ -116,15 +116,20 @@ export const removeProduct = async (req, res) => {
 	try {
 		const { id } = req.params;
 		if (!id) {
-			return Response(res, 400, message.idNotFoundMessage);
+			return Response(res, 401, message.idNotFoundMessage);
 		}
 		let product = await Product.findById(id);
 		if (!product) {
 			return Response(res, 400, false, message.productNotFoundMessage);
 		}
+		if (product.image) {
+			const publicId = product?.image?.public_id?.split('/')[1]; 
+			await cloudinary.v2.uploader.destroy(publicId) 
+		}
 		await Review.deleteMany({ product_id: id });
 		await Product.findByIdAndDelete(id);
-		Response(res, 200, message.productRemovedMessage);
+
+		Response(res, 200,true, message.productRemovedMessage);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}

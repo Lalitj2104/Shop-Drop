@@ -679,7 +679,7 @@ export const getRetailerProducts = async (req, res) => {
 		//parsing data
 		const {id} = req.retailer;
 		//checking the id
-		console.log("working");
+		// console.log("working");
 
 		let retailer = await Retailer.findById(id);
 		if (!retailer) {
@@ -689,7 +689,7 @@ export const getRetailerProducts = async (req, res) => {
 		if (!products) {
 			return Response(res, 400, false, message.noProductMessage);
 		}
-		console.log(products);
+		// console.log(products);
 		Response(res, 200, true, message.productFetchedMessage, products);
 	} catch (error) {
 		Response(res, 500, false, error.message);

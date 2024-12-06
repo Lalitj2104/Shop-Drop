@@ -1,9 +1,16 @@
-import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../../../styles/UpdateProduct.css";
+import { updateProduct } from "../../../redux/Actions/productAction";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import toastOptions from "../../../constants/toast";
 
 const UpdateProduct = () => {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const {loading,message,error}=useSelector(state=>state.productAuth);
+	const {id}=useParams();
+	const navigate=useNavigate();
 
 	const [productData, setProductData] = useState({
 		image: null,
@@ -36,10 +43,23 @@ const UpdateProduct = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("Product data submitted: ", productData);
+		dispatch(updateProduct(id,productData));
+		
 	};
+	useEffect(()=>{
+		if(message){
+			toast.success(message,toastOptions);
+			dispatch({type:"CLEAR_MESSAGE"})
+			navigate("/retailerDashboard")
+		}
+		if(error){
+			toast.error(error,toastOptions);
+			dispatch({type:"CLEAR_ERROR"})
+		}
+	},[message,error]);
 	return (
 		<div className="update-product-page">
-			<h2>Add New Product</h2>
+			<h2>Update Product</h2>
 			<form onSubmit={handleSubmit} encType="multipart/form-data">
 				<div className="form-group">
 					<label htmlFor="productImage">Product Image</label>
@@ -150,8 +170,8 @@ const UpdateProduct = () => {
 					/>
 				</div>
 
-				<button type="submit" className="submit-button">
-					Add Product
+				<button type="submit" className="submit-button" disabled={loading}>
+				{loading ? <span className="spinner"></span> : "Update Product"}
 				</button>
 			</form>
 		</div>

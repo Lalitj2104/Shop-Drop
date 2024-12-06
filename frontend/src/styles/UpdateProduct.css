@@ -94,6 +94,16 @@
 	letter-spacing: 1px;
 }
 
+/* Spinner style for loading state */
+ .spinner {
+	border: 3px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 3px solid #fff;
+	width: 20px;
+	height: 20px;
+	animation: spin 1s linear infinite;
+}
+
 .update-product-page .submit-button:hover {
 	background-color: #008cba; /* Darker blue on hover */
 	transform: translateY(-2px);
