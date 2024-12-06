@@ -47,7 +47,9 @@ const userSchema = new mongoose.Schema(
 			{
 				_id: { type: mongoose.Schema.Types.ObjectId },
 				label: { type: String },
+				house:{type: String, required: true},
 				street: { type: String, required: true },
+				area:{ type: String, required: true },
 				city: { type: String, required: true },
 				state: { type: String, required: true },
 				postalCode: { type: String, required: true },

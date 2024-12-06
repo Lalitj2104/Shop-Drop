@@ -29,8 +29,9 @@ const Header = () => {
 	// useEffect(()=>{
 		if (user || id) {
 			name = user?.firstName || id?.firstName;
-			address = user?.address.isdefault == true || id?.address.isdefault == true;
+			address = user?.address
 		}
+		console.log(address);
 	// },[user,id])
 	
 	useEffect(() => {
@@ -74,7 +75,7 @@ const Header = () => {
 						<p>
 							Welcome <strong>{name}</strong>
 							<br />
-							<span>{address || "Set your delivery location"}</span>{" "}
+							<span>{address[0]?.city || "Set your delivery location"}</span>{" "}
 							<span>
 								<Link to="/AddAddress">
 									<IoMdAdd />

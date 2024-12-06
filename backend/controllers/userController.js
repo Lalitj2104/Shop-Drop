@@ -538,7 +538,9 @@ export const addAddress = async (req, res) => {
 			return Response(res, 401, false, message.missingFieldMessage);
 		}
 		if (
+			!address.house||
 			!address.street ||
+			!address.area||
 			!address.city ||
 			!address.state ||
 			!address.postalCode ||
@@ -556,7 +558,7 @@ export const addAddress = async (req, res) => {
 			...address,
 			_id: new mongoose.Types.ObjectId(), // Generate a unique ObjectId for the address
 		};
-		if(user.address==0){
+		if(user.address.length==0){
 			newAddress.isDefault=true
 		}
 		user.address.push(newAddress);

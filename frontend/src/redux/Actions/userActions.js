@@ -248,7 +248,7 @@ export const addUserAddress = (address) => async (dispatch) => {
 			type: "ADD_USER_ADDRESS_REQUEST",
 		});
 		const { data } = await axios.post(
-			`${URL}/add/address`,
+			`${URL}/address/add`,
 			{ address },
 			{
 				headers: {

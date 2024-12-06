@@ -11,7 +11,9 @@ const AddAddress = () => {
 	const navigate = useNavigate();
 	const [address, setAddress] = useState({
 		label: "",
+		house:"",
 		street: "",
+		area:"",
 		city: "",
 		state: "",
 		postalCode: "",
