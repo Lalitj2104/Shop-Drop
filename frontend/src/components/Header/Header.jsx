@@ -77,7 +77,7 @@ const Header = () => {
 						<p>
 							Welcome <strong>{name}</strong>
 							<br />
-							<span>{address[0]?.city || "Set your delivery location"}</span>{" "}
+							<span>{address&&address[0]?.city || "Set your delivery location"}</span>{" "}
 							<span>
 								<Link to="/AddAddress">
 									<IoMdAdd />

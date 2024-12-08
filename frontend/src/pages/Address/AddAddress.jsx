@@ -34,7 +34,7 @@ const AddAddress = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(addUserAddress(address));
-		navigate("/");
+		navigate("/yourAddress");
 	};
 
 	useEffect(() => {
@@ -84,7 +84,7 @@ const AddAddress = () => {
 											name="street"
 											value={address.street}
 											onChange={handleChange}
-											required
+											
 										/>
 										<i>Street</i>
 									</div>

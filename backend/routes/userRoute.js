@@ -37,8 +37,8 @@ userRouter.delete("/delete/me", deleteUser);
 
 userRouter.post("/address/add", isAuthenticated, addAddress);
 userRouter.get("/address/my", isAuthenticated, getAllAddress);
-userRouter.put("/address/default", isAuthenticated, setDefaultAddress);
-userRouter.delete("/address/remove", isAuthenticated, removeAddress);
+userRouter.put("/address/default/:addressId", isAuthenticated, setDefaultAddress);
+userRouter.delete("/address/remove/:addressId", isAuthenticated, removeAddress);
 
 
 

@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import AddressCard from "./AddressCard"; // Import your AddressCard component
 import "../../styles/AddressPage.css";
 import staticAddresses from "../../data/staticAddresses"; // Static data
+import {  removeUserAddress, setUserDefaultAddress } from "../../redux/Actions/userActions";
+import { toast } from "react-toastify";
+import toastOptions from "../../constants/toast";
 
 const AddressPage = () => {
   const [addresses, setAddresses] = useState(staticAddresses); // Static address data for now
 
+	const dispatch= useDispatch();
+	const {user,message}=useSelector(state=>state.userAuth);
+
+	useEffect(()=>{
+		if(message){
+			toast.success(message,toastOptions);
+			dispatch("CLEAR_MESSAGE");
+		}
+	},[message])
+
   const handleEditAddress = (id) => {
-    console.log(`Edit Address ID: ${id}`);
-    // Logic to edit address
-  };
+    dispatch(setUserDefaultAddress(id))	
+  }
 
   const handleRemoveAddress = (id) => {
-    console.log(`Remove Address ID: ${id}`);
-    // Logic to remove address
-    setAddresses(addresses.filter(address => address.id !== id));
+    dispatch(removeUserAddress(id));
   };
 
   return (
@@ -28,13 +39,15 @@ const AddressPage = () => {
 
 			<div className="address-container">
 				<div className="address-grid">
-					{addresses.length === 0 ? (
+					{user?.address?.length === 0 ? (
 						<p>No addresses added. Add one below.</p>
 					) : (
-						addresses.map((address) => (
+						user?.address.map((address) => (
 							<AddressCard
-								key={address.id}
+								key={address?._id}
 								address={address}
+								firstName={user?.firstName }
+								lastName={user?.lastName}
 								onEdit={handleEditAddress}
 								onRemove={handleRemoveAddress}
 							/>

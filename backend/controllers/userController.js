@@ -20,8 +20,9 @@ export const myProfile = async (req, res) => {
         if(!req.user) {
             return Response(res, 404, false, message.userNotFoundMessage);
         }
+		const user=await User.findById(req.user._id);
 
-        Response(res, 200, true, message.userProfileFoundMessage, req.user);
+        Response(res, 200, true, message.userProfileFoundMessage, user);
         
     } catch (error) {
         Response(res, 500, false, error.message);
@@ -539,7 +540,6 @@ export const addAddress = async (req, res) => {
 		}
 		if (
 			!address.house||
-			!address.street ||
 			!address.area||
 			!address.city ||
 			!address.state ||
@@ -593,7 +593,7 @@ export const setDefaultAddress = async (req, res) => {
 		if (!req.user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
-		const { addressId } = req.body;
+		const { addressId } = req.params;
 		if (!addressId) {
 			return Response(res, 400, false, message.missingFieldMessage);
 		}
@@ -622,7 +622,7 @@ export const removeAddress = async (req, res) => {
 		if (!req.user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
-		const userId = req.user.id;
+		const userId = req.user._id;
 		const { addressId } = req.params;
 
 		const user = await User.findById(userId);
