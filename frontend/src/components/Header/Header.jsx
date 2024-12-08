@@ -31,7 +31,6 @@ const Header = () => {
 			name = user?.firstName || id?.firstName;
 			address = user?.address
 		}
-		console.log(address);
 	// },[user,id])
 	
 	useEffect(() => {

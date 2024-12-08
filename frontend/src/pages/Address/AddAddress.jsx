@@ -33,8 +33,8 @@ const AddAddress = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(address);
 		dispatch(addUserAddress(address));
+		navigate("/");
 	};
 
 	useEffect(() => {

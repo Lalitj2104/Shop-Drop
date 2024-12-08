@@ -118,7 +118,12 @@ const CartPage = () => {
 								<h3>Shipping Address</h3>
 								{defaultAddress ? (
 									<div className="address-details">
-										<p>{defaultAddress?.address}</p>
+										<p>
+											{defaultAddress?.house}, {defaultAddress.street},{" "}
+											{defaultAddress?.city}, {defaultAddress?.state},{" "}
+											{defaultAddress?.country}
+										</p>
+										<p>{defaultAddress?.postalCode}</p>
 									</div>
 								) : (
 									<p>No address found. Please update your address.</p>
