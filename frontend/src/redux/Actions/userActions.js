@@ -269,7 +269,6 @@ export const addUserAddress = (address) => async (dispatch) => {
 	}
 };
 
-
 // export const getUserProfile = () => async (dispatch) => {
 //   try {
 //   } catch (error) {}
@@ -280,10 +279,29 @@ export const addUserAddress = (address) => async (dispatch) => {
 //   } catch (error) {}
 // };
 
-// export const getUserAddress = () => async (dispatch) => {
-//   try {
-//   } catch (error) {}
-// };
+export const getUserAddress = () => async (dispatch) => {
+	try {
+		dispatch({
+			type: "GET_ALL_ADDRESS_REQUEST",
+		});
+
+		const { data } = await axios.get(`${URL}/address/my`);
+		console.log(data);
+
+		dispatch({
+			type: "GET_ALL_ADDRESS_SUCCESS",
+			payload: {
+				message: data.message,
+				data: data.data,
+			},
+		});
+	} catch (error) {
+		dispatch({
+			type: "GET_ALL_ADDRESS_FAILURE",
+			payload: error?.response?.data?.message,
+		});
+	}
+};
 
 // export const setUserDefaultAddress = () => async (dispatch) => {
 //   try {
@@ -294,4 +312,3 @@ export const addUserAddress = (address) => async (dispatch) => {
 //   try {
 //   } catch (error) {}
 // };
-

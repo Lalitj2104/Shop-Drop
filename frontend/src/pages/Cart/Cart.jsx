@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import "../../styles/Cart.css";
 import { getCart, updateCart, clearCart } from "../../redux/Actions/cartAction";
 import Header from "../../components/Header/Header";
+import { getUserAddress } from "../../redux/Actions/userActions";
 
 const CartPage = () => {
 	const dispatch = useDispatch();
-	const { loading, message, error, cart, user } = useSelector(
+	const { loading, message, error, cart } = useSelector(
 		(state) => state.cartAuth
 	);
+	const { address } = useSelector((state) => state.userAuth); // Access the user's address from Redux
 
 	const handleQuantityChange = (id, qty) => {
 		if (qty > 0) {
@@ -27,7 +29,8 @@ const CartPage = () => {
 
 	useEffect(() => {
 		dispatch(getCart());
-	}, []);
+		dispatch(getUserAddress()); // Fetch user addresses when component mounts
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (message) {
@@ -40,6 +43,11 @@ const CartPage = () => {
 
 	const calculateTotal = () =>
 		cart?.products?.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+	// Find the default address from the user's addresses
+	const defaultAddress = address?.find((addr) => addr.isDefault);
+	console.log("Address Array:", address); // Log the full address array
+	console.log("Default Address:", defaultAddress); // Log the found default address
 
 	return (
 		<>
@@ -108,9 +116,9 @@ const CartPage = () => {
 							{/* Default Address Section */}
 							<div className="address-section">
 								<h3>Shipping Address</h3>
-								{user?.address ? (
+								{defaultAddress ? (
 									<div className="address-details">
-										<p>{user.address}</p>
+										<p>{defaultAddress?.address}</p>
 									</div>
 								) : (
 									<p>No address found. Please update your address.</p>
