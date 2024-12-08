@@ -2,11 +2,14 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../styles/Cart.css";
-import { getCart, updateCart } from "../../redux/Actions/cartAction";
+import { getCart, updateCart, clearCart } from "../../redux/Actions/cartAction";
+import Header from "../../components/Header/Header";
 
 const CartPage = () => {
 	const dispatch = useDispatch();
-	const {loading,message,error,cart} = useSelector((state) => state.cartAuth);
+	const { loading, message, error, cart, user } = useSelector(
+		(state) => state.cartAuth
+	);
 
 	const handleQuantityChange = (id, qty) => {
 		if (qty > 0) {
@@ -17,73 +20,131 @@ const CartPage = () => {
 	const handleRemove = (id) => {
 		// dispatch(removeFromCart(id));
 	};
-	useEffect(()=>{
-		dispatch(getCart());
-	},[])
+
+	const handleClearCart = () => {
+		dispatch(clearCart()); // Dispatch action to clear the cart
+	};
+
 	useEffect(() => {
-		
-		if(message){
-			
-			dispatch({type:"CLEAR_MESSAGE"})
+		dispatch(getCart());
+	}, []);
+
+	useEffect(() => {
+		if (message) {
+			dispatch({ type: "CLEAR_MESSAGE" });
 		}
-		if(error){
-			dispatch({type:"CLEAR_ERROR"})
+		if (error) {
+			dispatch({ type: "CLEAR_ERROR" });
 		}
-	}, [message,error]);
+	}, [message, error]);
 
 	const calculateTotal = () =>
 		cart?.products?.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
 	return (
-		<div className="cart-page">
-			<h1>Shopping Cart</h1>
-			{cart?.products?.length === 0 ? (
-				<div className="cart-page-empty">
-					<p>Your cart is empty.</p>
-					<Link to="/">Go Shopping</Link>
-				</div>
-			) : (
-				<div className="cart-container">
-					<div className="cart-items">
-						{cart && cart.products .map((item) => (
-
-							<div className="cart-item" key={item?.productId?._id}>
-								<img src={item?.productId?.image?.url} alt={item?.name} />
-								<div>
-									<h2>{item?.productId?.description}</h2>
-									<p>${item?.price}</p>
-									<div>
-										<button
-											onClick={() =>
-												handleQuantityChange(item?.productId?._id, item?.quantity - 1)
-											}
-										>
-											-
-										</button>
-										<span>{item?.quantity}</span>
-										<button
-											onClick={() =>
-												handleQuantityChange(item?.productId?._id, item?.quantity + 1)
-											}
-										>
-											+
-										</button>
-									</div>
-									<button onClick={() => handleRemove(item?.productId?._id)}>Remove</button>
-								</div>
-							</div>
-						))}
+		<>
+			<Header />
+			<div className="cart-page">
+				<h1>Your Shopping Cart</h1>
+				{cart?.products?.length === 0 ? (
+					<div className="cart-empty">
+						<p>Your cart is currently empty.</p>
+						<Link to="/" className="continue-shopping">
+							Continue Shopping
+						</Link>
 					</div>
-					<div className="cart-summary">
-						<h2>Cart Summary</h2>
-						<p>Subtotal: ${calculateTotal()}</p>
-						<button>
-							<Link to="/checkout">Proceed to Checkout</Link>
+				) : (
+					<div className="cart-container">
+						<div className="cart-items">
+							{cart &&
+								cart.products.map((item) => (
+									<div className="cart-item" key={item?.productId?._id}>
+										<img
+											src={item?.productId?.image?.url}
+											alt={item?.name}
+											className="cart-item-image"
+										/>
+										<div className="cart-item-details">
+											<h2 className="item-title">
+												{item?.productId?.description}
+											</h2>
+											<p className="item-price">${item?.price}</p>
+											<div className="quantity-control">
+												<button
+													className="quantity-btn"
+													onClick={() =>
+														handleQuantityChange(
+															item?.productId?._id,
+															item?.quantity - 1
+														)
+													}
+												>
+													-
+												</button>
+												<span className="quantity">{item?.quantity}</span>
+												<button
+													className="quantity-btn"
+													onClick={() =>
+														handleQuantityChange(
+															item?.productId?._id,
+															item?.quantity + 1
+														)
+													}
+												>
+													+
+												</button>
+											</div>
+											<button
+												className="remove-btn"
+												onClick={() => handleRemove(item?.productId?._id)}
+											>
+												Remove
+											</button>
+										</div>
+									</div>
+								))}
+						</div>
+						<div className="cart-summary">
+							{/* Default Address Section */}
+							<div className="address-section">
+								<h3>Shipping Address</h3>
+								{user?.address ? (
+									<div className="address-details">
+										<p>{user.address}</p>
+									</div>
+								) : (
+									<p>No address found. Please update your address.</p>
+								)}
+							</div>
+
+							<h2>Order Summary</h2>
+							<div className="summary-details">
+								<p>Subtotal: </p>
+								<p>${calculateTotal()}</p>
+							</div>
+
+							{/* Payment buttons */}
+							<div className="payment-methods">
+								<Link to="/pay-online" className="pay-online-btn">
+									Pay Online
+								</Link>
+								<Link to="/cod" className="cod-btn">
+									Cash on Delivery
+								</Link>
+							</div>
+						</div>
+					</div>
+				)}
+				{/* Add the Clear Cart button */}
+				{cart?.products?.length > 0 && (
+					<div className="clear-cart-container">
+						<button className="clear-cart-btn" onClick={handleClearCart}>
+							Clear Cart
 						</button>
 					</div>
-				</div>
-			)}
-		</div>
+				)}
+			</div>
+		</>
 	);
 };
 

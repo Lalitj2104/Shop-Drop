@@ -1,75 +1,231 @@
+/* Main container */
 .cart-page {
+  width: 80%;
+  margin: 0 auto;
   padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-page h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .cart-page .cart-container {
   display: flex;
+  gap: 20px;
   justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
 }
 
+/* Cart items section */
 .cart-page .cart-items {
   flex: 2;
 }
 
 .cart-page .cart-item {
   display: flex;
-  margin-bottom: 20px;
+  gap: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
 }
 
 .cart-page .cart-item img {
-  width: 100px;
-  margin-right: 20px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.cart-page .cart-item h2 {
-  font-size: 18px;
-  margin: 0;
+.cart-page .cart-item .cart-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.cart-page .cart-item p {
-  margin: 5px 0;
+.cart-page .cart-item .item-title {
+  font-size: 1.2rem;
+  color: #444;
 }
 
-.cart-page .cart-item div {
+.cart-page .cart-item .item-price {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* Quantity controls */
+.cart-page .cart-item .quantity-control {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.cart-page .cart-item button {
-  padding: 5px 10px;
+.cart-page .cart-item .quantity-btn {
+  width: 40px; /* Compact size for quantity buttons */
+  height: 40px;
+  text-align: center;
+  background-color: #ddd;
   border: none;
-  background-color: #f00;
-  color: #fff;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.cart-page .cart-item .quantity-btn:hover {
+  background-color: #ccc;
+}
+
+.cart-page .cart-item .quantity {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.cart-page .cart-item .remove-btn {
+  width: 120px; /* Larger width for remove button */
+  padding: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cart-page .cart-item .remove-btn:hover {
+  background-color: #ff0000;
+}
+
+/* Cart summary section */
 .cart-page .cart-summary {
   flex: 1;
-  border: 1px solid #ddd;
   padding: 20px;
-  background: #f9f9f9;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .cart-page .cart-summary h2 {
-  font-size: 20px;
-  margin-bottom: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 
-.cart-page .cart-summary p {
-  margin-bottom: 15px;
-  font-size: 16px;
+.cart-page .cart-summary .summary-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
 }
 
-.cart-page .cart-summary button {
-  padding: 10px 20px;
+.cart-page .cart-summary .checkout-btn {
+  display: block;
+  text-align: center;
+  padding: 10px 15px;
   background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-.cart-page .cart-summary button a {
-  color: #fff;
+.cart-page .cart-summary .checkout-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Empty cart state */
+.cart-page .cart-empty {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.cart-page .cart-empty p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.cart-page .cart-empty .continue-shopping {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
   text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.cart-page .cart-empty .continue-shopping:hover {
+  background-color: #0056b3;
+}
+
+/* Clear cart button */
+.cart-page .clear-cart-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.cart-page .clear-cart-btn {
+  padding: 10px 20px;
+  width: 150px; /* Consistent width for clear cart button */
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cart-page .clear-cart-btn:hover {
+  background-color: #ff0000;
+}
+
+/* Address section */
+.cart-page .address-section {
+  margin-top: 20px;
+}
+
+.cart-page .address-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.cart-page .address-section .address-details {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Payment buttons */
+.cart-page .payment-methods {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cart-page .payment-methods .pay-online-btn,
+.cart-page .payment-methods .cod-btn {
+  padding: 10px 20px;
+  width: 150px;
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.cart-page .payment-methods .pay-online-btn:hover,
+.cart-page .payment-methods .cod-btn:hover {
+  background-color: #0056b3;
 }
