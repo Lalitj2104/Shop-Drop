@@ -36,6 +36,10 @@ const CartPage = () => {
     useEffect(() => {
         if (message) {
             console.log(message);
+			if(message=="Address retrieved successfully"){
+				dispatch({ type: "CLEAR_MESSAGE" });
+				return;
+			}
             dispatch({ type: "CLEAR_MESSAGE" });
         }
         if (error) {

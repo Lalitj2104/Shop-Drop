@@ -36,6 +36,9 @@ const Header = () => {
 	useEffect(() => {
 		if (message) {
 			// console.log(message);
+			if(message=="Address retrieved successfully"){
+				return;
+			}
 			toast.success(message, toastOptions);
 			dispatch({
 				type: "CLEAR_MESSAGE",
