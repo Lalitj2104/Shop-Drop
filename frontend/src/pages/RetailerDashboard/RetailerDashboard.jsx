@@ -9,114 +9,81 @@ import {
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import toastOptions from "../../constants/toast";
-import {  removeProduct } from "../../redux/Actions/productAction";
+import { removeProduct } from "../../redux/Actions/productAction";
 
 function RetailerDashboard() {
-	// Mocked user data
-
 	const dispatch = useDispatch();
-	const navigate=useNavigate();
-	const { Retailer, message, error,products } = useSelector(
+	const navigate = useNavigate();
+	const { Retailer, message, error, products } = useSelector(
 		(state) => state.retailerAuth
 	);
-	const { message:productmsg } = useSelector((state) => state.productAuth);
+	const { message: productmsg } = useSelector((state) => state.productAuth);
 
-	const userInfo = {
-		name: "Khushi Agarwal",
-		location: "Warsaw, Poland",
-		wishes: 12,
-		messages: 3,
-		completedOrders: 55,
-		categories: [
-			"T-Shirts & Tops",
-			"Activewear",
-			"Sweaters",
-			"Skirts & Shorts",
-			"Outwear & Blazers",
-			"Accessories & Shoes",
-		],
-	};
-
-	// Mocked product data
-
-	useEffect(()=>{
+	useEffect(() => {
 		dispatch(getRetailerProducts());
-	},[])
+	}, []);
 
 	// Handle logout
 	const handleLogout = () => {
 		dispatch(logoutRetailer());
 	};
 
-	useEffect(()=>{
-		if(productmsg){
-			toast.success(productmsg,toastOptions);
+	useEffect(() => {
+		if (productmsg) {
+			toast.success(productmsg, toastOptions);
 		}
 		dispatch({
 			type: "CLEAR_MESSAGE",
 		});
 		dispatch(getRetailerProducts());
-	},[productmsg])
-
-	
+	}, [productmsg]);
 
 	useEffect(() => {
 		if (message) {
-			// console.log(message);
-			
-			if(message=="Products fetched successfully"){
-				 return;
+			if (message == "Products fetched successfully") {
+				return;
 			}
 			if (message == "Logout successful") {
 				dispatch(loadRetailer());
-				
 			}
 			toast.success(message, toastOptions);
 			dispatch({
 				type: "CLEAR_MESSAGE",
 			});
-
-			
-			// console.log(products);
-			
 		}
 		if (error) {
 			console.log(error);
 			toast.error(error, toastOptions);
 			dispatch({ type: "CLEAR_ERROR" });
 		}
-	}, [ message,error,products]);
+	}, [message, error, products]);
 
 	return (
 		<div className="retailer-dashboard-app">
 			{/* Sidebar */}
 			<div className="retailer-dashboard-sidebar">
 				<div className="retailer-dashboard-profile">
-					<h3>{Retailer?.firstName} {Retailer?.middleName} {Retailer?.lastName}</h3>
+					<h3>Welcome,</h3>
+					<h3>
+						{Retailer?.firstName} {Retailer?.middleName} {Retailer?.lastName}
+					</h3>
 					<p>{Retailer?.location}</p>
 				</div>
 				<ul className="retailer-dashboard-menu">
 					<li>
-						My Orders{" "}
-						<span className="retailer-dashboard-badge">{userInfo.wishes}</span>
+						<Link to="/dashboard">Dashboard</Link>
 					</li>
 					<li>
-						My Messages{" "}
-						<span className="retailer-dashboard-badge">
-							+{userInfo.messages}
-						</span>
+						<Link to="/orders">My Orders</Link>
 					</li>
 					<li>
-						Completed Orders{" "}
-						<span className="retailer-dashboard-badge">
-							{userInfo.completedOrders}
-						</span>
+						<Link to="/orders">Pending Orders</Link>
+						
 					</li>
-				</ul>
-				<ul className="retailer-dashboard-categories">
-					{userInfo.categories.map((category, index) => (
-						<li key={index}>{category}</li>
-					))}
+					<li>
+						<Link to={"/orders"}>Complete Orders</Link>
+						
+					</li>
 				</ul>
 				{/* Logout Button */}
 				<button onClick={handleLogout} className="logout-btn">
@@ -139,10 +106,10 @@ function RetailerDashboard() {
 					{products?.length === 0 ? (
 						<p>No products available.</p>
 					) : (
-						products &&products?.map((product) => (
+						products?.map((product) => (
 							<div className="retailer-dashboard-product" key={product.id}>
 								<img
-									src={product?.image ?.url|| "/placeholder.jpg"}
+									src={product?.image?.url || "/placeholder.jpg"}
 									alt={product.name}
 								/>
 								<h3>{product.name}</h3>
@@ -150,16 +117,18 @@ function RetailerDashboard() {
 								<div className="retailer-dashboard-product-buttons">
 									<div>
 										<Link to={`/updateProduct/${product?._id}`}>
-											<button className="update-product-btn" >
+											<button className="update-product-btn">
 												Update Product
 											</button>
 										</Link>
 									</div>
 									<div>
-										<button className="delete-product-btn" onClick={()=>{
-											dispatch(removeProduct(product?._id))
-											
-										} }>
+										<button
+											className="delete-product-btn"
+											onClick={() => {
+												dispatch(removeProduct(product?._id));
+											}}
+										>
 											Delete Product
 										</button>
 									</div>

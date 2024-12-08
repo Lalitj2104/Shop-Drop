@@ -15,6 +15,7 @@ import LoadingPage from "../../components/Loading/LoadingPage";
 import { useEffect } from "react";
 import AddProduct from "../../pages/Product/Retailer/AddProduct";
 import UpdateProduct from "../../pages/Product/Retailer/UpdateProduct";
+import RetailerOrders from "../../pages/RetailerOrders/RetailerOrders";
 
 const RetailerPath = () => {
 	const dispatch = useDispatch();
@@ -108,6 +109,15 @@ const RetailerPath = () => {
 								<AuthRoute>
 									<ForgotRetailerPassword />
 								</AuthRoute>
+							}
+						/>
+
+						<Route
+							path="/orders"
+							element={
+								<ProtectedRoute>
+									<RetailerOrders />
+								</ProtectedRoute>
 							}
 						/>
 					</Routes>

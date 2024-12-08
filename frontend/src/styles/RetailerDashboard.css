@@ -16,60 +16,55 @@
 	gap: 20px;
 }
 
-.retailer-dashboard-app
-	.retailer-dashboard-sidebar
-	.retailer-dashboard-profile {
+/* Sidebar Profile */
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-profile {
 	text-align: center;
 }
 
-.retailer-dashboard-app
-	.retailer-dashboard-sidebar
-	.retailer-dashboard-profile
-	h3 {
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-profile h3 {
 	margin: 10px 0 5px 0;
 	font-size: 18px;
 }
 
-.retailer-dashboard-app
-	.retailer-dashboard-sidebar
-	.retailer-dashboard-profile
-	p {
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-profile p {
 	font-size: 14px;
 	color: #ccc;
 }
 
-.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu,
-.retailer-dashboard-app
-	.retailer-dashboard-sidebar
-	.retailer-dashboard-categories {
+/* Sidebar Menu */
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 }
 
-.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu li,
-.retailer-dashboard-app
-	.retailer-dashboard-sidebar
-	.retailer-dashboard-categories
-	li {
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu li {
 	margin: 10px 0;
-	cursor: pointer;
-	font-size: 14px;
 }
 
-.retailer-dashboard-app
-	.retailer-dashboard-sidebar
-	.retailer-dashboard-menu
-	li
-	.retailer-dashboard-badge {
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu li a {
+	color: white;
+	text-decoration: none;
+	display: block;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 16px;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effect for Links */
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu li a:hover {
+	background-color: #334b88;
+	color: white;
+}
+
+/* Active Link Style */
+.retailer-dashboard-app .retailer-dashboard-sidebar .retailer-dashboard-menu li a.active {
 	background-color: #00bfff;
-	border-radius: 50%;
-	padding: 3px 7px;
-	font-size: 12px;
-	margin-left: 10px;
+	color: white;
 }
 
-/* Logout Button */
+/* Sidebar Logout Button */
 .logout-btn {
 	background-color: #3b5998;
 	color: white;
@@ -97,6 +92,7 @@
 	overflow-y: auto;
 }
 
+/* Top Bar */
 .retailer-dashboard-app .top-bar {
 	display: flex;
 	align-items: center;
@@ -161,26 +157,18 @@
 	margin-bottom: 10px;
 }
 
-.retailer-dashboard-product-grid
-	.retailer-dashboard-product
-	.retailer-dashboard-product-buttons {
+.retailer-dashboard-product-grid .retailer-dashboard-product-buttons {
 	display: flex;
 	justify-content: space-between;
 	gap: 10px;
 	margin-top: 10px;
 }
 
-.retailer-dashboard-product-grid
-	.retailer-dashboard-product
-	.retailer-dashboard-product-buttons
-	div {
+.retailer-dashboard-product-grid .retailer-dashboard-product-buttons div {
 	flex: 1;
 }
 
-.retailer-dashboard-product-grid
-	.retailer-dashboard-product
-	.retailer-dashboard-product-buttons
-	button {
+.retailer-dashboard-product-grid .retailer-dashboard-product-buttons button {
 	width: 100%;
 	padding: 10px;
 	font-size: 14px;
@@ -190,33 +178,21 @@
 	transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.retailer-dashboard-product-grid
-	.retailer-dashboard-product
-	.retailer-dashboard-product-buttons
-	.update-product-btn {
+.retailer-dashboard-product-grid .retailer-dashboard-product-buttons .update-product-btn {
 	background-color: #28a745;
 	color: white;
 }
 
-.retailer-dashboard-product-grid
-	.retailer-dashboard-product
-	.retailer-dashboard-product-buttons
-	.update-product-btn:hover {
+.retailer-dashboard-product-grid .retailer-dashboard-product-buttons .update-product-btn:hover {
 	background-color: #218838;
 }
 
-.retailer-dashboard-product-grid
-	.retailer-dashboard-product
-	.retailer-dashboard-product-buttons
-	.delete-product-btn {
+.retailer-dashboard-product-grid .retailer-dashboard-product-buttons .delete-product-btn {
 	background-color: #dc3545;
 	color: white;
 }
 
-.retailer-dashboard-product-grid
-	.retailer-dashboard-product
-	.retailer-dashboard-product-buttons
-	.delete-product-btn:hover {
+.retailer-dashboard-product-grid .retailer-dashboard-product-buttons .delete-product-btn:hover {
 	background-color: #c82333;
 }
 

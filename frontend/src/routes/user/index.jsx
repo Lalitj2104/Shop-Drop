@@ -147,10 +147,38 @@ const Path = () => {
 							}
 						/>
 
-						<Route path="/shop" element={<ProtectedRoute><ProductList /></ProtectedRoute>} />
-						<Route path="/product/:id" element={<ProtectedRoute><ProductPage /></ProtectedRoute>} />
-						<Route path="/yourAddress" element={<ProtectedRoute><AddressPage /></ProtectedRoute>} />
-						<Route path="/cart" element={<ProtectedRoute><CartPage/></ProtectedRoute>}/>
+						<Route
+							path="/shop"
+							element={
+								<ProtectedRoute>
+									<ProductList />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="/product/:id"
+							element={
+								<ProtectedRoute>
+									<ProductPage />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="/yourAddress"
+							element={
+								<ProtectedRoute>
+									<AddressPage />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="/cart"
+							element={
+								<ProtectedRoute>
+									<CartPage />
+								</ProtectedRoute>
+							}
+						/>
 					</Routes>
 				)}
 			</Router>
