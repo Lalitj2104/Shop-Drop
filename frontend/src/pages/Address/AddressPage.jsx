@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import toastOptions from "../../constants/toast";
 
 const AddressPage = () => {
-  const [addresses, setAddresses] = useState(staticAddresses); // Static address data for now
 
 	const dispatch= useDispatch();
 	const {user,message}=useSelector(state=>state.userAuth);
@@ -17,7 +16,7 @@ const AddressPage = () => {
 	useEffect(()=>{
 		if(message){
 			toast.success(message,toastOptions);
-			dispatch("CLEAR_MESSAGE");
+			dispatch({type:"CLEAR_MESSAGE"});
 		}
 	},[message])
 

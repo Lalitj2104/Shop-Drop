@@ -61,7 +61,7 @@ const Header = () => {
 							Welcome <strong>{name}</strong>
 							<br />
 							<span>
-								{address[0]?.city || "Set your delivery location"}
+								{address&&address[0]?.city || "Set your delivery location"}
 							</span>{" "}
 							<span>
 								<Link to="/AddAddress">

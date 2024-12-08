@@ -3,16 +3,19 @@ import OrderCard from "./OrderCard";
 import staticOrders from "../../data/staticOrders";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrderByUser } from "../../redux/Actions/orderAction";
 
 const OrderList = () => {
-  const [orders, setOrders] = useState([]);
+  
+  const dispatch=useDispatch();
+  const {order}=useSelector(state=>state.orderAuth);
 
   useEffect(() => {
-    // Simulating fetching data from a backend
-    setOrders(staticOrders); // Replace with API call if needed
-  }, []);
-
-  if (orders.length === 0) {
+    dispatch(getOrderByUser());
+  }, [dispatch]);
+  console.log(order)
+  if (order?.length === 0) {
     return <p>Loading orders...</p>;
   }
 
@@ -20,8 +23,9 @@ const OrderList = () => {
     <>
     <Header/>
     <div style={{ padding: "20px" }}>
-      {orders.map((order) => (
-        <OrderCard key={order.orderNo} order={order} />
+      {order &&order?.map((item) => (
+        
+        <OrderCard key={item?._id} order={item} />
       ))}
       </div>
       <Footer/>

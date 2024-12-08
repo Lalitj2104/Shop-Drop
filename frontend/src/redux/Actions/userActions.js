@@ -309,8 +309,13 @@ export const setUserDefaultAddress = (id) => async (dispatch) => {
 			type: "SET_DEFAULT_ADDRESS_REQUEST",
 		});
 	
-		const { data } = await axios.put(`${URL}/address/default/${id}`);
-			console.log(data);
+		const { data } = await axios.put(`${URL}/address/default/${id}`,{
+			headers: {
+					"Content-Type": "application/json",
+				},
+				withCredentials: true,
+		});
+			// console.log(data);
 	
 			dispatch({
 				type: "SET_DEFAULT_ADDRESS_SUCCESS",

@@ -79,6 +79,7 @@ export const cancelOrder = async (req,res) => {
 export const getOrderByUser = async (req,res) => {
   try {
     const orders=await Order.find({userId:req.user._id});
+    // console.log(orders);
 
     Response(res, 200,true, message.ordersFetchedMessage, orders);
   } catch (error) {
