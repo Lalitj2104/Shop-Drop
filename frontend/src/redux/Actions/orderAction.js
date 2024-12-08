@@ -5,12 +5,12 @@ axios.defaults.withCredentials=true;
 
 const URL=BACKEND_URL+"api/v1/order";
 
-export const addOrder=(paymentMethod,shippingAddress)=>async(dispatch)=>{
+export const addOrder=(paymentStatus,paymentMethod,shippingAddress)=>async(dispatch)=>{
     try {
         dispatch({
             type:"ADD_ORDER_REQUEST"
         })
-        const {data} =await axios.post(`${URL}/add`,{paymentMethod,shippingAddress},{
+        const {data} =await axios.post(`${URL}/add`,{paymentStatus,paymentMethod,shippingAddress},{
             headers:{
                 "Content-Type":"application/json"
             }
