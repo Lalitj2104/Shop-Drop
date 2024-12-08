@@ -73,19 +73,25 @@ export const getCart=async(req,res)=>{
 
 export const removeProductFromCart=async(req,res)=>{
     try {
-        const {productId} =req.body
-        const product=await Product.findById(productId);
+        
+        const {id} =req.params;
+        const product=await Product.findById(id);
         if(!product){
             return Response(res,400,false,message.noProductMessage);
 
         }
-
-        const cart=await Cart.findById(req.user._id);
-
+        
+        const cart=await Cart.findOne({userId:req.user._id})
+        .populate({
+            path: 'products.productId',
+            select: 'name description image price', 
+        });
+        console.log(cart);
         if(cart){
-            cart.products=cart.products.filter((item)=>!(item.productId.toString()===productId.toString()))
+            cart.products=cart.products.filter((item)=>!(item?.productId?._id.toString()===id.toString()))
         }
         await cart.save();
+        console.log(cart);
         Response(res,200,true,message.productRemovedMessage,cart)
     } catch (error) {
         Response(res,500,false,error.message);
