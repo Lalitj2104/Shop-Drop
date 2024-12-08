@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/OrderCard.css";
 
 const OrderCard = ({ order }) => {
   if (!order) return null;
-
+  const navigate=useNavigate();
+  const buttonhandler=()=>{
+      navigate(`/order/${order?._id}`);
+  }
   return (
     <div className="order-card">
       <div className="order-header">
@@ -35,9 +38,9 @@ const OrderCard = ({ order }) => {
       </div>
       <div className="order-actions">
         <button className="track-button">Track Order</button>
-        <Link to={`/order/${order?._id}`} className="details-button">
+        <button onClick={buttonhandler} className="details-button">
           Order Details
-        </Link>
+        </button>
       </div>
     </div>
   );

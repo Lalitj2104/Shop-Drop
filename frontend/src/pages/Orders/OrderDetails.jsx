@@ -11,12 +11,12 @@ const OrderDetails = () => {
 	const navigate = useNavigate();
 	// const order = staticOrders.find((o) => o.orderNo === id);
 	const dispatch=useDispatch();
-	const {order}=useSelector(state=>state.orderAuth);
+	const {loading,order}=useSelector(state=>state.orderAuth);
 
 	useEffect(()=>{
 		dispatch(getOrderById(id));
 		console.log(order);
-	},[])
+	},[dispatch])
 
 	const [activeTab, setActiveTab] = useState("details");
 
@@ -47,13 +47,13 @@ const OrderDetails = () => {
 				{activeTab === "details" && (
 					<div className="details-tab">
 						<p>
-							<strong>Ordered On:</strong> {new Date(order?.createdAt).toISOString().split("T")[0]}
+							<strong>Ordered On:</strong> {new Date(order?.createdAt).toISOString().split("T")[0] ||"n/a"}
 						</p>
 						<p>
 							<strong>Delivering To:</strong> {order?.shippingAddress}
 						</p>
 						<p>
-							<strong>Estimated Delivery:</strong> {new Date(order?.createdAt+5).toISOString().split("T")[0]}
+							<strong>Estimated Delivery:</strong> {new Date(order?.createdAt+5).toISOString().split("T")[0] ||"n/a"}
 						</p>
 						<p>
 							<strong>Order Summary:</strong> {order.summary}
