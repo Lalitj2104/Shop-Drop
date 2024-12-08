@@ -2,10 +2,13 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../styles/Cart.css";
-import { getCart, updateCart, clearCart } from "../../redux/Actions/cartAction";
+import { getCart, updateCart, clearCart, removeFromCart } from "../../redux/Actions/cartAction";
 import Header from "../../components/Header/Header";
 import { getUserAddress } from "../../redux/Actions/userActions";
 import { loadStripe } from "@stripe/stripe-js";
+import { addOrder } from "../../redux/Actions/orderAction";
+import { toast } from "react-toastify";
+import toastOptions from "../../constants/toast";
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -21,8 +24,7 @@ const CartPage = () => {
     };
 
     const handleRemove = (id) => {
-        // Future: dispatch(removeProductFromCart(id));
-        // console.log(`Remove product with id: ${id}`);
+        dispatch(removeFromCart(id));
     };
 	const handleClearCart = () => {
 		dispatch(clearCart()); // Dispatch action to clear the cart
@@ -35,6 +37,9 @@ const CartPage = () => {
 
     useEffect(() => {
         if (message) {
+			if(message=="Product Removed Successfully"){
+				toast.success(message,toastOptions);
+			}
             console.log(message);
 			if(message=="Address retrieved successfully"){
 				dispatch({ type: "CLEAR_MESSAGE" });
@@ -85,15 +90,28 @@ const CartPage = () => {
         }
     };
 
-    
+  
 
     const calculateTotal = () =>
         cart?.products?.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+
+
+	const handlecod=()=>{
+		console.log(shippingAddress);
+
+		dispatch(addOrder(pending,cod,shippingAddress));
+	}
 
    // Find the default address from the user's addresses
 	const defaultAddress = address?.find((addr) => addr.isDefault);
 	console.log("Address Array:", address); // Log the full address array
 	console.log("Default Address:", defaultAddress); // Log the found default address
+
+	const shippingAddress=defaultAddress?.house+", "+defaultAddress?.street+", "+defaultAddress?.area+", "+
+		defaultAddress?.city+", " +defaultAddress?.state+", "+
+		defaultAddress?.country+", "+defaultAddress?.pincode
+	
 
 	return (
 		<>
@@ -165,7 +183,7 @@ const CartPage = () => {
 								{defaultAddress ? (
 									<div className="address-details">
 										<p>
-											{defaultAddress?.house}, {defaultAddress.street},{" "}
+											{defaultAddress?.house}, {defaultAddress.street},{" "},{defaultAddress?.area},{" "}
 											{defaultAddress?.city}, {defaultAddress?.state},{" "}
 											{defaultAddress?.country}
 										</p>
@@ -187,7 +205,7 @@ const CartPage = () => {
 								<Link to="/pay-online" className="pay-online-btn" onClick={makePayment}>
 									Pay Online
 								</Link>
-								<Link to="/cod" className="cod-btn">
+								<Link to="/cod" className="cod-btn" onClick={handlecod}>
 									Cash on Delivery
 								</Link>
 							</div>

@@ -73,9 +73,10 @@ export const getCart=async(req,res)=>{
 
 export const removeProductFromCart=async(req,res)=>{
     try {
-        
+
         const {id} =req.params;
         const product=await Product.findById(id);
+        console.log(product);
         if(!product){
             return Response(res,400,false,message.noProductMessage);
 
