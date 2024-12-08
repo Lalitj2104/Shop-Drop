@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/Cart.css";
 import { getCart, updateCart, clearCart, removeFromCart } from "../../redux/Actions/cartAction";
 import Header from "../../components/Header/Header";
@@ -12,10 +12,12 @@ import toastOptions from "../../constants/toast";
 
 const CartPage = () => {
     const dispatch = useDispatch();
+	const navigate=useNavigate();
     const { loading, message, error, cart } = useSelector(
 		(state) => state.cartAuth
 	);
 	const { address } = useSelector((state) => state.userAuth); // Access the user's address from Redux
+	const {message:ordermessage}=useSelector((state)=>state.orderAuth); 
 
     const handleQuantityChange = (id, qty) => {
         if (qty > 0) {
@@ -27,8 +29,9 @@ const CartPage = () => {
         dispatch(removeFromCart(id));
     };
 	const handleClearCart = () => {
-		dispatch(clearCart()); // Dispatch action to clear the cart
+		dispatch(clearCart()); 
 	};
+
 	useEffect(() => {
         dispatch(getCart());
 		dispatch(getUserAddress());
@@ -36,7 +39,13 @@ const CartPage = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (message) {
+        if (message||ordermessage) {
+			if(ordermessage=="Order placed successfully"){
+				toast.success(ordermessage,toastOptions);
+				dispatch({ type: "CLEAR_MESSAGE" });
+				navigate("/");
+
+			}
 			if(message=="Product Removed Successfully"){
 				toast.success(message,toastOptions);
 			}
@@ -51,7 +60,7 @@ const CartPage = () => {
             console.error(error);
             dispatch({ type: "CLEAR_ERROR" });
         }
-    }, [message, error, dispatch]);
+    }, [message, error, dispatch,ordermessage]);
 
     const makePayment = async () => {
 		   const stripe = await loadStripe("pk_test_51QTgDEGoyVahLKeKA2Pdrpendbz0FDSLITgG8lEtQvhnR4pwsggPCIQ8Lyn68xm7vxnCcpIjVIqQlNruBwsupIob00Xzq5UCeM");
@@ -100,7 +109,7 @@ const CartPage = () => {
 	const handlecod=()=>{
 		console.log(shippingAddress);
 
-		dispatch(addOrder(pending,cod,shippingAddress));
+		dispatch(addOrder("Pending","cod",shippingAddress,calculateTotal()));
 	}
 
    // Find the default address from the user's addresses
@@ -205,9 +214,9 @@ const CartPage = () => {
 								<Link to="/pay-online" className="pay-online-btn" onClick={makePayment}>
 									Pay Online
 								</Link>
-								<Link to="/cod" className="cod-btn" onClick={handlecod}>
+								<button className="cod-btn" onClick={handlecod}>
 									Cash on Delivery
-								</Link>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -224,5 +233,5 @@ const CartPage = () => {
 		</>
 	);
 };
-
+Link
 export default CartPage;

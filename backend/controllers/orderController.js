@@ -6,7 +6,10 @@ import { Response } from "../utils/response.js";
 
 export const addOrder = async (req,res) => {
   try {
-    const { paymentMethod, shippingAddress } = req.body;
+    const { paymentStatus,paymentMethod, shippingAddress } = req.body;
+    if(!paymentStatus||!paymentMethod||!shippingAddress){
+      return Response(res,400,false,message.missingFieldMessage);
+    }
 
     const cart = await Cart.findOne({ userId: req.user._id });
 
@@ -23,27 +26,30 @@ export const addOrder = async (req,res) => {
       totalAmount += item.price * item.quantity;
     }
 
+     // Update product quantities
+     for (const update of cart.products) {
+      await Product.findByIdAndUpdate(update.productId, {
+          $inc: { available_quantity_delivery: -update.quantity },
+      });
+  }
     const order = await Order.create({
-      orderType: cart.orderType, //yet to add in cart
-      retailerId: cart.products[0].retailerId,
+      userId:req.user._id,
       products: cart.products,
       totalAmount,
+      status:"Pending",
       shippingAddress,
       paymentMethod,
+      paymentStatus
     });
 
-    // Update product quantities
-    for (const update of productUpdates) {
-        await Product.findByIdAndUpdate(update.productId, {
-            $inc: { available_quantity_delivery: -update.quantity },
-        });
-    }
+   
 
     cart.products = [];
     await cart.save();
-    Response(res, 200, message.orderCreatedMessage, order);
+    Response(res, 200, true,message.orderCreatedMessage, order);
 
   } catch (error) {
+    console.log(error);
     Response(res, 500, false,error.message);
   }
 };
