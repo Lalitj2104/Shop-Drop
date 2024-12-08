@@ -5,46 +5,88 @@ import "../../styles/Cart.css";
 import { getCart, updateCart, clearCart } from "../../redux/Actions/cartAction";
 import Header from "../../components/Header/Header";
 import { getUserAddress } from "../../redux/Actions/userActions";
+import { loadStripe } from "@stripe/stripe-js";
 
 const CartPage = () => {
-	const dispatch = useDispatch();
-	const { loading, message, error, cart } = useSelector(
+    const dispatch = useDispatch();
+    const { loading, message, error, cart } = useSelector(
 		(state) => state.cartAuth
 	);
 	const { address } = useSelector((state) => state.userAuth); // Access the user's address from Redux
 
-	const handleQuantityChange = (id, qty) => {
-		if (qty > 0) {
-			dispatch(updateCart(id, qty));
-		}
-	};
+    const handleQuantityChange = (id, qty) => {
+        if (qty > 0) {
+            dispatch(updateCart(id, qty));
+        }
+    };
 
-	const handleRemove = (id) => {
-		// dispatch(removeFromCart(id));
-	};
-
+    const handleRemove = (id) => {
+        // Future: dispatch(removeProductFromCart(id));
+        // console.log(`Remove product with id: ${id}`);
+    };
 	const handleClearCart = () => {
 		dispatch(clearCart()); // Dispatch action to clear the cart
 	};
-
 	useEffect(() => {
-		dispatch(getCart());
-		dispatch(getUserAddress()); // Fetch user addresses when component mounts
-	}, [dispatch]);
+        dispatch(getCart());
+		dispatch(getUserAddress());
+		
+    }, [dispatch]);
 
-	useEffect(() => {
-		if (message) {
-			dispatch({ type: "CLEAR_MESSAGE" });
-		}
-		if (error) {
-			dispatch({ type: "CLEAR_ERROR" });
-		}
-	}, [message, error]);
+    useEffect(() => {
+        if (message) {
+            console.log(message);
+            dispatch({ type: "CLEAR_MESSAGE" });
+        }
+        if (error) {
+            console.error(error);
+            dispatch({ type: "CLEAR_ERROR" });
+        }
+    }, [message, error, dispatch]);
 
-	const calculateTotal = () =>
-		cart?.products?.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const makePayment = async () => {
+		   const stripe = await loadStripe("pk_test_51QTgDEGoyVahLKeKA2Pdrpendbz0FDSLITgG8lEtQvhnR4pwsggPCIQ8Lyn68xm7vxnCcpIjVIqQlNruBwsupIob00Xzq5UCeM");
 
-	// Find the default address from the user's addresses
+        const body = {
+            products: cart?.products.map((item) => ({
+                name: item?.productId?.name,
+                image: item?.productId?.image?.url,
+                price: item?.price,
+                quantity: item?.quantity,
+            })),
+        };
+
+        const headers = {
+            "Content-Type": "application/json",
+        };
+
+        try {
+            const response = await fetch(`http://localhost:4876/api/v1/cart/create-checkout-session`,{
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(body),
+            });
+
+            const session = await response.json();
+
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.id,
+            });
+
+            if (result.error) {
+                console.error(result.error.message);
+            }
+        } catch (error) {
+            console.error("Error during payment:", error);
+        }
+    };
+
+    
+
+    const calculateTotal = () =>
+        cart?.products?.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+   // Find the default address from the user's addresses
 	const defaultAddress = address?.find((addr) => addr.isDefault);
 	console.log("Address Array:", address); // Log the full address array
 	console.log("Default Address:", defaultAddress); // Log the found default address
@@ -138,7 +180,7 @@ const CartPage = () => {
 
 							{/* Payment buttons */}
 							<div className="payment-methods">
-								<Link to="/pay-online" className="pay-online-btn">
+								<Link to="/pay-online" className="pay-online-btn" onClick={makePayment}>
 									Pay Online
 								</Link>
 								<Link to="/cod" className="cod-btn">
