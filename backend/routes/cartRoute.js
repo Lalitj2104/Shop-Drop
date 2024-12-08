@@ -1,6 +1,6 @@
 import express from "express";
 import { isAuthenticated } from "../middleware/isAuth.js";
-import { addToCart, clearCart, getCart, updateCart } from "../controllers/cartController.js";
+import { addToCart, clearCart, getCart,removeProductFromCart, updateCart } from "../controllers/cartController.js";
 import Stripe from 'stripe';
 import dotenv from 'dotenv';
 dotenv.config({ path: "./config/config.env" });
