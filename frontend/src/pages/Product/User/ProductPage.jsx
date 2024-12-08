@@ -83,13 +83,13 @@ const ProductPage = () => {
 
   return (<>
     <Header/>
-    <div className="product-page-container">
       <button
         onClick={() => navigate("/shop")}
         className="product-page-back-button"
       >
         Back to Products
       </button>
+    <div className="product-page-container">
       <div className="product-page-content">
         <img
           src={product?.image?.url}
