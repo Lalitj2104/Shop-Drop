@@ -29,7 +29,6 @@ const changeUserPasswordRequest = createAction("CHANGE_USER_PASSWORD_REQUEST");
 const changeUserPasswordSuccess = createAction("CHANGE_USER_PASSWORD_SUCCESS");
 const changeUserPasswordFailure = createAction("CHANGE_USER_PASSWORD_FAILURE");
 
-
 const addUserAddressRequest = createAction("ADD_USER_ADDRESS_REQUEST");
 const addUserAddressSuccess = createAction("ADD_USER_ADDRESS_SUCCESS");
 const addUserAddressFailure = createAction("ADD_USER_ADDRESS_FAILURE");
@@ -138,7 +137,7 @@ export const userReducer = createReducer(initialState, (builder) => {
 		})
 		.addCase(getAllAddressSuccess,(state,action)=>{
 			state.loading=false;
-			state.address=action.payload.address
+			state.address=action.payload.data
 			state.message=action.payload.message
 		})
 		.addCase(getAllAddressFailure,(state,action)=>{

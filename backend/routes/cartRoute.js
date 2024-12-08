@@ -10,6 +10,7 @@ const cartRouter=express.Router();
 cartRouter.post("/add/:productId",isAuthenticated,addToCart);
 cartRouter.put("/update",isAuthenticated,updateCart);
 cartRouter.get("/myCart",isAuthenticated,getCart);
+cartRouter.delete("/deleteProduct/:id",isAuthenticated,removeProductFromCart)
 cartRouter.delete("/delete",isAuthenticated,clearCart);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET);

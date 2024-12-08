@@ -57,6 +57,32 @@ export const updateCart=(id,quantity)=>async(dispatch)=>{
     }
 }
 
+
+export const removeFromCart=(id)=>async(dispatch)=>{
+    try {
+        dispatch({
+            type:"REMOVE_FROM_CART_REQUEST"
+        })
+        const {data}=await  axios.delete(`${URL}/deleteProduct/${id}`,{
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        dispatch({
+            type:"REMOVE_FROM_CART_SUCCESS",
+            payload:{
+                message:data.message,
+                cart:data.data
+            }
+        })
+    } catch (error) {
+        console.log(error);
+        dispatch({
+            type:"REMOVE_FROM_CART_FAILURE",
+            payload: error?.response?.data?.message,
+        })
+    }
+}
 export const getCart=()=>async(dispatch)=>{
     try {
         dispatch({

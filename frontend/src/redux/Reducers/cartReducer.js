@@ -24,6 +24,11 @@ const clearCartRequest =createAction("CLEAR_CART_REQUEST")
 const clearCartSuccess =createAction("CLEAR_CART_SUCCESS")
 const clearCartFailure =createAction("CLEAR_CART_FAILURE")
 
+
+const removeFromCartRequest=createAction("REMOVE_FROM_CART_REQUEST");
+const removeFromCartSuccess=createAction("REMOVE_FROM_CART_SUCCESS");
+const removeFromCartFailure=createAction("REMOVE_FROM_CART_FAILURE");
+
 const clearError=createAction("CLEAR_ERROR")
 const clearMessage=createAction("CLEAR_MESSAGE")
 
@@ -81,6 +86,19 @@ export const cartReducer=createReducer(initialState,(builder)=>{
         state.message=action.payload.message
     })
     .addCase(clearCartFailure,(state,action)=>{
+        state.loading=false,
+        state.error=action.payload
+    })
+
+    .addCase(removeFromCartRequest,(state)=>{
+        state.loading=true
+    })
+    .addCase(removeFromCartSuccess,(state,action)=>{
+        state.loading=false
+        state.cart=action.payload.cart
+        state.message=action.payload.message
+    })
+    .addCase(removeFromCartFailure,(state,action)=>{
         state.loading=false,
         state.error=action.payload
     })

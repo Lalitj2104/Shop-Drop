@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../styles/Cart.css";
-import { getCart, updateCart } from "../../redux/Actions/cartAction";
+import { getCart, updateCart, clearCart } from "../../redux/Actions/cartAction";
+import Header from "../../components/Header/Header";
+import { getUserAddress } from "../../redux/Actions/userActions";
 import { loadStripe } from "@stripe/stripe-js";
 
 const CartPage = () => {

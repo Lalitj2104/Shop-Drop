@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../redux/Actions/cartAction";
 import toastOptions from "../../../constants/toast";
 import { toast } from "react-toastify";
+import Header from "../../../components/Header/Header";
 
-const useStaticData = true; // Set to `false` to fetch data from backend
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -46,31 +46,6 @@ const ProductPage = () => {
     description: "",
   });
 
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     if (useStaticData) {
-  //       const product = staticProducts.find((p) => p.id === parseInt(id, 10));
-  //       setProduct(product || null);
-  //       setLoading(false);
-  //     } else {
-  //       try {
-  //         setLoading(true);
-  //         const response = await fetch(`https://example.com/api/products/${id}`);
-  //         if (!response.ok) throw new Error("Failed to fetch product.");
-  //         const data = await response.json();
-  //         setProduct(data);
-  //       } catch (error) {
-  //         console.error(error);
-  //         setProduct(null);
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     }
-  //   };
-
-  //   fetchProduct();
-  // }, [id]);
-
   const handleQuantityChange = (event) => {
     const value = parseInt(event.target.value, 10);
     setQuantity(value);
@@ -106,7 +81,8 @@ const ProductPage = () => {
     dispatch(getProduct(id));
   }, []);
 
-  return (
+  return (<>
+    <Header/>
     <div className="product-page-container">
       <button
         onClick={() => navigate("/shop")}
@@ -199,6 +175,7 @@ const ProductPage = () => {
         </div>
       </div>
     </div>
+        </>
   );
 };
 
