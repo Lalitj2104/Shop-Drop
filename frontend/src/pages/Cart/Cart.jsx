@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../styles/Cart.css";
-import { getCart, updateCart } from "../../redux/Actions/cartAction";
+import { getCart, removeFromCart, updateCart } from "../../redux/Actions/cartAction";
+import { toast } from "react-toastify";
+import toastOptions from "../../constants/toast";
 
 const CartPage = () => {
 	const dispatch = useDispatch();
@@ -15,7 +17,7 @@ const CartPage = () => {
 	};
 
 	const handleRemove = (id) => {
-		// dispatch(removeFromCart(id));
+		dispatch(removeFromCart(id));
 	};
 	useEffect(()=>{
 		dispatch(getCart());
@@ -23,7 +25,9 @@ const CartPage = () => {
 	useEffect(() => {
 		
 		if(message){
-			
+			if(message=="Product Removed Successfully"){
+				toast.success(message,toastOptions);
+			}
 			dispatch({type:"CLEAR_MESSAGE"})
 		}
 		if(error){

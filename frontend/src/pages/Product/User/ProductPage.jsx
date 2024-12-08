@@ -7,7 +7,7 @@ import { addToCart } from "../../../redux/Actions/cartAction";
 import toastOptions from "../../../constants/toast";
 import { toast } from "react-toastify";
 
-const useStaticData = true; // Set to `false` to fetch data from backend
+const useStaticData = true; 
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -40,37 +40,14 @@ const ProductPage = () => {
       dislikes: 2,
     },
   ];
+  
   const [reviews, setReviews] = useState(staticReviews);
   const [newReview, setNewReview] = useState({
     title: "",
     description: "",
   });
 
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     if (useStaticData) {
-  //       const product = staticProducts.find((p) => p.id === parseInt(id, 10));
-  //       setProduct(product || null);
-  //       setLoading(false);
-  //     } else {
-  //       try {
-  //         setLoading(true);
-  //         const response = await fetch(`https://example.com/api/products/${id}`);
-  //         if (!response.ok) throw new Error("Failed to fetch product.");
-  //         const data = await response.json();
-  //         setProduct(data);
-  //       } catch (error) {
-  //         console.error(error);
-  //         setProduct(null);
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     }
-  //   };
-
-  //   fetchProduct();
-  // }, [id]);
-
+ 
   const handleQuantityChange = (event) => {
     const value = parseInt(event.target.value, 10);
     setQuantity(value);
