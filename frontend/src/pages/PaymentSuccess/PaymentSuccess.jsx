@@ -1,8 +1,7 @@
 import React from "react";
 import "../../styles/Paymentsuccess.css";
 
-function PaymentSuccess() {
-
+const PaymentSuccess=()=>{
   return (
     <div className="card-container">
       <div className="card">
