@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
-    orderType: {
-      type: String,
-      required: true,
-    },
+    // orderType: {
+    //   type: String,
+    //   required: true,
+    // },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -51,10 +51,7 @@ const orderSchema = new mongoose.Schema(
       default: "Pending",
     },
     shippingAddress: {
-      address: { type: String, required: true },
-      city: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: String, required: true },
+       type: String, required: true 
     },
     paymentMethod: {
       type: String,
