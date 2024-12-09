@@ -10,7 +10,7 @@ const PaymentSuccess=()=>{
         </div>
         <h1>Payment succeeded!</h1>
         <p>Thank you for processing your most recent payment.</p>
-        <p><strong>Happy Shoppig</strong>.</p>
+        <p><strong>Happy Shopping</strong>.</p>
         <button className="Home-btn">Your Home page</button>
       </div>
     </div>

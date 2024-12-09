@@ -4,9 +4,7 @@ import ForgotPassword from "../../pages/Password/ForgotPassword/ForgotPassword.j
 import VerifyOtp from "../../pages/Otp/VerifyOtp/VerifyOtp.jsx";
 import ResetPassword from "../../pages/Password/ResetPassword/ResetPassword.jsx";
 import Login from "../../pages/Login/user/Login.jsx";
-import RegisterLogin from "../../pages/Login/retailer/RetailerLogin.jsx";
 import Register from "../../pages/Register/user/Register.jsx";
-import RetailerRegister from "../../pages/Register/Retailer/RetailerRegister.jsx";
 import AuthRoute from "./AuthRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -189,6 +187,7 @@ const Path = () => {
 								</ProtectedRoute>
 							}
 						/>
+						
 						<Route 
 						path="/chatbot"
 						element={

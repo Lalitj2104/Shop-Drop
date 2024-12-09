@@ -208,7 +208,6 @@ export const getOrdersByStatus = async (req, res) => {
     if (!validStatuses.includes(status)) {
       return Response(res, 401, false, message.invalidStatusMessage);
     }
-    console.log("working");
     const orders = await Order.find({ status,id});
 
     Response(res, 200, true, message.ordersFetchedMessage, orders);
