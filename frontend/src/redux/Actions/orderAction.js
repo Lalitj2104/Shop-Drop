@@ -35,7 +35,9 @@ export const cancelOrder=(id)=>async(dispatch)=>{
         dispatch({
             type:"CANCEL_ORDER_REQUEST"
         })
-        const {data} =await axios.put(`${URL}/cancel/${id}`)
+        console.log(id);
+        const { data } = await axios.put(`${URL}/cancel/${id}`)
+        console.log(data);
         dispatch({
             type:"CANCEL_ORDER_SUCCESS",
             payload:{
@@ -59,7 +61,6 @@ export const getOrderByUser=()=>async(dispatch)=>{
             type:"GET_ORDER_BY_USER_REQUEST"
         })
         const {data} =await axios.get(`${URL}/userOrder`)
-        console.log(data.data);
         dispatch({
             type:"GET_ORDER_BY_USER_SUCCESS",
             payload:{
