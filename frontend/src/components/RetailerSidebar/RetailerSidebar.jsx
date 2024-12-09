@@ -29,8 +29,8 @@ const RetailerSidebar = ({ retailer }) => {
 					<Link to="/pendingOrders">Pending Orders</Link>
 				</li>
 				<li>
-					<Link </to="/completedOrders">Completed Orders</Link>
-				li>
+					<Link to="/completedOrders">Completed Orders</Link>
+				</li>
 			</ul>
 			<button className="logout-btn" onClick={logoutHandler}>Logout</button>
 		</div>
