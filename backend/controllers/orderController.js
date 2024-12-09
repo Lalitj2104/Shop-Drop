@@ -196,7 +196,7 @@ export const updateOrderStatus = async (req, res) => {
 export const getOrdersByStatus = async (req, res) => {
   try {
     const { status } = req.params;
-
+    const id=req.retailer._id;
     const validStatuses = [
       "Pending",
       "Processing",
@@ -209,7 +209,7 @@ export const getOrdersByStatus = async (req, res) => {
       return Response(res, 401, false, message.invalidStatusMessage);
     }
     console.log("working");
-    const orders = await Order.find({ status });
+    const orders = await Order.find({ status,id});
 
     Response(res, 200, true, message.ordersFetchedMessage, orders);
   } catch (error) {

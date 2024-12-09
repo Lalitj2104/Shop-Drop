@@ -8,20 +8,20 @@ import RetailerSidebar from "../../components/RetailerSidebar/RetailerSidebar";
 import { getOrderByStatus } from "../../redux/Actions/orderAction";
 
 // Static completed orders data
-const staticCompletedOrdersData = [
-	{
-		id: "ORD002",
-		date: "2024-12-03",
-		totalAmount: 1499.99,
-		status: "Completed",
-	},
-	{
-		id: "ORD004",
-		date: "2024-11-28",
-		totalAmount: 1999.99,
-		status: "Completed",
-	},
-];
+// const staticCompletedOrdersData = [
+// 	{
+// 		id: "ORD002",
+// 		date: "2024-12-03",
+// 		totalAmount: 1499.99,
+// 		status: "Completed",
+// 	},
+// 	{
+// 		id: "ORD004",
+// 		date: "2024-11-28",
+// 		totalAmount: 1999.99,
+// 		status: "Completed",
+// 	},
+// ];
 
 function CompletedOrders() {
 	const { Retailer } = useSelector((state) => state.retailerAuth);
