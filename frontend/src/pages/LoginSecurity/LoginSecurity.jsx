@@ -3,21 +3,21 @@ import '../../styles/LoginSecurity.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
+import { changeUserPassword } from '../../redux/Actions/userActions';
+import { useNavigate } from 'react-router-dom';
 
 const LoginSecurity = () => {
   const dispatch= useDispatch();
+  const navigate=useNavigate();
   const {user}=useSelector(state=>state.userAuth);
 
   const editName = () => {
-    const newName = prompt('Enter new name:', user.name);
-    if (newName) setUser({ ...user, name: newName });
+    // dispatch(updateUser());
+
   };
 
-  const togglePasswordVisibility = () => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      password: prevUser.password === '********' ? 'yourActualPassword' : '********',
-    }));
+  const changePassword = () => {
+    navigate(`/changePassword/${user?._id}`)
   };
 
   return (
@@ -61,11 +61,11 @@ const LoginSecurity = () => {
               </td>
               <td><button>Set up</button></td>
             </tr>
-            {/* <tr>
+            <tr>
               <td>Password</td>
-              <td>{user?.password}</td>
-              <td><button onClick={togglePasswordVisibility}>Toggle</button></td>
-            </tr> */}
+              <td>"*******</td>
+              <td><button onClick={changePassword}>change</button></td>
+            </tr>
             <tr>
               <td>2-step verification</td>
               <td>
@@ -73,7 +73,7 @@ const LoginSecurity = () => {
                   Add a layer of security. Require a code in addition to your password.
                 </div>
               </td>
-              <td><button>Turn on</button></td>
+              <td><button>Turnn on</button></td>
             </tr>
             <tr>
               <td>Compromised account?</td>
