@@ -33,7 +33,11 @@ const getOrderByRetailerFailure=createAction("GET_ORDER_BY_RETAILER_FAILURE");
 
 const updateOrderStatusRequest=createAction("UPDATE_ORDER_STATUS_REQUEST");
 const updateOrderStatusSuccess=createAction("UPDATE_ORDER_STATUS_SUCCESS");
-const updateOrderStatusFailure=createAction("UPDATE_ORDER_STATUS_FAILURE");
+const updateOrderStatusFailure = createAction("UPDATE_ORDER_STATUS_FAILURE");
+
+const getAllOrdersRequest=createAction("GET_ALL_ORDERS_REQUEST");
+const getAllOrdersSuccess=createAction("GET_ALL_ORDERS_SUCCESS");
+const getAllOrdersFailure=createAction("GET_ALL_ORDERS_FAILURE");
 
 
 const clearError = createAction("CLEAR_ERROR");
@@ -142,6 +146,18 @@ export const orderReducer=createReducer(initialState,(builder)=>{
         state.error=action.payload
     })
 
+        .addCase(getAllOrdersRequest,(state)=>{
+            state.loading=true;
+        })
+        .addCase(getAllOrdersSuccess,(state,action)=>{
+            state.loading=false;
+            state.orders=action.payload.orders,
+            state.message=action.payload.message
+        })
+        .addCase(getAllOrdersFailure,(state,action)=>{
+            state.loading=false;
+            state.error=action.payload
+        })
 
 
     .addCase(clearError, (state) => {

@@ -52,7 +52,7 @@ function RetailerOrders() {
 	return (
 		<div className="retailer-orders-page">
 			{/* Sidebar */}
-			<RetailerSidebar  Retailer={Retailer}/>
+			<RetailerSidebar  retailer={Retailer}/>
 
 			{/* Main Content */}
 			<div className="retailer-orders-content">
