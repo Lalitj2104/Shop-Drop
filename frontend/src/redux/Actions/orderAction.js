@@ -131,11 +131,12 @@ export const getOrderByRetailer=()=>async(dispatch)=>{
             type:"GET_ORDER_BY_RETAILER_REQUEST"
         })
         const {data} =await axios.get(`${URL}/retailerOrder`)
+        // console.log(data.data);
         dispatch({
             type:"GET_ORDER_BY_RETAILER_SUCCESS",
             payload:{
                 message:data.message,
-                order:data.data
+                rorder:data.data
             }
         })
     } catch (error) {

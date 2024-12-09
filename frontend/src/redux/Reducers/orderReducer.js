@@ -120,7 +120,7 @@ export const orderReducer=createReducer(initialState,(builder)=>{
     })
     .addCase(getOrderByRetailerSuccess,(state,action)=>{
         state.loading=false;
-        state.order=action.payload.order,
+        state.rorder=action.payload.rorder,
         state.message=action.payload.message
     })
     .addCase(getOrderByRetailerFailure,(state,action)=>{

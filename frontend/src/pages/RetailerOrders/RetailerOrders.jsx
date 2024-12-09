@@ -31,12 +31,14 @@ const staticOrdersData = [
 
 function RetailerOrders() {
 	const{Retailer} = useSelector((state) => state.retailerAuth);
+	const {rorder} = useSelector((state) => state.orderAuth);
 	const dispatch=useDispatch();
 	// Fetch orders on component mount
+	
 	useEffect(() => {
 		dispatch(getOrderByRetailer());
-	}, []);
-
+	}, [dispatch]);
+	
 	// Handle errors or success messages
 	useEffect(() => {
 		// if (message) {
@@ -46,11 +48,11 @@ function RetailerOrders() {
 		// 	toast.error(error, toastOptions);
 		// }
 	}, []);
-
+	console.log(rorder?.length);
 	return (
 		<div className="retailer-orders-page">
 			{/* Sidebar */}
-			<RetailerSidebar retailer={Retailer} />
+			<RetailerSidebar  Retailer={Retailer}/>
 
 			{/* Main Content */}
 			<div className="retailer-orders-content">
@@ -59,17 +61,17 @@ function RetailerOrders() {
 				</div>
 
 				<div className="orders-list">
-					{staticOrdersData.length === 0 ? (
+					{rorder &&rorder?.length === 0 ? (
 						<p>No orders available.</p>
 					) : (
-						staticOrdersData.map((order) => (
-							<div className="order-item" key={order.id}>
-								<h3>Order ID: {order.id}</h3>
-								<p>Date: {new Date(order.date).toLocaleDateString()}</p>
-								<p>Total Amount: ₹{order.totalAmount.toFixed(2)}</p>
-								<p>Status: {order.status}</p>
+						rorder &&rorder?.map((item) => (
+							<div className="order-item" key={item?._id}>
+								<h3>Order ID: {item?._id}</h3>
+								<p>Date: {new Date(item?.createdAt).toLocaleDateString()}</p>
+								<p>Total Amount: ₹{item?.totalAmount.toFixed(2)}</p>
+								<p>Status: {item?.status}</p>
 								<div className="order-buttons">
-									<Link to={`/orderDetails/${order.id}`}>
+									<Link to={`/orderDetails/${item?._id}`}>
 										<button className="view-order-btn">View Order</button>
 									</Link>
 								</div>

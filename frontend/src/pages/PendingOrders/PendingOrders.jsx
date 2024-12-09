@@ -2,28 +2,34 @@
 import { Link } from "react-router-dom";
 import "../../styles/RetailerOrder.css";
 import RetailerSidebar from "../../components/RetailerSidebar/RetailerSidebar";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getOrderByStatus } from "../../redux/Actions/orderAction";
 
 // Static pending orders data
-const pendingOrdersData = [
-	{
-		id: "ORD001",
-		date: "2024-12-05",
-		totalAmount: 1999.99,
-		status: "Pending",
-	},
-	{
-		id: "ORD004",
-		date: "2024-12-07",
-		totalAmount: 499.99,
-		status: "Pending",
-	},
-];
+// const pendingOrdersData = [
+// 	{
+// 		id: "ORD001",
+// 		date: "2024-12-05",
+// 		totalAmount: 1999.99,
+// 		status: "Pending",
+// 	},
+// 	{
+// 		id: "ORD004",
+// 		date: "2024-12-07",
+// 		totalAmount: 499.99,
+// 		status: "Pending",
+// 	},
+// ];
 
 function PendingOrders() {
-    const [orders, setOrders] = useState(pendingOrdersData);
+    // const [orders, setOrders] = useState(pendingOrdersData);
     const {Retailer} = useSelector(state => state.retailerAuth);
+	const {orders}=useSelector(state => state.orderAuth);
+	const dispatch=useDispatch();
+	useEffect(()=>{
+		dispatch(getOrderByStatus("Pending"));
+	},[dispatch]);
 
 	const updateStatus = (orderId) => {
 		// Update status logic here
