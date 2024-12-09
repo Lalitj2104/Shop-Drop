@@ -27,7 +27,7 @@
 
 .sidebar button {
   padding: 10px 20px;
-  background-color: #e74c3c;
+  background-color: #8B0000 !important; /* Blue color */
   color: white;
   border: none;
   border-radius: 5px;
@@ -37,9 +37,8 @@
 }
 
 .sidebar button:hover {
-  background-color: #c0392b;
+  background-color: #8B0000 !important; /* Darker blue for hover */
 }
-
 /* Product list styles */
 .product-list {
   flex-grow: 1;

@@ -84,7 +84,7 @@ export const getOrderByStatus=(status)=>async(dispatch)=>{
         dispatch({
             type:"GET_ORDER_BY_STATUS_REQUEST"
         })
-        const {data} =await axios.get(`{URL}/status/${status}`)
+        const {data} =await axios.get(`${URL}/status/${status}`)
         dispatch({
             type:"GET_ORDER_BY_STATUS_SUCCESS",
             payload:{

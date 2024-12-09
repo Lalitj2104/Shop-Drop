@@ -5,6 +5,8 @@ import PromotionalBanners from "../../components/PromotionalBanners/PromotionalB
 import FeaturedProducts from "../../components/FeaturedProducts/FeaturedProducts";
 import FeaturedCategories from "../../components/FeaturedCategories/FeaturedCategories";
 import Footer from "../../components/Footer/Footer";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function Home() {
 	return (

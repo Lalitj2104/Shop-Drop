@@ -222,7 +222,6 @@ export const logoutUser = () => async (dispatch) => {
 
 		const { data } = await axios.post(
 			`${URL}/logout`,
-			{},
 			{
 				headers: {
 					"Content-Type": "application/json",

@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/RetailerDashboard.css";
+import { logoutRetailer } from "../../redux/Actions/retailerActions";
+import { useDispatch } from "react-redux";
 
 const RetailerSidebar = ({ retailer }) => {
+	const dispatch=useDispatch();
+	const logoutHandler=()=>{
+		dispatch(logoutRetailer());
+	}
 	return (
 		<div className="retailer-dashboard-sidebar">
 			<div className="retailer-dashboard-profile">
@@ -23,10 +29,10 @@ const RetailerSidebar = ({ retailer }) => {
 					<Link to="/pendingOrders">Pending Orders</Link>
 				</li>
 				<li>
-					<Link to="/completedOrders">Completed Orders</Link>
-				</li>
+					<Link </to="/completedOrders">Completed Orders</Link>
+				li>
 			</ul>
-			<button className="logout-btn">Logout</button>
+			<button className="logout-btn" onClick={logoutHandler}>Logout</button>
 		</div>
 	);
 };
