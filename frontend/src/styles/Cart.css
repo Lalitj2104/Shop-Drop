@@ -93,7 +93,7 @@
 .cart-page .cart-item .remove-btn {
   width: 120px; /* Larger width for remove button */
   padding: 10px;
-  background-color: #ff4d4d;
+  background-color: #8B0000 ;
   color: white;
   border: none;
   border-radius: 5px;
@@ -177,7 +177,7 @@
 .cart-page .clear-cart-btn {
   padding: 10px 20px;
   width: 150px; /* Consistent width for clear cart button */
-  background-color: #ff4d4d;
+  background-color: #8B0000 ;
   border: none;
   color: white;
   font-size: 1.1rem;
@@ -208,6 +208,7 @@
 /* Payment buttons */
 .cart-page .payment-methods {
   display: flex;
+  flex-direction: column; /* Stack buttons vertically */
   gap: 10px;
   margin-top: 20px;
 }
@@ -215,14 +216,19 @@
 .cart-page .payment-methods .pay-online-btn,
 .cart-page .payment-methods .cod-btn {
   padding: 10px 20px;
-  width: 150px;
+  width: 100%; /* Make buttons take the full width of the container */
   text-align: center;
-  background-color: #007bff;
+  background-color: #082567;
   color: white;
   text-decoration: none;
   font-size: 1rem;
   border-radius: 5px;
   transition: background-color 0.3s;
+  box-sizing: border-box; /* Ensure padding is included in the button's total size */
+  height: 50px; /* Set a fixed height for both buttons */
+  display: flex;
+  align-items: center; /* Vertically center text */
+  justify-content: center; /* Horizontally center text */
 }
 
 .cart-page .payment-methods .pay-online-btn:hover,
