@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import '../../styles/LoginSecurity.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LoginSecurity = () => {
-  const [user, setUser] = useState({
-    name: 'Kavya',
-    email: '',
-    phone: '+918949267851',
-    password: '********',
-  });
+  const dispatch= useDispatch();
+  const {user}=useSelector(state=>state.userAuth);
 
   const editName = () => {
     const newName = prompt('Enter new name:', user.name);
@@ -32,13 +29,13 @@ const LoginSecurity = () => {
           <tbody>
             <tr>
               <td>Name</td>
-              <td>{user.name}</td>
+              <td>{user?.firstName} {user?.lastName}</td>
               <td><button onClick={editName}>Edit</button></td>
             </tr>
             <tr>
               <td>Email</td>
               <td>
-                {user.email || <em>No email provided</em>}
+                {user?.email || <em>No email provided</em>}
                 <div className="center-info">
                   For stronger account security, add your email. If there’s an unusual sign-in, we’ll email you and verify that it’s really you.
                 </div>
@@ -48,7 +45,7 @@ const LoginSecurity = () => {
             <tr>
               <td>Primary mobile number</td>
               <td>
-                {user.phone}
+                {user?.mobile}
                 <div className="center-info">
                   Quickly sign in, easily recover passwords, and receive security notifications with this mobile number.
                 </div>
@@ -64,11 +61,11 @@ const LoginSecurity = () => {
               </td>
               <td><button>Set up</button></td>
             </tr>
-            <tr>
+            {/* <tr>
               <td>Password</td>
-              <td>{user.password}</td>
+              <td>{user?.password}</td>
               <td><button onClick={togglePasswordVisibility}>Toggle</button></td>
-            </tr>
+            </tr> */}
             <tr>
               <td>2-step verification</td>
               <td>
