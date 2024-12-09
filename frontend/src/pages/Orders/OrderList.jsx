@@ -28,7 +28,6 @@ const OrderList = () => {
         <OrderCard key={item?._id} order={item} />
       ))}
       </div>
-      <Footer/>
       </>
   );
 };

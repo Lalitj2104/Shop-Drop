@@ -26,6 +26,8 @@ import OrderDetails from "../../pages/Orders/OrderDetails.jsx";
 import AddressPage from "../../pages/Address/AddressPage.jsx";
 import CartPage from "../../pages/Cart/Cart.jsx";
 import ChatbotPage from "../../pages/ChatBot/ChatbotPage.jsx";
+import PaymentSuccess from "../../pages/PaymentSuccess/PaymentSuccess.jsx";
+import PaymentFailure from "../../pages/PaymentFailure/PaymentFailure.jsx";
 
 const Path = () => {
 	const dispatch = useDispatch();
@@ -185,6 +187,20 @@ const Path = () => {
 						element={
 							<ProtectedRoute>
 								<ChatbotPage/>
+							</ProtectedRoute>
+						}/>
+						<Route 
+						path="/success"
+						element={
+							<ProtectedRoute>
+								<PaymentSuccess/>
+							</ProtectedRoute>
+						}/>
+						<Route 
+						path="/failure"
+						element={
+							<ProtectedRoute>
+								<PaymentFailure/>
 							</ProtectedRoute>
 						}/>
 					</Routes>
