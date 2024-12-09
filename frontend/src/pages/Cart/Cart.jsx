@@ -119,8 +119,7 @@ const CartPage = () => {
 
 	const shippingAddress=defaultAddress?.house+", "+defaultAddress?.street+", "+defaultAddress?.area+", "+
 		defaultAddress?.city+", " +defaultAddress?.state+", "+
-		defaultAddress?.country+", "+defaultAddress?.pincode
-	
+		defaultAddress?.country+", "+defaultAddress?.postalCode
 
 	return (
 		<>
