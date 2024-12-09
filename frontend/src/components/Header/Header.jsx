@@ -20,11 +20,14 @@ const Header = () => {
 	
 	const logoutHandler = () => {
 		dispatch(logoutUser());
+		setTimeout(() => {
+			dispatch(loadUser());
+		}, 0);
 	};
 
 	let name = user?.firstName || id?.firstName;
 	let address = user?.address || [];
-
+	
 	return (
 		<header className="header">
 			{/* Top Header */}
