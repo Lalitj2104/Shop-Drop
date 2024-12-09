@@ -16,6 +16,8 @@ import { useEffect } from "react";
 import AddProduct from "../../pages/Product/Retailer/AddProduct";
 import UpdateProduct from "../../pages/Product/Retailer/UpdateProduct";
 import RetailerOrders from "../../pages/RetailerOrders/RetailerOrders";
+import PendingOrders from "../../pages/PendingOrders/PendingOrders";
+import CompletedOrders from "../../pages/CompletedOrders/CompletedOrders";
 
 const RetailerPath = () => {
 	const dispatch = useDispatch();
@@ -117,6 +119,24 @@ const RetailerPath = () => {
 							element={
 								<ProtectedRoute>
 									<RetailerOrders />
+								</ProtectedRoute>
+							}
+						/>
+
+						<Route
+							path="/pendingOrders"
+							element={
+								<ProtectedRoute>
+									<PendingOrders />
+								</ProtectedRoute>
+							}
+						/>
+
+						<Route
+							path="/completedOrders"
+							element={
+								<ProtectedRoute>
+									<CompletedOrders />
 								</ProtectedRoute>
 							}
 						/>

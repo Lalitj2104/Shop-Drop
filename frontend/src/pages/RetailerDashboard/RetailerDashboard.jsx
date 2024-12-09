@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import toastOptions from "../../constants/toast";
 import { removeProduct } from "../../redux/Actions/productAction";
+import RetailerSidebar from "../../components/RetailerSidebar/RetailerSidebar";
 
 function RetailerDashboard() {
 	const dispatch = useDispatch();
@@ -61,35 +62,7 @@ function RetailerDashboard() {
 	return (
 		<div className="retailer-dashboard-app">
 			{/* Sidebar */}
-			<div className="retailer-dashboard-sidebar">
-				<div className="retailer-dashboard-profile">
-					<h3>Welcome,</h3>
-					<h3>
-						{Retailer?.firstName} {Retailer?.middleName} {Retailer?.lastName}
-					</h3>
-					<p>{Retailer?.location}</p>
-				</div>
-				<ul className="retailer-dashboard-menu">
-					<li>
-						<Link to="/dashboard">Dashboard</Link>
-					</li>
-					<li>
-						<Link to="/orders">My Orders</Link>
-					</li>
-					<li>
-						<Link to="/orders">Pending Orders</Link>
-						
-					</li>
-					<li>
-						<Link to={"/orders"}>Complete Orders</Link>
-						
-					</li>
-				</ul>
-				{/* Logout Button */}
-				<button onClick={handleLogout} className="logout-btn">
-					Logout
-				</button>
-			</div>
+			<RetailerSidebar retailer={Retailer} />
 
 			{/* Main Content */}
 			<div className="retailer-dashboard-content">

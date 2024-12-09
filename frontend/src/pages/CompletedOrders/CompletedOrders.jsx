@@ -1,19 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import toastOptions from "../../constants/toast";
 import { Link } from "react-router-dom";
-import "../../styles/RetailerOrder.css"
+import "../../styles/RetailerOrder.css";
 import RetailerSidebar from "../../components/RetailerSidebar/RetailerSidebar";
 
-// Static orders data
-const staticOrdersData = [
-	{
-		id: "ORD001",
-		date: "2024-12-05",
-		totalAmount: 1999.99,
-		status: "Pending",
-	},
+// Static completed orders data
+const staticCompletedOrdersData = [
 	{
 		id: "ORD002",
 		date: "2024-12-03",
@@ -21,15 +15,16 @@ const staticOrdersData = [
 		status: "Completed",
 	},
 	{
-		id: "ORD003",
-		date: "2024-12-02",
-		totalAmount: 799.99,
-		status: "Shipped",
+		id: "ORD004",
+		date: "2024-11-28",
+		totalAmount: 1999.99,
+		status: "Completed",
 	},
 ];
 
-function RetailerOrders() {
-	const{Retailer} = useSelector((state) => state.retailerAuth);
+function CompletedOrders() {
+	const { Retailer } = useSelector((state) => state.retailerAuth);
+
 	// Fetch orders on component mount
 	useEffect(() => {
 		// dispatch(getRetailerOrders());
@@ -53,14 +48,14 @@ function RetailerOrders() {
 			{/* Main Content */}
 			<div className="retailer-orders-content">
 				<div className="top-bar">
-					<h2>My Orders</h2>
+					<h2>Completed Orders</h2>
 				</div>
 
 				<div className="orders-list">
-					{staticOrdersData.length === 0 ? (
-						<p>No orders available.</p>
+					{staticCompletedOrdersData.length === 0 ? (
+						<p>No completed orders available.</p>
 					) : (
-						staticOrdersData.map((order) => (
+						staticCompletedOrdersData.map((order) => (
 							<div className="order-item" key={order.id}>
 								<h3>Order ID: {order.id}</h3>
 								<p>Date: {new Date(order.date).toLocaleDateString()}</p>
@@ -80,4 +75,4 @@ function RetailerOrders() {
 	);
 }
 
-export default RetailerOrders;
+export default CompletedOrders;
