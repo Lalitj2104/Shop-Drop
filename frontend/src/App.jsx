@@ -2,7 +2,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Path from "./routes/user/index.jsx";
 import RetailerPath from "./routes/retailer/index.jsx";
-import ChatbotPage from "./pages/ChatBot/ChatbotPage.jsx"; // Import chatbot page here
 import "./App.css";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
       <Path />
       <RetailerPath />
       {/* Independent Chatbot Route */}
-      <ChatbotPage />
     </>
   );
 }

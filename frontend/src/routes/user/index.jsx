@@ -25,6 +25,7 @@ import OrderList from "../../pages/Orders/OrderList.jsx";
 import OrderDetails from "../../pages/Orders/OrderDetails.jsx";
 import AddressPage from "../../pages/Address/AddressPage.jsx";
 import CartPage from "../../pages/Cart/Cart.jsx";
+import ChatbotPage from "../../pages/ChatBot/ChatbotPage.jsx";
 
 const Path = () => {
 	const dispatch = useDispatch();
@@ -179,7 +180,15 @@ const Path = () => {
 								</ProtectedRoute>
 							}
 						/>
+						<Route 
+						path="/chatbot"
+						element={
+							<ProtectedRoute>
+								<ChatbotPage/>
+							</ProtectedRoute>
+						}/>
 					</Routes>
+					
 				)}
 			</Router>
 		</div>

@@ -140,6 +140,7 @@ const RetailerPath = () => {
 								</ProtectedRoute>
 							}
 						/>
+						
 					</Routes>
 				)}
 			</Router>
