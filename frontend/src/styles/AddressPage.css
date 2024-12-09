@@ -1,87 +1,71 @@
-/* Container for the whole page */
+/* Overall page container */
 .address-page {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  /* Title styles */
-  .address-page h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  /* Paragraph style for additional text */
-  .address-page p {
-    font-size: 16px;
-    margin-bottom: 20px;
-    color: #555;
-  }
-  
-  /* Grid layout for address cards, horizontally */
-  .address-grid {
-    display: flex;
-    flex-wrap: nowrap; /* Keep cards in a horizontal line */
-    gap: 20px; /* Space between the cards */
-    justify-content: center;
-    overflow-x: auto; /* Allow horizontal scrolling if necessary */
-  }
-  
-  /* Styles for the individual address cards */
-  .address-card {
-    background-color: #f8f9fa;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 250px; /* Adjust width of each card */
-    height: 250px; /* Adjust height of each card */
-    position: relative; /* Required for absolute positioning of buttons */
-  }
-  
-  /* Address actions (edit, remove) aligned at the bottom */
-  .address-actions {
-    position: absolute;
-    bottom: 10px; /* Position buttons at the bottom */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-  }
-  
-  /* Add Address or Pickup-Point card styling */
-  .add-address-card {
-    background-color: #f8f9fa;
-    border: 2px dashed #bbb;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    width: 250px; /* Adjust width of add address card */
-    height: 150px; /* Adjust height */
-    cursor: pointer;
-    margin-top: 20px; /* Add space between address cards and add card */
-  }
-  
-  /* Hover effect for the add address card */
-  .add-address-card:hover {
-    background-color: #f0f0f0;
-  }
-  
-  /* Add address card content styling */
-  .add-address-content {
-    font-size: 16px;
-    text-align: center;
-  }
-  
-  /* Card container to separate address cards and add address card */
-  .address-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Title styles */
+.address-page h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Description text */
+.address-page p {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* Grid layout for address cards */
+.address-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* Container for adding a new address */
+.address-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Styling for the 'no address' message */
+.no-address {
+  font-size: 18px;
+  color: #888;
+}
+
+/* Add Address or Pickup-Point button */
+.add-address-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007BFF;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 15px;
+  text-decoration: none;
+  width: 300px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-address-card:hover {
+  background-color: #0056b3;
+}
+
+.add-address-card i {
+  font-size: 20px;
+  margin-right: 10px;
+}

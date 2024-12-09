@@ -31,6 +31,7 @@ const VerifyOtp = () => {
 		}
 		dispatch(verifyRegisterOtp(id, otp));
 	};
+
 	const handleResendOtp = () => {
 		dispatch(resendRegisterOtp(id));
 	};
@@ -43,7 +44,6 @@ const VerifyOtp = () => {
 		if (message) {
 			toast.success(message, toastOptions);
 			dispatch({ type: "CLEAR_MESSAGE" });
-			// console.log()
 		}
 		if (error) {
 			toast.error(error, toastOptions);
@@ -53,11 +53,11 @@ const VerifyOtp = () => {
 
 	return (
 		<section>
-			<div className="signup-cont">
+			<div className="otp-cont">
 				{spans.map((_, index) => (
 					<span key={index} className="span"></span>
 				))}
-				<div className="signin" style={{ width: "400px" }}>
+				<div className="otp-box">
 					<div className="content">
 						<h2>Enter OTP</h2>
 						<form className="form" onSubmit={handleSubmit}>
@@ -68,7 +68,7 @@ const VerifyOtp = () => {
 									onChange={(e) => setOtp(e.target.value)}
 									required
 								/>
-								<i>OTP</i>
+								<label>OTP</label>
 							</div>
 							<div className="links">
 								<Link to={`/verify/${id}`} onClick={handleResendOtp}>
