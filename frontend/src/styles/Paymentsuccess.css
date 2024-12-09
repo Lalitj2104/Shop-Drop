@@ -1,0 +1,92 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+  }
+  
+  /* Card Container */
+  .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Card */
+  .card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+    /* Icon inside Card */
+    .card .icon {
+      font-size: 36px;
+      color: green;
+      margin-bottom: 10px;
+    }
+  
+    /* Heading inside Card */
+    .card h1 {
+      font-size: 24px;
+      margin: 10px 0;
+      color: #333;
+    }
+  
+    /* Paragraph inside Card */
+    .card p {
+      font-size: 16px;
+      color: #666;
+      margin: 5px 0;
+    }
+  
+    /* Highlighted text in paragraph */
+    .card p strong {
+      color: #333;
+    }
+  
+    /* Button inside Card */
+    .card .dashboard-btn {
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s;
+    }
+  
+    /* Button Hover */
+    .card .dashboard-btn:hover {
+      background-color: #444;
+    }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .card h1 {
+      font-size: 20px;
+    }
+  
+    .card p {
+      font-size: 14px;
+    }
+  
+    .card .dashboard-btn {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+  
