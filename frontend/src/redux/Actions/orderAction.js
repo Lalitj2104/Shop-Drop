@@ -19,7 +19,7 @@ export const addOrder=(paymentStatus,paymentMethod,shippingAddress)=>async(dispa
             type:"ADD_ORDER_SUCCESS",
             payload:{
                 message:data.message,
-                order:data.data
+                // order:data.data
             }
         })
     } catch (error) {
@@ -35,7 +35,9 @@ export const cancelOrder=(id)=>async(dispatch)=>{
         dispatch({
             type:"CANCEL_ORDER_REQUEST"
         })
-        const {data} =await axios.put(`${URL}/cancel/${id}`)
+        console.log(id);
+        const { data } = await axios.put(`${URL}/cancel/${id}`)
+        console.log(data);
         dispatch({
             type:"CANCEL_ORDER_SUCCESS",
             payload:{
@@ -59,7 +61,6 @@ export const getOrderByUser=()=>async(dispatch)=>{
             type:"GET_ORDER_BY_USER_REQUEST"
         })
         const {data} =await axios.get(`${URL}/userOrder`)
-        console.log(data.data);
         dispatch({
             type:"GET_ORDER_BY_USER_SUCCESS",
             payload:{
@@ -88,10 +89,11 @@ export const getOrderByStatus=(status)=>async(dispatch)=>{
             type:"GET_ORDER_BY_STATUS_SUCCESS",
             payload:{
                 message:data.message,
-                order:data.data
+                orders:data.data
             }
         })
     } catch (error) {
+        console.log(error);
         dispatch({
             type:"GET_ORDER_BY_STATUS_FAILURE",
             payload: error.response?.data?.message,
@@ -130,11 +132,12 @@ export const getOrderByRetailer=()=>async(dispatch)=>{
             type:"GET_ORDER_BY_RETAILER_REQUEST"
         })
         const {data} =await axios.get(`${URL}/retailerOrder`)
+        // console.log(data.data);
         dispatch({
             type:"GET_ORDER_BY_RETAILER_SUCCESS",
             payload:{
                 message:data.message,
-                order:data.data
+                rorder:data.data
             }
         })
     } catch (error) {

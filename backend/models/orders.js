@@ -11,6 +11,11 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    retailerId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Retailer",
+          required: true,
+        },
     products: [
       {
         productId: {
@@ -27,11 +32,7 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
-        retailerId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Retailer",
-          required: true,
-        },
+        
       },
     ],
     totalAmount: {

@@ -87,13 +87,12 @@ const CartPage = () => {
 
             const session = await response.json();
 
-            const result = await stripe.redirectToCheckout({
-                sessionId: session.id,
-            });
-
-            if (result.error) {
-                console.error(result.error.message);
-            }
+            if (session.url) {
+				// Redirect user to the Stripe Checkout page
+				window.location.href = session.url; // Stripe's URL for the session
+			} else {
+				console.error("Failed to create checkout session.");
+			}
         } catch (error) {
             console.error("Error during payment:", error);
         }

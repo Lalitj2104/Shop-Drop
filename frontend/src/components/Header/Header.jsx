@@ -17,14 +17,17 @@ const Header = () => {
 
 	const showDropdown = () => setDropdownVisible(true);
 	const hideDropdown = () => setDropdownVisible(false);
-
+	
 	const logoutHandler = () => {
 		dispatch(logoutUser());
+		setTimeout(() => {
+			dispatch(loadUser());
+		}, 0);
 	};
 
 	let name = user?.firstName || id?.firstName;
 	let address = user?.address || [];
-
+	
 	return (
 		<header className="header">
 			{/* Top Header */}
@@ -75,10 +78,10 @@ const Header = () => {
 				<nav className="nav-menu">
 					<Link to="/">Home</Link>
 					<Link to="/shop">Shop</Link>
-					<Link to="/pages">Pages</Link>
+					<Link to="/Categories">Categories</Link>
 					<Link to="/blog">Blog</Link>
-					<Link to="/elements">Elements</Link>
-					<Link to="/buy">Buy</Link>
+					<Link to="/Gaming Zone">Gaming zone</Link>
+					{/* <Link to="/buy">Buy</Link> */}
 				</nav>
 
 				<div className="nav-icons">

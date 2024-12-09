@@ -7,9 +7,9 @@ import { isAuthenticate } from "../middleware/retailAuth.js";
 const orderRouter=express.Router();
 
 orderRouter.post("/add",isAuthenticated,addOrder);
-orderRouter.put("/cancel/:id",isAuthenticated,cancelOrder);
+orderRouter.put("/cancel/:orderId", isAuthenticated, cancelOrder);
 orderRouter.get("/userOrder",isAuthenticated,getOrderByUser);
-orderRouter.get("/status/:status",isAuthenticated,getOrdersByStatus);
+orderRouter.get("/status/:status",isAuthenticate,getOrdersByStatus);
 orderRouter.get("/my/:orderId",isAuthenticated,getOrderById);
 
 orderRouter.get("/retailerOrder",isAuthenticate,getOrderByRetailer);
