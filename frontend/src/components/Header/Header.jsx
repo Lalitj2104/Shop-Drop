@@ -17,7 +17,7 @@ const Header = () => {
 
 	const showDropdown = () => setDropdownVisible(true);
 	const hideDropdown = () => setDropdownVisible(false);
-
+	
 	const logoutHandler = () => {
 		dispatch(logoutUser());
 	};
