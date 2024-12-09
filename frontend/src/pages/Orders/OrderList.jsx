@@ -23,7 +23,7 @@ const OrderList = () => {
     <>
     <Header/>
     <div style={{ padding: "20px" }}>
-      {order &&order?.map((item) => (
+      {order &&order.map((item) => (
         
         <OrderCard key={item?._id} order={item} />
       ))}

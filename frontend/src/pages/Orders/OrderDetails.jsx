@@ -5,6 +5,7 @@ import staticOrders from "../../data/staticOrders";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
+import { getOrderById } from "../../redux/Actions/orderAction";
 
 const OrderDetails = () => {
 	const { id } = useParams();
@@ -47,13 +48,17 @@ const OrderDetails = () => {
 				{activeTab === "details" && (
 					<div className="details-tab">
 						<p>
-							<strong>Ordered On:</strong> {new Date(order?.createdAt).toISOString().split("T")[0] ||"n/a"}
+							<strong>Ordered On:</strong> {order?.createdAt
+    ? new Date(order.createdAt).toISOString().split("T")[0]
+    : "n/a"}
 						</p>
 						<p>
 							<strong>Delivering To:</strong> {order?.shippingAddress}
 						</p>
 						<p>
-							<strong>Estimated Delivery:</strong> {new Date(order?.createdAt+5).toISOString().split("T")[0] ||"n/a"}
+							<strong>Estimated Delivery:</strong> {order?.createdAt
+    ? new Date(order.createdAt).toISOString().split("T")[0]
+    : "n/a"}
 						</p>
 						<p>
 							<strong>Order Summary:</strong> {order.summary}
@@ -65,10 +70,10 @@ const OrderDetails = () => {
 				{activeTab === "items" && (
 					<div className="items-tab">
 						<ul>
-							{order.products.map((item, index) => (
+							{order &&order.products.map((item, index) => (
 								<li key={index}>
 									<strong>{item?.name}</strong> - Qty: {item?.quantity} - ₹
-									{item.price}
+									{item?.price}
 								</li>
 							))}
 						</ul>

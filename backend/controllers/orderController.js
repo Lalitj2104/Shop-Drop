@@ -108,11 +108,11 @@ export const getOrderById = async (req,res) => {
   try {
     const {orderId} =req.params;
 
-    const order = await Order.findById(orderId).populate('products.productId retailerId userId');
+    const order = await Order.findById(orderId).populate('products.productId' ,"image,description");
     if (!order) {
         return Response(res, 404,false, message.orderNotFoundMessage);
     }
-
+    console.log(order);
     Response(res, 200,true, message.orderFetchedMessage, order);
   } catch (error) {
     Response(res, 500,false,error.message);  }

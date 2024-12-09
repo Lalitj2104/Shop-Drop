@@ -10,7 +10,7 @@ orderRouter.post("/add",isAuthenticated,addOrder);
 orderRouter.put("/cancel/:id",isAuthenticated,cancelOrder);
 orderRouter.get("/userOrder",isAuthenticated,getOrderByUser);
 orderRouter.get("/status/:status",isAuthenticated,getOrdersByStatus);
-orderRouter.get("/order/:id",isAuthenticated,getOrderById);
+orderRouter.get("/my/:orderId",isAuthenticated,getOrderById);
 
 orderRouter.get("/retailerOrder",isAuthenticate,getOrderByRetailer);
 orderRouter.put("/update/:id",isAuthenticate,updateOrderStatus);
