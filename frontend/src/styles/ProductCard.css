@@ -57,7 +57,7 @@
 .product-price {
 	font-size: 18px;
 	font-weight: bold;
-	color: #27ae60;
+	color: #2A3531;
 	margin-bottom: 16px;
 }
 
@@ -65,7 +65,7 @@
 	padding: 12px 20px;
 	font-size: 16px;
 	color: #fff;
-	background-color: #3498db;
+	background-color:#36454F;
 	border: none;
 	border-radius: 6px;
 	cursor: pointer;
@@ -78,7 +78,7 @@
 }
 
 .more-details-button:hover {
-	background-color: #1d78c1;
+	background-color:#36454F;
 	transform: translateY(-3px);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -97,7 +97,7 @@
 	padding: 12px 20px;
 	font-size: 16px;
 	color: #fff;
-	background-color: #e74c3c; /* A distinct color (red) to make it stand out */
+	background-color:#082567; /* A distinct color (red) to make it stand out */
 	border: none;
 	border-radius: 6px;
 	cursor: pointer;
@@ -109,7 +109,7 @@
 }
 
 .add-to-cart-button:hover {
-	background-color: #c0392b; /* Darker red on hover */
+	background-color:#082567; /* Darker red on hover */
 	transform: translateY(-3px);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
