@@ -14,8 +14,7 @@ const OrderDetails = () => {
 		dispatch(getOrderById(id));
 		console.log(order);
 	}, [dispatch]);
-
-	console.log(order);
+	
 
 	const [activeTab, setActiveTab] = useState("details");
 
