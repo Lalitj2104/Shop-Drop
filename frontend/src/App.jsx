@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Path from "./routes/user/index.jsx";
 import RetailerPath from "./routes/retailer/index.jsx";
 import "./App.css";
+import AdminPath from "./routes/Admin/index.jsx";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       {/* Main application routes */}
       <Path />
       <RetailerPath />
-      {/* Independent Chatbot Route */}
+      <AdminPath/>
     </>
   );
 }

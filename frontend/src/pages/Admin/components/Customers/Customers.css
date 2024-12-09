@@ -1,0 +1,45 @@
+.customers {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customers h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #242d49;
+  }
+  
+  .customers table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  .customers table th, .customers table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .customers table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .customers table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .customers table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .customers .error {
+    color: red;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
