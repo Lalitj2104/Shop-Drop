@@ -99,7 +99,8 @@ const OrderCard = ({ order }) => {
                   background: `linear-gradient(
                     to right,
                     green ${((activeStep + 1) / orderStatusEnum.length) * 100}%,
-                    red ${((activeStep + 1) / orderStatusEnum.length) * 100}%
+                    grey ${((activeStep + 1) / orderStatusEnum.length) * 100}%,
+                    grey 100%
                   )`,
                 }}
               ></div>
