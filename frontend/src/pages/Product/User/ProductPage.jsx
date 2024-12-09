@@ -140,11 +140,11 @@ const ProductPage = () => {
           {reviews.length ? (
             reviews.map((review, index) => (
               <li key={index} className="review-item">
-                <h4>{review.title}</h4>
-                <p>{review.description}</p>
+                <h4>{review?.title}</h4>
+                <p>{review?.description}</p>
                 <div>
-                  <button>👍 {review.likes}</button>
-                  <button>👎 {review.dislikes}</button>
+                  <button>👍 {review?.likes}</button>
+                  <button>👎 {review?.dislikes}</button>
                 </div>
               </li>
             ))
