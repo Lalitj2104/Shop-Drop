@@ -5,6 +5,7 @@ import toastOptions from "../../constants/toast";
 import { Link } from "react-router-dom";
 import "../../styles/RetailerOrder.css"
 import RetailerSidebar from "../../components/RetailerSidebar/RetailerSidebar";
+import { getOrderByRetailer } from "../../redux/Actions/orderAction";
 
 // Static orders data
 const staticOrdersData = [
@@ -30,9 +31,10 @@ const staticOrdersData = [
 
 function RetailerOrders() {
 	const{Retailer} = useSelector((state) => state.retailerAuth);
+	const dispatch=useDispatch();
 	// Fetch orders on component mount
 	useEffect(() => {
-		// dispatch(getRetailerOrders());
+		dispatch(getOrderByRetailer());
 	}, []);
 
 	// Handle errors or success messages

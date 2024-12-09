@@ -19,7 +19,7 @@ export const addOrder=(paymentStatus,paymentMethod,shippingAddress)=>async(dispa
             type:"ADD_ORDER_SUCCESS",
             payload:{
                 message:data.message,
-                order:data.data
+                // order:data.data
             }
         })
     } catch (error) {

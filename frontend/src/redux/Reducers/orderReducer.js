@@ -47,7 +47,7 @@ export const orderReducer=createReducer(initialState,(builder)=>{
     })
     .addCase(addOrderSuccess,(state,action)=>{
         state.loading=false;
-        state.order=action.payload.order,
+        // state.order=action.payload.order,
         state.message=action.payload.message
     })
     .addCase(addOrderFailure,(state,action)=>{
