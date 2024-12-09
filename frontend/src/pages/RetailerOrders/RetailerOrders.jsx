@@ -31,7 +31,7 @@ const staticOrdersData = [
 
 function RetailerOrders() {
 	const{Retailer} = useSelector((state) => state.retailerAuth);
-	const {rorder} = useSelector((state) => state.orderAuth);
+	const {message,error,rorder} = useSelector((state) => state.orderAuth);
 	const dispatch=useDispatch();
 	// Fetch orders on component mount
 	
@@ -41,13 +41,13 @@ function RetailerOrders() {
 	
 	// Handle errors or success messages
 	useEffect(() => {
-		// if (message) {
-		// 	toast.success(message, toastOptions);
-		// }
-		// if (error) {
-		// 	toast.error(error, toastOptions);
-		// }
-	}, []);
+		if (message) {
+			dispatch({type:"CLEAR_MESSAGE"})
+		}
+		if (error) {
+			dispatch({type:"CLEAR_ERROR"})
+		}
+	}, [message,error]);
 	console.log(rorder?.length);
 	return (
 		<div className="retailer-orders-page">

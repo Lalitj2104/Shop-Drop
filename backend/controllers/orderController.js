@@ -203,12 +203,10 @@ export const getOrdersByStatus = async (req, res) => {
       "picked up",
     ];
     if (!validStatuses.includes(status)) {
-      return Response(res, 400, false, message.invalidStatusMessage);
+      return Response(res, 401, false, message.invalidStatusMessage);
     }
-
-    const orders = await Order.find({ status }).populate(
-      "products.productId userId retailerId"
-    );
+    console.log("working");
+    const orders = await Order.find({ status });
 
     Response(res, 200, true, message.ordersFetchedMessage, orders);
   } catch (error) {

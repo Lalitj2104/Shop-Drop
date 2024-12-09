@@ -89,10 +89,11 @@ export const getOrderByStatus=(status)=>async(dispatch)=>{
             type:"GET_ORDER_BY_STATUS_SUCCESS",
             payload:{
                 message:data.message,
-                order:data.data
+                orders:data.data
             }
         })
     } catch (error) {
+        console.log(error);
         dispatch({
             type:"GET_ORDER_BY_STATUS_FAILURE",
             payload: error.response?.data?.message,

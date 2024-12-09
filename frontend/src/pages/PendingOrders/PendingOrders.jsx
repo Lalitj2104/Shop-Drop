@@ -32,12 +32,12 @@ function PendingOrders() {
 	},[dispatch]);
 
 	const updateStatus = (orderId) => {
-		// Update status logic here
-		setOrders((prevOrders) =>
-			prevOrders.map((order) =>
-				order.id === orderId ? { ...order, status: "Completed" } : order
-			)
-		);
+	// 	// Update status logic here
+	// 	setOrders((prevOrders) =>
+	// 		prevOrders.map((order) =>
+	// 			order.id === orderId ? { ...order, status: "Completed" } : order
+	// 		)
+	// 	);
 	};
 
 	return (
@@ -52,24 +52,24 @@ function PendingOrders() {
 				</div>
 
 				<div className="orders-list">
-					{orders.length === 0 ? (
+					{orders?.length === 0 ? (
 						<p>No pending orders available.</p>
 					) : (
-						orders.map((order) => (
+						orders&&orders?.map((order) => (
 							<div className="order-item" key={order.id}>
-								<h3>Order ID: {order.id}</h3>
-								<p>Date: {new Date(order.date).toLocaleDateString()}</p>
-								<p>Total Amount: ₹{order.totalAmount.toFixed(2)}</p>
+								<h3>Order ID: {order?._id}</h3>
+								<p>Date: {new Date(order?.createdAt).toLocaleDateString()}</p>
+								<p>Total Amount: ₹{order?.totalAmount.toFixed(2)}</p>
 								<p>Status: {order.status}</p>
 								<div className="order-buttons">
 									<Link to={`/orderDetails/${order.id}`}>
 										<button className="view-order-btn">View Order</button>
 									</Link>
 									{/* Update Status Button */}
-									{order.status === "Pending" && (
+									{order?.status === "Pending" && (
 										<button
 											className="update-status-btn"
-											onClick={() => updateStatus(order.id)}
+											onClick={() => updateStatus(order?._id)}
 										>
 											Update Status
 										</button>
