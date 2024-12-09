@@ -44,13 +44,14 @@ const OrderCard = ({ order, onCancelOrder }) => {
 			<div className="order-header">
 				<div className="order-phone">
 					<i className="fas fa-phone-alt"></i>
-					<span>{order?.phoneNumber || "N/A"}</span>
+					<span><strong>Summary:</strong></span>
 				</div>
 				<div>
 					<strong>Order No:</strong> {order?._id || "Unknown"}
 				</div>
 			</div>
 			<div className="order-info">
+				
 				<p>
 					<strong>Placed On:</strong>{" "}
 					{new Date(order?.createdAt).toISOString().split("T")[0] || "Unknown"}

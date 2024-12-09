@@ -5,6 +5,7 @@ import toastOptions from "../../constants/toast";
 import { Link } from "react-router-dom";
 import "../../styles/RetailerOrder.css";
 import RetailerSidebar from "../../components/RetailerSidebar/RetailerSidebar";
+import { getOrderByStatus } from "../../redux/Actions/orderAction";
 
 // Static completed orders data
 const staticCompletedOrdersData = [
@@ -25,20 +26,21 @@ const staticCompletedOrdersData = [
 function CompletedOrders() {
 	const { Retailer } = useSelector((state) => state.retailerAuth);
 
-	// Fetch orders on component mount
-	useEffect(() => {
-		// dispatch(getRetailerOrders());
-	}, []);
+	const {message,error,orders}=useSelector(state => state.orderAuth);
+	const dispatch=useDispatch();
+	useEffect(()=>{
+		dispatch(getOrderByStatus("Delivered"));
+	},[dispatch]);
 
 	// Handle errors or success messages
 	useEffect(() => {
-		// if (message) {
-		// 	toast.success(message, toastOptions);
-		// }
-		// if (error) {
-		// 	toast.error(error, toastOptions);
-		// }
-	}, []);
+		if (message) {
+			dispatch({type:"CLEAR_MESSAGE"})
+		}
+		if (error) {
+			dispatch({type:"CLEAR_ERROR"})
+		}
+	}, [dispatch]);
 
 	return (
 		<div className="retailer-orders-page">
@@ -52,17 +54,17 @@ function CompletedOrders() {
 				</div>
 
 				<div className="orders-list">
-					{staticCompletedOrdersData.length === 0 ? (
+					{orders.length === 0 ? (
 						<p>No completed orders available.</p>
 					) : (
-						staticCompletedOrdersData.map((order) => (
-							<div className="order-item" key={order.id}>
-								<h3>Order ID: {order.id}</h3>
-								<p>Date: {new Date(order.date).toLocaleDateString()}</p>
-								<p>Total Amount: ₹{order.totalAmount.toFixed(2)}</p>
-								<p>Status: {order.status}</p>
+						orders&&orders?.map((order) => (
+							<div className="order-item" key={order?._id}>
+								<h3>Order ID: {order?._id}</h3>
+								<p>Date: {new Date(order?.createdAt).toLocaleDateString()}</p>
+								<p>Total Amount: ₹{order?.totalAmount.toFixed(2)}</p>
+								<p>Status: {order?.status}</p>
 								<div className="order-buttons">
-									<Link to={`/orderDetails/${order.id}`}>
+									<Link to={`/orderDetails/${order?._id}`}>
 										<button className="view-order-btn">View Order</button>
 									</Link>
 								</div>

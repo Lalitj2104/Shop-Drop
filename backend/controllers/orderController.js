@@ -182,6 +182,9 @@ export const updateOrderStatus = async (req, res) => {
     }
 
     order.status = status;
+    if(order.paymentStatus=="Pending"){
+      order.paymentStatus="Paid"
+    }
     await order.save();
 
     Response(res, 200, true, message.orderStatusUpdatedMessage, order);

@@ -32,12 +32,12 @@ function PendingOrders() {
 	},[dispatch]);
 
 	const updateStatus = (orderId) => {
-	// 	// Update status logic here
-	// 	setOrders((prevOrders) =>
-	// 		prevOrders.map((order) =>
-	// 			order.id === orderId ? { ...order, status: "Completed" } : order
-	// 		)
-	// 	);
+		// Update status logic here
+		// setOrders((prevOrders) =>
+		// 	prevOrders.map((order) =>
+		// 		order.id === orderId ? { ...order, status: "Completed" } : order
+		// 	)
+		// );
 	};
 
 	return (
