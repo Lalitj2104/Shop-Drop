@@ -75,10 +75,10 @@ const Header = () => {
 				<nav className="nav-menu">
 					<Link to="/">Home</Link>
 					<Link to="/shop">Shop</Link>
-					<Link to="/pages">Pages</Link>
+					<Link to="/Categories">Categories</Link>
 					<Link to="/blog">Blog</Link>
-					<Link to="/elements">Elements</Link>
-					<Link to="/buy">Buy</Link>
+					<Link to="/Gaming Zone">Gaming zone</Link>
+					{/* <Link to="/buy">Buy</Link> */}
 				</nav>
 
 				<div className="nav-icons">

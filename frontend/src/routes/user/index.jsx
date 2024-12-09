@@ -26,6 +26,7 @@ import OrderDetails from "../../pages/Orders/OrderDetails.jsx";
 import AddressPage from "../../pages/Address/AddressPage.jsx";
 import CartPage from "../../pages/Cart/Cart.jsx";
 import ChatbotPage from "../../pages/ChatBot/ChatbotPage.jsx";
+import Categories from "../../pages/Categories/Categories.jsx";
 
 const Path = () => {
 	const dispatch = useDispatch();
@@ -177,6 +178,14 @@ const Path = () => {
 							element={
 								<ProtectedRoute>
 									<CartPage />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="/categories"
+							element={
+								<ProtectedRoute>
+									<Categories />
 								</ProtectedRoute>
 							}
 						/>

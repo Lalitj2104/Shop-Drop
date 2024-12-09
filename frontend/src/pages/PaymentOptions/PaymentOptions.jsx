@@ -27,7 +27,7 @@ const Paymentoptions = () => {
           </p>
         </div>
         <div className="button-container">
-          <button className="payment-button">Manage Kindle Payment Setting</button>
+          <button className="payment-button">Manage Payment Setting</button>
           <button
             className="payment-button"
             onClick={handleEditPaymentClick} 
