@@ -8,7 +8,9 @@
 
 /* Back Button */
 .product-page-back-button {
+  margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 20px;
   padding: 10px 15px;
   background-color: #3498db;
   color: #fff;

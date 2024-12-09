@@ -1,0 +1,203 @@
+
+.retailer-orders-page {
+	display: flex; /* Flexbox layout */
+	height: 100vh; /* Full height of the viewport */
+}
+
+/* Sidebar within the Retailer Orders page */
+.retailer-orders-page .retailer-orders-sidebar {
+	width: 250px; /* Fixed width for the sidebar */
+	background-color: #3b5998; /* Background color */
+	color: white; /* Text color */
+	padding: 20px; /* Padding inside the sidebar */
+	display: flex;
+	flex-direction: column; /* Vertical layout */
+	gap: 20px; /* Spacing between elements */
+}
+
+/* Main content area of the Retailer Orders page */
+.retailer-orders-page .retailer-orders-content {
+	flex: 1; /* Take up remaining space */
+	padding: 20px; /* Padding around content */
+	background-color: #f9f9f9; /* Background color */
+}
+
+/* Top bar section inside the content */
+.retailer-orders-page .retailer-orders-content .top-bar {
+	display: flex; /* Flexbox for aligning items */
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+/* Title in the top bar */
+.retailer-orders-page .retailer-orders-content .top-bar h2 {
+	font-size: 24px; /* Title font size */
+	margin-bottom: 20px; /* Bottom margin */
+	color: #333; /* Dark text color */
+}
+
+/* Orders list container */
+.retailer-orders-page .retailer-orders-content .orders-list {
+	display: grid; /* Grid layout for orders */
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(300px, 1fr)
+	); /* Responsive columns */
+	gap: 20px; /* Spacing between order items */
+}
+
+/* Individual order item styling */
+.retailer-orders-page .retailer-orders-content .orders-list .order-item {
+	background-color: #fff; /* White background */
+	padding: 10px; /* Padding inside order item */
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+	text-align: center; /* Center content */
+}
+
+/* Order ID title */
+.retailer-orders-page .retailer-orders-content .orders-list .order-item h3 {
+	font-size: 18px; /* Order ID font size */
+	margin: 10px 0 5px; /* Margin for spacing */
+	color: #333; /* Dark color for text */
+}
+
+/* General order details paragraph styling */
+.retailer-orders-page .retailer-orders-content .orders-list .order-item p {
+	font-size: 14px; /* Font size for text */
+	color: #777; /* Light gray color */
+	margin-bottom: 10px; /* Spacing below paragraphs */
+}
+
+/* Container for order buttons */
+.retailer-orders-page
+	.retailer-orders-content
+	.orders-list
+	.order-item
+	.order-buttons {
+	display: flex; /* Flexbox layout */
+	justify-content: space-between; /* Space between buttons */
+}
+
+/* View Order button styling */
+.retailer-orders-page
+	.retailer-orders-content
+	.orders-list
+	.order-item
+	.order-buttons
+	.view-order-btn {
+	background-color: #00bfff; /* Button background color */
+	color: white; /* Text color */
+	padding: 10px 20px; /* Padding inside button */
+	font-size: 14px; /* Font size */
+	border: none; /* Remove border */
+	border-radius: 5px; /* Rounded corners */
+	cursor: pointer; /* Pointer cursor */
+	width: 45%; /* Button width */
+}
+
+/* View Order button hover effect */
+.retailer-orders-page
+	.retailer-orders-content
+	.orders-list
+	.order-item
+	.order-buttons
+	.view-order-btn:hover {
+	background-color: #008cba; /* Darken background on hover */
+}
+
+/* ----------------------------- */
+/* Sidebar (from RetailerDashboard) */
+/* ----------------------------- */
+
+/* Sidebar in the Retailer Dashboard */
+.retailer-orders-page .retailer-orders-sidebar .retailer-dashboard-profile {
+	text-align: center; /* Center-align text */
+}
+
+.retailer-orders-page .retailer-orders-sidebar .retailer-dashboard-profile h3 {
+	margin: 10px 0 5px; /* Margin for profile name */
+	font-size: 18px; /* Font size */
+}
+
+.retailer-orders-page .retailer-orders-sidebar .retailer-dashboard-profile p {
+	font-size: 14px; /* Font size for location */
+	color: #ccc; /* Light gray text color */
+}
+
+/* Sidebar menu items */
+.retailer-orders-page .retailer-orders-sidebar .retailer-dashboard-menu {
+	list-style-type: none; /* Remove default list style */
+	padding: 0; /* Remove padding */
+	margin: 0; /* Remove margin */
+}
+
+.retailer-orders-page .retailer-orders-sidebar .retailer-dashboard-menu li {
+	margin: 10px 0; /* Space between items */
+}
+
+/* Link styles in the sidebar */
+.retailer-orders-page .retailer-orders-sidebar .retailer-dashboard-menu li a {
+	color: white; /* Text color for links */
+	text-decoration: none; /* Remove underline */
+	display: block; /* Block-level link */
+	padding: 10px; /* Padding around the links */
+	border-radius: 5px; /* Rounded corners */
+	font-size: 16px; /* Font size for links */
+	transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Sidebar link hover effect */
+.retailer-orders-page
+	.retailer-orders-sidebar
+	.retailer-dashboard-menu
+	li
+	a:hover {
+	background-color: #334b88; /* Darker background on hover */
+	color: white; /* Ensure text stays white */
+}
+
+/* Active link styles */
+.retailer-orders-page
+	.retailer-orders-sidebar
+	.retailer-dashboard-menu
+	li
+	a.active {
+	background-color: #00bfff; /* Highlight active link */
+	color: white; /* Ensure text stays white */
+}
+
+/* Sidebar logout button */
+.retailer-orders-page .retailer-orders-sidebar .logout-btn {
+	background-color: #ff4c4c; /* Red background */
+	color: white; /* White text */
+	padding: 10px 20px; /* Padding inside button */
+	font-size: 14px; /* Font size */
+	border: none; /* No border */
+	border-radius: 5px; /* Rounded corners */
+	cursor: pointer; /* Pointer cursor */
+	width: 100%; /* Full width */
+}
+
+/* Sidebar logout button hover effect */
+.retailer-orders-page .retailer-orders-sidebar .logout-btn:hover {
+	background-color: #ff2b2b; /* Darker red on hover */
+}
+
+/* ----------------------------- */
+/* Responsive Design */
+/* ----------------------------- */
+
+/* Responsive grid for orders list */
+@media (max-width: 1024px) {
+	.retailer-orders-page .retailer-orders-content .orders-list {
+		grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+	}
+}
+
+@media (max-width: 768px) {
+	.retailer-orders-page .retailer-orders-content .orders-list {
+		grid-template-columns: 1fr; /* One column on smaller screens */
+	}
+}

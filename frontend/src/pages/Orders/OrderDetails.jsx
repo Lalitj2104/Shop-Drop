@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../styles/OrderDetails.css";
 import staticOrders from "../../data/staticOrders";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
 
 const OrderDetails = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const order = staticOrders.find((o) => o.orderNo === id);
+	// const order = staticOrders.find((o) => o.orderNo === id);
+	const dispatch=useDispatch();
+	const {loading,order}=useSelector(state=>state.orderAuth);
+
+	useEffect(()=>{
+		dispatch(getOrderById(id));
+		console.log(order);
+	},[dispatch])
 
 	const [activeTab, setActiveTab] = useState("details");
 
@@ -39,13 +47,13 @@ const OrderDetails = () => {
 				{activeTab === "details" && (
 					<div className="details-tab">
 						<p>
-							<strong>Ordered On:</strong> {order.orderedOn}
+							<strong>Ordered On:</strong> {new Date(order?.createdAt).toISOString().split("T")[0] ||"n/a"}
 						</p>
 						<p>
-							<strong>Delivering To:</strong> {order.deliveringTo}
+							<strong>Delivering To:</strong> {order?.shippingAddress}
 						</p>
 						<p>
-							<strong>Estimated Delivery:</strong> {order.estimatedDelivery}
+							<strong>Estimated Delivery:</strong> {new Date(order?.createdAt+5).toISOString().split("T")[0] ||"n/a"}
 						</p>
 						<p>
 							<strong>Order Summary:</strong> {order.summary}
@@ -57,9 +65,9 @@ const OrderDetails = () => {
 				{activeTab === "items" && (
 					<div className="items-tab">
 						<ul>
-							{order.items.map((item, index) => (
+							{order.products.map((item, index) => (
 								<li key={index}>
-									<strong>{item.name}</strong> - Qty: {item.quantity} - ₹
+									<strong>{item?.name}</strong> - Qty: {item?.quantity} - ₹
 									{item.price}
 								</li>
 							))}

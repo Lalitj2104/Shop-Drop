@@ -58,7 +58,8 @@ export const getOrderByUser=()=>async(dispatch)=>{
         dispatch({
             type:"GET_ORDER_BY_USER_REQUEST"
         })
-        const {data} =await axios.get(`{URL}/userOrder`)
+        const {data} =await axios.get(`${URL}/userOrder`)
+        console.log(data.data);
         dispatch({
             type:"GET_ORDER_BY_USER_SUCCESS",
             payload:{

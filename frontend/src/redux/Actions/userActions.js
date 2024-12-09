@@ -303,12 +303,57 @@ export const getUserAddress = () => async (dispatch) => {
 	}
 };
 
-// export const setUserDefaultAddress = () => async (dispatch) => {
-//   try {
-//   } catch (error) {}
-// };
+export const setUserDefaultAddress = (id) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "SET_DEFAULT_ADDRESS_REQUEST",
+		});
+	
+		const { data } = await axios.put(`${URL}/address/default/${id}`,{
+			headers: {
+					"Content-Type": "application/json",
+				},
+				withCredentials: true,
+		});
+			// console.log(data);
+	
+			dispatch({
+				type: "SET_DEFAULT_ADDRESS_SUCCESS",
+				payload: {
+					message: data.message,
+					data: data.data,
+				},
+			});
+	
+	  } catch (error) {
+		dispatch({
+			type: "SET_DEFAULT_ADDRESS_FAILURE",
+			payload: error?.response?.data?.message,
+		});
+}
+}
 
-// export const removeUserAddress = () => async (dispatch) => {
-//   try {
-//   } catch (error) {}
-// };
+export const removeUserAddress = (id) => async (dispatch) => {
+  try {
+	dispatch({
+		type: "REMOVE_ADDRESS_REQUEST",
+	});
+
+	const { data } = await axios.delete(`${URL}/address/remove/${id}`);
+		console.log(data);
+
+		dispatch({
+			type: "REMOVE_ADDRESS_SUCCESS",
+			payload: {
+				message: data.message,
+				data: data.data,
+			},
+		});
+
+  } catch (error) {
+	dispatch({
+		type: "REMOVE_ADDRESS_FAILURE",
+		payload: error?.response?.data?.message,
+	});
+  }
+};

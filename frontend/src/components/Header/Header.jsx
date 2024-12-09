@@ -1,58 +1,29 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Header.css";
 import { loadUser, logoutUser } from "../../redux/Actions/userActions";
-import toastOptions from "../../constants/toast";
-import { toast } from "react-toastify";
 import { IoMdAdd } from "react-icons/io";
 
 const Header = () => {
 	const [isDropdownVisible, setDropdownVisible] = useState(false);
+	const [deliveryMode, setDeliveryMode] = useState("Delivery"); // New dropdown state
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { isAuthenticated, user, message, error, id } =
-		useSelector((state) => state.userAuth);
+	const { isAuthenticated, user, message, error, id } = useSelector(
+		(state) => state.userAuth
+	);
 
 	const showDropdown = () => setDropdownVisible(true);
 	const hideDropdown = () => setDropdownVisible(false);
 
 	const logoutHandler = () => {
-		// e.preventDefault();
 		dispatch(logoutUser());
 	};
-	// console.log(user);
-	// console.log(id);
-	let name = undefined;
-	let address = undefined;
-	// useEffect(()=>{
-		if (user || id) {
-			name = user?.firstName || id?.firstName;
-			address = user?.address
-		}
-	// },[user,id])
-	
-	useEffect(() => {
-		if (message) {
-			// console.log(message);
-			if(message=="Address retrieved successfully"){
-				return;
-			}
-			toast.success(message, toastOptions);
-			dispatch({
-				type: "CLEAR_MESSAGE",
-			});
-			if (message == "Logout successful") {
-				dispatch(loadUser());
-			}
-		}
-		if (error) {
-			// console.log(error);
-			toast.error(error, toastOptions);
-			dispatch({ type: "CLEAR_ERROR" });
-		}
-	}, [dispatch, message, error, isAuthenticated, navigate, name, address]);
+
+	let name = user?.firstName || id?.firstName;
+	let address = user?.address || [];
 
 	return (
 		<header className="header">
@@ -72,12 +43,26 @@ const Header = () => {
 			{/* Main Header */}
 			<div className="header-main">
 				<div className="logo">Shop & Drop</div>
+
 				{isAuthenticated && (
 					<div className="delivery-info">
+						{/* Delivery Dropdown */}
+						<div className="delivery-option">
+							<select
+								value={deliveryMode}
+								onChange={(e) => setDeliveryMode(e.target.value)}
+							>
+								<option value="Delivery">Delivery</option>
+								<option value="Instore">Instore</option>
+							</select>
+						</div>
+						{/* User Info */}
 						<p>
 							Welcome <strong>{name}</strong>
 							<br />
-							<span>{address[0]?.city || "Set your delivery location"}</span>{" "}
+							<span>
+								{address&&address[0]?.city || "Set your delivery location"}
+							</span>{" "}
 							<span>
 								<Link to="/AddAddress">
 									<IoMdAdd />
@@ -99,7 +84,9 @@ const Header = () => {
 				<div className="nav-icons">
 					<button className="icon">🔍</button>
 					<button className="icon">❤️</button>
-					<button className="icon" onClick={() => navigate("/cart")}>🛒</button>
+					<button className="icon" onClick={() => navigate("/cart")}>
+						🛒
+					</button>
 
 					<div
 						className="user-icon-wrapper"
