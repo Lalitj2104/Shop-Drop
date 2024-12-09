@@ -268,6 +268,28 @@ export const addUserAddress = (address) => async (dispatch) => {
 	}
 };
 
+export const getAllUsers=()=>async(dispatch)=>{
+	try {
+		dispatch({
+			type:"GET_ALL_USERS_REQUEST"
+		})
+		const {data}=await axios.get(`${URL}/all`);
+		dispatch({
+			type:"GET_ALL_USERS_SUCCESS",
+			payload:{
+				message:data.message,
+				users:data.data
+			}
+		})
+		
+	} catch (error) {
+		dispatch({
+			type:"GET_ALL_USERS_FAILURE",
+			payload: error?.response?.data?.message,
+		})
+	}
+}
+
 // export const getUserProfile = () => async (dispatch) => {
 //   try {
 //   } catch (error) {}

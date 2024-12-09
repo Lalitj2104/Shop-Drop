@@ -130,9 +130,7 @@ export const getOrderByRetailer = async (req, res) => {
 
 export const getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find().populate(
-      "products.productId userId retailerId"
-    );
+    const orders = await Order.find()
 
     Response(res, 200, true, message.ordersFetchedMessage, orders);
   } catch (error) {

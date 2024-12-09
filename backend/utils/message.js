@@ -70,5 +70,7 @@ export const message={
     invalidStatusMessage:"Invalid Status",
     retailerFoundMessage:"Retailer Found",
     mailAlreadyRegisteredmessage:"Already registered as user",
-    emailAlreadyRegisteredmessage:"Already registered as retailer"
+    emailAlreadyRegisteredmessage:"Already registered as retailer",
+    usersNotFoundMessage:"Users not found",
+    usersFoundMessage:"users found successfully"
 }

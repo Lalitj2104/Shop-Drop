@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Customers.css";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from "../../../../redux/Actions/userActions";
 
 const Customers = () => {
 //   const [customers, setCustomers] = useState([]);
@@ -26,10 +27,10 @@ const Customers = () => {
 
 const dispatch=useDispatch();
 
-  const{ products, loading,error}= useSelector(state=>state.orderAuth);
+  const{ users, loading,error}= useSelector(state=>state.userAuth);
 
   useEffect(()=>{
-    dispatch(getAllProducts())
+    dispatch(getAllUsers())
   },[dispatch])
 
   return (
@@ -50,12 +51,12 @@ const dispatch=useDispatch();
             </tr>
           </thead>
           <tbody>
-            {customers.map((customer) => (
-              <tr key={customer.id}>
-                <td>{customer.id}</td>
-                <td>{customer.name}</td>
-                <td>{customer.email}</td>
-                <td>{customer.phone}</td>
+            {users&&users.map((customer) => (
+              <tr key={customer?._id}>
+                <td>{customer?._id}</td>
+                <td>{customer?.firstName} {customer?.lastName}</td>
+                <td>{customer?.email}</td>
+                <td>{customer?.mobile}</td>
               </tr>
             ))}
           </tbody>

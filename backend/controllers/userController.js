@@ -529,6 +529,19 @@ export const deleteUser = async (req, res) => {
 	}
 };
 
+export const getAllUsers=async(req,res)=>{
+	try {
+		const users=await User.find();
+		if(!users){
+			return Response(res,400,false,message.usersNotFoundMessage);
+		}
+
+		Response(res,201,true,message.usersFoundMessage,users);
+	} catch (error) {
+		Response(res,500,false,error.message)
+	}
+}
+
 export const addAddress = async (req, res) => {
 	try {
 		if (!req.user) {
@@ -684,6 +697,7 @@ export const addWish = async (req, res) => {
 		Response(res, 500, false, error.message);
 	}
 };
+
 export const getWish = async (req, res) => {
 	try {
 		const wishList=await WishList.findOne({userId:req.user._id});

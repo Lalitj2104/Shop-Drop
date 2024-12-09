@@ -38,6 +38,11 @@ const getAllAddressSuccess = createAction("GET_ALL_ADDRESS_SUCCESS");
 const getAllAddressFailure = createAction("GET_ALL_ADDRESS_FAILURE");
 
 
+const getAllusersRequest = createAction("GET_ALL_USERS_REQUEST");
+const getAllusersSuccess = createAction("GET_ALL_USERS_SUCCESS");
+const getAllusersFailure = createAction("GET_ALL_USERS_FAILURE");
+
+
 const removeAddressRequest = createAction("REMOVE_ADDRESS_REQUEST");
 const removeAddressSuccess = createAction("REMOVE_ADDRESS_SUCCESS");
 const removeAddressFailure = createAction("REMOVE_ADDRESS_FAILURE");
@@ -127,6 +132,20 @@ export const userReducer = createReducer(initialState, (builder) => {
 			state.message=action.payload.message
 		})
 		.addCase(addUserAddressFailure,(state,action)=>{
+			state.loading=false;
+			state.error=action.payload
+		})
+
+
+		.addCase(getAllusersRequest,(state)=>{
+			state.loading=true;
+		})
+		.addCase(getAllusersSuccess,(state,action)=>{
+			state.loading=false;
+			state.users=action.payload.users
+			state.message=action.payload.message
+		})
+		.addCase(getAllusersFailure,(state,action)=>{
 			state.loading=false;
 			state.error=action.payload
 		})

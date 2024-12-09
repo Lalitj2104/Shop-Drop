@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Orders.css";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllOrders } from "../../../../redux/Actions/orderAction";
 
 const Orders = () => {
 //   const [orderData, setOrderData] = useState([]);
@@ -41,10 +42,11 @@ const Orders = () => {
 
 const dispatch=useDispatch();
 
-  const{ products, loading,error}= useSelector(state=>state.orderAuth);
+  const{ orders, loading,error}= useSelector(state=>state.orderAuth);
 
   useEffect(()=>{
-    dispatch(getAllProducts())
+    dispatch(getAllOrders())
+
   },[dispatch])
 
 
@@ -60,18 +62,20 @@ const dispatch=useDispatch();
           <thead>
             <tr>
               <th>ID</th>
-              <th>Customer</th>
+              <th>Payment Method</th>
+              <th>Status</th>
               <th>Total</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            {orderData.map((order) => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.customer}</td>
-                <td>{order.total}</td>
-                <td>{order.date}</td>
+            {orders&&orders.map((order) => (
+              <tr key={order?._id}>
+                <td>{order?._id}</td>
+                <td>{order?.paymentMethod}</td>
+                <td>{order?.status}</td>
+                <td>{order?.totalAmount}</td>
+                <td>{order?.createdAt}</td>
               </tr>
             ))}
           </tbody>

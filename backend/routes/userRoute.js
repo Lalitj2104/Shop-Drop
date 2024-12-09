@@ -5,6 +5,7 @@ import {
 	deleteUser,
 	forgotPassword,
 	getAllAddress,
+	getAllUsers,
 	getUserProfile,
 	loginUser,
 	logoutUser,
@@ -34,6 +35,7 @@ userRouter.get("/my/profile", isAuthenticated, getUserProfile);
 userRouter.put("/my/profile/update", isAuthenticated, updateUserProfile);
 userRouter.post("/logout", logoutUser);
 userRouter.delete("/delete/me", deleteUser);
+userRouter.get("/all",getAllUsers);
 
 userRouter.post("/address/add", isAuthenticated, addAddress);
 userRouter.get("/address/my", isAuthenticated, getAllAddress);
