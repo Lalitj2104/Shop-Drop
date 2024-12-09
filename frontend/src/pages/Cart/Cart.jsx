@@ -89,7 +89,8 @@ const CartPage = () => {
 
             if (session.url) {
 				// Redirect user to the Stripe Checkout page
-				window.location.href = session.url; // Stripe's URL for the session
+				console.log(session.url);
+				// window.location.href = session.url; // Stripe's URL for the session
 			} else {
 				console.error("Failed to create checkout session.");
 			}

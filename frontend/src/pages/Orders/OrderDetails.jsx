@@ -44,7 +44,7 @@ const OrderDetails = () => {
         {activeTab === "details" && (
           <div className="details-tab">
             <p>
-              <strong>Payment method:</strong> {order?.paymentMethod || N / a}
+              <strong>Payment method:</strong> {order?.paymentMethod || "n/a"}
             </p>
             <p>
               <strong>Ordered On:</strong>{" "}
