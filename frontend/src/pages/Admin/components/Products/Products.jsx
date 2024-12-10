@@ -48,6 +48,7 @@ const Products = () => {
               <th>Product Name</th>
               <th>Category</th>
               <th>Price</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +58,7 @@ const Products = () => {
                 <td>{product?.description}</td>
                 <td>{product?.category}</td>
                 <td>{product?.price}</td>
+                <td>{new Date(product?.createdAt).toLocaleDateString("en-US") }</td>
               </tr>
             ))}
           </tbody>

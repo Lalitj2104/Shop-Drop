@@ -7,10 +7,42 @@
   padding: 1rem;
   position: relative;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 .CompactCard:hover {
   box-shadow: none !important;
 }
+
+/* Card.css */
+/* .CompactCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.CompactCard:hover {
+  transform: scale(1.1);
+} */
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  color: white;
+}
+
 
 /* radial bar */
 .radialBar {
