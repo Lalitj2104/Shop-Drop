@@ -33,7 +33,7 @@ const ProductList = () => {
 	// Function to clear filter and show all products
 	const clearFilter = () => {
 		setMinPrice(0);
-		setMaxPrice(1000); // Adjust this to the initial range
+		setMaxPrice(20000); // Adjust this to the initial range
 		setFilteredProducts(products); // Reset filtered products
 	};
 
