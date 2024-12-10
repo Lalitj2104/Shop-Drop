@@ -1,7 +1,7 @@
 import app from "./app.js"
 import connectDB from "./config/db.js"
 import cloudinary from "cloudinary"
-import io from "socket.io-client"
+import {io} from "socket.io-client"
 import initializeGame  from "./utils/game-logic.js"
 
 connectDB();

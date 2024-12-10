@@ -1,5 +1,5 @@
-const io = require('socket.io-client')
-const URL = 'http://localhost:8080'
+import {io} from "socket.io-client"
+const URL = 'http://localhost:4876'
 
 const socket = io.connect(URL)
 

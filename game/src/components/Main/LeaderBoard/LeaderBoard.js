@@ -15,7 +15,7 @@ const LeaderBoard = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const res = await fetch(`${process.env.REACT_APP_BASE_URL}/scores`, {
+            const res = await fetch(`http://localhost:4876/scores`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -71,23 +71,23 @@ const LeaderBoard = () => {
                         <br></br>
                         <tr>
                             <td id="winner">1</td>
-                            <td><img src={data[0].imageUrl} /></td>
-                            <td><img src={one} alt="First" /><p>{data[0].name}</p></td>
-                            <td>{data[0].total}</td>
-                            <td>{data[0].total / 5}</td>
+                            <td><img src={data[0]?.imageUrl} /></td>
+                            <td><img src={one} alt="First" /><p>{data[0]?.name}</p></td>
+                            <td>{data[0]?.total}</td>
+                            <td>{data[0]?.total / 5}</td>
                         </tr>
 
                         <tr>
                             <td id="runner-up">2</td>
-                            <td><img src={data[1].imageUrl} /></td>
-                            <td><img src={two} alt="Second" /><p>{data[1].name}</p></td>
-                            <td>{data[1].total}</td>
-                            <td>{data[1].total / 5}</td>
+                            <td><img src={data[1]?.imageUrl} /></td>
+                            <td><img src={two} alt="Second" /><p>{data[1]?.name}</p></td>
+                            <td>{data[1]?.total}</td>
+                            <td>{data[1]?.total / 5}</td>
                         </tr>
 
                         <tr>
                             <td id="second-runner-up">3</td>
-                            <td><img src={data[2].imageUrl} /></td>
+                            <td><img src={data[2]?.imageUrl} /></td>
                             <td><img src={three} alt="Third" /><p>{data[2]?.name}</p></td>
                             <td>{data[2]?.total}</td>
                             <td>{data[2]?.total / 5}</td>
@@ -98,10 +98,10 @@ const LeaderBoard = () => {
                                 return (
                                     <tr>
                                         <td>{idx}</td>
-                                        <td><img src={d.imageUrl} /></td>
-                                        <td><p>{d.name}</p></td>
-                                        <td>{d.total}</td>
-                                        <td>{d.total / 5}</td>
+                                        <td><img src={d?.imageUrl} /></td>
+                                        <td><p>{d?.name}</p></td>
+                                        <td>{d?.total}</td>
+                                        <td>{d?.total / 5}</td>
                                     </tr>
                                 )
                         })}
