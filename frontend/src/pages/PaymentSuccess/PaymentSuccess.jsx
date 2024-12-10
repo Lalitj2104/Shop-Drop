@@ -9,10 +9,10 @@ const PaymentSuccess=()=>{
   const dispatch = useDispatch();
   const {loading, message, error, cart} = useSelector(state => state.cartAuth);
 
-  const{address} = useSelector(state => state.userAuth);
+  const{user} = useSelector(state => state.userAuth);
 
-  const defaultAddress = address?.find((addr) => addr.isDefault);
-	console.log("Address Array:", address); // Log the full address array
+  const defaultAddress = user?.address?.find((addr) => addr.isDefault);
+	console.log("Address Array:", user?.address); // Log the full address array
 	console.log("Default Address:", defaultAddress); // Log the found default address
 
 	const shippingAddress=defaultAddress?.house+", "+defaultAddress?.street+", "+defaultAddress?.area+", "+
