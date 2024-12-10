@@ -1,83 +1,88 @@
-import React from "react";
-import "../../styles/Wishlist.css"; // Ensure this file contains the updated styles
+import "../../styles/Wishlist.css";
+import Header from "../../components/Header/Header";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+	getWishList,
+	removeWishList,
+} from "../../redux/Actions/wishListAction";
+import { addToCart } from "../../redux/Actions/cartAction";
 
 function Wishlist() {
-  const userInfo = {
-    name: "Khushi Agarwal",
-    location: "Warsaw, Poland",
-    wishes: 12,
-    messages: 3,
-    completedOrders: 55,
-    categories: [
-      "T-Shirts & Tops",
-      "Activewear",
-      "Sweaters",
-      "Skirts & Shorts",
-      "Outwear & Blazers",
-      "Accessories & Shoes",
-    ],
-  };
+	const dispatch = useDispatch();
+	const { wishList } = useSelector((state) => state.wishListAuth);
 
-  const WishlistProducts = [
-    {
-      id: 1,
-      name: "Flared Sleeves Sweater",
-      price: 19.99,
-      image: "/Flared Sleeves Sweater.jpg",
-    },
-    {
-      id: 2,
-      name: "V-Neck Sweater",
-      price: 35.99,
-      image: "/V-Neck Sweater.jpg",
-    },
-    {
-      id: 3,
-      name: "V-Neck Sweater",
-      price: 35.99,
-      image: "/V-Neck Sweater.jpg",
-    },
-  ];
+	useEffect(() => {
+		dispatch(getWishList());
+	}, [dispatch]);
 
-  return (
-    <div className="wishlist-container">
-      <h2 className="wishlist-title">My Wishlist</h2>
+	const hasItems =
+		Array.isArray(wishList?.products) && wishList.products.length > 0;
 
-      <div className="wishlist-product-grid">
-        {WishlistProducts.map((product) => (
-          <div className="wishlist-product-card" key={product.id}>
-            <div className="wishlist-product-info">
-              {/* Product Image */}
-              <img
-                src={product.image}
-                alt={product.name}
-                className="wishlist-product-image"
-              />
+	return (
+		<>
+			<Header />
+			<div className="wishlist-container">
+				<h2 className="wishlist-title">Your Wishlist</h2>
+				<p className="wishlist-subtitle">Keep track of items you love</p>
 
-              {/* Product Details */}
-              <div className="wishlist-product-details">
-                <h3 className="wishlist-product-name">{product.name}</h3>
-                <p className="wishlist-product-color">Color: Blue</p>
-                <p className="wishlist-product-price">
-                  $ {product.price.toFixed(2)}
-                </p>
-              </div>
-            </div>
+				{hasItems ? (
+					<div className="wishlist-list">
+						{wishList.products.map((product) => (
+							<div
+								className="wishlist-horizontal-card"
+								key={product._id || product.id}
+							>
+								{/* Product Image */}
+								<div className="wishlist-image-wrapper">
+									<img
+										src={product?.image?.url}
+										alt={product?.name}
+										className="wishlist-image"
+									/>
+								</div>
 
-            {/* Action Buttons */}
-            <div className="wishlist-actions">
-              <button className="wishlist-add-to-bag">Add to shopping bag</button>
-              <button className="wishlist-remove-btn">🗑</button>
-            </div>
-          </div>
-        ))}
-      </div>
+								{/* Product Details */}
+								<div className="wishlist-details">
+									<h3 className="wishlist-name">{product?.name}</h3>
+									<p>{product?.description}</p>
+									<p className="wishlist-price">$ {product?.price}</p>
+								</div>
 
-      <button className="wishlist-add-all-btn">
-        Add all to Shopping Bag
-      </button>
-    </div>
-  );
+								{/* Action Buttons */}
+								<div className="wishlist-actions">
+									<button
+										className="wishlist-add-to-cart"
+										onClick={() => dispatch(addToCart(product?._id, 1))}
+									>
+										Add to Bag
+									</button>
+									<button
+										className="wishlist-remove"
+										onClick={() => dispatch(removeWishList(product?._id))}
+									>
+										🗑
+									</button>
+								</div>
+							</div>
+						))}
+					</div>
+				) : (
+					<div className="wishlist-empty">
+						<p className="wishlist-empty-message">
+							No items in your wishlist. <a href="/shop">Continue Shopping</a>
+						</p>
+					</div>
+				)}
+
+				{hasItems && (
+					<div className="wishlist-add-all">
+						<button>Add All to Bag</button>
+					</div>
+				)}
+			</div>
+		</>
+	);
 }
 
 export default Wishlist;

@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import "../../styles/OrderDetails.css";
 import Header from "../../components/Header/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderById, getOrderByUId } from "../../redux/Actions/orderAction";
+import { getOrderByUId } from "../../redux/Actions/orderAction";
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -14,6 +14,8 @@ const OrderDetails = () => {
     dispatch(getOrderByUId(id));
     console.log(order);
   }, [dispatch]);
+
+  console.log(order);
 
   const [activeTab, setActiveTab] = useState("details");
 

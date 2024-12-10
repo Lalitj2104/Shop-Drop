@@ -7,6 +7,7 @@ import { addToCart } from "../../../redux/Actions/cartAction";
 import toastOptions from "../../../constants/toast";
 import { toast } from "react-toastify";
 import Header from "../../../components/Header/Header";
+import { addWishList } from "../../../redux/Actions/wishListAction";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -54,6 +55,8 @@ const ProductPage = () => {
 
   const toggleWishlist = () => {
     setWishlistActive((prev) => !prev);
+    console.log("working")
+    dispatch(addWishList(id));
   };
 
   const handleAddToCart = () => {
