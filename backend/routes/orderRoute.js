@@ -14,6 +14,6 @@ orderRouter.get("/my/:orderId", isAuthenticated, getOrderById);
 orderRouter.get("/all", getAllOrders);
 
 orderRouter.get("/retailerOrder",isAuthenticate,getOrderByRetailer);
-orderRouter.put("/update/:id",isAuthenticate,updateOrderStatus);
+orderRouter.put("/update/:orderId", isAuthenticate, updateOrderStatus);
 
 export default orderRouter;
