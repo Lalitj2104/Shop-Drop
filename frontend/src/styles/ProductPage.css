@@ -227,7 +227,7 @@
 }
 
 .review-item div button:last-child {
-  background-color:; /* Red for thumbs down */
+  background-color:grey; /* Red for thumbs down */
 }
 
 /* Review Form */
