@@ -5,3 +5,5 @@ export const Response=(res,statusCode,success,message,data)=>{
         ...(data&&{data:data})
     })
 }
+
+
