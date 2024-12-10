@@ -8,34 +8,50 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./Table.css";
 
+// Updated makeStyle function
 const makeStyle = (status) => {
-  if (status === "Approved") {
+  if (status === "Delivered") {
     return {
-      background: "rgb(145 254 159 / 47%)",
+      background: "#c3f9d4",
       color: "green",
+      fontWeight: "bold",
+      borderRadius: "8px",
+      padding: "6px 12px",
+      textAlign: "center",
     };
   } else if (status === "Pending") {
     return {
+      background: "#d4e6fc",
+      color: "#1f77d0",
+      fontWeight: "bold",
+      borderRadius: "8px",
+      padding: "6px 12px",
+      textAlign: "center",
+    };
+  } else if (status === "Cancelled") {
+    return {
       background: "#ffadad8f",
       color: "red",
-    };
-  } else {
-    return {
-      background: "#59bfff",
-      color: "white",
+      fontWeight: "bold",
+      borderRadius: "8px",
+      padding: "6px 12px",
+      textAlign: "center",
     };
   }
+  return {}; // Default styles for other cases
 };
 
 export default function LatestOrdersTable({ orders }) {
   return (
     <div className="latest-orders">
+      <h3>Recent Orders</h3>
       <TableContainer
         component={Paper}
-        style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
+        style={{ boxShadow: "0px 13px 20px 0px #80808029", borderRadius: "12px" }}
       >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
+      
             <TableRow>
               <TableCell>Payment Method</TableCell>
               <TableCell align="left">Order ID</TableCell>
@@ -50,7 +66,9 @@ export default function LatestOrdersTable({ orders }) {
                   <TableCell>{order?.paymentMethod}</TableCell>
                   <TableCell>{order?._id}</TableCell>
                   <TableCell>{new Date(order?.createdAt).toLocaleDateString()}</TableCell>
-                  <TableCell style={makeStyle(order?.status)}>{order.status}</TableCell>
+                  <TableCell>
+                    <span style={makeStyle(order?.status)}>{order?.status}</span>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
@@ -66,6 +84,3 @@ export default function LatestOrdersTable({ orders }) {
     </div>
   );
 }
-
-
-

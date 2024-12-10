@@ -92,24 +92,32 @@
 
 /* ExpandedCard */
 .ExpandedCard {
-  position: absolute;
+  position: fixed; /* Changed to fixed for center alignment */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Shift the card to the center */
   width: 60%;
   height: 70vh;
   z-index: 9;
-  left: 13rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background for a fascinating look */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Soft shadow for better visibility */
+  color: rgb(19, 16, 16);
+  animation: fadeIn 0.5s ease-in-out; /* Subtle fade-in animation */
 }
+
 .ExpandedCard > span:nth-of-type(1) {
   color: white;
   font-size: 26px;
   font-weight: bold;
-  text-shadow: 0px 0px 15px white;
+  text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6); /* Softer glow */
 }
+
 .ExpandedCard > span:nth-of-type(2) {
   color: rgb(236, 236, 236);
   font-size: 15px;
@@ -119,19 +127,32 @@
   width: 70%;
 }
 
+/* Responsive for medium screens */
 @media screen and (max-width: 1200px) {
   .ExpandedCard {
-    top: 2rem;
-    height: 45vh;
-    left: 6rem;
+    width: 70%;
+    height: 60vh;
   }
 }
 
+/* Responsive for small screens */
 @media screen and (max-width: 768px) {
   .ExpandedCard {
-    top: 8rem;
-    height: 50%;
-    left: 25px;
     width: 80%;
+    height: 50vh;
+    padding: 1rem;
   }
 }
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
