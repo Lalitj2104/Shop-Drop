@@ -62,42 +62,42 @@ const CartPage = () => {
         }
     }, [message, error, dispatch,ordermessage]);
 
-    const makePayment = async () => {
-		   const stripe = await loadStripe("pk_test_51QTgDEGoyVahLKeKA2Pdrpendbz0FDSLITgG8lEtQvhnR4pwsggPCIQ8Lyn68xm7vxnCcpIjVIqQlNruBwsupIob00Xzq5UCeM");
+	const makePayment = async () => {
+		const stripe = await loadStripe("pk_test_51QTgDEGoyVahLKeKA2Pdrpendbz0FDSLITgG8lEtQvhnR4pwsggPCIQ8Lyn68xm7vxnCcpIjVIqQlNruBwsupIob00Xzq5UCeM");
 
-        const body = {
-            products: cart?.products.map((item) => ({
-                name: item?.productId?.name,
-                image: item?.productId?.image?.url,
-                price: item?.price,
-                quantity: item?.quantity,
-            })),
-        };
+	 const body = {
+		 products: cart?.products.map((item) => ({
+			 name: item?.productId?.name,
+			 image: item?.productId?.image?.url,
+			 price: item?.price,
+			 quantity: item?.quantity,
+		 })),
+	 };
 
-        const headers = {
-            "Content-Type": "application/json",
-        };
+	 const headers = {
+		 "Content-Type": "application/json",
+	 };
 
-        try {
-            const response = await fetch(`http://localhost:4876/api/v1/cart/create-checkout-session`,{
-                method: "POST",
-                headers: headers,
-                body: JSON.stringify(body),
-            });
+	 try {
+		 const response = await fetch(`http://localhost:4876/api/v1/cart/create-checkout-session`,{
+			 method: "POST",
+			 headers: headers,
+			 body: JSON.stringify(body),
+		 });
 
-            const session = await response.json();
+		 const session = await response.json();
 
-            if (session.url) {
-				// Redirect user to the Stripe Checkout page
-				console.log(session.url);
-				// window.location.href = session.url; // Stripe's URL for the session
-			} else {
-				console.error("Failed to create checkout session.");
-			}
-        } catch (error) {
-            console.error("Error during payment:", error);
-        }
-    };
+		 const result = await stripe.redirectToCheckout({
+			 sessionId: session.id,
+		 });
+
+		 if (result.error) {
+			 console.error(result.error.message);
+		 }
+	 } catch (error) {
+		 console.error("Error during payment:", error);
+	 }
+ };
 
   
 

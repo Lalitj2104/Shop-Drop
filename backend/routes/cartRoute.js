@@ -41,7 +41,7 @@ cartRouter.post("/create-checkout-session", async (req, res) => {
             cancel_url: "http://localhost:5173/cancel",
         });
 
-        res.json({ url: session.url });
+        res.json({ id: session.id });
     } catch (error) {
         console.error("Error creating checkout session:", error);
         res.status(500).json({ error: "Internal Server Error" });
