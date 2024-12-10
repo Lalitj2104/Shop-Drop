@@ -48,14 +48,14 @@ export const addOrder = async (req, res) => {
       // Update product quantities
       // console.log(retailerProducts)
       for (const update of retailerProducts) {
-        console.log(update);
+        // console.log(update);
         console.log(update._doc.quantity);
-        await Product.findByIdAndUpdate(update.productId, {
+        await Product.findByIdAndUpdate(update._doc.productId, {
           $inc: { available_quantity_delivery: -update._doc.quantity },
         });
       }
-      console.log("working");
-      console.log(retailerProducts);
+      // console.log("working");
+      // console.log(retailerProducts);
       const order = await Order.create({
         userId: req.user._id,
         retailerId,
