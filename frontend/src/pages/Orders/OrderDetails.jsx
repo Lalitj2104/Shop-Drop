@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import "../../styles/OrderDetails.css";
 import Header from "../../components/Header/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderById } from "../../redux/Actions/orderAction";
+import { getOrderById, getOrderByUId } from "../../redux/Actions/orderAction";
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -11,7 +11,7 @@ const OrderDetails = () => {
   const { loading, order } = useSelector((state) => state.orderAuth);
 
   useEffect(() => {
-    dispatch(getOrderById(id));
+    dispatch(getOrderByUId(id));
     console.log(order);
   }, [dispatch]);
 
@@ -59,8 +59,8 @@ const OrderDetails = () => {
               <strong>Estimated Delivery:</strong>{" "}
               {order?.createdAt
                 ? new Date(
-                    new Date(order.createdAt).setDate(
-                      new Date(order.createdAt).getDate() + 5
+                    new Date(order?.createdAt).setDate(
+                      new Date(order?.createdAt).getDate() + 5
                     )
                   )
                     .toISOString()

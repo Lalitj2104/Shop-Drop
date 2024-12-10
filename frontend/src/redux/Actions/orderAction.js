@@ -122,6 +122,28 @@ export const getOrderById = (orderId) => async (dispatch) => {
 	}
 };
 
+
+export const getOrderByUId = (id) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "GET_ORDER_BY_ID_REQUEST",
+		});
+		const { data } = await axios.get(`${URL}/user/${id}`);
+		dispatch({
+			type: "GET_ORDER_BY_ID_SUCCESS",
+			payload: {
+				message: data.message,
+				order: data.data,
+			},
+		});
+	} catch (error) {
+		dispatch({
+			type: "GET_ORDER_BY_ID_FAILURE",
+			payload: error.response?.data?.message,
+		});
+	}
+};
+
 export const getOrderByRetailer = () => async (dispatch) => {
 	try {
 		dispatch({

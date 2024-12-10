@@ -85,9 +85,9 @@ const Path = () => {
 						<Route
 							path="/changePassword/:id"
 							element={
-								<AuthRoute>
+								<ProtectedRoute>
 									<ChangePassword />
-								</AuthRoute>
+								</ProtectedRoute>
 							}
 						/>
 

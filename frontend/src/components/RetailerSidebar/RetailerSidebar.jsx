@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/RetailerDashboard.css";
-import { logoutRetailer } from "../../redux/Actions/retailerActions";
+import { loadRetailer, logoutRetailer } from "../../redux/Actions/retailerActions";
 import { useDispatch } from "react-redux";
 
 const RetailerSidebar = ({ retailer }) => {
+	
 	const dispatch=useDispatch();
 	const logoutHandler=()=>{
 		dispatch(logoutRetailer());
 	}
+	useEffect(()=>{
+		loadRetailer();
+	},[dispatch])
 	return (
 		<div className="retailer-dashboard-sidebar">
 			<div className="retailer-dashboard-profile">

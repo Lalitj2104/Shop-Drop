@@ -151,8 +151,8 @@ export const getAllOrders = async (req, res) => {
 export const getOrderById = async (req, res) => {
   try {
     const { orderId } = req.params;
-    console.log(orderId)
-    console.log("working")
+    // console.log(orderId)
+    // console.log("working")
 
     const order = await Order.findById(orderId).populate(
       "products.productId",
