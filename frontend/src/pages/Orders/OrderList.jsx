@@ -16,7 +16,7 @@ const OrderList = () => {
   }, [dispatch]);
   console.log(order)
   if (order?.length === 0) {
-    return <p>Loading orders...</p>;
+    return <p>No orders found</p>;
   }
 
   return (
