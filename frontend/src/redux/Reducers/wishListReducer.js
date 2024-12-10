@@ -21,58 +21,56 @@ const deleteWishListFailure = createAction("DELETE_WISHLIST_FAILURE");
 const clearError = createAction("CLEAR_ERROR");
 const clearMessage = createAction("CLEAR_MESSAGE");
 
-export const wishListReducer =createReducer
-  (initialState,
-  (builder) => {
-    builder
-      .addCase(addWishListRequest, (state) => {
-        state.loading = true;
-      })
-      .addCase(addWishListSuccess, (state, action) => {
-        (state.loading = false), (state.wishList = action.payload.wishList);
-        state.message = action.payload.message;
-      })
-      .addCase(addWishListFailure, (state, action) => {
-        (state.loading = false), (state.error = action.payload);
-      })
+export const wishListReducer = createReducer(initialState, (builder) => {
+	builder
+		.addCase(addWishListRequest, (state) => {
+			state.loading = true;
+		})
+		.addCase(addWishListSuccess, (state, action) => {
+			(state.loading = false), (state.wishList = action.payload.wishList);
+			state.message = action.payload.message;
+		})
+		.addCase(addWishListFailure, (state, action) => {
+			(state.loading = false), (state.error = action.payload);
+		})
 
-      .addCase(updateWishListRequest, (state) => {
-        state.loading = true;
-      })
-      .addCase(updateWishListSuccess, (state, action) => {
-        (state.loading = false), (state.wishList = action.payload.wishList);
-        state.message = action.payload.message;
-      })
-      .addCase(updateWishListFailure, (state, action) => {
-        (state.loading = false), (state.error = action.payload);
-      })
+		.addCase(updateWishListRequest, (state) => {
+			state.loading = true;
+		})
+		.addCase(updateWishListSuccess, (state, action) => {
+			(state.loading = false), (state.wishList = action.payload.wishList);
+			state.message = action.payload.message;
+		})
+		.addCase(updateWishListFailure, (state, action) => {
+			(state.loading = false), (state.error = action.payload);
+		})
 
-      .addCase(getWishListRequest, (state) => {
-        state.loading = true;
-      })
-      .addCase(getWishListSuccess, (state, action) => {
-        (state.loading = false), (state.wishList = action.payload.wishList);
-        state.message = action.payload.message;
-      })
-      .addCase(getWishListFailure, (state, action) => {
-        (state.loading = false), (state.error = action.payload);
-      })
+		.addCase(getWishListRequest, (state) => {
+			state.loading = true;
+		})
+		.addCase(getWishListSuccess, (state, action) => {
+			(state.loading = false), (state.wishList = action.payload.wishList);
+			state.message = action.payload.message;
+		})
+		.addCase(getWishListFailure, (state, action) => {
+			(state.loading = false), (state.error = action.payload);
+		})
 
-      .addCase(deleteWishListRequest, (state) => {
-        state.loading = true;
-      })
-      .addCase(deleteWishListSuccess, (state, action) => {
-        (state.loading = false), (state.wishList = null);
-        state.message = action.payload.message;
-      })
-      .addCase(deleteWishListFailure, (state, action) => {
-        (state.loading = false), (state.error = action.payload);
-      })
+		.addCase(deleteWishListRequest, (state) => {
+			state.loading = true;
+		})
+		.addCase(deleteWishListSuccess, (state, action) => {
+			(state.loading = false), (state.wishList = null);
+			state.message = action.payload.message;
+		})
+		.addCase(deleteWishListFailure, (state, action) => {
+			(state.loading = false), (state.error = action.payload);
+		})
 
-      .addCase(clearError, (state) => {
-        state.error = null;
-      })
-      .addCase(clearMessage, (state) => {
-        state.message = null;
-      });
-  });
+		.addCase(clearError, (state) => {
+			state.error = null;
+		})
+		.addCase(clearMessage, (state) => {
+			state.message = null;
+		});
+});

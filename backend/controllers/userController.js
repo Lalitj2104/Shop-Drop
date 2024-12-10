@@ -15,19 +15,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const myProfile = async (req, res) => {
-    try {
+	try {
+		if (!req.user) {
+			return Response(res, 404, false, message.userNotFoundMessage);
+		}
+		const user = await User.findById(req.user._id);
 
-        if(!req.user) {
-            return Response(res, 404, false, message.userNotFoundMessage);
-        }
-		const user=await User.findById(req.user._id);
-
-        Response(res, 200, true, message.userProfileFoundMessage, user);
-        
-    } catch (error) {
-        Response(res, 500, false, error.message);
-    }
-}
+		Response(res, 200, true, message.userProfileFoundMessage, user);
+	} catch (error) {
+		Response(res, 500, false, error.message);
+	}
+};
 export const registerUser = async (req, res) => {
 	try {
 		//parsing body data
@@ -63,7 +61,7 @@ export const registerUser = async (req, res) => {
 			return Response(res, 400, false, message.userAlreadyExist);
 		}
 
-		user=await Retailer.findOne({email});
+		user = await Retailer.findOne({ email });
 		if (user) {
 			return Response(res, 400, false, message.emailAlreadyRegisteredmessage);
 		}
@@ -262,7 +260,7 @@ export const loginUser = async (req, res) => {
 		if (!user) {
 			return Response(res, 400, false, message.userNotFoundMessage);
 		}
-		
+
 		//user is verified or not
 		if (!user.isVerified) {
 			return Response(res, 400, false, message.userNotVerifiedMessage);
@@ -529,18 +527,18 @@ export const deleteUser = async (req, res) => {
 	}
 };
 
-export const getAllUsers=async(req,res)=>{
+export const getAllUsers = async (req, res) => {
 	try {
-		const users=await User.find();
-		if(!users){
-			return Response(res,400,false,message.usersNotFoundMessage);
+		const users = await User.find();
+		if (!users) {
+			return Response(res, 400, false, message.usersNotFoundMessage);
 		}
 
-		Response(res,201,true,message.usersFoundMessage,users);
+		Response(res, 201, true, message.usersFoundMessage, users);
 	} catch (error) {
-		Response(res,500,false,error.message)
+		Response(res, 500, false, error.message);
 	}
-}
+};
 
 export const addAddress = async (req, res) => {
 	try {
@@ -552,8 +550,8 @@ export const addAddress = async (req, res) => {
 			return Response(res, 401, false, message.missingFieldMessage);
 		}
 		if (
-			!address.house||
-			!address.area||
+			!address.house ||
+			!address.area ||
 			!address.city ||
 			!address.state ||
 			!address.postalCode ||
@@ -571,8 +569,8 @@ export const addAddress = async (req, res) => {
 			...address,
 			_id: new mongoose.Types.ObjectId(), // Generate a unique ObjectId for the address
 		};
-		if(user.address.length==0){
-			newAddress.isDefault=true
+		if (user.address.length == 0) {
+			newAddress.isDefault = true;
 		}
 		user.address.push(newAddress);
 
@@ -666,82 +664,77 @@ export const removeAddress = async (req, res) => {
 
 export const addWish = async (req, res) => {
 	try {
-		const {productId}=req.params;
-		const product=await Product.findById(productId);
-		if(!product){
-			return Response(res,400,message.noProductMessage);
+		const { productId } = req.params;
+		const product = await Product.findById(productId);
+		if (!product) {
+			return Response(res, 400, message.noProductMessage);
 		}
 
-		let wishList=await WishList.findById(req.user._id);
-		if(wishList){
+		let wishList = await WishList.findById(req.user._id);
+		if (wishList) {
 			const productExists = wishList.products.some(
 				(item) => item.toString() === productId
-			  );
+			);
 
-			  if(productExists){
-				return Response(res,400,message.productAlreadyMessage)
+			if (productExists) {
+				return Response(res, 400, message.productAlreadyMessage);
 			}
 			wishList.products.push(product._id);
-		
-		}else{
-			wishList=await WishList.create({
-				userId:req.user._id,
-				products:[product._id]
-			})
+		} else {
+			wishList = await WishList.create({
+				userId: req.user._id,
+				products: [product._id],
+			});
 		}
 
 		Response(res, 200, true, message.productAddedToWishListMessage, wishList);
-
-		
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
 };
+
 
 export const getWish = async (req, res) => {
 	try {
-		const wishList=await WishList.findOne({userId:req.user._id});
+		const wishList = await WishList.findOne({ userId: req.user._id }).populate("products", "image description name price");
 
-		Response(res,200,message.wishListFoundMessage,wishList);
+		console.log(wishList);
+
+		Response(res, 200,true,  message.wishListFoundMessage, wishList);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
 };
-
 
 export const deleteWish = async (req, res) => {
 	try {
-		const wishList=await WishList.findOne({userId:req.user._id});
-		if(wishList.products.length>=1){
-			wishList.products=[];
+		const wishList = await WishList.findOne({ userId: req.user._id });
+		if (wishList.products.length >= 1) {
+			wishList.products = [];
 		}
 		await wishList.save();
-		Response(res,200,message.wishListRemovedmessage);
+		Response(res, 200, message.wishListRemovedmessage);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
 };
-
 
 //incomplete
 
 export const updateWish = async (req, res) => {
 	try {
-		const {ProductId}=req.params;
-		const product =await Product.findById(ProductId);
-		if(!product){
-			return Response(res,400,message.noProductMessage);
+		const { ProductId } = req.params;
+		const product = await Product.findById(ProductId);
+		if (!product) {
+			return Response(res, 400, message.noProductMessage);
 		}
 
-		let wishList = await WishList.findOne({userId:req.user._id});
+		let wishList = await WishList.findOne({ userId: req.user._id });
 
-    if (!wishList) {
-      return Response(res, 400, false, message.wishListNotFoundMessage);
-    }
-
+		if (!wishList) {
+			return Response(res, 400, false, message.wishListNotFoundMessage);
+		}
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
 };
-
-

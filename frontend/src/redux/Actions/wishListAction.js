@@ -71,7 +71,9 @@ export const getWishList=()=>async (dispatch)=>{
             type:"GET_WISHLIST_REQUEST"
         })
 
-        const {data}=await axios.get(`${URL}/my/wishList`)
+        const { data } = await axios.get(`${URL}/my/wishlist`)
+        
+        console.log("Data: " , data);
         dispatch({
             type:"GET_WISHLIST_SUCCESS",
             payload: {
