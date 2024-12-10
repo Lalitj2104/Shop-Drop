@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Header.css";
 import { loadUser, logoutUser } from "../../redux/Actions/userActions";
 import { IoMdAdd } from "react-icons/io";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const Header = () => {
 	const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -64,7 +65,7 @@ const Header = () => {
 							Welcome <strong>{name}</strong>
 							<br />
 							<span>
-								{address&&address[0]?.city || "Set your delivery location"}
+								{(address && address[0]?.city) || "Set your delivery location"}
 							</span>{" "}
 							<span>
 								<Link to="/AddAddress">
@@ -85,7 +86,11 @@ const Header = () => {
 				</nav>
 
 				<div className="nav-icons">
-					<button className="icon">🔍</button>
+					{isAuthenticated && (
+					<button className="icon" onClick={() => navigate("/chatbot")}>
+						<IoChatbubbleEllipsesOutline />
+					</button>
+					)}
 					<button className="icon">❤️</button>
 					<button className="icon" onClick={() => navigate("/cart")}>
 						🛒

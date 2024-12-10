@@ -44,9 +44,6 @@ export const addOrder = async (req, res) => {
       for (const item of retailerProducts) {
         totalAmount += item.productDetails._doc.price * item._doc.quantity;
       }
-      console.log(totalAmount);
-      // Update product quantities
-      // console.log(retailerProducts)
       for (const update of retailerProducts) {
         // console.log(update);
         console.log(update._doc.quantity);
@@ -76,7 +73,6 @@ export const addOrder = async (req, res) => {
     await cart.save();
     Response(res, 200, true, message.orderCreatedMessage);
   } catch (error) {
-    console.log(error);
     Response(res, 500, false, error.message);
   }
 };
@@ -114,7 +110,6 @@ export const cancelOrder = async (req, res) => {
 
 		return Response(res, 200, true, message.orderCancelledMessage, order);
 	} catch (error) {
-		console.error(error.message);
 		return Response(res, 500, false, error.message);
 	}
 };
@@ -124,7 +119,6 @@ export const cancelOrder = async (req, res) => {
 export const getOrderByUser = async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.user._id });
-    // console.log(orders);
 
     Response(res, 200, true, message.ordersFetchedMessage, orders);
   } catch (error) {
@@ -166,7 +160,6 @@ export const getOrderById = async (req, res) => {
     if (!order) {
       return Response(res, 404, false, message.orderNotFoundMessage);
     }
-    console.log(order);
     Response(res, 200, true, message.orderFetchedMessage, order);
   } catch (error) {
     Response(res, 500, false, error.message);
