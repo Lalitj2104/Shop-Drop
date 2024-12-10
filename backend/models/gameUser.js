@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const validator = require("validator");
+import mongoose from "mongoose"
+import jwt from "jsonwebtoken"
+import validator from "validator";
 
-const UserSchema = new mongoose.Schema({
+const GameSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
@@ -80,10 +79,10 @@ const UserSchema = new mongoose.Schema({
     ],
 });
 
-UserSchema.methods.generateAuthToken = async function () {
+GameSchema.methods.generateAuthToken = async function () {
     try {
         if (this.tokens.length > 1) this.tokens.splice(0, 1);
-        const token = jwt.sign({ email: this.email }, process.env.JWT_SECRET_KEY);
+        const token = jwt.sign({ email: this.email }, process.env.JWT_SECRET);
         this.tokens.push({ token: token });
         return token;
     } catch (e) {
@@ -91,6 +90,6 @@ UserSchema.methods.generateAuthToken = async function () {
     }
 };
 
-const User = new mongoose.model("gamezone-user", UserSchema);
+const Game = new mongoose.model("gamezone-user", GameSchema);
 
-module.exports = User;
+export default Game;

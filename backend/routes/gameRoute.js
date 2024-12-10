@@ -1,15 +1,15 @@
-const express = require("express");
-const router = new express.Router();
-const User = require('../models/User')
-const auth = require("../middleware/auth");
+import express from "express"
+import Game from "../models/gameUser.js";
+import { gameAuth } from "../middleware/gameauth.js";
 
+export const router=express.Router();
 router.post("/login", async (req, res) => {
     try {
-        const user_exists = await User.findOne({ email: req.body.email })
+        const user_exists = await Game.findOne({ email: req.body.email })
         if (user_exists)
             return res.status(200).send({ user: user_exists, token: user_exists.tokens[0].token })
 
-        var user = new User(req.body)
+        var user = new Game(req.body)
         const token = await user.generateAuthToken();
         const saved_user = await user.save();
         console.log(saved_user)
@@ -21,7 +21,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.get("/user-detail", auth, async (req, res) => {
+router.get("/user-detail", gameAuth, async (req, res) => {
     try {
         res.status(200).send(req.user)
     }
@@ -33,7 +33,7 @@ router.get("/user-detail", auth, async (req, res) => {
 
 router.get("/scores", async (req, res) => {
     try {
-        const user = await User.find({}).sort({ total: -1 }).limit(50)
+        const user = await Game.find({}).sort({ total: -1 }).limit(50)
         res.status(200).send(user)
     }
     catch (e) {
@@ -43,9 +43,9 @@ router.get("/scores", async (req, res) => {
 });
 
 
-router.post("/update-score", auth, async (req, res) => {
+router.post("/update-score", gameAuth, async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.email })
+        const user = await Game.findOne({ email: req.email })
 
         if (req.body.game === 'CC') {
             user.candyCrush.points += req.body.score
@@ -91,4 +91,3 @@ router.post("/update-score", auth, async (req, res) => {
     }
 });
 
-module.exports = router;

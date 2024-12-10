@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+import jwt from "jsonwebtoken"
+import Game from "../models/gameUser.js";
 
-module.exports = async (req, res, next) => {
+export const gameAuth= async (req, res, next) => {
     try {
         const token = req.headers.authorization.split(":")[1];
 
@@ -12,10 +12,10 @@ module.exports = async (req, res, next) => {
                     Error: "Authorization Revoked . Please provide valid auth-headers",
                 });
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         if (!decoded) return res.status(403).json({ Error: "Token Error" });
 
-        const user = await User.findOne(
+        const user = await Game.findOne(
             { email: decoded.email },
             { _id: 0, password: 0, tokens: 0 }
         );
