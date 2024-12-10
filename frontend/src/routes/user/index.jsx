@@ -25,7 +25,8 @@ import AddressPage from "../../pages/Address/AddressPage.jsx";
 import CartPage from "../../pages/Cart/Cart.jsx";
 import ChatbotPage from "../../pages/ChatBot/ChatbotPage.jsx";
 import Categories from "../../pages/Categories/Categories.jsx";
-
+import PaymentSuccess from "../../pages/PaymentSuccess/PaymentSuccess.jsx";
+import PaymentFailure from "../../pages/PaymentFailure/PaymentFailure.jsx";
 const Path = () => {
 	const dispatch = useDispatch();
 	const { userLoading } = useSelector((state) => state.userAuth);
@@ -195,7 +196,20 @@ const Path = () => {
 								<ChatbotPage/>
 							</ProtectedRoute>
 						}/>
+						<Route
+							path="/success"
+							element={
+									<PaymentSuccess />
+							}
+						/>
+						<Route
+							path="/cancel"
+							element={
+									<PaymentFailure />
+							}
+						/>
 					</Routes>
+					
 					
 				)}
 			</Router>

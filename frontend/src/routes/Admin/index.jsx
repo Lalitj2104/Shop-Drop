@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 
+
 const AdminPath = () => {
 	const dispatch = useDispatch();
 	// const { adminLoading } = useSelector((state) => state.AdminAuth);
@@ -21,6 +22,7 @@ const AdminPath = () => {
 									<Admin />
 							}
 						/>
+						
                     </Routes>
 			</Router>
 		</div>
