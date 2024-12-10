@@ -72,5 +72,6 @@ export const message={
     mailAlreadyRegisteredmessage:"Already registered as user",
     emailAlreadyRegisteredmessage:"Already registered as retailer",
     usersNotFoundMessage:"Users not found",
-    usersFoundMessage:"users found successfully"
+    usersFoundMessage:"users found successfully",
+    invalidkey:"Passkey is invalid"
 }

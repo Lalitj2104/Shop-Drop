@@ -3,6 +3,8 @@ import Admin from  "../../pages/Admin/Admin"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import AdminLoginPage from "../../pages/Login/Adminn/AdminLogin";
+import ProtectedRoute from "./ProtectedRoute";
+import AuthRoute from "./AuthRoute";
 
 
 
@@ -20,13 +22,15 @@ const AdminPath = () => {
 						<Route
 							path="/admin"
 							element={
-									<Admin />
+								<ProtectedRoute><Admin /></ProtectedRoute>
+									
 							}
 						/>
 						<Route
 							path="/admin/login"
 							element={
-									<AdminLoginPage />
+								<AuthRoute><AdminLoginPage /></AuthRoute>
+									
 							}
 						/>
 						

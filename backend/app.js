@@ -10,6 +10,7 @@ import orderRouter from "./routes/orderRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import { reviewRouter } from "./routes/reviewRoute.js";
 import { router } from "./routes/gameRoute.js";
+import { adminRouter } from "./routes/adminRoute.js";
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -38,5 +39,6 @@ app.use("/api/v1/wishList", wishListRouter);
 app.use("/api/v1/order",orderRouter);
 app.use("/api/v1/cart",cartRouter);
 app.use("/api/v1/review",reviewRouter)
+app.use("api/v1/admin",adminRouter);
 
 export default app;

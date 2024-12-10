@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../../../styles/AdminLogin.css";
+import { useDispatch } from "react-redux";
+import { LoginAdmin } from "../../../redux/Actions/adminAction";
 
 const AdminLoginPage = () => {
     const [passkey, setPasskey] = useState(""); // Initialize state for input
@@ -7,7 +9,13 @@ const AdminLoginPage = () => {
     const handleInputChange = (e) => {
         setPasskey(e.target.value); // Update the passkey on input
     };
-
+    const dispatch=useDispatch();
+    
+    const handler=()=>{
+        console.log(passkey);
+        dispatch(LoginAdmin(passkey));
+        
+    }
     return (
         <div className="admin-login-page">
             <div className="admin-login-card">
@@ -20,7 +28,7 @@ const AdminLoginPage = () => {
                     value={passkey}
                     onChange={handleInputChange}
                 />
-                <button className="admin-login-button">Log In</button>
+                <button className="admin-login-button" onClick ={handler}>Log In</button>
             </div>
         </div>
     );

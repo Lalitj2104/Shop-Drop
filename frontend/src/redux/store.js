@@ -6,6 +6,7 @@ import {cartReducer} from "./Reducers/cartReducer"
 import {orderReducer} from "./Reducers/orderReducer"
 import {wishListReducer} from "./Reducers/wishListReducer"
 import {reviewReducer} from "./Reducers/reviewReducer"
+import { adminReducer } from "./Reducers/adminReducer";
 
 const store = configureStore({
 	reducer: {
@@ -16,7 +17,7 @@ const store = configureStore({
 		orderAuth:orderReducer,
 		wishListAuth:wishListReducer,
 		reviewAuth:reviewReducer,
-		
+		adminAuth:adminReducer
 	},
 });
 
