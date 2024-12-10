@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/RetailerDashboard.css";
 import { loadRetailer, logoutRetailer } from "../../redux/Actions/retailerActions";
 import { useDispatch } from "react-redux";
 

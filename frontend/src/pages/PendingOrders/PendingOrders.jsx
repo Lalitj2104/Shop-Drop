@@ -58,7 +58,7 @@ function PendingOrders() {
 								<p>Total Amount: ₹{order?.totalAmount.toFixed(2)}</p>
 								<p>Status: {order.status}</p>
 								<div className="order-buttons">
-									<Link to={`/orderDetails/${order.id}`}>
+									<Link to={`/orderDetails/${order._id}`}>
 										<button className="view-order-btn">View Order</button>
 									</Link>
 									{/* Update Status Button */}
