@@ -669,8 +669,12 @@ export const addWish = async (req, res) => {
 		if (!product) {
 			return Response(res, 400, message.noProductMessage);
 		}
+		console.log("Id: ", req.user._id);
 
-		let wishList = await WishList.findById(req.user._id);
+		let wishList = await WishList.findOne({ userId: req.user._id });
+
+		console.log(wishList);
+
 		if (wishList) {
 			const productExists = wishList.products.some(
 				(item) => item.toString() === productId
@@ -680,6 +684,7 @@ export const addWish = async (req, res) => {
 				return Response(res, 400, message.productAlreadyMessage);
 			}
 			wishList.products.push(product._id);
+			await wishList.save();
 		} else {
 			wishList = await WishList.create({
 				userId: req.user._id,
@@ -689,18 +694,21 @@ export const addWish = async (req, res) => {
 
 		Response(res, 200, true, message.productAddedToWishListMessage, wishList);
 	} catch (error) {
+		console.log(error.message);
 		Response(res, 500, false, error.message);
 	}
 };
 
-
 export const getWish = async (req, res) => {
 	try {
-		const wishList = await WishList.findOne({ userId: req.user._id }).populate("products", "image description name price");
+		const wishList = await WishList.findOne({ userId: req.user._id }).populate(
+			"products",
+			"image description name price"
+		);
 
 		console.log(wishList);
 
-		Response(res, 200,true,  message.wishListFoundMessage, wishList);
+		Response(res, 200, true, message.wishListFoundMessage, wishList);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
@@ -713,7 +721,7 @@ export const deleteWish = async (req, res) => {
 			wishList.products = [];
 		}
 		await wishList.save();
-		Response(res, 200, message.wishListRemovedmessage);
+		Response(res, 200,true, message.wishListRemovedmessage);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}
@@ -734,6 +742,33 @@ export const updateWish = async (req, res) => {
 		if (!wishList) {
 			return Response(res, 400, false, message.wishListNotFoundMessage);
 		}
+	} catch (error) {
+		Response(res, 500, false, error.message);
+	}
+};
+
+export const removeWish = async (req, res) => {
+	try {
+		const { productId } = req.params; // The ID of the product to be removed
+		const wishList = await WishList.findOne({ userId: req.user._id });
+
+		if (!wishList) {
+			return Response(res, 404, false, message.wishListNotFoundMessage);
+		}
+
+		// Filter out the product to be removed
+		const productIndex = wishList.products.findIndex(
+			(item) => item.toString() === productId
+		);
+
+		if (productIndex === -1) {
+			return Response(res, 404, false, message.productNotFoundMessage);
+		}
+
+		wishList.products.splice(productIndex, 1); // Remove the product
+		await wishList.save();
+
+		Response(res, 200, true, message.productRemovedFromWishListMessage, wishList);
 	} catch (error) {
 		Response(res, 500, false, error.message);
 	}

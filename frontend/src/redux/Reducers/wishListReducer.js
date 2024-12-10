@@ -18,6 +18,10 @@ const deleteWishListRequest = createAction("DELETE_WISHLIST_REQUEST");
 const deleteWishListSuccess = createAction("DELETE_WISHLIST_SUCCESS");
 const deleteWishListFailure = createAction("DELETE_WISHLIST_FAILURE");
 
+const removeWishListRequest = createAction("REMOVE_WISHLIST_REQUEST");
+const removeWishListSuccess = createAction("REMOVE_WISHLIST_SUCCESS");
+const removeWishListFailure = createAction("REMOVE_WISHLIST_FAILURE");
+
 const clearError = createAction("CLEAR_ERROR");
 const clearMessage = createAction("CLEAR_MESSAGE");
 
@@ -64,6 +68,17 @@ export const wishListReducer = createReducer(initialState, (builder) => {
 			state.message = action.payload.message;
 		})
 		.addCase(deleteWishListFailure, (state, action) => {
+			(state.loading = false), (state.error = action.payload);
+		})
+
+		.addCase(removeWishListRequest, (state) => {
+			state.loading = true;
+		})
+		.addCase(removeWishListSuccess, (state, action) => {
+			(state.loading = false), (state.wishList = action.payload.wishList);
+			state.message = action.payload.message;
+		})
+		.addCase(removeWishListFailure, (state, action) => {
 			(state.loading = false), (state.error = action.payload);
 		})
 

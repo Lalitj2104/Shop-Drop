@@ -2,7 +2,8 @@ import "../../styles/Wishlist.css"; // Updated styles for horizontal cards
 import Header from "../../components/Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getWishList } from "../../redux/Actions/wishListAction";
+import { getWishList, removeWishList } from "../../redux/Actions/wishListAction";
+import { addToCart } from "../../redux/Actions/cartAction";
 
 function Wishlist() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function Wishlist() {
 	// 		color: "Gray",
 	// 	},
   // ];
-  
+ 
   useEffect(() => {
     dispatch(getWishList());
     console.log("Wishlist: ", wishList);
@@ -69,8 +70,8 @@ function Wishlist() {
 
 									{/* Action Buttons */}
 									<div className="wishlist-actions">
-										<button className="wishlist-add-to-cart">Add to Bag</button>
-										<button className="wishlist-remove">🗑</button>
+										<button className="wishlist-add-to-cart" onClick={() => dispatch(addToCart(product?._id, 1))}>Add to Bag</button>
+                    <button className="wishlist-remove" onClick={() => dispatch(removeWishList(product?._id))}>🗑</button>
 									</div>
 								</div>
 							))

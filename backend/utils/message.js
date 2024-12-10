@@ -52,8 +52,9 @@ export const message={
     reviewsFoundMessage:"Reviews found Successful",
     reviewUpdatedMessage:"Review Updated Successful",
     productAlreadyMessage:"Product is Alreay present",
-    productAddedToWishListMessage:"Product Added Successful",
-    wishListNotFoundMessage:"WishListNotFound",
+    productAddedToWishListMessage: "Product Added Successful",
+    productRemovedFromWishListMessage: "Product Removed Successful",
+    wishListNotFoundMessage: "WishListNotFound",
     cartFetchedMessage:"Cart fetched Successfully",
     cartEmptyMessage:"Cart is Empty",
     cartClearMessage:"cart cleared",
@@ -72,5 +73,5 @@ export const message={
     mailAlreadyRegisteredmessage:"Already registered as user",
     emailAlreadyRegisteredmessage:"Already registered as retailer",
     usersNotFoundMessage:"Users not found",
-    usersFoundMessage:"users found successfully"
+    usersFoundMessage: "users found successfully",
 }
