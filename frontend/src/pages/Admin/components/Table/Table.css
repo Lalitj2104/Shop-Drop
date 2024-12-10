@@ -1,28 +1,51 @@
+/* Table Row Padding */
 .MuiTableRow-root > * {
-  padding: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
 }
 
+/* Table Head Styling */
 .MuiTableRow-root.MuiTableRow-head > * {
   font-weight: bold !important;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 2px solid #ddd;
 }
 
+/* Table Cell Border */
 .Table td,
 th {
   border: none !important;
 }
 
+/* Table Borders & Shadows */
 .Table:first-child {
   border-radius: 0.7rem !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
+
+/* Status Badge */
 .status {
   padding: 8px;
   border-radius: 9px;
+  text-align: center;
 }
 
+/* Hover Effect */
+.MuiTableRow-root:hover {
+  background-color: #f9f9f9;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Details Link */
 .Details {
   color: #00b5ff !important;
+  text-decoration: none;
+  cursor: pointer;
 }
 
+/* Table Responsiveness - Larger Screens */
 @media screen and (max-width: 1200px) {
   .Table {
     width: 170%;
@@ -30,9 +53,9 @@ th {
   }
 }
 
-
+/* Table Responsiveness - Smaller Screens */
 @media screen and (max-width: 768px) {
-  .Table{
+  .Table {
     position: relative;
     display: flex;
     flex-direction: column;

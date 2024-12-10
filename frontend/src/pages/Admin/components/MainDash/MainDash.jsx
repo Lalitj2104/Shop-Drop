@@ -12,6 +12,7 @@ const MainDash = () => {
   return (
     <div className="MainDash">
       <h1>Dashboard</h1>
+      <h2>Statistics</h2>
       <Cards />
       <Table orders={latestOrders}/>
     </div>
