@@ -81,7 +81,7 @@ const Header = () => {
 					<Link to="/shop">Shop</Link>
 					<Link to="/Categories">Categories</Link>
 					<Link to="/blog">Blog</Link>
-					{ isAuthenticated?<Link to="/GamingZone">Gaming zone</Link>:
+					{ isAuthenticated?<Link to="http://localhost:3000">Gaming zone</Link>:
 					<Link to="/login"/>}
 					{/* <Link to="/buy">Buy</Link> */}
 				</nav>
