@@ -73,7 +73,7 @@ const LoginSecurity = () => {
                   Add a layer of security. Require a code in addition to your password.
                 </div>
               </td>
-              <td><button>Turnn on</button></td>
+              <td><button>Turn on</button></td>
             </tr>
             <tr>
               <td>Compromised account?</td>
