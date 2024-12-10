@@ -92,7 +92,7 @@ const Header = () => {
 						<IoChatbubbleEllipsesOutline />
 					</button>
 					)}
-					<button className="icon">❤️</button>
+					<button className="icon" onClick={() => navigate("/wishlist")}>❤️</button>
 					<button className="icon" onClick={() => navigate("/cart")}>
 						🛒
 					</button>

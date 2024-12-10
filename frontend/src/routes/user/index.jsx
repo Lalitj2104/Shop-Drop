@@ -27,6 +27,7 @@ import ChatbotPage from "../../pages/ChatBot/ChatbotPage.jsx";
 import Categories from "../../pages/Categories/Categories.jsx";
 import PaymentSuccess from "../../pages/PaymentSuccess/PaymentSuccess.jsx";
 import PaymentFailure from "../../pages/PaymentFailure/PaymentFailure.jsx";
+import Wishlist from "../../pages/Wishlist/Wishlist.jsx";
 const Path = () => {
 	const dispatch = useDispatch();
 	const { userLoading } = useSelector((state) => state.userAuth);
@@ -90,7 +91,14 @@ const Path = () => {
 								</ProtectedRoute>
 							}
 						/>
-
+						<Route
+							path="/wishlist"
+							element={
+								<ProtectedRoute>
+									<Wishlist />
+								</ProtectedRoute>
+							}
+						/>
 						<Route
 							path="/AddAddress"
 							element={
@@ -147,7 +155,6 @@ const Path = () => {
 								</ProtectedRoute>
 							}
 						/>
-
 						<Route
 							path="/shop"
 							element={
@@ -188,30 +195,18 @@ const Path = () => {
 								</ProtectedRoute>
 							}
 						/>
-						
-						<Route 
-						path="/chatbot"
-						element={
-							<ProtectedRoute>
-								<ChatbotPage/>
-							</ProtectedRoute>
-						}/>
+
 						<Route
-							path="/success"
+							path="/chatbot"
 							element={
-								<PaymentSuccess />
-									
+								<ProtectedRoute>
+									<ChatbotPage />
+								</ProtectedRoute>
 							}
 						/>
-						<Route
-							path="/cancel"
-							element={
-								<PaymentFailure />									
-							}
-						/>
+						<Route path="/success" element={<PaymentSuccess />} />
+						<Route path="/cancel" element={<PaymentFailure />} />
 					</Routes>
-					
-					
 				)}
 			</Router>
 		</div>
