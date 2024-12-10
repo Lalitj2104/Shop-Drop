@@ -1,0 +1,64 @@
+/* Center the login page */
+.admin-login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #fff; /* White background */
+    padding: 1rem; /* For better spacing on smaller screens */
+}
+
+/* Card styling */
+.admin-login-card {
+    background-color: #f9f9f9; /* Light gray card background */
+    padding: 3rem; /* Increased padding for larger size */
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px; /* Increased card width */
+    text-align: center;
+}
+
+/* Title and subtitle */
+.admin-login-title {
+    font-size: 2.5rem; /* Larger title */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.admin-login-subtitle {
+    font-size: 1rem; /* Slightly larger subtitle */
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Input field */
+.admin-login-input {
+    width: 100%;
+    padding: 1rem; /* Larger padding */
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Login button */
+.admin-login-button {
+    width: 100%;
+    padding: 1rem; /* Larger button */
+    background: linear-gradient(45deg, #082567,#6b5bff); 
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem; /* Slightly larger text */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.admin-login-button:hover {
+    background: linear-gradient(45deg,#082567,#6b5bff );
+}
