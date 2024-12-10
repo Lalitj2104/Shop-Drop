@@ -9,7 +9,7 @@ var gameSocket
 var gamesInSession = []
 
 
-const initializeGame = (sio, socket) => {
+  const initializeGame = (sio, socket) => {
     /**
      * initializeGame sets up all the socket event listeners. 
      */
@@ -129,4 +129,4 @@ function recievedUserName(data) {
     io.to(data.gameId).emit('get Opponent UserName', data);
 }
 
-exports.initializeGame = initializeGame
+export default initializeGame 
