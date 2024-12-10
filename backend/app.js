@@ -5,7 +5,6 @@ import cookieParser from "cookie-parser";
 import retailerRouter from "./routes/retailerRoute.js";
 import productRouter from "./routes/productRoute.js";
 import wishListRouter from "./routes/wishList.js";
-import cors from "cors";
 import orderRouter from "./routes/orderRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import { reviewRouter } from "./routes/reviewRoute.js";
@@ -14,13 +13,6 @@ dotenv.config({ path: "./config/config.env" });
 
 const app = express();
 
-app.use(
-	cors({
-		origin: [process.env.LOCAL_URL, process.env.WEB_URL],
-		methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-		credentials: true,
-	})
-);
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: false }));

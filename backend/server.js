@@ -1,6 +1,10 @@
 import app from "./app.js"
 import connectDB from "./config/db.js"
 import cloudinary from "cloudinary"
+import io from "socket.io-client"
+import initializeGame  from "./utils/game-logic.js"
+import cors from "cors";
+
 connectDB();
 cloudinary.config({
     cloud_name:process.env.CLOUD_NAME,
@@ -9,6 +13,19 @@ cloudinary.config({
 })
 
 
-app.listen(process.env.PORT,()=>{
+const httpServer=app.listen(process.env.PORT,()=>{
     console.log(`Server is running on port ${process.env.PORT}`);
 })
+
+const Socketio=io(httpServer,{
+    cors:{
+		origin: [process.env.LOCAL_URL, process.env.WEB_URL],
+		methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+		credentials: true,
+	}
+})
+
+Socketio.on("connection",client=>{
+    initializeGame(Socketio,client);
+})
+
