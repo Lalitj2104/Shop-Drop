@@ -199,13 +199,15 @@ const Path = () => {
 						<Route
 							path="/success"
 							element={
-									<PaymentSuccess />
+								<ProtectedRoute><PaymentSuccess /></ProtectedRoute>
+									
 							}
 						/>
 						<Route
 							path="/cancel"
 							element={
-									<PaymentFailure />
+								<ProtectedRoute><PaymentFailure /></ProtectedRoute>
+									
 							}
 						/>
 					</Routes>

@@ -68,7 +68,7 @@ export const getOrderByUser = () => async (dispatch) => {
 			type: "GET_ORDER_BY_USER_SUCCESS",
 			payload: {
 				message: data.message,
-				order: data.data,
+				orders: data.data,
 			},
 		});
 	} catch (error) {

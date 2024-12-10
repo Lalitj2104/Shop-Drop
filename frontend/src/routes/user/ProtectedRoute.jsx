@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const ProtectedRoute = ({ children }) => {
 	const { isAuthenticated, authError } = useSelector((state) => state.userAuth);
-
+	const {isRetailerAuthenticated}=useSelector(state=>state.retailerAuth);
 	const dispatch = useDispatch();
 	useEffect(() => {
 		if (authError) {
@@ -15,7 +15,9 @@ const ProtectedRoute = ({ children }) => {
 		}
 	}, [authError]);
 
-	return isAuthenticated ? children : <Navigate to="/login" />;
+	return (
+		isAuthenticated ? children : isRetailerAuthenticated ? <Navigate to="/retailerDashboard"/>:<Navigate to="/login"/>
+	)
 };
 
 export default ProtectedRoute;

@@ -9,13 +9,13 @@ import { getOrderByUser } from "../../redux/Actions/orderAction";
 const OrderList = () => {
   
   const dispatch=useDispatch();
-  const {order}=useSelector(state=>state.orderAuth);
+  const {orders}=useSelector(state=>state.orderAuth);
 
   useEffect(() => {
     dispatch(getOrderByUser());
   }, [dispatch]);
-  console.log(order)
-  if (order?.length === 0) {
+  console.log(orders)
+  if (orders?.length === 0) {
     return <p>No orders found</p>;
   }
 
@@ -23,7 +23,7 @@ const OrderList = () => {
     <>
     <Header/>
     <div style={{ padding: "20px" }}>
-      {order && order?.map((item) => (
+      {orders && orders?.map((item) => (
         
         <OrderCard key={item?._id} order={item} />
       ))}
