@@ -18,6 +18,7 @@ import UpdateProduct from "../../pages/Product/Retailer/UpdateProduct";
 import RetailerOrders from "../../pages/RetailerOrders/RetailerOrders";
 import PendingOrders from "../../pages/PendingOrders/PendingOrders";
 import CompletedOrders from "../../pages/CompletedOrders/CompletedOrders";
+import OrderDetails from "../../pages/OrderDetails/OrderDetails";
 
 const RetailerPath = () => {
 	const dispatch = useDispatch();
@@ -140,7 +141,14 @@ const RetailerPath = () => {
 								</ProtectedRoute>
 							}
 						/>
-						
+						<Route
+							path="/orderDetails/:id"
+							element={
+								<ProtectedRoute>
+									<OrderDetails />
+								</ProtectedRoute>
+							}
+						/>
 					</Routes>
 				)}
 			</Router>
