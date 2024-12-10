@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Admin from  "../../pages/Admin/Admin"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import AdminLoginPage from "../../pages/Login/Adminn/AdminLogin";
+
 
 
 const AdminPath = () => {
@@ -24,7 +26,7 @@ const AdminPath = () => {
 						<Route
 							path="/admin/login"
 							element={
-									<AdminLogin />
+									<AdminLoginPage />
 							}
 						/>
 						
