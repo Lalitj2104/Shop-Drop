@@ -15,7 +15,6 @@ const OrderCard = ({ order, onCancelOrder }) => {
 		"Shipped",
 		"Delivered",
 		"Cancelled",
-		"Picked Up",
 	];
 
 	const activeStep = orderStatusEnum.indexOf(order?.status);
