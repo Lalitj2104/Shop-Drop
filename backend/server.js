@@ -3,7 +3,6 @@ import connectDB from "./config/db.js"
 import cloudinary from "cloudinary"
 import io from "socket.io-client"
 import initializeGame  from "./utils/game-logic.js"
-import cors from "cors";
 
 connectDB();
 cloudinary.config({
