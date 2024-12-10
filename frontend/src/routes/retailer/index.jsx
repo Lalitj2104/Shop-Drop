@@ -145,15 +145,16 @@ const RetailerPath = () => {
 							}
 						/>
 
+						
+
 						<Route
 							path="/shippedOrders"
 							element={
-								<ProcessingOrders>
+								<ProtectedRoute>
 									<ShippedOrders />
-								</ProcessingOrders>
+								</ProtectedRoute>
 							}
 						/>
-
 						<Route
 							path="/completedOrders"
 							element={
@@ -172,7 +173,7 @@ const RetailerPath = () => {
 							}
 						/>
 						<Route
-							path="/orderDetails/:id"
+							path="/orderDetails/:orderId"
 							element={
 								<ProtectedRoute>
 									<OrderDetails />

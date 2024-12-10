@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/RetailerOrderDetails.css";
-import { getOrderByRetailer} from "../../redux/Actions/orderAction";
+import { getOrderById, getOrderByRetailer} from "../../redux/Actions/orderAction";
 import RetailerSidebar from "../../components/RetailerSidebar/RetailerSidebar";
 
 function OrderDetails() {
@@ -13,8 +13,9 @@ function OrderDetails() {
 
 	useEffect(() => {
 		// Fetch order details
-		dispatch(getOrderByRetailer(orderId));
-	}, [dispatch, orderId]);
+		console.log(orderId)
+		dispatch(getOrderById(orderId));
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (message) {
@@ -32,33 +33,33 @@ function OrderDetails() {
 			{order ? (
 				<div className="order-details">
 					<p>
-						<strong>Order ID:</strong> {order._id}
+						<strong>Order ID:</strong> {order?._id}
 					</p>
 					<p>
 						<strong>Date:</strong>{" "}
-						{new Date(order.createdAt).toLocaleDateString()}
+						{new Date(order?.createdAt).toLocaleDateString()}
 					</p>
 					<p>
-						<strong>Total Amount:</strong> ₹{order.totalAmount.toFixed(2)}
+						<strong>Total Amount:</strong> ₹{order?.totalAmount}
 					</p>
 					<p>
-						<strong>Status:</strong> {order.status}
+						<strong>Status:</strong> {order?.status}
 					</p>
 					<p>
-						<strong>Shipping Address:</strong> {order.shippingAddress}
+						<strong>Shipping Address:</strong> {order?.shippingAddress}
 					</p>
 					<h3>Products</h3>
 					<ul>
 						{order.products.map((product, index) => (
 							<li key={index}>
 								<p>
-									<strong>Product ID:</strong> {product.productId}
+									<strong>Product ID:</strong> {product?.productId}
 								</p>
 								<p>
-									<strong>Quantity:</strong> {product.quantity}
+									<strong>Quantity:</strong> {product?.quantity}
 								</p>
 								<p>
-									<strong>Price:</strong> ₹{product.price.toFixed(2)}
+									<strong>Price:</strong> ₹{product?.price}
 								</p>
 							</li>
 						))}

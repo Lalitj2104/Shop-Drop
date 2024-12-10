@@ -101,12 +101,12 @@ export const getOrderByStatus = (status) => async (dispatch) => {
 	}
 };
 
-export const getOrderById = (id) => async (dispatch) => {
+export const getOrderById = (orderId) => async (dispatch) => {
 	try {
 		dispatch({
 			type: "GET_ORDER_BY_ID_REQUEST",
 		});
-		const { data } = await axios.get(`${URL}/my/${id}`);
+		const { data } = await axios.get(`${URL}/my/${orderId}`);
 		dispatch({
 			type: "GET_ORDER_BY_ID_SUCCESS",
 			payload: {
