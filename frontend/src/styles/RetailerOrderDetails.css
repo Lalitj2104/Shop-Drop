@@ -1,0 +1,121 @@
+.order-details-page {
+  display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.order-details-page .retailer-dashboard-sidebar {
+    width: 250px;
+    background-color: #3b5998;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Profile Section */
+.order-details-page .retailer-dashboard-sidebar .retailer-dashboard-profile {
+    text-align: center;
+}
+
+.order-details-page
+    .retailer-dashboard-sidebar
+    .retailer-dashboard-profile
+    h3 {
+    margin: 10px 0 5px 0;
+    font-size: 18px;
+}
+
+.order-details-page
+    .retailer-dashboard-sidebar
+    .retailer-dashboard-profile
+    p {
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Menu Items */
+.order-details-page .retailer-dashboard-sidebar .retailer-dashboard-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-details-page .retailer-dashboard-sidebar .retailer-dashboard-menu li {
+    margin: 10px 0;
+}
+
+.order-details-page
+    .retailer-dashboard-sidebar
+    .retailer-dashboard-menu
+    li
+    a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.order-details-page
+    .retailer-dashboard-sidebar
+    .retailer-dashboard-menu
+    li
+    a:hover {
+    background-color: #334b88;
+    color: white;
+}
+
+/* Active Link Style */
+.order-details-page
+    .retailer-dashboard-sidebar
+    .retailer-dashboard-menu
+    li
+    a.active {
+    background-color: #00bfff;
+    color: white;
+}
+
+/* Logout Button */
+.order-details-page .retailer-dashboard-sidebar .logout-btn {
+    background-color: #3b5998;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 370px;
+    width: 100%;
+}
+
+.order-details-page .retailer-dashboard-sidebar .logout-btn:hover {
+    background-color: #334b88;
+}
+
+.order-details {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  background: #f9f9f9;
+}
+
+.order-details h3 {
+  margin-top: 20px;
+}
+
+.order-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-details ul li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
