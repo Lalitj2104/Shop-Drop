@@ -82,28 +82,44 @@ export const addOrder = async (req, res) => {
 };
 
 export const cancelOrder = async (req, res) => {
-  try {
-    const { orderId } = req.params;
-    const order = await Order.findById(orderId);
-    if (!order) {
-      return Response(res, 400, false, message.orderNotFoundMessage);
-    }
+	try {
+		const { orderId } = req.params;
 
-    if (
-      order.status !== "Pending" ||
-      order.createdAt * 1 * 60 * 60 * 1000 <= Date.now()
-    ) {
-      return Response(res, 400, false, message.orderCannotBeCancelledMessage);
-    }
+		// Find the order and populate product details
+		const order = await Order.findById(orderId).populate("products.productId");
+		if (!order) {
+			return Response(res, 400, false, message.orderNotFoundMessage);
+		}
 
-    order.status = "Cancelled";
-    await order.save();
+		// Check if the order can be canceled
+		const orderTimeLimit =
+			new Date(order.createdAt).getTime() + 1 * 60 * 60 * 1000; // 1 hour limit
+		if (order.status !== "Pending" || orderTimeLimit <= Date.now()) {
+			return Response(res, 400, false, message.orderCannotBeCancelledMessage);
+		}
 
-    Response(res, 200, true, message.orderCancelledMessage, order);
-  } catch (error) {
-    Response(res, 500, false, error.message);
-  }
+		// Update the status of the order
+		order.status = "Cancelled";
+
+		// Update product quantities
+		for (const item of order.products) {
+			const product = item.productId; // Access the populated product details
+			if (product) {
+				product.available_quantity_delivery += item.quantity; // Update quantity
+				await product.save();
+			}
+		}
+
+		await order.save();
+
+		return Response(res, 200, true, message.orderCancelledMessage, order);
+	} catch (error) {
+		console.error(error.message);
+		return Response(res, 500, false, error.message);
+	}
 };
+
+
 
 export const getOrderByUser = async (req, res) => {
   try {
