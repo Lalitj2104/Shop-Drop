@@ -54,7 +54,7 @@ function CompletedOrders() {
 				</div>
 
 				<div className="orders-list">
-					{orders.length === 0 ? (
+					{orders?.length === 0 ? (
 						<p>No completed orders available.</p>
 					) : (
 						orders&&orders?.map((order) => (
