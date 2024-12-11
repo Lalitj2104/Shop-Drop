@@ -42,7 +42,7 @@ const Orders = () => {
                   <td>{order?._id}</td>
                   <td>{order?.paymentMethod}</td>
                   <td>{order?.status}</td>
-                  <td>${order?.totalAmount.toFixed(2)}</td>
+                  <td>₹{order?.totalAmount.toFixed(2)}</td>
                   <td>{new Date(order?.createdAt).toLocaleString()}</td>
                 </tr>
               ))}
