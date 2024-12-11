@@ -36,7 +36,7 @@ const Products = () => {
                   <td>{product?._id}</td>
                   <td>{product?.description}</td>
                   <td>{product?.category}</td>
-                  <td>${product?.price.toFixed(2)}</td>
+                  <td>₹{product?.price.toFixed(2)}</td>
                   <td>
                     {new Date(product?.createdAt).toLocaleDateString("en-US")}
                   </td>
