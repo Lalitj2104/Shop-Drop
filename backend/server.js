@@ -18,7 +18,7 @@ const httpServer=app.listen(process.env.PORT,()=>{
 
 const Socketio=io(httpServer,{
     cors:{
-		origin:"*",
+		origin: "*",
 		methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 		credentials: true,
 	}

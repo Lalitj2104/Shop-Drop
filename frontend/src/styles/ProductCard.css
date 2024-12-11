@@ -123,3 +123,10 @@
 	outline: none;
 	box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.5); /* Soft red focus outline */
 }
+.sorting-indicator {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin: 16px 0;
+    text-align: center;
+}
