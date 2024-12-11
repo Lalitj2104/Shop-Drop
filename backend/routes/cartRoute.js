@@ -23,7 +23,7 @@ cartRouter.post("/create-checkout-session", async (req, res) => {
     try {
         const lineItems = products.map((product) => ({
             price_data: {
-                currency: "usd",
+                currency: "Inr",
                 product_data: {
                     name: product.name,
                     images: [product.image],
