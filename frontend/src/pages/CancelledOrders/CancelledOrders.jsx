@@ -30,7 +30,8 @@ function CancelledOrders() {
 						<p>No cancelled orders available.</p>
 					) : (
 						orders &&
-						orders?.map((order) => (
+						[...orders] // Create a shallow copy of the orders array
+            .reverse()?.map((order) => (
 							<div className="order-item" key={order.id}>
 								<h3>Order ID: {order?._id}</h3>
 								<p>Date: {new Date(order?.createdAt).toLocaleDateString()}</p>

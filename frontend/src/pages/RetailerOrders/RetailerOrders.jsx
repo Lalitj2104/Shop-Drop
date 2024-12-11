@@ -64,7 +64,8 @@ function RetailerOrders() {
 					{rorder &&rorder?.length === 0 ? (
 						<p>No orders available.</p>
 					) : (
-						rorder &&rorder?.map((item) => (
+						rorder &&[...rorder] // Create a shallow copy of the orders array
+						.reverse()?.map((item) => (
 							<div className="order-item" key={item?._id}>
 								<h3>Order ID: {item?._id}</h3>
 								<p>Date: {new Date(item?.createdAt).toLocaleDateString()}</p>

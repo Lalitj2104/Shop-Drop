@@ -57,7 +57,8 @@ function CompletedOrders() {
 					{orders?.length === 0 ? (
 						<p>No completed orders available.</p>
 					) : (
-						orders&&orders?.map((order) => (
+						orders&&[...orders] // Create a shallow copy of the orders array
+						.reverse()?.map((order) => (
 							<div className="order-item" key={order?._id}>
 								<h3>Order ID: {order?._id}</h3>
 								<p>Date: {new Date(order?.createdAt).toLocaleDateString()}</p>

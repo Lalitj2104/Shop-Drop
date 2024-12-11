@@ -30,7 +30,7 @@ function PendingOrders() {
 	useEffect(()=>{
 		dispatch(getOrderByStatus("Pending"));
 	},[dispatch]);
-
+	
 	const updateStatus = (orderId) => {
 		const newStatus = "Processing"; // The next status in the flow
 		dispatch(updateOrderStatus(orderId, newStatus));
@@ -48,33 +48,37 @@ function PendingOrders() {
 				</div>
 
 				<div className="orders-list">
-					{orders?.length === 0 ? (
-						<p>No pending orders available.</p>
-					) : (
-						orders&&orders?.map((order) => (
-							<div className="order-item" key={order?._id}>
-								<h3>Order ID: {order?._id}</h3>
-								<p>Date: {new Date(order?.createdAt).toLocaleDateString()}</p>
-								<p>Total Amount: ₹{order?.totalAmount.toFixed(2)}</p>
-								<p>Status: {order?.status}</p>
-								<div className="order-buttons">
-									<Link to={`/orderDetails/${order._id}`}>
-										<button className="view-order-btn">View Order</button>
-									</Link>
-									{/* Update Status Button */}
-									{order?.status === "Pending" && (
-										<button
-											className="update-status-btn"
-											onClick={() => updateStatus(order?._id)}
-										>
-											Update Status
-										</button>
-									)}
-								</div>
-							</div>
-						))
-					)}
-				</div>
+    {orders?.length === 0 ? (
+        <p>No pending orders available.</p>
+    ) : (
+        orders &&
+        [...orders] // Create a shallow copy of the orders array
+            .reverse()
+            .map((order) => (
+                <div className="order-item" key={order?._id}>
+                    <h3>Order ID: {order?._id}</h3>
+                    <p>Date: {new Date(order?.createdAt).toLocaleDateString()}</p>
+                    <p>Total Amount: ₹{order?.totalAmount.toFixed(2)}</p>
+                    <p>Status: {order?.status}</p>
+                    <div className="order-buttons">
+                        <Link to={`/orderDetails/${order._id}`}>
+                            <button className="view-order-btn">View Order</button>
+                        </Link>
+                        {/* Update Status Button */}
+                        {order?.status === "Pending" && (
+                            <button
+                                className="update-status-btn"
+                                onClick={() => updateStatus(order?._id)}
+                            >
+                                Update Status
+                            </button>
+                        )}
+                    </div>
+                </div>
+            ))
+    )}
+</div>
+
 			</div>
 		</div>
 	);
