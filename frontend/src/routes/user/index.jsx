@@ -28,6 +28,7 @@ import Categories from "../../pages/Categories/Categories.jsx";
 import PaymentSuccess from "../../pages/PaymentSuccess/PaymentSuccess.jsx";
 import PaymentFailure from "../../pages/PaymentFailure/PaymentFailure.jsx";
 import Wishlist from "../../pages/Wishlist/Wishlist.jsx";
+import Blog from "../../pages/Blog/Blog.jsx";
 const Path = () => {
 	const dispatch = useDispatch();
 	const { userLoading } = useSelector((state) => state.userAuth);
@@ -201,6 +202,14 @@ const Path = () => {
 							element={
 								<ProtectedRoute>
 									<ChatbotPage />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="/blog"
+							element={
+								<ProtectedRoute>
+									<Blog />
 								</ProtectedRoute>
 							}
 						/>

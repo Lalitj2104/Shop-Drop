@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f4f4f4; /* Light background color */
+    margin: 0;
+  }
+  
+  .text {
+    font-size: 6rem; /* Large text */
+    font-weight: bold;
+    color: #2c3e50; /* Dark text color */
+    text-align: center;
+    margin: 0;
+  }
