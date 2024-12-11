@@ -24,7 +24,7 @@ export const loginAdmin=async(req,res)=>{
 
 export const signOut=async(req,res)=>{
     try {
-        Response(res,200,true,message.loginSuccessfulMessage);
+        Response(res,200,true,message.logoutMessage);
     } catch (error) {
         Response(res,500,false,error.message);
     }
