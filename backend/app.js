@@ -39,6 +39,6 @@ app.use("/api/v1/wishList", wishListRouter);
 app.use("/api/v1/order",orderRouter);
 app.use("/api/v1/cart",cartRouter);
 app.use("/api/v1/review",reviewRouter)
-app.use("api/v1/admin",adminRouter);
+app.use("/api/v1/admin",adminRouter);
 
 export default app;
