@@ -20,7 +20,7 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.productAuth);
   const { message, error, loading } = useSelector((state) => state.cartAuth);
-  const {review} = useSelector(state => state.reviewAuth);
+  const {review} = useSelector((state) => state.reviewAuth);
 
   // Static reviews with title, description, likes, dislikes
   const [newReview, setNewReview] = useState({
@@ -68,8 +68,12 @@ const ProductPage = () => {
 
   useEffect(() => {
     dispatch(getProduct(id));
-    dispatch(getAllProductReviews(id));
   }, [id, dispatch]);
+
+  useEffect(()=>{
+    dispatch(getAllProductReviews(id));
+
+  },[])
 
   return (
     <>
@@ -88,7 +92,7 @@ const ProductPage = () => {
             <h2>{product?.name}</h2>
             <p>{product?.description}</p>
             <p>
-              <strong>Price:</strong> ${product?.price?.toFixed(2)}
+              <strong>Price:</strong> {product?.price?.toFixed(2)}
             </p>
 
             <div className="quantity-container">
@@ -173,10 +177,11 @@ const ProductPage = () => {
             {review?.length ? (
               review&&review.map((rev, index) => (
                 <li key={index} className="review-item">
+                <h4>{rev?.userId?.firstName} {rev?.userId?.lastName}</h4>
                   <h4>{rev?.title}</h4>
                   <p>{rev?.description}</p>
                   <div>
-                    <p>Rating: {rev.rating} stars</p>
+                    <p>Rating: {rev.rating} </p>
                     <button>👍 {rev?.likes}</button>
                     <button>👎 {rev?.dislikes}</button>
                   </div>

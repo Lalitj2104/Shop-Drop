@@ -36,13 +36,13 @@ function ProcessingOrders() {
 					) : (
 						orders &&
 						orders?.map((order) => (
-							<div className="order-item" key={order.id}>
+							<div className="order-item" key={order?._id}>
 								<h3>Order ID: {order?._id}</h3>
 								<p>Date: {new Date(order?.createdAt).toLocaleDateString()}</p>
 								<p>Total Amount: ₹{order?.totalAmount.toFixed(2)}</p>
 								<p>Status: {order.status}</p>
 								<div className="order-buttons">
-									<Link to={`/orderDetails/${order.id}`}>
+									<Link to={`/orderDetails/${order?._id}`}>
 										<button className="view-order-btn">View Order</button>
 									</Link>
 									{/* Update Status Button */}

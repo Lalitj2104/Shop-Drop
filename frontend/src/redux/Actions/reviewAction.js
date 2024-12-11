@@ -116,14 +116,16 @@ export const getAllUserReviews = (id) => async (dispatch) => {
     }
   };
 
+
+  
 export const getAllProductReviews = (id) => async (dispatch) => {
     try {
       dispatch({
-          type:"GET_ALL_REVIEWS_BY_PRODUCT_REQUEST"
+          type:"GET_ALL_REVIEW_FOR_PRODUCT_REQUEST"
       })
       const {data}=await axios.get(`${URL}/all/${id}`)
       dispatch({
-          type:"GET_ALL_REVIEWS_BY_PRODUCT_SUCCESS",
+          type:"GET_ALL_REVIEW_FOR_PRODUCT_SUCCESS",
           payload:{
             message:data.message,
             reviews:data.data
@@ -131,7 +133,7 @@ export const getAllProductReviews = (id) => async (dispatch) => {
       })
     } catch (error) {
       dispatch({
-          type:"GET_ALL_REVIEWS_BY_PRODUCT_FAILURE",
+          type:"GET_ALL_REVIEW_FOR_PRODUCT_FAILURE",
           payload: error?.response?.data?.message,
       })
     }

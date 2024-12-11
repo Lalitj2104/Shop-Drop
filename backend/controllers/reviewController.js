@@ -11,12 +11,12 @@ export const addReview=async(req,res)=>{
     //checking product
     const product=await Product.findById(productId);
     if(!product){
-        return Response(res,400,message.noProductMessage)
+        return Response(res,400,false,message.noProductMessage)
     }
     //checking body
     const {rating,title,description }=req.body;
     if(!rating||!title||!description){
-        return Response(res,400,message.missingFieldMessage);
+        return Response(res,400,false,message.missingFieldMessage);
     }
     const newReview= await Review.create({
         userId:req.user._id,
@@ -27,10 +27,10 @@ export const addReview=async(req,res)=>{
 
     })
 
-    Response(res,200,message.reviewCreatedMessage)
+    Response(res,200,true,message.reviewCreatedMessage)
     } catch (error) {
         console.log(error.message);
-        Response(res,500,error.message);
+        Response(res,500,false,error.message);
     }
 
 }
@@ -42,12 +42,12 @@ export const getReview=async(req,res)=>{
     const review=await Review.findById(reviewId).populate("userId", "name").populate("productId", "name");
 
     if(!review){
-        return Response(res,400,message.reviewNotFoundMessage);
+        return Response(res,400,false,message.reviewNotFoundMessage);
     }
-    Response(res,200,message.reviewFoundMessage,review);
+    Response(res,200,true,message.reviewFoundMessage,review);
 
     } catch (error) {
-        Response(res,500,error.message);
+        Response(res,500,false,error.message);
     }
 }
 
@@ -57,17 +57,17 @@ export const deleteReview=async(req,res)=>{
         const {reviewId}=req.params;
         const review=await Review.findById(reviewId);
         if(!review){
-            return Response(res,400,message.reviewNotFoundMessage);
+            return Response(res,400,false,message.reviewNotFoundMessage);
         }
         if(review.userId.toString!==req.user._id.toString){
-            return Response(res,400,message.accessInvalidMessage)
+            return Response(res,400,false,message.accessInvalidMessage)
         }
 
         await Review.findByIdAndDelete(reviewId);
-        Response(res,201,message.reviewDeletedMessage);
+        Response(res,201,true,message.reviewDeletedMessage);
 
     } catch (error) {
-        Response(res,500,error.message);
+        Response(res,500,false,error.message);
     }
 
 }
@@ -76,10 +76,10 @@ export const updateReview=async(req,res)=>{
         const{reviewId}=req.params;
         const reviews=await Review.findById(reviewId);
         if(!reviews){
-            return Response(res,400,message.reviewNotFoundMessage);
+            return Response(res,400,false,message.reviewNotFoundMessage);
         }
         if(review.userId.toString!==req.user._id.toString){
-            return Response(res,400,message.accessInvalidMessage);
+            return Response(res,400,false,message.accessInvalidMessage);
         }
         const {review, rating,title,description }=req.body;
 
@@ -90,21 +90,21 @@ export const updateReview=async(req,res)=>{
         
         await review.save();
 
-        Response(res,200,message.reviewUpdatedMessage,review);
+        Response(res,200,true,message.reviewUpdatedMessage,review);
 
 
         
     } catch (error) {
-        Response(res,500,error.message);
+        Response(res,500,false,error.message);
     }
 }
 export const getAllReviewsByUser=async(req,res)=>{
     try {
         const reviews=await Review.find({userId:req.user._id}).populate("productId", "name");
 
-        Response(res,201,message.reviewsFoundMessage,reviews);
+        Response(res,201,true,message.reviewsFoundMessage,reviews);
     } catch (error) {
-        Response(res,500,error.message);
+        Response(res,500,false,error.message);
     }
 }
 
@@ -113,13 +113,13 @@ export const getAllReviewsForProduct = async(req,res)=>{
         const {productId}=req.params;
         const product=await Product.findById(productId);
         if(!product){
-            return Response(res,400,message.noProductMessage);
+            return Response(res,400,false,message.noProductMessage);
         }
-        const reviews=await Review.find({productId:product._id}).populate("userId", "name");
+        const reviews=await Review.find({productId:product._id}).populate("userId", "firstName lastName");
 
-        Response(res,201,message.reviewsFoundMessage,reviews);
+        Response(res,201,true,message.reviewsFoundMessage,reviews);
         
     } catch (error) {
-        Response(res,500,error.message);
+        Response(res,500,false,error.message);
     }
 }
