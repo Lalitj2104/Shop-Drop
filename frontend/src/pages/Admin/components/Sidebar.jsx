@@ -9,6 +9,8 @@ import {
   UilChart,
   UilSignOutAlt,
 } from "@iconscout/react-unicons";
+import { logout } from "../../../redux/Actions/adminAction";
+import { useDispatch } from "react-redux";
 
 const SidebarData = [
   { icon: UilEstate, heading: "Dashboard" },
@@ -24,6 +26,7 @@ const Sidebar = ({ setSelectedComponent }) => {
     setSelected(index);
     setSelectedComponent(heading);
   };
+  const dispatch=useDispatch();
 
   return (
     <div className="sidebar">
@@ -46,7 +49,7 @@ const Sidebar = ({ setSelectedComponent }) => {
         ))}
         <div
           className="menuItem signOut"
-          onClick={() => alert("Sign Out functionality coming soon!")}
+          onClick={() => dispatch(logout())}
         >
           <UilSignOutAlt />
           <span>SignOut</span>

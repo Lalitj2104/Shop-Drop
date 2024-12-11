@@ -6,14 +6,9 @@ import { toast } from "react-toastify";
 
 const ProtectedRoute = ({ children }) => {
 	
-	const {isAuthenticated}=useSelector(state=>state.adminAuth);
-	const dispatch = useDispatch();
-	// useEffect(() => {
-	// 	if (authError) {
-	// 		toast.error(authError, toastOptions);
-	// 		dispatch({ type: "CLEAR_AUTH_ERROR" });
-	// 	}
-	// }, [authError]);
+	const {isAuthenticated}=useSelector((state)=>state.adminAuth);
+	// const dispatch = useDispatch();
+	
 
 	return isAuthenticated ? children :<Navigate to="/admin/login" />;
 };

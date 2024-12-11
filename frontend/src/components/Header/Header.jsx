@@ -39,7 +39,7 @@ const Header = () => {
 				<div className="top-right">
 					<p>Welcome to Our Store!</p>
 					<p>
-						🌍 <span>English</span> | $ <span>Dollar (USD)</span>
+						🌍 <span>English</span> | ₹ <span>Rupee(IND)</span>
 					</p>
 				</div>
 			</div>

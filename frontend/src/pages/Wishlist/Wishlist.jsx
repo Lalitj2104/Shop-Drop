@@ -46,7 +46,7 @@ function Wishlist() {
 								<div className="wishlist-details">
 									<h3 className="wishlist-name">{product?.name}</h3>
 									<p>{product?.description}</p>
-									<p className="wishlist-price">$ {product?.price}</p>
+									<p className="wishlist-price">₹ {product?.price}</p>
 								</div>
 
 								{/* Action Buttons */}
@@ -72,12 +72,6 @@ function Wishlist() {
 						<p className="wishlist-empty-message">
 							No items in your wishlist. <a href="/shop">Continue Shopping</a>
 						</p>
-					</div>
-				)}
-
-				{hasItems && (
-					<div className="wishlist-add-all">
-						<button>Add All to Bag</button>
 					</div>
 				)}
 			</div>
