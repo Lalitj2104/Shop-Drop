@@ -51,7 +51,7 @@ const Header = () => {
 				{isAuthenticated && (
 					<div className="delivery-info">
 						{/* Delivery Dropdown */}
-						<div className="delivery-option">
+						{/* <div className="delivery-option">
 							<select
 								value={deliveryMode}
 								onChange={(e) => setDeliveryMode(e.target.value)}
@@ -59,7 +59,7 @@ const Header = () => {
 								<option value="Delivery">Delivery</option>
 								<option value="Instore">Instore</option>
 							</select>
-						</div>
+						</div> */}
 						{/* User Info */}
 						<p>
 							Welcome <strong>{name}</strong>
