@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import "../../styles/RetailerOrderDetails.css";
 import RetailerSidebar from "../../components/RetailerSidebar/RetailerSidebar";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,14 +40,14 @@ function OrderDetails() {
 						<h4>Customer Information</h4>
 						<ul>
 							<li>
-								<strong>Name:</strong> {order?.customer?.firstName}{" "}
-								{order?.customer?.lastName}
+								<strong>Name:</strong> {order?.userId?.firstName}{" "}
+								{order?.userId?.middleName}{" "} {order?.userId?.lastName}
 							</li>
 							<li>
-								<strong>Email:</strong> {order?.customer?.email}
+								<strong>Email:</strong> {order?.userId?.email}
 							</li>
 							<li>
-								<strong>Phone:</strong> {order?.customer?.phone}
+								<strong>Phone:</strong> {order?.userId?.mobile}
 							</li>
 							<li>
 								<strong>Address:</strong> {order?.shippingAddress}
@@ -58,8 +58,7 @@ function OrderDetails() {
 						<ul>
 							{order?.products?.map((item) => (
 								<li key={item.productId}>
-									{item?.name} - ₹{item.price.toFixed(2)} x{" "}
-									{item.quantity}
+									{item?.name} - ₹{item.price.toFixed(2)} x {item.quantity}
 								</li>
 							))}
 						</ul>

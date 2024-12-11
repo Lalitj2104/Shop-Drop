@@ -150,14 +150,18 @@ export const getOrderById = async (req, res) => {
 	try {
 		const { orderId } = req.params;
 
-		const order = await Order.findById(orderId).populate("products.productId", // Ensure the path is correct
-		"image description price", // Select the required fields
-		);
+		const order = await Order.findById(orderId)
+			.populate(
+			"products.productId", // Ensure the path is correct
+			"image description price" // Select the required fields
+		)
+			.populate("userId", "firstName middleName lastName email mobile");
 
 		console.log(order);
 		if (!order) {
 			return Response(res, 404, false, message.orderNotFoundMessage);
 		}
+		console.log("working");
 
 		Response(res, 200, true, message.orderFetchedMessage, order);
 	} catch (error) {
@@ -165,7 +169,6 @@ export const getOrderById = async (req, res) => {
 		Response(res, 500, false, error.message);
 	}
 };
-
 
 export const updateOrderStatus = async (req, res) => {
 	try {
