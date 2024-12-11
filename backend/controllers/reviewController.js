@@ -14,12 +14,11 @@ export const addReview=async(req,res)=>{
         return Response(res,400,message.noProductMessage)
     }
     //checking body
-    const {review, rating,title,description }=req.body;
-    if(!review||!rating||!title||!description){
+    const {rating,title,description }=req.body;
+    if(!rating||!title||!description){
         return Response(res,400,message.missingFieldMessage);
     }
     const newReview= await Review.create({
-        review:review,
         userId:req.user._id,
         productId:product._id,
         title:title,
@@ -30,6 +29,7 @@ export const addReview=async(req,res)=>{
 
     Response(res,200,message.reviewCreatedMessage)
     } catch (error) {
+        console.log(error.message);
         Response(res,500,error.message);
     }
 

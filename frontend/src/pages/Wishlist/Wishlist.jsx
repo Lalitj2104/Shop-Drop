@@ -10,14 +10,22 @@ import { addToCart } from "../../redux/Actions/cartAction";
 
 function Wishlist() {
 	const dispatch = useDispatch();
-	const { wishList } = useSelector((state) => state.wishListAuth);
+	const { wishLists, message } = useSelector((state) => state.wishListAuth);
 
 	useEffect(() => {
 		dispatch(getWishList());
 	}, [dispatch]);
 
+	useEffect(() => {
+		if(message){
+			if (message === "Product Removed Successful") {
+				dispatch(getWishList());
+			}
+		}
+	})
+
 	const hasItems =
-		Array.isArray(wishList?.products) && wishList.products.length > 0;
+		Array.isArray(wishLists?.products) && wishLists.products.length > 0;
 
 	return (
 		<>
@@ -28,7 +36,7 @@ function Wishlist() {
 
 				{hasItems ? (
 					<div className="wishlist-list">
-						{wishList.products.map((product) => (
+						{wishLists.products.map((product) => (
 							<div
 								className="wishlist-horizontal-card"
 								key={product._id || product.id}

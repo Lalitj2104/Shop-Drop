@@ -49,7 +49,7 @@ export const reviewReducer=createReducer(initialState,(builder)=>{
             state.message=action.payload.message
         })
         .addCase(addReviewFailure,(action,state)=>{
-            state.loading=true;
+            state.loading=false;
             state.error=action.payload
         })
 
@@ -63,7 +63,7 @@ export const reviewReducer=createReducer(initialState,(builder)=>{
             state.message=action.payload.message
         })
         .addCase(getReviewFailure,(action,state)=>{
-            state.loading=true;
+            state.loading=false;
             state.error=action.payload
         })
 
@@ -77,7 +77,7 @@ export const reviewReducer=createReducer(initialState,(builder)=>{
             state.message=action.payload.message
         })
         .addCase(updateReviewFailure,(action,state)=>{
-            state.loading=true;
+            state.loading=false;
             state.error=action.payload
         })
 
@@ -92,7 +92,7 @@ export const reviewReducer=createReducer(initialState,(builder)=>{
             state.message=action.payload.message
         })
         .addCase(deleteReviewFailure,(action,state)=>{
-            state.loading=true;
+            state.loading=false;
             state.error=action.payload
         })
 
@@ -102,11 +102,11 @@ export const reviewReducer=createReducer(initialState,(builder)=>{
         })
         .addCase(getAllReviewForProductSuccess,(state,action)=>{
             state.loading=false;
-            state.review=action.payload.review;
+            state.review=action.payload.reviews;
             state.message=action.payload.message
         })
         .addCase(getAllReviewForProductFailure,(action,state)=>{
-            state.loading=true;
+            state.loading=false;
             state.error=action.payload
         })
 
@@ -120,7 +120,7 @@ export const reviewReducer=createReducer(initialState,(builder)=>{
             state.message=action.payload.message
         })
         .addCase(getAllReviewsByUserFailure,(action,state)=>{
-            state.loading=true;
+            state.loading=false;
             state.error=action.payload
         })
 

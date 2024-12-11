@@ -5,12 +5,12 @@ axios.defaults.withCredentials=true;
 
 const URL=BACKEND_URL+"api/v1/review";
 
-export const addUserReview = (id,review, rating,title,description) => async (dispatch) => {
+export const addUserReview = (id, rating,title,description) => async (dispatch) => {
   try {
     dispatch({
         type:"ADD_REVIEW_REQUEST"
     })
-    const {data}=await axios.post(`${URL}/add/${id}`,{review, rating,title,description},{
+    const {data}=await axios.post(`${URL}/add/${id}`,{ rating,title,description},{
         headers:{
             "Content-Type":"application/json"
         }
@@ -75,7 +75,7 @@ export const updateUserReview = (id,review, rating,title,description) => async (
     }
   };
 
-export const deleteUserReview = () => async (dispatch) => {
+export const deleteUserReview = (id) => async (dispatch) => {
     try {
       dispatch({
           type:"DELETE_REVIEW_REQUEST"
@@ -98,11 +98,11 @@ export const deleteUserReview = () => async (dispatch) => {
 export const getAllUserReviews = (id) => async (dispatch) => {
     try {
       dispatch({
-          type:"GET_ALL_REVIEW_FOR_PRODUCT_REQUEST"
+          type:"GET_ALL_REVIEW_FOR_USER_REQUEST"
       })
       const {data}=await axios.get(`${URL}/all/userReview/${id}`)
       dispatch({
-          type:"GET_ALL_REVIEW_FOR_PRODUCT_SUCCESS",
+          type:"GET_ALL_REVIEW_FOR_USER_SUCCESS",
           payload:{
             message:data.message,
             review:data.data
@@ -110,7 +110,7 @@ export const getAllUserReviews = (id) => async (dispatch) => {
       })
     } catch (error) {
       dispatch({
-          type:"GET_ALL_REVIEW_FOR_PRODUCT_FAILURE",
+          type:"GET_ALL_REVIEW_FOR_USER_FAILURE",
           payload: error?.response?.data?.message,
       })
     }
@@ -119,19 +119,19 @@ export const getAllUserReviews = (id) => async (dispatch) => {
 export const getAllProductReviews = (id) => async (dispatch) => {
     try {
       dispatch({
-          type:"GET_ALL_REVIEWS_BY_USER_REQUEST"
+          type:"GET_ALL_REVIEWS_BY_PRODUCT_REQUEST"
       })
-      const {data}=await axios.get(`{URL}/all/${id}`)
+      const {data}=await axios.get(`${URL}/all/${id}`)
       dispatch({
-          type:"GET_ALL_REVIEWS_BY_USER_SUCCESS",
+          type:"GET_ALL_REVIEWS_BY_PRODUCT_SUCCESS",
           payload:{
             message:data.message,
-            review:data.data
+            reviews:data.data
           }
       })
     } catch (error) {
       dispatch({
-          type:"GET_ALL_REVIEWS_BY_USER_FAILURE",
+          type:"GET_ALL_REVIEWS_BY_PRODUCT_FAILURE",
           payload: error?.response?.data?.message,
       })
     }

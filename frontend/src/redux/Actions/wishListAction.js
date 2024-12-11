@@ -66,12 +66,12 @@ export const getWishList = () => async (dispatch) => {
 
 		const { data } = await axios.get(`${URL}/my/wishlist`);
 
-		console.log("Data: ", data);
+		console.log("Data 1: ", data);
 		dispatch({
 			type: "GET_WISHLIST_SUCCESS",
 			payload: {
 				message: data.message,
-				wishList: data.data,
+				wishLists: data.data,
 			},
 		});
 	} catch (error) {

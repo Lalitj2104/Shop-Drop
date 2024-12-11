@@ -8,6 +8,7 @@ import toastOptions from "../../../constants/toast";
 import { toast } from "react-toastify";
 import Header from "../../../components/Header/Header";
 import { addWishList } from "../../../redux/Actions/wishListAction";
+import { addUserReview, getAllProductReviews} from "../../../redux/Actions/reviewAction";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -19,30 +20,9 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.productAuth);
   const { message, error, loading } = useSelector((state) => state.cartAuth);
+  const {review} = useSelector(state => state.reviewAuth);
 
   // Static reviews with title, description, likes, dislikes
-  const staticReviews = [
-    {
-      title: "Amazing product",
-      description: "I loved the quality and the features. Will recommend!",
-      likes: 5,
-      dislikes: 1,
-    },
-    {
-      title: "Good value for money",
-      description: "Worth the price. Delivery was also on time.",
-      likes: 3,
-      dislikes: 0,
-    },
-    {
-      title: "Decent but could be better",
-      description: "The packaging was not great but overall good quality.",
-      likes: 2,
-      dislikes: 2,
-    },
-  ];
-
-  const [reviews, setReviews] = useState(staticReviews);
   const [newReview, setNewReview] = useState({
     title: "",
     description: "",
@@ -74,20 +54,21 @@ const ProductPage = () => {
     }
   }, [message, error]);
 
-  const handleReviewSubmit = (event) => {
-    event.preventDefault(); // Prevent form from reloading the page
-    if (newReview.title.trim() && newReview.description.trim()) {
-      setReviews((prev) => [
-        ...prev,
-        { ...newReview, rating, likes: 0, dislikes: 0 },
-      ]);
-      setNewReview({ title: "", description: "" });
-      setRating(0); // Reset rating after submitting
-    }
+  const   handleReviewSubmit = (event) => {
+    event.preventDefault();
+
+    if (newReview.title.trim() && newReview.description.trim() && rating > 0) {
+			dispatch(
+				addUserReview(id, rating, newReview.title, newReview.description)
+			);
+		} else {
+			toast.error("Please fill all fields and provide a rating.", toastOptions);
+		}
   };
 
   useEffect(() => {
     dispatch(getProduct(id));
+    dispatch(getAllProductReviews(id));
   }, [id, dispatch]);
 
   return (
@@ -107,7 +88,7 @@ const ProductPage = () => {
             <h2>{product?.name}</h2>
             <p>{product?.description}</p>
             <p>
-              <strong>Price:</strong> ₹{product?.price?.toFixed(2)}
+              <strong>Price:</strong> ${product?.price?.toFixed(2)}
             </p>
 
             <div className="quantity-container">
@@ -189,15 +170,15 @@ const ProductPage = () => {
         <div className="review-section">
           <h3>Reviews</h3>
           <ul className="review-list">
-            {reviews.length ? (
-              reviews.map((review, index) => (
+            {review?.length ? (
+              review&&review.map((rev, index) => (
                 <li key={index} className="review-item">
-                  <h4>{review?.title}</h4>
-                  <p>{review?.description}</p>
+                  <h4>{rev?.title}</h4>
+                  <p>{rev?.description}</p>
                   <div>
-                    <p>Rating: {review.rating} stars</p>
-                    <button>👍 {review?.likes}</button>
-                    <button>👎 {review?.dislikes}</button>
+                    <p>Rating: {rev.rating} stars</p>
+                    <button>👍 {rev?.likes}</button>
+                    <button>👎 {rev?.dislikes}</button>
                   </div>
                 </li>
               ))

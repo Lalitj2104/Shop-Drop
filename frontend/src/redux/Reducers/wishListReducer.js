@@ -53,7 +53,7 @@ export const wishListReducer = createReducer(initialState, (builder) => {
 			state.loading = true;
 		})
 		.addCase(getWishListSuccess, (state, action) => {
-			(state.loading = false), (state.wishList = action.payload.wishList);
+			(state.loading = false), (state.wishLists = action.payload.wishLists);
 			state.message = action.payload.message;
 		})
 		.addCase(getWishListFailure, (state, action) => {
