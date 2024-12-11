@@ -148,7 +148,7 @@ const CartPage = () => {
 											<h2 className="item-title">
 												{item?.productId?.description}
 											</h2>
-											<p className="item-price">${item?.price}</p>
+											<p className="item-price">₹ {item?.price}</p>
 											<div className="quantity-control">
 												<button
 													className="quantity-btn"
@@ -191,7 +191,7 @@ const CartPage = () => {
 								{defaultAddress ? (
 									<div className="address-details">
 										<p>
-											{defaultAddress?.house}, {defaultAddress.street},{" "},{defaultAddress?.area},{" "}
+											{defaultAddress?.house}, {defaultAddress.street},{" "}
 											{defaultAddress?.city}, {defaultAddress?.state},{" "}
 											{defaultAddress?.country}
 										</p>
@@ -205,7 +205,7 @@ const CartPage = () => {
 							<h2>Order Summary</h2>
 							<div className="summary-details">
 								<p>Subtotal: </p>
-								<p>${calculateTotal()}</p>
+								<p>₹ {calculateTotal()}</p>
 							</div>
 
 							{/* Payment buttons */}

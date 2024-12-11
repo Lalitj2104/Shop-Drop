@@ -107,7 +107,7 @@ const ProductPage = () => {
             <h2>{product?.name}</h2>
             <p>{product?.description}</p>
             <p>
-              <strong>Price:</strong> ${product?.price?.toFixed(2)}
+              <strong>Price:</strong> ₹{product?.price?.toFixed(2)}
             </p>
 
             <div className="quantity-container">

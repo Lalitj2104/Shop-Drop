@@ -18,7 +18,7 @@ export const addToCart = async (req, res) => {
 		}
 		//quantity available or not
 		if (product.available_quantity_delivery < quantity) {
-			return Response(res, 400, false, message.insufficientQuantityMessage);
+			return Response(res, 402, false, message.insufficientQuantityMessage);
 		}
 		let cart = await Cart.findOne({ userId: req.user._id });
 		console.log(cart);

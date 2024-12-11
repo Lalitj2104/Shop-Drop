@@ -12,7 +12,7 @@ const ProductList = () => {
 	const { loading, products } = useSelector((state) => state.productAuth);
 
 	const [minPrice, setMinPrice] = useState(0);
-	const [maxPrice, setMaxPrice] = useState(1000); // Adjust max price based on your product range
+	const [maxPrice, setMaxPrice] = useState(20000); // Adjust max price based on your product range
 	const [filteredProducts, setFilteredProducts] = useState([]);
 
 	useEffect(() => {
