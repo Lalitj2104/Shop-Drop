@@ -30,7 +30,7 @@ function RetailerDashboard() {
 	};
 
 	useEffect(() => {
-		if (productmsg) {
+		if(productmsg) {
 			toast.success(productmsg, toastOptions);
 		}
 		dispatch({

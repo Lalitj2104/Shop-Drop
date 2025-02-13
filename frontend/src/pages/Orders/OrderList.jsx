@@ -10,11 +10,14 @@ const OrderList = () => {
   
   const dispatch=useDispatch();
   const {orders}=useSelector(state=>state.orderAuth);
+  
 
   useEffect(() => {
     dispatch(getOrderByUser());
   }, [dispatch]);
   console.log(orders)
+  // const rev = orders.reverse();
+  // orders = [...rev];
   if (orders?.length === 0) {
     return <p>No orders found</p>;
   }
@@ -23,7 +26,7 @@ const OrderList = () => {
     <>
     <Header/>
     <div style={{ padding: "20px" }}>
-      {orders && orders?.map((item) => (
+      {orders && [...orders].reverse()?.map((item) => (
         
         <OrderCard key={item?._id} order={item} />
       ))}

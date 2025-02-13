@@ -93,7 +93,7 @@ const Cards = () => {
       chartType: "line",
     },
     {
-      title: "Products",
+      title: "Products added",
       color: {
         backGround:
           "linear-gradient(rgb(248, 212, 154) -146.42%, rgb(255 202 113) -46.42%)",

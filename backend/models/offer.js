@@ -1,72 +1,72 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const offerSchema = new mongoose.Schema({
   offer_id: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   title: {
     type: String,
     required: true,
-    maxlength: 100
+    maxlength: 100,
   },
   description: {
     type: String,
-    maxlength: 500
+    maxlength: 500,
   },
   discount_type: {
     type: String,
-    enum: ['percentage', 'fixed'],
-    required: true
+    enum: ["percentage", "fixed"],
+    required: true,
   },
   discount_value: {
     type: Number,
-    required: true
+    required: true,
   },
   start_date: {
     type: Date,
-    required: true
+    required: true,
   },
   end_date: {
     type: Date,
-    required: true
+    required: true,
   },
   applicable_products: {
     type: [String], // Array of product IDs or categories
-    default: []
+    default: [],
   },
   minimum_order_value: {
     type: Number,
-    default: 0
+    default: 0,
   },
   max_discount_value: {
     type: Number,
-    default: null
+    default: null,
   },
   usage_limit: {
     type: Number,
-    default: null
+    default: null,
   },
   user_limit: {
     type: Number,
-    default: 1
+    default: 1,
   },
   status: {
     type: String,
-    enum: ['active', 'expired', 'upcoming'],
-    default: 'upcoming'
+    enum: ["active", "expired", "upcoming"],
+    default: "upcoming",
   },
   is_sitewide: {
     type: Boolean,
-    default: false
+    default: false,
   },
   terms_and_conditions: {
     type: String,
-    maxlength: 1000
-  }
+    maxlength: 1000,
+  },
 });
 
-const Offer = mongoose.model('Offer', offerSchema);
+const Offer = mongoose.model("Offer", offerSchema);
 
 export default Offer;
