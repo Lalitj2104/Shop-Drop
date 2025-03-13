@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://shop-drop-theta.vercel.app/";
+export const BACKEND_URL = "https://shop-drop-backend.vercel.app/";
