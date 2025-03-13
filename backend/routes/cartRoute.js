@@ -6,6 +6,9 @@ import dotenv from 'dotenv';
 dotenv.config({ path: "./config/config.env" });
 
 
+
+
+
 const cartRouter=express.Router();
 
 cartRouter.post("/add/:productId",isAuthenticated,addToCart);
