@@ -24,7 +24,7 @@ const app = express();
 
 app.use(
 	cors({
-		origin: "*",
+		origin: "https://shop-drop-frontend.vercel.app",
 		methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 		credentials: true,
         allowedHeaders: 'Content-Type,Authorization'
